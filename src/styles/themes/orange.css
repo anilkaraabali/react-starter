@@ -1,0 +1,11 @@
+@layer base {
+  .orange {
+    --accent: var(--color-orange-500);
+    --accent-foreground: oklch(99.11% 0 0deg);
+    --chart-1: var(--color-orange-300);
+    --chart-2: var(--color-orange-500);
+    --chart-3: var(--color-orange-600);
+    --chart-4: var(--color-orange-700);
+    --chart-5: var(--color-orange-800);
+  }
+}

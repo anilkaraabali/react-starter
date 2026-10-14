@@ -1,0 +1,95 @@
+/* Base requirements */
+@import "tailwindcss";
+@import "@heroui/styles";
+
+/* Theme variables */
+@import "./themes/red.css" layer(theme);
+@import "./themes/orange.css" layer(theme);
+@import "./themes/amber.css" layer(theme);
+@import "./themes/yellow.css" layer(theme);
+@import "./themes/lime.css" layer(theme);
+@import "./themes/green.css" layer(theme);
+@import "./themes/emerald.css" layer(theme);
+@import "./themes/teal.css" layer(theme);
+@import "./themes/cyan.css" layer(theme);
+@import "./themes/sky.css" layer(theme);
+@import "./themes/blue.css" layer(theme);
+@import "./themes/indigo.css" layer(theme);
+@import "./themes/violet.css" layer(theme);
+@import "./themes/purple.css" layer(theme);
+@import "./themes/fuchsia.css" layer(theme);
+@import "./themes/pink.css" layer(theme);
+@import "./themes/rose.css" layer(theme);
+
+/* Others */
+@import "./account.css" layer(components);
+@import "./nprogress.css" layer(components);
+
+/* stylelint-disable-next-line at-rule-empty-line-before */
+
+:root {
+  --sidebar-width: 240px;
+  --sidebar-width-collapsed: 64px;
+  --sidebar-edge-outline: #00000014;
+  --sidebar-menu-indent: calc(var(--spacing) * 4);
+  --header-edge-outline: #00000014;
+  --header-height: 64px;
+  --chart-grid-stroke: color-mix(in oklab, lab(90.952% 0 0) 50%, transparent);
+  --font-sans:
+    "Inter", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
+    sans-serif;
+  --font-mono: "DM Serif Display", georgia, "Times New Roman", serif;
+}
+
+:root.dark,
+:root[data-theme="dark"] {
+  --sidebar-edge-outline: #ffffff1a;
+  --header-edge-outline: #ffffff1a;
+  --chart-grid-stroke: lab(100% 0 0 / 10%);
+}
+
+@layer utilities {
+  .card-form [data-slot="card-header"] {
+    @apply -mx-4 border-b px-4 pb-3;
+  }
+
+  .card-form [data-slot="card-title"] {
+    @apply text-base;
+  }
+
+  .card-form [data-slot="card-content"] {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-2;
+  }
+
+  .card-form.card-detail [data-slot="card-content"] {
+    @apply xl:grid-cols-3;
+  }
+}
+
+@layer components {
+  /*
+   * Recharts 3: browser focus ring on the chart SVG / z-index portal layers
+   * (accessibilityLayer still defaults true until ReportChartProps useEffect).
+   * See https://github.com/recharts/recharts/issues/5988
+   */
+  .recharts-wrapper :focus {
+    outline: none;
+  }
+
+  .table__column,
+  .table__cell {
+    @apply whitespace-nowrap;
+  }
+
+  .table__empty-state {
+    @apply flex h-full w-full flex-col items-center justify-center gap-4 text-center;
+  }
+
+  .table__empty-state svg {
+    @apply text-muted;
+  }
+
+  .table__empty-state span {
+    @apply text-sm text-muted;
+  }
+}

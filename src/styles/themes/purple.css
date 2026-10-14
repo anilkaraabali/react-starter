@@ -1,0 +1,11 @@
+@layer base {
+  .purple {
+    --accent: var(--color-purple-500);
+    --accent-foreground: oklch(99.11% 0 0deg);
+    --chart-1: var(--color-purple-300);
+    --chart-2: var(--color-purple-500);
+    --chart-3: var(--color-purple-600);
+    --chart-4: var(--color-purple-700);
+    --chart-5: var(--color-purple-800);
+  }
+}

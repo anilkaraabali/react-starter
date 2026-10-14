@@ -1,0 +1,13 @@
+language js
+
+or {
+  `import $_ from $_`,
+  `import $_`,
+  `export $_`,
+  `describe($_, $_)`,
+  `it($_, $_)`,
+  `test($_, $_)`
+} as $first where {
+  $filename <: r".*\.test\.(?:ts|tsx|js|jsx)$",
+  register_diagnostic(span=$first, message="Test files must use .spec.ts or .spec.tsx inside __tests__/. The .test extension is prohibited.", severity="error")
+}

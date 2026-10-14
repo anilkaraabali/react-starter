@@ -1,0 +1,11 @@
+@layer base {
+  .lime {
+    --accent: oklch(86.46% 0.2559 135.74deg);
+    --accent-foreground: oklch(15% 0.03 135.74deg);
+    --chart-1: var(--color-lime-300);
+    --chart-2: var(--color-lime-500);
+    --chart-3: var(--color-lime-600);
+    --chart-4: var(--color-lime-700);
+    --chart-5: var(--color-lime-800);
+  }
+}

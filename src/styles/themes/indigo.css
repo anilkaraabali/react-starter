@@ -1,0 +1,11 @@
+@layer base {
+  .indigo {
+    --accent: var(--color-indigo-500);
+    --accent-foreground: oklch(99.11% 0 0deg);
+    --chart-1: var(--color-indigo-300);
+    --chart-2: var(--color-indigo-500);
+    --chart-3: var(--color-indigo-600);
+    --chart-4: var(--color-indigo-700);
+    --chart-5: var(--color-indigo-800);
+  }
+}

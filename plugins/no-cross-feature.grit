@@ -1,0 +1,15 @@
+language js
+
+// Cross-feature imports: a file in src/features/<feat>/ may import only
+// @/features/<feat>/**. Code reused by several features lives in the shared
+// layer (src/components, src/hooks, …). Covers import, import type,
+// side-effect import, export … from and dynamic import().
+or {
+  JsModuleSource() as $source,
+  `import($source)`
+} as $imp where {
+  $filename <: r".*src/features/([^/]+)/.*"($feat),
+  $source <: r".@/features/([^/'\"]+).*"($target),
+  $target <: not $feat,
+  register_diagnostic(span=$imp, message="Cross-feature import: a feature may only import itself. Move shared code to the shared layer (src/components, src/hooks, …) or compose features in src/routes or src/app.", severity="error")
+}

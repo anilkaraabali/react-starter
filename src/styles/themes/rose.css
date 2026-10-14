@@ -1,0 +1,11 @@
+@layer base {
+  .rose {
+    --accent: var(--color-rose-500);
+    --accent-foreground: oklch(99.11% 0 0deg);
+    --chart-1: var(--color-rose-300);
+    --chart-2: var(--color-rose-500);
+    --chart-3: var(--color-rose-600);
+    --chart-4: var(--color-rose-700);
+    --chart-5: var(--color-rose-800);
+  }
+}

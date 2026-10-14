@@ -1,0 +1,1171 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-02-23 17:47+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: tr\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "{memberCount} members"
+msgstr "{memberCount} üye"
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "{permissionCount} permissions"
+msgstr "{permissionCount} yetki"
+
+#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
+msgid "{start} to {end} of {total} results"
+msgstr "{total} sonuçtan {start}–{end}"
+
+#: src/utils/error.utils.ts
+msgid "A conflict occurred. The resource may already exist."
+msgstr "Bir çakışma oluştu. Kaynak zaten mevcut olabilir."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Academy"
+msgstr "Akademi"
+
+#: src/features/auth/components/login-view.tsx
+msgid "Access your account quickly and securely to get started."
+msgstr "Başlamak için hesabınıza hızlı ve güvenli şekilde giriş yapın."
+
+#: src/features/auth/hooks/use-account-deleted-toast.ts
+msgid "Account deleted."
+msgstr "Hesap silindi."
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-row.tsx
+msgid "Actions for {0}"
+msgstr "{0} için işlemler"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "Active Session"
+msgstr "Aktif Oturum"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/members/create-member-modal.tsx
+msgid "Add member"
+msgstr "Üye ekle"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Add members"
+msgstr "Üye ekleme"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Admin"
+msgstr "Yönetici"
+
+#: src/utils/page-title.utils.ts
+msgid "Admin Starter"
+msgstr "Admin Starter"
+
+#: src/components/atoms/logo.tsx
+msgid "Admin Starter logo"
+msgstr "Admin Starter logosu"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Administrative access. Can manage team members and general settings."
+msgstr "Yönetici erişimi. Ekip üyelerini ve genel ayarları yönetebilir."
+
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "All devices except this one will be signed out. This action cannot be undone."
+msgstr "Bu cihaz dışındaki tüm cihazlardaki oturumlar kapatılacak. Bu işlem geri alınamaz."
+
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "All other sessions revoked."
+msgstr "Diğer tüm oturumlar sonlandırıldı."
+
+#: src/features/account/components/account-role-view.tsx
+msgid "All roles"
+msgstr "Tüm roller"
+
+#: src/config/color-palette.constants.ts
+msgid "Amber"
+msgstr "Kehribar"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Analytics"
+msgstr "Analitik"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Apps"
+msgstr "Uygulamalar"
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-ban-modal.tsx
+msgid "Are you sure you want to ban <0>{0}</0>? They will no longer be able to access the application."
+msgstr "<0>{0}</0> adlı üyeyi yasaklamak üzeresiniz. Emin misiniz? Bu kişi artık uygulamaya erişemeyecek."
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Are you sure you want to remove <0><1>{0}</1></0>? This action cannot be undone."
+msgstr "<0><1>{0}</1></0> kaldırmak üzeresiniz. Emin misiniz? Bu işlem geri alınamaz."
+
+#: src/components/organisms/filters/utils/filter-fields.utils.ts
+msgid "Ascending (A-Z)"
+msgstr "Artan (A-Z)"
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Authentication"
+msgstr "Kimlik doğrulama"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Avatar"
+msgstr "Profil resmi"
+
+#: src/components/organisms/sidebar/header/sidebar-back-button.tsx
+msgid "Back"
+msgstr "Geri"
+
+#: src/utils/error.utils.ts
+msgid "Bad gateway. The server is temporarily unavailable."
+msgstr "Ağ geçidi hatası. Sunucu geçici olarak kullanılamıyor."
+
+#: src/utils/error.utils.ts
+msgid "Bad request. Please check your input."
+msgstr "Geçersiz istek. Lütfen girdiğiniz bilgileri kontrol edin."
+
+#: src/features/account/components/members/member-ban-modal.tsx
+msgid "Ban Member"
+msgstr "Üyeyi Yasakla"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Ban user"
+msgstr "Kullanıcıyı yasakla"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Banned"
+msgstr "Yasaklı"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Billing"
+msgstr "Faturalandırma"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Billing Admin"
+msgstr "Faturalandırma Yöneticisi"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Billing and subscription access. Can manage payment and invoices."
+msgstr "Faturalandırma ve abonelik erişimi. Ödemeleri ve faturaları yönetebilir."
+
+#: src/config/color-palette.constants.ts
+msgid "Blue"
+msgstr "Mavi"
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "Built-in"
+msgstr "Yerleşik"
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Built-in roles and the permissions they grant in this organization."
+msgstr "Bu organizasyondaki yerleşik roller ve verdikleri yetkiler."
+
+#: src/components/molecules/confirm-dialog.tsx
+#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+#: src/components/organisms/form/modals/form-modal.tsx
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "Cancel"
+msgstr "Vazgeç"
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Change"
+msgstr "Güncelle"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Change member roles"
+msgstr "Üye rollerini değiştirme"
+
+#: src/features/account/components/profile/change-password-modal.tsx
+msgid "Change Password"
+msgstr "Şifremi Değiştir"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Chat"
+msgstr "Sohbet"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Choose a primary color for buttons, links, and active states."
+msgstr "Butonlar, bağlantılar ve aktif durumlar için ana rengi seçin."
+
+#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+msgid "Clear filters"
+msgstr "Filtreleri temizle"
+
+#: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
+msgid "Collapse sidebar"
+msgstr "Kenar çubuğunu daralt"
+
+#: src/components/organisms/customize-drawer/color-palette-option-list.tsx
+msgid "Color"
+msgstr "Renk"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Color scheme"
+msgstr "Renk şeması"
+
+#: src/components/organisms/data-table/columns/table-column-filter.tsx
+msgid "Columns"
+msgstr "Sütunlar"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Commerce"
+msgstr "Ticaret"
+
+#: src/config/layout-options.constants.ts
+msgid "Compact"
+msgstr "Kompakt"
+
+#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+msgid "Confirm New Password"
+msgstr "Yeni Şifreyi Onayla"
+
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Confirm password"
+msgstr "Şifreyi onayla"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Connected Devices"
+msgstr "Bağlı Cihazlar"
+
+#: src/features/account/components/members/create-member-modal.tsx
+msgid "Create"
+msgstr "Oluştur"
+
+#: src/features/auth/components/register-view.tsx
+msgid "Create your account in just a few steps and start today."
+msgstr "Birkaç adımda hesabınızı oluşturun ve hemen başlayın."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "CRM"
+msgstr "CRM"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Customer support access. Can view members and assist users."
+msgstr "Müşteri destek erişimi. Üyeleri görüntüleyebilir ve kullanıcılara yardımcı olabilir."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Customers"
+msgstr "Müşteriler"
+
+#: src/components/organisms/customize-drawer/customize-drawer.tsx
+msgid "Customize"
+msgstr "Özelleştir"
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Customize appearance"
+msgstr "Görünümü özelleştir"
+
+#: src/config/color-palette.constants.ts
+msgid "Cyan"
+msgstr "Camgöbeği"
+
+#: src/config/theme.constants.ts
+msgid "Dark"
+msgstr "Koyu"
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Dark mode"
+msgstr "Karanlık mod"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+#: src/app/routes/_admin/dashboard.tsx
+msgid "Dashboard"
+msgstr "Kontrol Paneli"
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Dashboard coming soon"
+msgstr "Kontrol paneli yakında geliyor"
+
+#: src/components/organisms/data-table/data-table-view.tsx
+msgid "Data table"
+msgstr "Veri tablosu"
+
+#: src/config/layout-options.constants.ts
+msgid "Default"
+msgstr "Varsayılan"
+
+#: src/components/organisms/form/actions/form-action-more-menu.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Delete"
+msgstr "Sil"
+
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "Delete Account"
+msgstr "Hesabı Sil"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Delete my account"
+msgstr "Hesabımı sil"
+
+#: src/components/organisms/filters/utils/filter-fields.utils.ts
+msgid "Descending (Z-A)"
+msgstr "Azalan (Z-A)"
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "Discard changes"
+msgstr "Değişiklikleri at"
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "Discard unsaved changes?"
+msgstr "Kaydedilmemiş değişiklikler atılsın mı?"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "eCommerce"
+msgstr "E-Ticaret"
+
+#: src/components/organisms/form/actions/form-primary-action-button.tsx
+msgid "Edit"
+msgstr "Düzenle"
+
+#: src/components/organisms/data-table/columns/table-column-filter.tsx
+msgid "Edit columns"
+msgstr "Sütunları düzenle"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Edit profile"
+msgstr "Profili düzenle"
+
+#: src/features/account/components/profile/update-profile-modal.tsx
+msgid "Edit Profile"
+msgstr "Profili Düzenle"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Email"
+msgstr "E-posta"
+
+#: src/features/account/components/forms/name-email-fields-group.tsx
+#: src/features/auth/components/forms/forgot-password-form/forgot-password-form.tsx
+#: src/features/auth/components/forms/login-form/login-form.tsx
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Email address"
+msgstr "E-posta adresi"
+
+#: src/config/color-palette.constants.ts
+msgid "Emerald"
+msgstr "Zümrüt"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "End your session on this device"
+msgstr "Bu cihazdaki oturumu sonlandır"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Enter a valid date (YYYY-MM-DD)"
+msgstr "Geçerli bir tarih girin (YYYY-AA-GG)"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Enter your email address and we will send you a link to reset your password."
+msgstr "E-posta adresinizi girin, şifrenizi sıfırlamanız için size bir bağlantı gönderelim."
+
+#: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
+msgid "Expand sidebar"
+msgstr "Kenar çubuğunu genişlet"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Files"
+msgstr "Dosyalar"
+
+#: src/components/organisms/filters/panel/filters-trigger-button.tsx
+msgid "Filters"
+msgstr "Filtreler"
+
+#: src/components/organisms/filters/panel/filters-trigger-button.tsx
+msgid "Filters ({activeCount})"
+msgstr "Filtreler ({activeCount})"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Finance"
+msgstr "Finans"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "First Login"
+msgstr "İlk Giriş"
+
+#: src/config/layout-options.constants.ts
+msgid "Floating"
+msgstr "Yüzen"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "For your security, the session list is only available shortly after signing in."
+msgstr "Güvenliğiniz için oturum listesi yalnızca giriş yaptıktan kısa bir süre sonra görüntülenebilir."
+
+#: src/app/routes/_auth/forgot-password.tsx
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Forgot password"
+msgstr "Şifremi unuttum"
+
+#: src/features/auth/components/login-view.tsx
+msgid "Forgot password?"
+msgstr "Şifrenizi mi unuttunuz?"
+
+#: src/config/color-palette.constants.ts
+msgid "Fuchsia"
+msgstr "Fuşya"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Full access. Can manage organization settings, members, and all administrative functions."
+msgstr "Tam erişim. Organizasyon ayarlarını, üyeleri ve tüm yönetimsel işlevleri yönetebilir."
+
+#: src/features/account/components/account-profile-view.tsx
+#: src/features/account/components/forms/name-email-fields-group.tsx
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Full name"
+msgstr "Ad soyad"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/organization/organization-skeleton.tsx
+msgid "General"
+msgstr "Genel"
+
+#: src/app/layouts/error/error-actions.tsx
+msgid "Go back to dashboard"
+msgstr "Kontrol paneline geri dön"
+
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Granted to {roleLabel}"
+msgstr "{roleLabel} rolüne verildi"
+
+#: src/config/color-palette.constants.ts
+msgid "Green"
+msgstr "Yeşil"
+
+#: src/components/organisms/form/fields/form-password-input.tsx
+msgid "Hide password"
+msgstr "Şifreyi gizle"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "HR"
+msgstr "İK"
+
+#: src/features/auth/components/register-view.tsx
+msgid "If you already have an account, please <0>sign in.</0>"
+msgstr "Zaten bir hesabınız varsa lütfen <0>giriş yapın.</0>"
+
+#: src/config/color-palette.constants.ts
+msgid "Indigo"
+msgstr "Çivit"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Interface language"
+msgstr "Arayüz dili"
+
+#: src/utils/error.utils.ts
+msgid "Internal server error. Please try again later."
+msgstr "Sunucu hatası. Lütfen daha sonra tekrar deneyin."
+
+#: src/utils/date.utils.ts
+msgid "Invalid date"
+msgstr "Geçersiz tarih"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Invalid format"
+msgstr "Geçersiz biçim"
+
+#: src/features/auth/components/reset-password-invalid-link.tsx
+msgid "Invalid reset link"
+msgstr "Geçersiz sıfırlama bağlantısı"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Invoices"
+msgstr "Faturalar"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "IP Address"
+msgstr "IP Adresi"
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "Keep editing"
+msgstr "Düzenlemeye devam et"
+
+#: src/components/organisms/customize-drawer/language-option-list.tsx
+msgid "Language"
+msgstr "Dil"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Language & Region"
+msgstr "Dil ve Bölge"
+
+#: src/components/organisms/customize-drawer/layout-option-list.tsx
+msgid "Layout"
+msgstr "Düzen"
+
+#: src/config/theme.constants.ts
+msgid "Light"
+msgstr "Açık"
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Light mode"
+msgstr "Aydınlık mod"
+
+#: src/config/color-palette.constants.ts
+msgid "Lime"
+msgstr "Misket Limonu"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "List members"
+msgstr "Üyeleri listeleme"
+
+#: src/app/loader.tsx
+msgid "Loading"
+msgstr "Yükleniyor"
+
+#: src/app/layouts/admin-layout/admin-header-user-menu.tsx
+#: src/app/layouts/error/error-actions.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Log out"
+msgstr "Çıkış yap"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Logistics"
+msgstr "Lojistik"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Mail"
+msgstr "E-posta"
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "Manage your organization details and team members."
+msgstr "Organizasyon bilgilerinizi ve ekip üyelerinizi yönetin."
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Manage your password and configure additional security settings to keep your account safe."
+msgstr "Hesabınızı güvende tutmak için şifrenizi yönetin ve ek güvenlik ayarlarını yapılandırın."
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Manage your profile, language, and appearance preferences."
+msgstr "Profil, dil ve görünüm tercihlerinizi yönetin."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Marketing"
+msgstr "Pazarlama"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Maximum {max} characters allowed"
+msgstr "En fazla {max} karakter girilebilir"
+
+#: src/features/account/components/members/create-member-modal.tsx
+msgid "Member added."
+msgstr "Üye eklendi."
+
+#: src/features/account/components/members/member-ban-modal.tsx
+msgid "Member banned."
+msgstr "Üye yasaklandı."
+
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Member removed."
+msgstr "Üye kaldırıldı."
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Member unbanned."
+msgstr "Üyenin yasağı kaldırıldı."
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/organization/organization-skeleton.tsx
+msgid "Members"
+msgstr "Üyeler"
+
+#: src/features/account/components/account-role-view.tsx
+msgid "Members with this role"
+msgstr "Bu role sahip üyeler"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Minimum {min} characters required"
+msgstr "En az {min} karakter gereklidir"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "More"
+msgstr "Daha fazla"
+
+#: src/components/organisms/form/actions/form-action-more-menu.tsx
+msgid "More options"
+msgstr "Diğer seçenekler"
+
+#: src/utils/error.utils.ts
+msgid "Network error. Please check your connection."
+msgstr "Ağ hatası. Lütfen internet bağlantınızı kontrol edin."
+
+#: src/features/auth/components/login-view.tsx
+msgid "New here? Use your email to <0>sign up.</0>"
+msgstr "İlk kez mi giriyorsunuz? E-postanızla <0>kayıt olun.</0>"
+
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+msgid "New Password"
+msgstr "Yeni Şifre"
+
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+msgid "New Password Again"
+msgstr "Yeni Şifre (Tekrar)"
+
+#: src/lib/zod/validation-messages.ts
+msgid "New password cannot be the same as the current password"
+msgstr "Yeni şifre mevcut şifre ile aynı olamaz"
+
+#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
+msgid "Next"
+msgstr "İleri"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "No active sessions."
+msgstr "Aktif oturum bulunmuyor."
+
+#: src/features/account/components/account-role-view.tsx
+msgid "No members currently hold this role."
+msgstr "Şu anda bu role sahip üye yok."
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "No members found."
+msgstr "Kayıtlı kullanıcı bulunmuyor."
+
+#: src/components/molecules/autocomplete-popover.tsx
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#: src/components/organisms/data-table/table-empty-state.tsx
+msgid "No rows to display."
+msgstr "Gösterilecek satır yok."
+
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Not granted to {roleLabel}"
+msgstr "{roleLabel} rolüne verilmedi"
+
+#: src/app/layouts/admin-layout/admin-header-user-menu.tsx
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Notifications"
+msgstr "Bildirimler"
+
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+msgid "Old Password"
+msgstr "Eski Şifre"
+
+#: src/app/layouts/error/error-generic-layout.tsx
+msgid "Oops! That didn’t work as expected. We’ve been notified and will fix it soon."
+msgstr "Bir şeyler ters gitti! Durum bize bildirildi, en kısa sürede düzeltilecek."
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Open menu"
+msgstr "Menüyü aç"
+
+#: src/config/color-palette.constants.ts
+msgid "Orange"
+msgstr "Turuncu"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Orders"
+msgstr "Siparişler"
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/organization.tsx
+#: src/features/account/components/account-organization-view.tsx
+msgid "Organization"
+msgstr "Organizasyon"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/forms/rename-organization-form/rename-organization-form.tsx
+msgid "Organization name"
+msgstr "Organizasyon adı"
+
+#: src/features/account/components/organization/rename-organization-modal.tsx
+msgid "Organization renamed."
+msgstr "Organizasyon yeniden adlandırıldı."
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Organization role"
+msgstr "Organizasyon rolü"
+
+#: src/features/account/components/account-security-view.tsx
+#: src/features/account/components/forms/delete-account-form/delete-account-form.tsx
+#: src/features/auth/components/forms/login-form/login-form.tsx
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Password"
+msgstr "Şifre"
+
+#: src/features/auth/components/reset-password-view.tsx
+msgid "Password has been reset successfully"
+msgstr "Şifreniz başarıyla sıfırlandı"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Password must contain uppercase and lowercase letters, numbers, and special characters"
+msgstr "Şifre büyük ve küçük harf, rakam ve özel karakter içermelidir"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Password reset link sent to your email"
+msgstr "Şifre sıfırlama bağlantısı e-posta adresinize gönderildi"
+
+#: src/features/account/components/profile/change-password-modal.tsx
+msgid "Password updated."
+msgstr "Şifre güncellendi."
+
+#: src/lib/zod/validation-messages.ts
+msgid "Passwords do not match"
+msgstr "Şifreler eşleşmiyor"
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "People in this organization. Contact the owner to change membership."
+msgstr "Bu organizasyondaki kişiler. Üyelik değişikliği için sahip ile iletişime geçin."
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "People in this organization. Invite guests or members, change roles, or remove them."
+msgstr "Bu organizasyondaki kişiler. Misafir veya üye davet edin, rolleri değiştirin veya kaldırın."
+
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Permission"
+msgstr "Yetki"
+
+#: src/features/account/components/account-roles-view.tsx
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Permission matrix"
+msgstr "Yetki tablosu"
+
+#: src/features/account/components/account-role-view.tsx
+msgid "Permissions"
+msgstr "Yetkiler"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Personal Information"
+msgstr "Kişisel Bilgiler"
+
+#: src/components/organisms/customize-drawer/customize-drawer.tsx
+msgid "Personalize your dashboard experience."
+msgstr "Panel deneyiminizi kişiselleştirin."
+
+#: src/config/color-palette.constants.ts
+msgid "Pink"
+msgstr "Pembe"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Please enter a valid email address"
+msgstr "Lütfen geçerli bir e-posta adresi girin"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Please enter a valid UUID"
+msgstr "Lütfen geçerli bir UUID girin"
+
+#: src/features/auth/components/reset-password-view.tsx
+msgid "Please enter your new password below."
+msgstr "Lütfen yeni şifrenizi aşağıya girin."
+
+#: src/utils/error.utils.ts
+msgid "Please try again or check back later."
+msgstr "Lütfen tekrar deneyin veya daha sonra kontrol edin."
+
+#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
+msgid "Prev"
+msgstr "Geri"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Pricing"
+msgstr "Fiyatlandırma"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Products"
+msgstr "Ürünler"
+
+#: src/features/account/components/profile/update-profile-modal.tsx
+msgid "Profile updated."
+msgstr "Profil güncellendi."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Project"
+msgstr "Proje"
+
+#: src/config/color-palette.constants.ts
+msgid "Purple"
+msgstr "Mor"
+
+#: src/config/color-palette.constants.ts
+msgid "Red"
+msgstr "Kırmızı"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Remember your password? <0>Sign in.</0>"
+msgstr "Şifrenizi hatırladınız mı? <0>Giriş yapın.</0>"
+
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Remove"
+msgstr "Kaldır"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Remove member"
+msgstr "Kullanıcıyı kaldır"
+
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Remove Member"
+msgstr "Kullanıcıyı Kaldır"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Remove members"
+msgstr "Üye kaldırma"
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Rename organization"
+msgstr "Organizasyonu yeniden adlandırma"
+
+#: src/features/account/components/organization/rename-organization-modal.tsx
+msgid "Rename Organization"
+msgstr "Organizasyonu Yeniden Adlandır"
+
+#: src/features/auth/components/reset-password-invalid-link.tsx
+msgid "Request a new link"
+msgstr "Yeni bağlantı iste"
+
+#: src/utils/error.utils.ts
+msgid "Request timeout. Please try again."
+msgstr "İstek zaman aşımına uğradı. Lütfen tekrar deneyin."
+
+#: src/utils/error.utils.ts
+msgid "Request was canceled."
+msgstr "İstek iptal edildi."
+
+#: src/app/routes/_auth/reset-password.tsx
+#: src/features/auth/components/reset-password-view.tsx
+msgid "Reset password"
+msgstr "Şifreyi sıfırla"
+
+#: src/components/organisms/customize-drawer/customize-drawer.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Reset to defaults"
+msgstr "Varsayılanlara dön"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/account-role-view.tsx
+#: src/features/account/components/account-roles-view.tsx
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Retry"
+msgstr "Yeniden dene"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "Revoke"
+msgstr "Oturumu sonlandır"
+
+#: src/app/routes/_admin/account/roles/$role.tsx
+#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+msgid "Role"
+msgstr "Rol"
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-row.tsx
+msgid "Role for {0}"
+msgstr "{0} için rol"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Role updated."
+msgstr "Rol güncellendi."
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Roles"
+msgstr "Roller"
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/roles/index.tsx
+#: src/features/account/components/account-roles-view.tsx
+msgid "Roles & Permissions"
+msgstr "Roller ve Yetkiler"
+
+#: src/config/color-palette.constants.ts
+msgid "Rose"
+msgstr "Gül"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "SaaS"
+msgstr "SaaS"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Sales access. Can view team directory and manage sales leads."
+msgstr "Satış erişimi. Ekip dizinini görüntüleyebilir ve satış potansiyellerini yönetebilir."
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Sales Rep"
+msgstr "Satış Temsilcisi"
+
+#: src/components/organisms/form/actions/form-primary-action-button.tsx
+#: src/features/account/components/organization/rename-organization-modal.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
+#: src/features/account/components/profile/update-profile-modal.tsx
+msgid "Save"
+msgstr "Kaydet"
+
+#: src/components/organisms/filters/fields/filter-search.tsx
+#: src/components/organisms/header/header-search.tsx
+msgid "Search"
+msgstr "Ara"
+
+#: src/components/organisms/header/header-search.tsx
+msgid "Search anything..."
+msgstr "Herhangi bir şey arayın..."
+
+#: src/components/molecules/autocomplete-popover.tsx
+msgid "Search..."
+msgstr "Ara..."
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/security.tsx
+#: src/features/account/components/account-security-view.tsx
+msgid "Security"
+msgstr "Güvenlik ayarları"
+
+#: src/components/organisms/data-table/data-table-view.tsx
+msgid "Select all rows"
+msgstr "Tüm satırları seç"
+
+#: src/components/molecules/color-palette-picker.tsx
+msgid "Select color scheme"
+msgstr "Renk şeması seç"
+
+#: src/components/molecules/language-picker.tsx
+msgid "Select language"
+msgstr "Dil seç"
+
+#: src/components/organisms/filters/fields/filter-autocomplete.tsx
+#: src/components/organisms/filters/fields/filter-select.tsx
+msgid "Select one"
+msgstr "Birini seç"
+
+#: src/components/molecules/theme-picker.tsx
+msgid "Select theme"
+msgstr "Tema seç"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Send reset link"
+msgstr "Sıfırlama bağlantısı gönder"
+
+#: src/utils/error.utils.ts
+msgid "Service unavailable. Please try again later."
+msgstr "Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin."
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Session revoked."
+msgstr "Oturum sonlandırıldı."
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/sessions.tsx
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Sessions"
+msgstr "Oturumlar"
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/layouts/admin-layout/admin-header-user-menu.tsx
+#: src/app/routes/_admin/account/profile.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: src/components/organisms/form/fields/form-password-input.tsx
+msgid "Show password"
+msgstr "Şifreyi göster"
+
+#: src/app/routes/_auth/login.tsx
+#: src/features/auth/components/login-view.tsx
+msgid "Sign in"
+msgstr "Giriş Yap"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Sign in again"
+msgstr "Tekrar giriş yap"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Sign in again to view sessions"
+msgstr "Oturumları görmek için tekrar giriş yapın"
+
+#: src/app/layouts/admin-layout/admin-sidebar-footer.tsx
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "Sign out"
+msgstr "Çıkış yap"
+
+#: src/features/account/components/account-sessions-view.tsx
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+msgid "Sign out of all other devices"
+msgstr "Diğer tüm cihazlardaki oturumları kapat"
+
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "Sign Out of All Other Devices"
+msgstr "Diğer Tüm Cihazlardaki Oturumları Kapat"
+
+#: src/app/routes/_auth/register.tsx
+#: src/features/auth/components/register-view.tsx
+msgid "Sign up"
+msgstr "Kaydol"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Signed out."
+msgstr "Çıkış yapıldı."
+
+#: src/config/color-palette.constants.ts
+msgid "Sky"
+msgstr "Gökyüzü"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/account-role-view.tsx
+msgid "Something went wrong while loading members. Please try again."
+msgstr "Üyeler yüklenirken bir sorun oluştu. Lütfen tekrar deneyin."
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Something went wrong while loading roles. Please try again."
+msgstr "Roller yüklenirken bir sorun oluştu. Lütfen tekrar deneyin."
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Something went wrong while loading sessions. Please try again."
+msgstr "Oturumlar yüklenirken bir sorun oluştu. Lütfen tekrar deneyin."
+
+#: src/components/organisms/filters/utils/filter-fields.utils.ts
+msgid "Sort order"
+msgstr "Sıralama yönü"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Super Admin"
+msgstr "Süper Yönetici"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Support Agent"
+msgstr "Destek Temsilcisi"
+
+#: src/config/theme.constants.ts
+msgid "System"
+msgstr "Sistem"
+
+#: src/config/color-palette.constants.ts
+msgid "Teal"
+msgstr "Turkuaz"
+
+#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+msgid "Temporary password"
+msgstr "Geçici şifre"
+
+#: src/utils/error.utils.ts
+msgid "The requested resource was not found."
+msgstr "İstenen kaynak bulunamadı."
+
+#: src/lib/zod/validation-messages.ts
+msgid "The URL is badly formatted"
+msgstr "URL formatı yanlış"
+
+#: src/components/organisms/customize-drawer/theme-option-list.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Theme"
+msgstr "Tema"
+
+#: src/lib/zod/validation-messages.ts
+msgid "This field is required"
+msgstr "Bu alan zorunludur"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "This is a list of devices logged into your account. Cancel any sessions you do not recognize."
+msgstr "Bu hesabınıza giriş yapmış cihazların bir listesidir. Tanımadığınız oturumları iptal edin."
+
+#: src/features/auth/components/reset-password-invalid-link.tsx
+msgid "This password reset link is invalid or has expired. Request a new one to continue."
+msgstr "Bu şifre sıfırlama bağlantısı geçersiz veya süresi dolmuş. Devam etmek için yeni bir bağlantı isteyin."
+
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "This permanently deletes your account and removes you from any organizations. Shared organization data is not deleted. This cannot be undone."
+msgstr "Bu işlem hesabınızı kalıcı olarak siler ve sizi tüm organizasyonlardan çıkarır. Paylaşılan organizasyon verileri silinmez. Bu işlem geri alınamaz."
+
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "This permanently deletes your account, organizations you own, and all organization data. Members and guests lose access. This cannot be undone."
+msgstr "Bu işlem hesabınızı, sahip olduğunuz organizasyonları ve tüm organizasyon verilerini kalıcı olarak siler. Üyeler ve misafirler erişimi kaybeder. Bu işlem geri alınamaz."
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Toggle theme"
+msgstr "Temayı değiştir"
+
+#: src/utils/error.utils.ts
+msgid "Too many requests. Please try again later."
+msgstr "Çok fazla istek gönderildi. Lütfen bir süre bekleyip tekrar deneyin."
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/account-role-view.tsx
+msgid "Unable to load members"
+msgstr "Üyeler yüklenemedi"
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Unable to load roles"
+msgstr "Roller yüklenemedi"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Unable to load sessions"
+msgstr "Oturumlar yüklenemedi"
+
+#: src/utils/error.utils.ts
+msgid "Unauthorized. Please login again."
+msgstr "Oturum süreniz dolmuş. Lütfen tekrar giriş yapın."
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Unban user"
+msgstr "Kullanıcının yasağını kaldır"
+
+#: src/app/layouts/error/error-not-found-layout.tsx
+msgid "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved."
+msgstr "Ne yazık ki bu sadece bir 404 sayfası. Adresi yanlış yazmış olabilirsiniz veya sayfa taşınmış olabilir."
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Update your password to keep your account secure."
+msgstr "Şifrenizi güvenlik nedeniyle değiştirebilirsiniz."
+
+#: src/utils/error.utils.ts
+msgid "Validation failed. Please check your input."
+msgstr "Doğrulama başarısız oldu. Lütfen girdiğiniz bilgileri kontrol edin."
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "View"
+msgstr "Görüntüle"
+
+#: src/config/color-palette.constants.ts
+msgid "Violet"
+msgstr "Menekşe"
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Welcome back, {name}."
+msgstr "Tekrar hoş geldiniz, {name}."
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Welcome back."
+msgstr "Tekrar hoş geldiniz."
+
+#: src/config/color-palette.constants.ts
+msgid "Yellow"
+msgstr "Sarı"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "You"
+msgstr "Sen"
+
+#: src/lib/authorization/authorization-route-guard.utils.ts
+#: src/utils/error.utils.ts
+msgid "You do not have permission to perform this action."
+msgstr "Bu işlemi gerçekleştirmek için yetkiniz bulunmuyor."
+
+#: src/app/layouts/error/error-not-found-layout.tsx
+msgid "You have found a secret place."
+msgstr "Gizli bir yer buldunuz."
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "You have unsaved changes. If you leave this page, they will be lost."
+msgstr "Kaydedilmemiş değişiklikleriniz var. Bu sayfadan ayrılırsanız kaybolacaklar."
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Your current role"
+msgstr "Mevcut rolünüz"
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Your overview will appear here."
+msgstr "Genel bakışınız burada görünecek."

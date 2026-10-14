@@ -1,0 +1,19 @@
+{
+  "absolute": false,
+  "format": ["typescript", "tsx"],
+  "gitignore": true,
+  "ignore": [
+    "**/__tests__/**",
+    "**/*.gen.ts",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/dist/**",
+    "**/node_modules/**"
+  ],
+  "ignorePattern": ["(?m)^import\\s[^;]*;"],
+  "minLines": 5,
+  "minTokens": 60,
+  "path": ["src"],
+  "reporters": ["console"],
+  "threshold": 1
+}

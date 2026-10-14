@@ -1,0 +1,1171 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-02-23 17:47+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "{memberCount} members"
+msgstr "{memberCount} members"
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "{permissionCount} permissions"
+msgstr "{permissionCount} permissions"
+
+#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
+msgid "{start} to {end} of {total} results"
+msgstr "{start} to {end} of {total} results"
+
+#: src/utils/error.utils.ts
+msgid "A conflict occurred. The resource may already exist."
+msgstr "A conflict occurred. The resource may already exist."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Academy"
+msgstr "Academy"
+
+#: src/features/auth/components/login-view.tsx
+msgid "Access your account quickly and securely to get started."
+msgstr "Access your account quickly and securely to get started."
+
+#: src/features/auth/hooks/use-account-deleted-toast.ts
+msgid "Account deleted."
+msgstr "Account deleted."
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-row.tsx
+msgid "Actions for {0}"
+msgstr "Actions for {0}"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "Active Session"
+msgstr "Active Session"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/members/create-member-modal.tsx
+msgid "Add member"
+msgstr "Add member"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Add members"
+msgstr "Add members"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Admin"
+msgstr "Admin"
+
+#: src/utils/page-title.utils.ts
+msgid "Admin Starter"
+msgstr "Admin Starter"
+
+#: src/components/atoms/logo.tsx
+msgid "Admin Starter logo"
+msgstr "Admin Starter logo"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Administrative access. Can manage team members and general settings."
+msgstr "Administrative access. Can manage team members and general settings."
+
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "All devices except this one will be signed out. This action cannot be undone."
+msgstr "All devices except this one will be signed out. This action cannot be undone."
+
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "All other sessions revoked."
+msgstr "All other sessions revoked."
+
+#: src/features/account/components/account-role-view.tsx
+msgid "All roles"
+msgstr "All roles"
+
+#: src/config/color-palette.constants.ts
+msgid "Amber"
+msgstr "Amber"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Analytics"
+msgstr "Analytics"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Appearance"
+msgstr "Appearance"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Apps"
+msgstr "Apps"
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-ban-modal.tsx
+msgid "Are you sure you want to ban <0>{0}</0>? They will no longer be able to access the application."
+msgstr "Are you sure you want to ban <0>{0}</0>? They will no longer be able to access the application."
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Are you sure you want to remove <0><1>{0}</1></0>? This action cannot be undone."
+msgstr "Are you sure you want to remove <0><1>{0}</1></0>? This action cannot be undone."
+
+#: src/components/organisms/filters/utils/filter-fields.utils.ts
+msgid "Ascending (A-Z)"
+msgstr "Ascending (A-Z)"
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Authentication"
+msgstr "Authentication"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Avatar"
+msgstr "Avatar"
+
+#: src/components/organisms/sidebar/header/sidebar-back-button.tsx
+msgid "Back"
+msgstr "Back"
+
+#: src/utils/error.utils.ts
+msgid "Bad gateway. The server is temporarily unavailable."
+msgstr "Bad gateway. The server is temporarily unavailable."
+
+#: src/utils/error.utils.ts
+msgid "Bad request. Please check your input."
+msgstr "Bad request. Please check your input."
+
+#: src/features/account/components/members/member-ban-modal.tsx
+msgid "Ban Member"
+msgstr "Ban Member"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Ban user"
+msgstr "Ban user"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Banned"
+msgstr "Banned"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Billing"
+msgstr "Billing"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Billing Admin"
+msgstr "Billing Admin"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Billing and subscription access. Can manage payment and invoices."
+msgstr "Billing and subscription access. Can manage payment and invoices."
+
+#: src/config/color-palette.constants.ts
+msgid "Blue"
+msgstr "Blue"
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "Built-in"
+msgstr "Built-in"
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Built-in roles and the permissions they grant in this organization."
+msgstr "Built-in roles and the permissions they grant in this organization."
+
+#: src/components/molecules/confirm-dialog.tsx
+#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+#: src/components/organisms/form/modals/form-modal.tsx
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Change"
+msgstr "Change"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Change member roles"
+msgstr "Change member roles"
+
+#: src/features/account/components/profile/change-password-modal.tsx
+msgid "Change Password"
+msgstr "Change Password"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Chat"
+msgstr "Chat"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Choose a primary color for buttons, links, and active states."
+msgstr "Choose a primary color for buttons, links, and active states."
+
+#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+msgid "Clear filters"
+msgstr "Clear filters"
+
+#: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
+msgid "Collapse sidebar"
+msgstr "Collapse sidebar"
+
+#: src/components/organisms/customize-drawer/color-palette-option-list.tsx
+msgid "Color"
+msgstr "Color"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Color scheme"
+msgstr "Color scheme"
+
+#: src/components/organisms/data-table/columns/table-column-filter.tsx
+msgid "Columns"
+msgstr "Columns"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Commerce"
+msgstr "Commerce"
+
+#: src/config/layout-options.constants.ts
+msgid "Compact"
+msgstr "Compact"
+
+#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+msgid "Confirm New Password"
+msgstr "Confirm New Password"
+
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Confirm password"
+msgstr "Confirm password"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Connected Devices"
+msgstr "Connected Devices"
+
+#: src/features/account/components/members/create-member-modal.tsx
+msgid "Create"
+msgstr "Create"
+
+#: src/features/auth/components/register-view.tsx
+msgid "Create your account in just a few steps and start today."
+msgstr "Create your account in just a few steps and start today."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "CRM"
+msgstr "CRM"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Customer support access. Can view members and assist users."
+msgstr "Customer support access. Can view members and assist users."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Customers"
+msgstr "Customers"
+
+#: src/components/organisms/customize-drawer/customize-drawer.tsx
+msgid "Customize"
+msgstr "Customize"
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Customize appearance"
+msgstr "Customize appearance"
+
+#: src/config/color-palette.constants.ts
+msgid "Cyan"
+msgstr "Cyan"
+
+#: src/config/theme.constants.ts
+msgid "Dark"
+msgstr "Dark"
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Dark mode"
+msgstr "Dark mode"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+#: src/app/routes/_admin/dashboard.tsx
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Dashboard coming soon"
+msgstr "Dashboard coming soon"
+
+#: src/components/organisms/data-table/data-table-view.tsx
+msgid "Data table"
+msgstr "Data table"
+
+#: src/config/layout-options.constants.ts
+msgid "Default"
+msgstr "Default"
+
+#: src/components/organisms/form/actions/form-action-more-menu.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Delete"
+msgstr "Delete"
+
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "Delete Account"
+msgstr "Delete Account"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Delete my account"
+msgstr "Delete my account"
+
+#: src/components/organisms/filters/utils/filter-fields.utils.ts
+msgid "Descending (Z-A)"
+msgstr "Descending (Z-A)"
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "Discard changes"
+msgstr "Discard changes"
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "Discard unsaved changes?"
+msgstr "Discard unsaved changes?"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "eCommerce"
+msgstr "eCommerce"
+
+#: src/components/organisms/form/actions/form-primary-action-button.tsx
+msgid "Edit"
+msgstr "Edit"
+
+#: src/components/organisms/data-table/columns/table-column-filter.tsx
+msgid "Edit columns"
+msgstr "Edit columns"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Edit profile"
+msgstr "Edit profile"
+
+#: src/features/account/components/profile/update-profile-modal.tsx
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Email"
+msgstr "Email"
+
+#: src/features/account/components/forms/name-email-fields-group.tsx
+#: src/features/auth/components/forms/forgot-password-form/forgot-password-form.tsx
+#: src/features/auth/components/forms/login-form/login-form.tsx
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Email address"
+msgstr "Email address"
+
+#: src/config/color-palette.constants.ts
+msgid "Emerald"
+msgstr "Emerald"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "End your session on this device"
+msgstr "End your session on this device"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Enter a valid date (YYYY-MM-DD)"
+msgstr "Enter a valid date (YYYY-MM-DD)"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Enter your email address and we will send you a link to reset your password."
+msgstr "Enter your email address and we will send you a link to reset your password."
+
+#: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
+msgid "Expand sidebar"
+msgstr "Expand sidebar"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Files"
+msgstr "Files"
+
+#: src/components/organisms/filters/panel/filters-trigger-button.tsx
+msgid "Filters"
+msgstr "Filters"
+
+#: src/components/organisms/filters/panel/filters-trigger-button.tsx
+msgid "Filters ({activeCount})"
+msgstr "Filters ({activeCount})"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Finance"
+msgstr "Finance"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "First Login"
+msgstr "First Login"
+
+#: src/config/layout-options.constants.ts
+msgid "Floating"
+msgstr "Floating"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "For your security, the session list is only available shortly after signing in."
+msgstr "For your security, the session list is only available shortly after signing in."
+
+#: src/app/routes/_auth/forgot-password.tsx
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Forgot password"
+msgstr "Forgot password"
+
+#: src/features/auth/components/login-view.tsx
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+#: src/config/color-palette.constants.ts
+msgid "Fuchsia"
+msgstr "Fuchsia"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Full access. Can manage organization settings, members, and all administrative functions."
+msgstr "Full access. Can manage organization settings, members, and all administrative functions."
+
+#: src/features/account/components/account-profile-view.tsx
+#: src/features/account/components/forms/name-email-fields-group.tsx
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Full name"
+msgstr "Full name"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/organization/organization-skeleton.tsx
+msgid "General"
+msgstr "General"
+
+#: src/app/layouts/error/error-actions.tsx
+msgid "Go back to dashboard"
+msgstr "Go back to dashboard"
+
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Granted to {roleLabel}"
+msgstr "Granted to {roleLabel}"
+
+#: src/config/color-palette.constants.ts
+msgid "Green"
+msgstr "Green"
+
+#: src/components/organisms/form/fields/form-password-input.tsx
+msgid "Hide password"
+msgstr "Hide password"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "HR"
+msgstr "HR"
+
+#: src/features/auth/components/register-view.tsx
+msgid "If you already have an account, please <0>sign in.</0>"
+msgstr "If you already have an account, please <0>sign in.</0>"
+
+#: src/config/color-palette.constants.ts
+msgid "Indigo"
+msgstr "Indigo"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Interface language"
+msgstr "Interface language"
+
+#: src/utils/error.utils.ts
+msgid "Internal server error. Please try again later."
+msgstr "Internal server error. Please try again later."
+
+#: src/utils/date.utils.ts
+msgid "Invalid date"
+msgstr "Invalid date"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Invalid format"
+msgstr "Invalid format"
+
+#: src/features/auth/components/reset-password-invalid-link.tsx
+msgid "Invalid reset link"
+msgstr "Invalid reset link"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Invoices"
+msgstr "Invoices"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "IP Address"
+msgstr "IP Address"
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "Keep editing"
+msgstr "Keep editing"
+
+#: src/components/organisms/customize-drawer/language-option-list.tsx
+msgid "Language"
+msgstr "Language"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Language & Region"
+msgstr "Language & Region"
+
+#: src/components/organisms/customize-drawer/layout-option-list.tsx
+msgid "Layout"
+msgstr "Layout"
+
+#: src/config/theme.constants.ts
+msgid "Light"
+msgstr "Light"
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Light mode"
+msgstr "Light mode"
+
+#: src/config/color-palette.constants.ts
+msgid "Lime"
+msgstr "Lime"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "List members"
+msgstr "List members"
+
+#: src/app/loader.tsx
+msgid "Loading"
+msgstr "Loading"
+
+#: src/app/layouts/admin-layout/admin-header-user-menu.tsx
+#: src/app/layouts/error/error-actions.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Log out"
+msgstr "Log out"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Logistics"
+msgstr "Logistics"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Mail"
+msgstr "Mail"
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "Manage your organization details and team members."
+msgstr "Manage your organization details and team members."
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Manage your password and configure additional security settings to keep your account safe."
+msgstr "Manage your password and configure additional security settings to keep your account safe."
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Manage your profile, language, and appearance preferences."
+msgstr "Manage your profile, language, and appearance preferences."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Marketing"
+msgstr "Marketing"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Maximum {max} characters allowed"
+msgstr "Maximum {max} characters allowed"
+
+#: src/features/account/components/members/create-member-modal.tsx
+msgid "Member added."
+msgstr "Member added."
+
+#: src/features/account/components/members/member-ban-modal.tsx
+msgid "Member banned."
+msgstr "Member banned."
+
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Member removed."
+msgstr "Member removed."
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Member unbanned."
+msgstr "Member unbanned."
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/organization/organization-skeleton.tsx
+msgid "Members"
+msgstr "Members"
+
+#: src/features/account/components/account-role-view.tsx
+msgid "Members with this role"
+msgstr "Members with this role"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Minimum {min} characters required"
+msgstr "Minimum {min} characters required"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "More"
+msgstr "More"
+
+#: src/components/organisms/form/actions/form-action-more-menu.tsx
+msgid "More options"
+msgstr "More options"
+
+#: src/utils/error.utils.ts
+msgid "Network error. Please check your connection."
+msgstr "Network error. Please check your connection."
+
+#: src/features/auth/components/login-view.tsx
+msgid "New here? Use your email to <0>sign up.</0>"
+msgstr "New here? Use your email to <0>sign up.</0>"
+
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+msgid "New Password"
+msgstr "New Password"
+
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+msgid "New Password Again"
+msgstr "New Password Again"
+
+#: src/lib/zod/validation-messages.ts
+msgid "New password cannot be the same as the current password"
+msgstr "New password cannot be the same as the current password"
+
+#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
+msgid "Next"
+msgstr "Next"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "No active sessions."
+msgstr "No active sessions."
+
+#: src/features/account/components/account-role-view.tsx
+msgid "No members currently hold this role."
+msgstr "No members currently hold this role."
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "No members found."
+msgstr "No members found."
+
+#: src/components/molecules/autocomplete-popover.tsx
+msgid "No results found"
+msgstr "No results found"
+
+#: src/components/organisms/data-table/table-empty-state.tsx
+msgid "No rows to display."
+msgstr "No rows to display."
+
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Not granted to {roleLabel}"
+msgstr "Not granted to {roleLabel}"
+
+#: src/app/layouts/admin-layout/admin-header-user-menu.tsx
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Notifications"
+msgstr "Notifications"
+
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+msgid "Old Password"
+msgstr "Old Password"
+
+#: src/app/layouts/error/error-generic-layout.tsx
+msgid "Oops! That didn’t work as expected. We’ve been notified and will fix it soon."
+msgstr "Oops! That didn’t work as expected. We’ve been notified and will fix it soon."
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Open menu"
+msgstr "Open menu"
+
+#: src/config/color-palette.constants.ts
+msgid "Orange"
+msgstr "Orange"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Orders"
+msgstr "Orders"
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/organization.tsx
+#: src/features/account/components/account-organization-view.tsx
+msgid "Organization"
+msgstr "Organization"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/forms/rename-organization-form/rename-organization-form.tsx
+msgid "Organization name"
+msgstr "Organization name"
+
+#: src/features/account/components/organization/rename-organization-modal.tsx
+msgid "Organization renamed."
+msgstr "Organization renamed."
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Organization role"
+msgstr "Organization role"
+
+#: src/features/account/components/account-security-view.tsx
+#: src/features/account/components/forms/delete-account-form/delete-account-form.tsx
+#: src/features/auth/components/forms/login-form/login-form.tsx
+#: src/features/auth/components/forms/register-form/register-form.tsx
+msgid "Password"
+msgstr "Password"
+
+#: src/features/auth/components/reset-password-view.tsx
+msgid "Password has been reset successfully"
+msgstr "Password has been reset successfully"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Password must contain uppercase and lowercase letters, numbers, and special characters"
+msgstr "Password must contain uppercase and lowercase letters, numbers, and special characters"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Password reset link sent to your email"
+msgstr "Password reset link sent to your email"
+
+#: src/features/account/components/profile/change-password-modal.tsx
+msgid "Password updated."
+msgstr "Password updated."
+
+#: src/lib/zod/validation-messages.ts
+msgid "Passwords do not match"
+msgstr "Passwords do not match"
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "People in this organization. Contact the owner to change membership."
+msgstr "People in this organization. Contact the owner to change membership."
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "People in this organization. Invite guests or members, change roles, or remove them."
+msgstr "People in this organization. Invite guests or members, change roles, or remove them."
+
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Permission"
+msgstr "Permission"
+
+#: src/features/account/components/account-roles-view.tsx
+#: src/features/account/components/organization/organization-permissions-matrix.tsx
+msgid "Permission matrix"
+msgstr "Permission matrix"
+
+#: src/features/account/components/account-role-view.tsx
+msgid "Permissions"
+msgstr "Permissions"
+
+#: src/features/account/components/account-profile-view.tsx
+msgid "Personal Information"
+msgstr "Personal Information"
+
+#: src/components/organisms/customize-drawer/customize-drawer.tsx
+msgid "Personalize your dashboard experience."
+msgstr "Personalize your dashboard experience."
+
+#: src/config/color-palette.constants.ts
+msgid "Pink"
+msgstr "Pink"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Please enter a valid email address"
+msgstr "Please enter a valid email address"
+
+#: src/lib/zod/validation-messages.ts
+msgid "Please enter a valid UUID"
+msgstr "Please enter a valid UUID"
+
+#: src/features/auth/components/reset-password-view.tsx
+msgid "Please enter your new password below."
+msgstr "Please enter your new password below."
+
+#: src/utils/error.utils.ts
+msgid "Please try again or check back later."
+msgstr "Please try again or check back later."
+
+#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
+msgid "Prev"
+msgstr "Prev"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Pricing"
+msgstr "Pricing"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Products"
+msgstr "Products"
+
+#: src/features/account/components/profile/update-profile-modal.tsx
+msgid "Profile updated."
+msgstr "Profile updated."
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Project"
+msgstr "Project"
+
+#: src/config/color-palette.constants.ts
+msgid "Purple"
+msgstr "Purple"
+
+#: src/config/color-palette.constants.ts
+msgid "Red"
+msgstr "Red"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Remember your password? <0>Sign in.</0>"
+msgstr "Remember your password? <0>Sign in.</0>"
+
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Remove"
+msgstr "Remove"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Remove member"
+msgstr "Remove member"
+
+#: src/features/account/components/members/member-delete-modal.tsx
+msgid "Remove Member"
+msgstr "Remove Member"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Remove members"
+msgstr "Remove members"
+
+#: src/features/account/components/account-organization-view.tsx
+msgid "Rename"
+msgstr "Rename"
+
+#: src/features/account/config/organization-permission-labels.constants.ts
+msgid "Rename organization"
+msgstr "Rename organization"
+
+#: src/features/account/components/organization/rename-organization-modal.tsx
+msgid "Rename Organization"
+msgstr "Rename Organization"
+
+#: src/features/auth/components/reset-password-invalid-link.tsx
+msgid "Request a new link"
+msgstr "Request a new link"
+
+#: src/utils/error.utils.ts
+msgid "Request timeout. Please try again."
+msgstr "Request timeout. Please try again."
+
+#: src/utils/error.utils.ts
+msgid "Request was canceled."
+msgstr "Request was canceled."
+
+#: src/app/routes/_auth/reset-password.tsx
+#: src/features/auth/components/reset-password-view.tsx
+msgid "Reset password"
+msgstr "Reset password"
+
+#: src/components/organisms/customize-drawer/customize-drawer.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Reset to defaults"
+msgstr "Reset to defaults"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/account-role-view.tsx
+#: src/features/account/components/account-roles-view.tsx
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Retry"
+msgstr "Retry"
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "Revoke"
+msgstr "Revoke"
+
+#: src/app/routes/_admin/account/roles/$role.tsx
+#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+msgid "Role"
+msgstr "Role"
+
+#. placeholder {0}: member.name
+#: src/features/account/components/members/member-row.tsx
+msgid "Role for {0}"
+msgstr "Role for {0}"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Role updated."
+msgstr "Role updated."
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Roles"
+msgstr "Roles"
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/roles/index.tsx
+#: src/features/account/components/account-roles-view.tsx
+msgid "Roles & Permissions"
+msgstr "Roles & Permissions"
+
+#: src/config/color-palette.constants.ts
+msgid "Rose"
+msgstr "Rose"
+
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "SaaS"
+msgstr "SaaS"
+
+#: src/features/account/utils/member-role.utils.ts
+msgid "Sales access. Can view team directory and manage sales leads."
+msgstr "Sales access. Can view team directory and manage sales leads."
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Sales Rep"
+msgstr "Sales Rep"
+
+#: src/components/organisms/form/actions/form-primary-action-button.tsx
+#: src/features/account/components/organization/rename-organization-modal.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
+#: src/features/account/components/profile/update-profile-modal.tsx
+msgid "Save"
+msgstr "Save"
+
+#: src/components/organisms/filters/fields/filter-search.tsx
+#: src/components/organisms/header/header-search.tsx
+msgid "Search"
+msgstr "Search"
+
+#: src/components/organisms/header/header-search.tsx
+msgid "Search anything..."
+msgstr "Search anything..."
+
+#: src/components/molecules/autocomplete-popover.tsx
+msgid "Search..."
+msgstr "Search..."
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/security.tsx
+#: src/features/account/components/account-security-view.tsx
+msgid "Security"
+msgstr "Security"
+
+#: src/components/organisms/data-table/data-table-view.tsx
+msgid "Select all rows"
+msgstr "Select all rows"
+
+#: src/components/molecules/color-palette-picker.tsx
+msgid "Select color scheme"
+msgstr "Select color scheme"
+
+#: src/components/molecules/language-picker.tsx
+msgid "Select language"
+msgstr "Select language"
+
+#: src/components/organisms/filters/fields/filter-autocomplete.tsx
+#: src/components/organisms/filters/fields/filter-select.tsx
+msgid "Select one"
+msgstr "Select one"
+
+#: src/components/molecules/theme-picker.tsx
+msgid "Select theme"
+msgstr "Select theme"
+
+#: src/features/auth/components/forgot-password-view.tsx
+msgid "Send reset link"
+msgstr "Send reset link"
+
+#: src/utils/error.utils.ts
+msgid "Service unavailable. Please try again later."
+msgstr "Service unavailable. Please try again later."
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Session revoked."
+msgstr "Session revoked."
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/routes/_admin/account/sessions.tsx
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Sessions"
+msgstr "Sessions"
+
+#: src/app/layouts/admin-layout/account-sidebar-items.ts
+#: src/app/layouts/admin-layout/admin-header-user-menu.tsx
+#: src/app/routes/_admin/account/profile.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Settings"
+msgstr "Settings"
+
+#: src/components/organisms/form/fields/form-password-input.tsx
+msgid "Show password"
+msgstr "Show password"
+
+#: src/app/routes/_auth/login.tsx
+#: src/features/auth/components/login-view.tsx
+msgid "Sign in"
+msgstr "Sign in"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Sign in again"
+msgstr "Sign in again"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Sign in again to view sessions"
+msgstr "Sign in again to view sessions"
+
+#: src/app/layouts/admin-layout/admin-sidebar-footer.tsx
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "Sign out"
+msgstr "Sign out"
+
+#: src/features/account/components/account-sessions-view.tsx
+#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+msgid "Sign out of all other devices"
+msgstr "Sign out of all other devices"
+
+#: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
+msgid "Sign Out of All Other Devices"
+msgstr "Sign Out of All Other Devices"
+
+#: src/app/routes/_auth/register.tsx
+#: src/features/auth/components/register-view.tsx
+msgid "Sign up"
+msgstr "Sign up"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Signed out."
+msgstr "Signed out."
+
+#: src/config/color-palette.constants.ts
+msgid "Sky"
+msgstr "Sky"
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/account-role-view.tsx
+msgid "Something went wrong while loading members. Please try again."
+msgstr "Something went wrong while loading members. Please try again."
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Something went wrong while loading roles. Please try again."
+msgstr "Something went wrong while loading roles. Please try again."
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Something went wrong while loading sessions. Please try again."
+msgstr "Something went wrong while loading sessions. Please try again."
+
+#: src/components/organisms/filters/utils/filter-fields.utils.ts
+msgid "Sort order"
+msgstr "Sort order"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Super Admin"
+msgstr "Super Admin"
+
+#: src/lib/authorization/organization-role.utils.ts
+msgid "Support Agent"
+msgstr "Support Agent"
+
+#: src/config/theme.constants.ts
+msgid "System"
+msgstr "System"
+
+#: src/config/color-palette.constants.ts
+msgid "Teal"
+msgstr "Teal"
+
+#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+msgid "Temporary password"
+msgstr "Temporary password"
+
+#: src/utils/error.utils.ts
+msgid "The requested resource was not found."
+msgstr "The requested resource was not found."
+
+#: src/lib/zod/validation-messages.ts
+msgid "The URL is badly formatted"
+msgstr "The URL is badly formatted"
+
+#: src/components/organisms/customize-drawer/theme-option-list.tsx
+#: src/features/account/components/account-profile-view.tsx
+msgid "Theme"
+msgstr "Theme"
+
+#: src/lib/zod/validation-messages.ts
+msgid "This field is required"
+msgstr "This field is required"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "This is a list of devices logged into your account. Cancel any sessions you do not recognize."
+msgstr "This is a list of devices logged into your account. Cancel any sessions you do not recognize."
+
+#: src/features/auth/components/reset-password-invalid-link.tsx
+msgid "This password reset link is invalid or has expired. Request a new one to continue."
+msgstr "This password reset link is invalid or has expired. Request a new one to continue."
+
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "This permanently deletes your account and removes you from any organizations. Shared organization data is not deleted. This cannot be undone."
+msgstr "This permanently deletes your account and removes you from any organizations. Shared organization data is not deleted. This cannot be undone."
+
+#: src/features/account/components/profile/delete-account-modal.tsx
+msgid "This permanently deletes your account, organizations you own, and all organization data. Members and guests lose access. This cannot be undone."
+msgstr "This permanently deletes your account, organizations you own, and all organization data. Members and guests lose access. This cannot be undone."
+
+#: src/app/layouts/admin-layout/admin-header.tsx
+msgid "Toggle theme"
+msgstr "Toggle theme"
+
+#: src/utils/error.utils.ts
+msgid "Too many requests. Please try again later."
+msgstr "Too many requests. Please try again later."
+
+#: src/features/account/components/account-organization-view.tsx
+#: src/features/account/components/account-role-view.tsx
+msgid "Unable to load members"
+msgstr "Unable to load members"
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Unable to load roles"
+msgstr "Unable to load roles"
+
+#: src/features/account/components/account-sessions-view.tsx
+msgid "Unable to load sessions"
+msgstr "Unable to load sessions"
+
+#: src/utils/error.utils.ts
+msgid "Unauthorized. Please login again."
+msgstr "Unauthorized. Please login again."
+
+#: src/features/account/components/members/member-row.tsx
+msgid "Unban user"
+msgstr "Unban user"
+
+#: src/app/layouts/error/error-not-found-layout.tsx
+msgid "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved."
+msgstr "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved."
+
+#: src/features/account/components/sessions/session-card.tsx
+msgid "Unknown"
+msgstr "Unknown"
+
+#: src/features/account/components/account-security-view.tsx
+msgid "Update your password to keep your account secure."
+msgstr "Update your password to keep your account secure."
+
+#: src/utils/error.utils.ts
+msgid "Validation failed. Please check your input."
+msgstr "Validation failed. Please check your input."
+
+#: src/features/account/components/organization/organization-role-card.tsx
+msgid "View"
+msgstr "View"
+
+#: src/config/color-palette.constants.ts
+msgid "Violet"
+msgstr "Violet"
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Welcome back, {name}."
+msgstr "Welcome back, {name}."
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Welcome back."
+msgstr "Welcome back."
+
+#: src/config/color-palette.constants.ts
+msgid "Yellow"
+msgstr "Yellow"
+
+#: src/features/account/components/members/member-row.tsx
+msgid "You"
+msgstr "You"
+
+#: src/lib/authorization/authorization-route-guard.utils.ts
+#: src/utils/error.utils.ts
+msgid "You do not have permission to perform this action."
+msgstr "You do not have permission to perform this action."
+
+#: src/app/layouts/error/error-not-found-layout.tsx
+msgid "You have found a secret place."
+msgstr "You have found a secret place."
+
+#: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
+msgid "You have unsaved changes. If you leave this page, they will be lost."
+msgstr "You have unsaved changes. If you leave this page, they will be lost."
+
+#: src/features/account/components/account-roles-view.tsx
+msgid "Your current role"
+msgstr "Your current role"
+
+#: src/features/dashboard/components/dashboard-view.tsx
+msgid "Your overview will appear here."
+msgstr "Your overview will appear here."

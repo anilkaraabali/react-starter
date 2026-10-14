@@ -1,0 +1,11 @@
+@layer base {
+  .teal {
+    --accent: var(--color-teal-500);
+    --accent-foreground: oklch(99.11% 0 0deg);
+    --chart-1: var(--color-teal-300);
+    --chart-2: var(--color-teal-500);
+    --chart-3: var(--color-teal-600);
+    --chart-4: var(--color-teal-700);
+    --chart-5: var(--color-teal-800);
+  }
+}

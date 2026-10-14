@@ -1,0 +1,106 @@
+.account-settings-chunk {
+  @apply flex flex-col self-stretch gap-6 items-stretch;
+}
+
+.account-tab-header {
+  @apply flex flex-col px-2 gap-1.5 w-full items-start;
+}
+
+.account-tab-header-content {
+  @apply flex flex-col gap-1 w-full items-start;
+}
+
+.account-tab-header-title-row {
+  @apply flex items-center w-full gap-3;
+}
+
+.account-tab-header-title {
+  @apply text-xl flex items-center self-stretch text-foreground gap-1.5 min-w-0 flex-1 md:flex-initial;
+}
+
+.account-tab-header-description {
+  @apply text-muted text-[13px] w-full;
+}
+
+.account-sections {
+  @apply flex flex-col gap-7.5 self-stretch items-stretch;
+}
+
+.account-section {
+  @apply flex flex-col gap-1.5;
+}
+
+.account-section-header {
+  @apply flex px-2 gap-5 self-stretch items-center;
+}
+
+.account-section-header--title-row-only {
+  @apply min-h-7;
+}
+
+.account-section-header-leading-items {
+  @apply flex flex-col items-start gap-0.5 grow basis-0 shrink-0;
+}
+
+.account-section-header-leading-items-clickable {
+  @apply cursor-pointer;
+}
+
+.account-section-header--title-row-only .account-section-header-leading-items {
+  @apply min-h-7 justify-center;
+}
+
+.account-section-header-label {
+  @apply text-[13px] flex items-center self-stretch text-foreground gap-1;
+}
+
+.account-section-header-description {
+  @apply text-muted text-xs;
+}
+
+.account-section-header-trailing-items {
+  @apply flex justify-end gap-1.5 items-center;
+}
+
+.account-section-list {
+  @apply flex flex-col items-start gap-4 self-stretch;
+}
+
+.account-sub-section {
+  @apply flex flex-col items-start gap-2 self-stretch;
+}
+
+.account-sub-section-list {
+  @apply bg-surface shadow-surface rounded-xl flex flex-col overflow-visible self-stretch items-stretch;
+}
+
+.account-sub-section-list > .account-cell + .account-cell::before {
+  content: "";
+  inset-inline: 1rem;
+
+  @apply bg-separator absolute top-0 h-px;
+}
+
+.account-cell {
+  @apply relative flex w-full gap-5 items-center px-3 py-4;
+}
+
+.account-cell-leading-items {
+  @apply grow shrink-0 basis-0 min-w-0 flex gap-2.5 items-center;
+}
+
+.account-cell-content {
+  @apply flex flex-col items-start gap-0.5 grow basis-0 shrink-0 min-w-0;
+}
+
+.account-cell-trailing-items {
+  @apply grow shrink basis-0 flex min-h-6 max-h-8 pt-0.75 gap-2 self-stretch min-w-0 justify-end;
+}
+
+.account-cell-label {
+  @apply text-[13px] flex items-center self-stretch text-foreground gap-1;
+}
+
+.account-cell-description {
+  @apply text-muted text-[13px];
+}
