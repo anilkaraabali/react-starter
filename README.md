@@ -1,8 +1,8 @@
-# Admin Starter: Admin App
+# React Admin Template
 
-React admin SPA for the companion API. It ships the app shell, auth flows, organization and member management, an activity log and the shared building blocks (forms, filters, tables, authorization, feature flags) that new feature modules plug into.
+React admin SPA starter. It ships the app shell, auth flows, organization and member management, an activity log, and shared building blocks (forms, filters, tables, authorization, theme/palette management) that new feature modules plug into.
 
-This is a **personal showcase** of a production-shaped React admin. It is not a hosted product. Auth uses the API's cookie sessions; do not commit real credentials.
+This is a **showcase and starter template** of a production-shaped React admin application. Auth uses Better Auth cookie sessions with MSW mock support out of the box.
 
 ## Technical Stack
 
@@ -11,124 +11,117 @@ This is a **personal showcase** of a production-shaped React admin. It is not a 
 | Framework    | [React 19](https://react.dev/), [Vite 8](https://vite.dev/), TypeScript 5                                          |
 | UI           | [HeroUI v3](https://heroui.com/), [Tailwind CSS v4](https://tailwindcss.com/), [Lucide](https://lucide.dev/) icons |
 | Routing      | [TanStack Router](https://tanstack.com/router) (file-based, `src/app/routes/`)                                     |
-| Server state | [TanStack Query](https://tanstack.com/query) + [Orval](https://orval.dev/)-generated hooks, Axios                  |
+| Server state | [TanStack Query](https://tanstack.com/query), Axios                                                                |
 | Forms        | [TanStack Form](https://tanstack.com/form) + [Zod](https://zod.dev/)                                               |
 | Auth         | [Better Auth](https://www.better-auth.com/) client (cookie sessions)                                               |
 | i18n         | [Lingui](https://lingui.dev/) (`en`, `tr`)                                                                         |
-| Quality      | Biome, Vitest, knip, jscpd                                                                                         |
-
-Full stack table: [`.agents/admin/reference.md` § Stack](.agents/admin/reference.md#technology-stack).
+| Quality      | Biome, Vitest, Stylelint, Knip, jscpd, Dependency Cruiser                                                          |
 
 ## Features
 
-- Sign in, register, forgot and reset password (Better Auth via the API)
+- Sign in, register, forgot and reset password (Better Auth)
 - Account area: profile, password, sessions, account deletion
-- Organization: rename, members (add, change role, ban, remove), roles and their permissions
-- Policy-based authorization for routes, sidebar items and actions
-- English / Turkish UI, light/dark theme and color palettes
-- Mocked Better-Auth with MSW
-- Dashboard placeholder, ready for feature modules
+- Organization: rename, members (add, change role, ban, remove), roles and permissions
+- Policy-based authorization for routes, navigation items, and actions
+- English / Turkish UI localization (`en`, `tr`), light/dark theme, and multiple color palettes
+- Mocked Better-Auth & API handlers with Mock Service Worker (MSW)
+- Dashboard placeholder and modular architecture ready for new feature modules
 
 ## Prerequisites
 
-- Node.js and pnpm versions from the root [`package.json`](package.json) (`engines`, `packageManager`)
-- A running API (default `http://localhost:3000`)
+- Node.js (`>=22.22.1`) and pnpm (`>=9.12.0`) as defined in [`package.json`](package.json)
+- Companion API running at `http://localhost:3000` or MSW mocking enabled (`VITE_APP_ENABLE_API_MOCKING=true`)
 
 ## Getting Started
 
-1. Install dependencies from the repo root:
+1. Install dependencies:
 
    ```bash
    pnpm install
    ```
 
-2. Create the env file:
+2. Create the environment configuration file:
 
    ```bash
-   cp apps/admin/.env.example apps/admin/.env
+   cp .env.example .env
    ```
 
-3. Start the dev server:
+3. Start the development server:
 
    ```bash
-   pnpm --filter @admin-starter/admin dev
+   pnpm dev
    ```
 
-Vite serves the app at **http://localhost:4200** (or the next free port). Register a user from the sign-up page.
+Vite serves the app at **http://localhost:4200** (or the next free port).
 
-### Environment
+### Environment Variables
 
 | Variable                      | Default                 | Description                    |
 | ----------------------------- | ----------------------- | ------------------------------ |
 | `VITE_APP_API_URL`            | `http://localhost:3000` | API origin (no trailing slash) |
 | `VITE_APP_ENABLE_API_MOCKING` | `true`                  | Enable MSW mock service worker |
 
-`VITE_*` values are copied into the client bundle, so never put secrets in them. Rules for adding a variable: [reference.md § Environment](.agents/admin/reference.md#environment-variables).
+`VITE_*` values are bundled into the client build, so never put sensitive secrets in them.
 
 ## Available Scripts
-
-Run from this folder with `pnpm <script>`, or from the repo root with `pnpm --filter @admin-starter/admin <script>`.
 
 | Command                         | Description                                                   |
 | ------------------------------- | ------------------------------------------------------------- |
 | `pnpm dev`                      | Vite dev server (port 4200)                                   |
-| `pnpm build`                    | Catalog extraction, type check, production bundle (see below) |
+| `pnpm build`                    | Catalog extraction, type check (`tsc -b`), production bundle  |
+| `pnpm build:source`             | Production build with bundle visualizer analysis              |
+| `pnpm build:sourcemap`          | Production build with source maps                             |
 | `pnpm preview`                  | Serve the production build (port 4200)                        |
 | `pnpm test` / `pnpm test:watch` | Vitest once / in watch mode                                   |
-| `pnpm typecheck`                | `tsc --noEmit`                                                |
-| `pnpm lint` / `pnpm lint:ci`    | Biome check with fixes / CI check only                        |
-| `pnpm lint:css`                 | Stylelint for CSS                                             |
-| `# (Orval optional)`            | Regenerate the API client from `../api/swagger.json`          |
-| `pnpm intl:extract`             | Extract messages into the Lingui catalogs (`--clean`)         |
-| `pnpm agents:heroui`            | Optional: download HeroUI docs for AI agents (local only)     |
-
-Every script, with when to use it: [`.agents/admin/commands.md`](.agents/admin/commands.md).
+| `pnpm typecheck`                | `tsc -b` type check                                           |
+| `pnpm lint` / `pnpm lint:ci`    | Biome check & fixes with dependency-cruiser / CI check only   |
+| `pnpm lint:css`                 | Stylelint for CSS files                                       |
+| `pnpm lint:deps`                | Dependency Cruiser architecture validation                    |
+| `pnpm knip`                     | Detect unused files, exports, and dependencies                |
+| `pnpm jscpd`                    | Duplicate code analysis                                       |
+| `pnpm intl:extract`             | Extract messages into Lingui catalogs and sync translations   |
+| `pnpm script:check-docs`        | Verify documentation and link integrity                       |
+| `pnpm agents:heroui`            | Update HeroUI documentation reference (`AGENTS.md`)           |
 
 ### Build Validation
 
-`pnpm build` runs these steps in order:
+`pnpm build` executes the following sequence:
 
-1. `intl:build` → `intl:extract`: `lingui extract --clean` rewrites the catalogs and drops obsolete entries, then the sync script fills English `msgstr` values.
-2. `tsc`: type check (no emit).
-3. `vite build`: production bundle.
-
-`build:sourcemap` and `build:source` (bundle analyzer) run the same build with extra output.
-
-### API Client
-
-The API writes `swagger.json` when it starts outside production. With the API running locally, run `# (Orval optional)` to refresh `src/api/`; commit the result and never edit it by hand.
+1. `intl:build` (`intl:extract`): Extracts UI strings with Lingui and synchronizes English message strings.
+2. `tsc -b`: Project type checking with no emit.
+3. `vite build`: Production asset compilation and bundling.
 
 ## Project Structure
 
 ```text
 src/
-├── app/          # routes, layouts (admin, auth, error), router, providers
-├── api/generated # Orval output (do not edit)
-├── assets/       # global static assets
-├── components/   # shared UI (atoms, molecules, organisms)
-├── config/       # app-wide constants, env.ts
-├── features/     # domain feature modules
-├── hooks/        # shared React hooks
-├── lib/          # library wrappers (zod, axios, auth-client, etc.)
-├── locales/      # Lingui message catalogs
-├── stores/       # global client stores
-├── styles/       # global CSS & Tailwind
-├── types/        # shared domain-agnostic types
-└── utils/        # pure helpers
+├── api/          # Shared API calls, endpoints, and query keys
+├── app/          # Router setup, routes, providers, layouts, progress indicator
+├── assets/       # Static assets, icons, illustration SVGs
+├── components/   # Shared UI components (atoms, molecules, organisms)
+├── config/       # App constants, environment validation, route definitions
+├── features/     # Feature-driven modules (auth, account, dashboard)
+├── hooks/        # Shared custom React hooks
+├── lib/          # Integration wrappers (Better Auth client, axios, i18n, zod)
+├── locales/      # Lingui message catalogs (en, tr)
+├── stores/       # Application context and state stores
+├── styles/       # Tailwind CSS & global theme stylesheets
+├── testing/      # Test helpers, test providers, and MSW mocks
+├── types/        # Shared TypeScript interfaces and types
+└── utils/        # Pure utilities and helper functions
 ```
-
-Folder rules, co-location and import boundaries: [`.agents/admin/project-structure.md`](.agents/admin/project-structure.md). Adding a feature: [feature-module skill](.agents/skills/feature-module/SKILL.md).
 
 ## Conventions
 
-- Naming (files, folders, exports, routes, policies): [`.agents/admin/reference.md` § Naming](.agents/admin/reference.md#naming-conventions). Generated API types keep Orval's names (`*Dto`, `*Params`).
-- Agent rules and task skills: [`AGENTS.md`](./AGENTS.md). HeroUI is **v3**, not v2.
-- English for comments, docs, commits and UI source strings; Conventional Commits (see the root [`AGENTS.md`](AGENTS.md)).
+- **HeroUI**: Component styling and primitives are based on HeroUI **v3** (see [`AGENTS.md`](AGENTS.md)).
+- **Code Quality**: Biome enforces formatting and linting, Stylelint checks CSS, knip detects unused code, and Dependency Cruiser prevents illegal module cross-imports.
+- **Localization**: UI strings are wrapped with Lingui macros (`t`, `<Trans />`) supporting English and Turkish.
 
 ## CI
 
-The root workflow (`.github/workflows/ci.yml`) runs knip, jscpd, Biome, type checks, tests and the production build via Turbo when this app is affected.
+The GitHub Actions workflow ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) validates secrets via Gitleaks, checks documentation integrity, runs Knip, jscpd, Biome, Stylelint, TypeScript type checks, Vitest unit tests, and the production build.
 
 ## License
 
 [MIT](LICENSE) © 2026 Anil Karaabali
+
