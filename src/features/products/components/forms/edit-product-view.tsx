@@ -3,14 +3,13 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
-import { QueryState } from '@/components/molecules/query-state';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
 import { ContentLayout } from '@/components/templates/content-layout';
 import type { CreateProductInput } from '@/features/products/api/create-product';
-import { useProduct } from '@/features/products/api/get-product';
 import { useUpdateProduct } from '@/features/products/api/update-product';
 import { DeleteProductModal } from '@/features/products/components/modals/delete-product-modal';
+import { ProductQueryBoundary } from '@/features/products/components/product-query-boundary';
 import type { Product } from '@/features/products/types/product.types';
 import { ProductForm } from './product-form';
 import { productToFormValues } from './product-form-mappers';
@@ -21,23 +20,10 @@ type EditProductViewProps = {
 };
 
 export function EditProductView({ productId }: EditProductViewProps) {
-  const navigate = useNavigate();
-  const productQuery = useProduct({ id: productId });
-
   return (
-    <QueryState
-      data={productQuery.data}
-      isError={productQuery.isError}
-      isPending={productQuery.isLoading}
-      onBack={() => {
-        void navigate({ to: '/products' });
-      }}
-      onRetry={() => {
-        void productQuery.refetch();
-      }}
-    >
+    <ProductQueryBoundary productId={productId}>
       {(product) => <EditProductLayout product={product} />}
-    </QueryState>
+    </ProductQueryBoundary>
   );
 }
 
