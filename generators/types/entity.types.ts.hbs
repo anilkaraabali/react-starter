@@ -1,0 +1,11 @@
+import type { Entity } from '@/types/api.types';
+
+export const {{entityConst}}_STATUSES = ['draft', 'active', 'archived'] as const;
+
+export type {{entityPascal}}Status = (typeof {{entityConst}}_STATUSES)[number];
+
+export type {{entityPascal}} = Entity<{
+  description?: string;
+  name: string;
+  status: {{entityPascal}}Status;
+}>;

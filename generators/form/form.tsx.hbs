@@ -1,0 +1,54 @@
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { withForm } from '@/components/organisms/form/use-form';
+import { {{entityConst}}_STATUS_OPTIONS } from '@/features/{{featureDir}}/config/{{entityKebab}}.constants';
+import { {{entityCamel}}FormOptions } from './{{entityKebab}}-form-options';
+
+export const {{entityPascal}}Form = withForm({
+  ...{{entityCamel}}FormOptions({
+    onSubmit: () => undefined,
+  }),
+  render: function Render({ form }) {
+    const { _ } = useLingui();
+
+    return (
+      <div className='grid gap-6'>
+        <form.AppField name='name'>
+          {(field) => (
+            <field.FormInput
+              isRequired
+              label={_(msg`{{singularTitle}} name`)}
+              placeholder={_(msg`Enter a name`)}
+              variant='secondary'
+            />
+          )}
+        </form.AppField>
+
+        <form.AppField name='status'>
+          {(field) => (
+            <field.FormSelect
+              isRequired
+              label={_(msg`Status`)}
+              options={ {{entityConst}}_STATUS_OPTIONS.map((s) => ({
+                label: s.label,
+                value: s.value,
+              })) }
+              variant='secondary'
+            />
+          )}
+        </form.AppField>
+
+        <form.AppField name='description'>
+          {(field) => (
+            <field.FormTextArea
+              label={_(msg`Description`)}
+              placeholder={_(msg`Optional description`)}
+              rows={4}
+              variant='secondary'
+            />
+          )}
+        </form.AppField>
+      </div>
+    );
+  },
+});

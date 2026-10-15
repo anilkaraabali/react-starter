@@ -1,0 +1,120 @@
+import { buttonVariants } from '@heroui/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { Link, useNavigate, useSearch } from '@tanstack/react-router';
+import { PlusIcon } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Filters } from '@/components/organisms/filters/filters';
+import { RouteFilterProvider } from '@/components/organisms/filters/stores/route-filter-provider';
+import { ContentLayout } from '@/components/templates/content-layout';
+import { APP_ROUTES } from '@/config/app-routes.constants';
+import {
+  type Get{{pluralPascal}}Query,
+  use{{pluralPascal}},
+} from '@/features/{{featureDir}}/api/get-{{pluralKebab}}';
+import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/modals/delete-{{entityKebab}}-modal';
+import { {{pluralPascal}}Table } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{pluralKebab}}-table';
+import {
+  get{{pluralPascal}}FilterFields,
+  INITIAL_{{pluralConst}}_SEARCH_STATE,
+} from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import { useResponsivePageSize } from '@/hooks/use-responsive-page-size';
+
+export function {{entityPascal}}ListView() {
+  const { _ } = useLingui();
+  const navigate = useNavigate();
+  const searchParams = useSearch({ strict: false }) as Get{{pluralPascal}}Query;
+  const responsivePageSize = useResponsivePageSize();
+  const [{{entityCamel}}ToDelete, set{{entityPascal}}ToDelete] =
+    useState<{{entityPascal}} | null>(null);
+
+  const filterFields = useMemo(() => get{{pluralPascal}}FilterFields(), []);
+
+  const page = searchParams.page ?? INITIAL_{{pluralConst}}_SEARCH_STATE.page ?? 1;
+  const pageSize = searchParams.pageSize ?? responsivePageSize;
+  const search = searchParams.search ?? '';
+  const status = searchParams.status;
+  const sortBy = searchParams.sortBy ?? INITIAL_{{pluralConst}}_SEARCH_STATE.sortBy;
+  const sortOrder =
+    searchParams.sortOrder ?? INITIAL_{{pluralConst}}_SEARCH_STATE.sortOrder;
+
+  const { data, isLoading } = use{{pluralPascal}}({
+    params: {
+      page,
+      pageSize,
+      search,
+      sortBy,
+      sortOrder,
+      status,
+    },
+  });
+
+  // Hoisted out of the JSX on purpose: an inline double-brace object literal in
+  // the JSX reads as a Handlebars expression when this file is used as a template.
+  const pagination = {
+    onPageChange: (newPage: number) => {
+      void navigate({
+        search: (prev: unknown) => ({
+          ...(prev as object),
+          page: newPage,
+        }),
+      } as never);
+    },
+    onPageSizeChange: (newPageSize: number) => {
+      void navigate({
+        search: (prev: unknown) => ({
+          ...(prev as object),
+          page: 1,
+          pageSize: newPageSize,
+        }),
+      } as never);
+    },
+    page: data?.meta.page ?? page,
+    pageSize: data?.meta.pageSize ?? pageSize,
+    total: data?.meta.total ?? 0,
+    totalPages: data?.meta.totalPages ?? 1,
+  };
+
+  return (
+    <ContentLayout
+      actions={
+        <Link
+          className={buttonVariants({ variant: 'primary' })}
+          to='{{routePath}}/new'
+        >
+          <PlusIcon />
+          {_(msg`Add {{entityKebab}}`)}
+        </Link>
+      }
+      description={_(msg`Manage your {{featureDir}} in one place.`)}
+    >
+      <RouteFilterProvider
+        fields={filterFields}
+        initialState={INITIAL_{{pluralConst}}_SEARCH_STATE}
+        navigate={navigate}
+        search={searchParams}
+      >
+        <{{pluralPascal}}Table
+          isLoading={isLoading}
+          onDeleteClick={({{entityCamel}}) => set{{entityPascal}}ToDelete({{entityCamel}})}
+          onRowAction={(id) => {
+            void navigate({
+              params: { {{routeParam}}: id },
+              to: APP_ROUTES.{{routeKeyDetail}},
+            });
+          }}
+          pagination={pagination}
+          {{pluralCamel}}={data?.data ?? []}
+          toolbar={<Filters />}
+        />
+      </RouteFilterProvider>
+
+      <Delete{{entityPascal}}Modal
+        isOpen={Boolean({{entityCamel}}ToDelete)}
+        onClose={() => set{{entityPascal}}ToDelete(null)}
+        {{entityCamel}}={ {{entityCamel}}ToDelete }
+      />
+    </ContentLayout>
+  );
+}

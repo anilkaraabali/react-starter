@@ -1,0 +1,15 @@
+import { msg } from '@lingui/core/macro';
+import { createFileRoute } from '@tanstack/react-router';
+import { Create{{entityPascal}}View } from '@/features/{{featureDir}}/components/forms/create-{{entityKebab}}-view';
+import type { MetaFunction } from '@/types/meta.types';
+
+const meta: MetaFunction = (i18n) => [
+  {
+    title: i18n._(msg`Create {{singularTitle}}`),
+  },
+];
+
+export const Route = createFileRoute('/_admin/{{featureDir}}/new')({
+  component: Create{{entityPascal}}View,
+  loader: () => ({ meta }),
+});

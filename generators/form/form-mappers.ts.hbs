@@ -1,0 +1,17 @@
+import type { Create{{entityPascal}}Input } from '@/features/{{featureDir}}/api/create-{{entityKebab}}';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+/**
+ * The entity carries `description` as optional but the form field is a
+ * controlled textarea, so the mapper normalises `undefined` to an empty string
+ * to keep the input uncontrolled-safe.
+ */
+export function {{entityCamel}}ToFormValues(
+  {{entityCamel}}: {{entityPascal}}
+): Create{{entityPascal}}Input {
+  return {
+    description: {{entityCamel}}.description ?? '',
+    name: {{entityCamel}}.name,
+    status: {{entityCamel}}.status,
+  };
+}

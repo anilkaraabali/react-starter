@@ -1,0 +1,88 @@
+import { Card, toast } from '@heroui/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+import { FormActions } from '@/components/organisms/form/actions/form-actions';
+import { useForm } from '@/components/organisms/form/use-form';
+import { ContentLayout } from '@/components/templates/content-layout';
+import { APP_ROUTES } from '@/config/app-routes.constants';
+import type { Create{{entityPascal}}Input } from '@/features/{{featureDir}}/api/create-{{entityKebab}}';
+import { useUpdate{{entityPascal}} } from '@/features/{{featureDir}}/api/update-{{entityKebab}}';
+import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/modals/delete-{{entityKebab}}-modal';
+import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import { {{entityPascal}}Form } from './{{entityKebab}}-form';
+import { {{entityCamel}}ToFormValues } from './{{entityKebab}}-form-mappers';
+import { {{entityCamel}}FormOptions } from './{{entityKebab}}-form-options';
+
+type Edit{{entityPascal}}ViewProps = {
+  {{routeParam}}: string;
+};
+
+export function Edit{{entityPascal}}View({ {{routeParam}} }: Edit{{entityPascal}}ViewProps) {
+  return (
+    <{{entityPascal}}QueryBoundary {{routeParam}}={ {{routeParam}} }>
+      {({{entityCamel}}) => <Edit{{entityPascal}}Layout {{entityCamel}}={ {{entityCamel}} } />}
+    </{{entityPascal}}QueryBoundary>
+  );
+}
+
+function Edit{{entityPascal}}Layout({ {{entityCamel}} }: { {{entityCamel}}: {{entityPascal}} }) {
+  const { _ } = useLingui();
+  const navigate = useNavigate();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const update{{entityPascal}}Mutation = useUpdate{{entityPascal}}({
+    mutationConfig: {
+      onSuccess: () => {
+        toast.success(_(msg`{{singularTitle}} updated.`));
+        void navigate({
+          to: APP_ROUTES.{{routeKeyList}},
+        });
+      },
+    },
+  });
+
+  const form = useForm(
+    {{entityCamel}}FormOptions({
+      defaultValues: {{entityCamel}}ToFormValues({{entityCamel}}),
+      onSubmit: async (values: Create{{entityPascal}}Input) => {
+        await update{{entityPascal}}Mutation.mutateAsync({
+          data: values,
+          {{routeParam}}: {{entityCamel}}.id,
+        });
+      },
+    })
+  );
+
+  return (
+    <ContentLayout
+      actions={
+        <FormActions
+          formId='edit-{{entityKebab}}-form'
+          isSavePending={update{{entityPascal}}Mutation.isPending}
+          onDelete={() => setIsDeleteModalOpen(true)}
+        />
+      }
+      title={ {{entityCamel}}.name }
+    >
+      <Card>
+        <form.AppForm>
+          <form.Root id='edit-{{entityKebab}}-form'>
+            <form.UnsavedChangesGuard />
+            <{{entityPascal}}Form form={form} />
+          </form.Root>
+        </form.AppForm>
+      </Card>
+
+      <Delete{{entityPascal}}Modal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onSuccess={() => {
+          void navigate({ to: APP_ROUTES.{{routeKeyList}} });
+        }}
+        {{entityCamel}}={ {{entityCamel}} }
+      />
+    </ContentLayout>
+  );
+}

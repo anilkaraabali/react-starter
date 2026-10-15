@@ -1,0 +1,12 @@
+import { i18n } from '@lingui/core';
+import { msg } from '@lingui/core/macro';
+import type { {{entityPascal}}Status } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+export const {{entityConst}}_STATUS_OPTIONS: {
+  label: string;
+  value: {{entityPascal}}Status;
+}[] = [
+  { label: i18n._(msg`Draft`), value: 'draft' },
+  { label: i18n._(msg`Active`), value: 'active' },
+  { label: i18n._(msg`Archived`), value: 'archived' },
+];

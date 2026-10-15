@@ -41,6 +41,10 @@ msgstr "Başlamak için hesabınıza hızlı ve güvenli şekilde giriş yapın.
 msgid "Account deleted."
 msgstr "Hesap silindi."
 
+#: src/features/products/components/product-list/products-table-columns.tsx
+msgid "Actions"
+msgstr ""
+
 #. placeholder {0}: member.name
 #: src/features/account/components/members/member-row.tsx
 msgid "Actions for {0}"

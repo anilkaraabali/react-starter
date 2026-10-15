@@ -5,6 +5,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
 import { ContentLayout } from '@/components/templates/content-layout';
+import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type CreateProductInput,
   useCreateProduct,
@@ -20,7 +21,7 @@ export function CreateProductView() {
       onSuccess: () => {
         toast.success(_(msg`Product created.`));
         void navigate({
-          to: '/products',
+          to: APP_ROUTES.PRODUCTS,
         });
       },
     },
@@ -40,7 +41,7 @@ export function CreateProductView() {
         <div className='flex items-center gap-2'>
           <Link
             className={buttonVariants({ variant: 'secondary' })}
-            to='/products'
+            to={APP_ROUTES.PRODUCTS}
           >
             {_(msg`Cancel`)}
           </Link>

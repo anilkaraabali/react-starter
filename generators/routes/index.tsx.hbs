@@ -1,0 +1,40 @@
+import { msg } from '@lingui/core/macro';
+import type { QueryClient } from '@tanstack/react-query';
+import { createFileRoute, stripSearchParams } from '@tanstack/react-router';
+import { zodValidator } from '@tanstack/zod-adapter';
+import {
+  type Get{{pluralPascal}}Query,
+  get{{pluralPascal}}QueryOptions,
+  get{{pluralPascal}}QuerySchema,
+} from '@/features/{{featureDir}}/api/get-{{pluralKebab}}';
+import { {{entityPascal}}ListView } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{entityKebab}}-list-view';
+import { INITIAL_{{pluralConst}}_SEARCH_STATE } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
+import type { MetaFunction } from '@/types/meta.types';
+
+const meta: MetaFunction = (i18n) => [
+  {
+    title: i18n._(msg`{{pluralTitle}}`),
+  },
+];
+
+export const Route = createFileRoute('/_admin/{{featureDir}}/')({
+  component: {{entityPascal}}ListView,
+  loader: ({
+    context: { queryClient },
+    deps,
+  }: {
+    context: { queryClient: QueryClient };
+    deps: Get{{pluralPascal}}Query;
+  }) => {
+    void queryClient.query({
+      ...get{{pluralPascal}}QueryOptions(deps),
+      staleTime: 'static',
+    });
+    return { meta };
+  },
+  loaderDeps: ({ search }) => search,
+  search: {
+    middlewares: [stripSearchParams(INITIAL_{{pluralConst}}_SEARCH_STATE)],
+  },
+  validateSearch: zodValidator(get{{pluralPascal}}QuerySchema),
+});

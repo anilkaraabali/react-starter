@@ -1,0 +1,10 @@
+import type { Get{{pluralPascal}}Query } from '@/features/{{featureDir}}/api/get-{{pluralKebab}}';
+
+export const {{keysFactory}} = {
+  all: ['{{featureDir}}'] as const,
+  detail: (id: string) => [...{{keysFactory}}.details(), id] as const,
+  details: () => [...{{keysFactory}}.all, 'detail'] as const,
+  list: (params?: Get{{pluralPascal}}Query) =>
+    [...{{keysFactory}}.lists(), params] as const,
+  lists: () => [...{{keysFactory}}.all, 'list'] as const,
+};

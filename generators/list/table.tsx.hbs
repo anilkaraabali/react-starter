@@ -1,0 +1,44 @@
+import type { ReactNode } from 'react';
+import { useMemo } from 'react';
+import { DataTable } from '@/components/organisms/data-table/data-table';
+import type { DataTablePagination } from '@/components/organisms/data-table/data-table.types';
+import { create{{pluralPascal}}TableColumns } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{pluralKebab}}-table-columns';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+type {{pluralPascal}}TableProps = {
+  isLoading: boolean;
+  onDeleteClick: ({{entityCamel}}: {{entityPascal}}) => void;
+  onRowAction?: (id: string) => void;
+  pagination: DataTablePagination;
+  toolbar?: ReactNode;
+  {{pluralCamel}}: {{entityPascal}}[];
+};
+
+export function {{pluralPascal}}Table({
+  isLoading,
+  onDeleteClick,
+  onRowAction,
+  pagination,
+  toolbar,
+  {{pluralCamel}},
+}: {{pluralPascal}}TableProps) {
+  const columns = useMemo(
+    () =>
+      create{{pluralPascal}}TableColumns({
+        onDeleteClick,
+      }),
+    [onDeleteClick]
+  );
+
+  return (
+    <DataTable
+      columns={columns}
+      data={ {{pluralCamel}} }
+      enableColumnVisibility
+      isLoading={isLoading}
+      onRowAction={onRowAction}
+      pagination={pagination}
+      toolbar={toolbar}
+    />
+  );
+}
