@@ -37,7 +37,7 @@ export function TableColumnFilter<TRow, TColumnId extends string>({
           <Popover.Heading className='pb-2'>{_(msg`Columns`)}</Popover.Heading>
           <ul className='flex flex-col gap-2'>
             {columns.map((column) => {
-              const label = column.header();
+              const label = column.label ? column.label() : column.header();
 
               return (
                 <li

@@ -1,0 +1,9 @@
+language js
+
+or {
+  JsModuleSource() as $source,
+  `import($source)`
+} as $imp where {
+  $source <: r"^['\"]\.\./.*",
+  register_diagnostic(span=$imp, message="Parent relative imports (../) are prohibited in src/features. Use absolute imports with '@/features/...' instead.", severity="error")
+}

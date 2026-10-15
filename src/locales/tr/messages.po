@@ -46,9 +46,17 @@ msgstr "Hesap silindi."
 msgid "Actions for {0}"
 msgstr "{0} için işlemler"
 
+#: src/features/products/components/product-status-chip.tsx
+msgid "Active"
+msgstr "Aktif"
+
 #: src/features/account/components/sessions/session-card.tsx
 msgid "Active Session"
 msgstr "Aktif Oturum"
+
+#: src/features/products/components/forms/create-product-view.tsx
+msgid "Add a new product to your inventory catalog."
+msgstr "Envanter kataloğunuza yeni bir ürün ekleyin."
 
 #: src/features/account/components/account-organization-view.tsx
 #: src/features/account/components/members/create-member-modal.tsx
@@ -58,6 +66,10 @@ msgstr "Üye ekle"
 #: src/features/account/config/organization-permission-labels.constants.ts
 msgid "Add members"
 msgstr "Üye ekleme"
+
+#: src/features/products/components/product-list/product-list-view.tsx
+msgid "Add product"
+msgstr "Ürün ekle"
 
 #: src/lib/authorization/organization-role.utils.ts
 msgid "Admin"
@@ -103,10 +115,19 @@ msgstr "Görünüm"
 msgid "Apps"
 msgstr "Uygulamalar"
 
+#: src/features/products/components/product-status-chip.tsx
+msgid "Archived"
+msgstr "Arşivlenmiş"
+
 #. placeholder {0}: member.name
 #: src/features/account/components/members/member-ban-modal.tsx
 msgid "Are you sure you want to ban <0>{0}</0>? They will no longer be able to access the application."
 msgstr "<0>{0}</0> adlı üyeyi yasaklamak üzeresiniz. Emin misiniz? Bu kişi artık uygulamaya erişemeyecek."
+
+#. placeholder {0}: product.name
+#: src/features/products/components/modals/delete-product-modal.tsx
+msgid "Are you sure you want to delete <0>{0}</0>? This action cannot be undone."
+msgstr "<0>{0}</0> ürününü silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
 
 #. placeholder {0}: member.name
 #: src/features/account/components/members/member-delete-modal.tsx
@@ -120,6 +141,14 @@ msgstr "Artan (A-Z)"
 #: src/features/account/components/account-security-view.tsx
 msgid "Authentication"
 msgstr "Kimlik doğrulama"
+
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Available stock"
+msgstr "Mevcut stok"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "Available Stock"
+msgstr "Mevcut Stok"
 
 #: src/features/account/components/account-profile-view.tsx
 msgid "Avatar"
@@ -149,6 +178,14 @@ msgstr "Kullanıcıyı yasakla"
 msgid "Banned"
 msgstr "Yasaklı"
 
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Barcode"
+msgstr "Barkod"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "Barcode / EAN"
+msgstr "Barkod / EAN"
+
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Billing"
 msgstr "Faturalandırma"
@@ -177,8 +214,16 @@ msgstr "Bu organizasyondaki yerleşik roller ve verdikleri yetkiler."
 #: src/components/organisms/filters/panel/filters-panel-actions.tsx
 #: src/components/organisms/form/modals/form-modal.tsx
 #: src/features/account/components/profile/delete-account-modal.tsx
+#: src/features/products/components/forms/create-product-view.tsx
 msgid "Cancel"
 msgstr "Vazgeç"
+
+#: src/features/products/components/forms/product-form.tsx
+#: src/features/products/components/product-details/product-detail-content.tsx
+#: src/features/products/components/product-list/products-table-columns.tsx
+#: src/features/products/config/products-filter.config.ts
+msgid "Category"
+msgstr "Kategori"
 
 #: src/features/account/components/account-security-view.tsx
 msgid "Change"
@@ -240,13 +285,29 @@ msgstr "Şifreyi onayla"
 msgid "Connected Devices"
 msgstr "Bağlı Cihazlar"
 
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Cost price"
+msgstr "Maliyet fiyatı"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "Cost Price ($)"
+msgstr "Maliyet Fiyatı ($)"
+
 #: src/features/account/components/members/create-member-modal.tsx
 msgid "Create"
 msgstr "Oluştur"
 
+#: src/app/routes/_admin/products/new.tsx
+msgid "Create Product"
+msgstr "Ürün Oluştur"
+
 #: src/features/auth/components/register-view.tsx
 msgid "Create your account in just a few steps and start today."
 msgstr "Birkaç adımda hesabınızı oluşturun ve hemen başlayın."
+
+#: src/features/products/config/products-filter.config.ts
+msgid "Created date"
+msgstr "Oluşturma tarihi"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "CRM"
@@ -293,12 +354,17 @@ msgstr "Kontrol paneli yakında geliyor"
 msgid "Data table"
 msgstr "Veri tablosu"
 
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Date created"
+msgstr "Oluşturulma tarihi"
+
 #: src/config/layout-options.constants.ts
 msgid "Default"
 msgstr "Varsayılan"
 
 #: src/components/organisms/form/actions/form-action-more-menu.tsx
 #: src/features/account/components/account-profile-view.tsx
+#: src/features/products/components/modals/delete-product-modal.tsx
 msgid "Delete"
 msgstr "Sil"
 
@@ -310,9 +376,26 @@ msgstr "Hesabı Sil"
 msgid "Delete my account"
 msgstr "Hesabımı sil"
 
+#: src/features/products/components/product-list/products-table-columns.tsx
+msgid "Delete product"
+msgstr "Ürünü sil"
+
+#: src/features/products/components/modals/delete-product-modal.tsx
+msgid "Delete Product"
+msgstr "Ürünü Sil"
+
 #: src/components/organisms/filters/utils/filter-fields.utils.ts
 msgid "Descending (Z-A)"
 msgstr "Azalan (Z-A)"
+
+#: src/features/products/components/forms/product-form.tsx
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Description"
+msgstr "Açıklama"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "Detailed product description..."
+msgstr "Ayrıntılı ürün açıklaması..."
 
 #: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
 msgid "Discard changes"
@@ -321,6 +404,18 @@ msgstr "Değişiklikleri at"
 #: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
 msgid "Discard unsaved changes?"
 msgstr "Kaydedilmemiş değişiklikler atılsın mı?"
+
+#: src/features/products/components/product-status-chip.tsx
+msgid "Draft"
+msgstr "Taslak"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "e.g. Ergonomic Keyboard"
+msgstr "örn. Ergonomik Klavye"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "e.g. PROD-001"
+msgstr "örn. PROD-001"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "eCommerce"
@@ -333,6 +428,14 @@ msgstr "Düzenle"
 #: src/components/organisms/data-table/columns/table-column-filter.tsx
 msgid "Edit columns"
 msgstr "Sütunları düzenle"
+
+#: src/features/products/components/product-list/products-table-columns.tsx
+msgid "Edit product"
+msgstr "Ürünü düzenle"
+
+#: src/app/routes/_admin/products/$productId/edit.tsx
+msgid "Edit Product"
+msgstr "Ürünü Düzenle"
 
 #: src/features/account/components/account-profile-view.tsx
 msgid "Edit profile"
@@ -357,6 +460,10 @@ msgstr "E-posta adresi"
 msgid "Emerald"
 msgstr "Zümrüt"
 
+#: src/features/products/config/products-filter.config.ts
+msgid "End date"
+msgstr "Bitiş tarihi"
+
 #: src/features/account/components/account-profile-view.tsx
 msgid "End your session on this device"
 msgstr "Bu cihazdaki oturumu sonlandır"
@@ -368,6 +475,10 @@ msgstr "Geçerli bir tarih girin (YYYY-AA-GG)"
 #: src/features/auth/components/forgot-password-view.tsx
 msgid "Enter your email address and we will send you a link to reset your password."
 msgstr "E-posta adresinizi girin, şifrenizi sıfırlamanız için size bir bağlantı gönderelim."
+
+#: src/components/molecules/query-state.tsx
+msgid "Error"
+msgstr "Hata"
 
 #: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
 msgid "Expand sidebar"
@@ -429,6 +540,10 @@ msgstr "Ad soyad"
 msgid "General"
 msgstr "Genel"
 
+#: src/components/molecules/query-state.tsx
+msgid "Go back"
+msgstr "Geri dön"
+
 #: src/app/layouts/error/error-actions.tsx
 msgid "Go back to dashboard"
 msgstr "Kontrol paneline geri dön"
@@ -453,6 +568,10 @@ msgstr "İK"
 msgid "If you already have an account, please <0>sign in.</0>"
 msgstr "Zaten bir hesabınız varsa lütfen <0>giriş yapın.</0>"
 
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "In stock"
+msgstr "Stokta"
+
 #: src/config/color-palette.constants.ts
 msgid "Indigo"
 msgstr "Çivit"
@@ -465,7 +584,7 @@ msgstr "Arayüz dili"
 msgid "Internal server error. Please try again later."
 msgstr "Sunucu hatası. Lütfen daha sonra tekrar deneyin."
 
-#: src/utils/date.utils.ts
+#: src/utils/format.utils.ts
 msgid "Invalid date"
 msgstr "Geçersiz tarih"
 
@@ -496,6 +615,10 @@ msgstr "Dil"
 #: src/features/account/components/account-profile-view.tsx
 msgid "Language & Region"
 msgstr "Dil ve Bölge"
+
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Last updated"
+msgstr "Son güncelleme"
 
 #: src/components/organisms/customize-drawer/layout-option-list.tsx
 msgid "Layout"
@@ -535,6 +658,10 @@ msgstr "Lojistik"
 msgid "Mail"
 msgstr "E-posta"
 
+#: src/features/products/components/product-list/product-list-view.tsx
+msgid "Manage your catalog, inventory, pricing, and product statuses."
+msgstr "Katalog, stok, fiyatlandırma ve ürün durumlarını yönetin."
+
 #: src/features/account/components/account-organization-view.tsx
 msgid "Manage your organization details and team members."
 msgstr "Organizasyon bilgilerinizi ve ekip üyelerinizi yönetin."
@@ -546,6 +673,10 @@ msgstr "Hesabınızı güvende tutmak için şifrenizi yönetin ve ek güvenlik 
 #: src/features/account/components/account-profile-view.tsx
 msgid "Manage your profile, language, and appearance preferences."
 msgstr "Profil, dil ve görünüm tercihlerinizi yönetin."
+
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "margin"
+msgstr "marj"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Marketing"
@@ -592,6 +723,10 @@ msgstr "Daha fazla"
 msgid "More options"
 msgstr "Diğer seçenekler"
 
+#: src/features/products/config/products-filter.config.ts
+msgid "Name"
+msgstr "Ad"
+
 #: src/utils/error.utils.ts
 msgid "Network error. Please check your connection."
 msgstr "Ağ hatası. Lütfen internet bağlantınızı kontrol edin."
@@ -620,6 +755,10 @@ msgstr "İleri"
 #: src/features/account/components/account-sessions-view.tsx
 msgid "No active sessions."
 msgstr "Aktif oturum bulunmuyor."
+
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "No description provided."
+msgstr "Açıklama girilmemiş."
 
 #: src/features/account/components/account-role-view.tsx
 msgid "No members currently hold this role."
@@ -658,6 +797,10 @@ msgstr "Bir şeyler ters gitti! Durum bize bildirildi, en kısa sürede düzelti
 msgid "Open menu"
 msgstr "Menüyü aç"
 
+#: src/features/products/components/forms/product-form.tsx
+msgid "Optional barcode"
+msgstr "İsteğe bağlı barkod"
+
 #: src/config/color-palette.constants.ts
 msgid "Orange"
 msgstr "Turuncu"
@@ -684,6 +827,10 @@ msgstr "Organizasyon yeniden adlandırıldı."
 #: src/features/account/components/account-profile-view.tsx
 msgid "Organization role"
 msgstr "Organizasyon rolü"
+
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Out of stock"
+msgstr "Stokta yok"
 
 #: src/features/account/components/account-security-view.tsx
 #: src/features/account/components/forms/delete-account-form/delete-account-form.tsx
@@ -765,11 +912,50 @@ msgstr "Lütfen tekrar deneyin veya daha sonra kontrol edin."
 msgid "Prev"
 msgstr "Geri"
 
+#: src/features/products/components/product-details/product-detail-content.tsx
+#: src/features/products/components/product-list/products-table-columns.tsx
+#: src/features/products/config/products-filter.config.ts
+msgid "Price"
+msgstr "Fiyat"
+
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Pricing"
 msgstr "Fiyatlandırma"
 
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Pricing & Inventory"
+msgstr "Fiyatlandırma & Stok"
+
+#: src/features/products/components/product-list/products-table-columns.tsx
+msgid "Product"
+msgstr "Ürün"
+
+#: src/features/products/components/forms/create-product-view.tsx
+msgid "Product created."
+msgstr "Ürün oluşturuldu."
+
+#: src/features/products/components/modals/delete-product-modal.tsx
+msgid "Product deleted."
+msgstr "Ürün silindi."
+
+#: src/app/routes/_admin/products/$productId/index.tsx
+msgid "Product Details"
+msgstr "Ürün Detayları"
+
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "Product Information"
+msgstr "Ürün Bilgileri"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "Product Name"
+msgstr "Ürün Adı"
+
+#: src/features/products/components/forms/edit-product-view.tsx
+msgid "Product updated."
+msgstr "Ürün güncellendi."
+
 #: src/app/layouts/admin-layout/sidebar-items.ts
+#: src/app/routes/_admin/products/index.tsx
 msgid "Products"
 msgstr "Ürünler"
 
@@ -843,6 +1029,7 @@ msgstr "Şifreyi sıfırla"
 msgid "Reset to defaults"
 msgstr "Varsayılanlara dön"
 
+#: src/components/molecules/query-state.tsx
 #: src/features/account/components/account-organization-view.tsx
 #: src/features/account/components/account-role-view.tsx
 #: src/features/account/components/account-roles-view.tsx
@@ -910,6 +1097,10 @@ msgstr "Ara"
 msgid "Search anything..."
 msgstr "Herhangi bir şey arayın..."
 
+#: src/features/products/config/products-filter.config.ts
+msgid "Search products by name or SKU..."
+msgstr "Ürünleri ada veya SKU’ya göre ara..."
+
 #: src/components/molecules/autocomplete-popover.tsx
 msgid "Search..."
 msgstr "Ara..."
@@ -940,6 +1131,10 @@ msgstr "Birini seç"
 #: src/components/molecules/theme-picker.tsx
 msgid "Select theme"
 msgstr "Tema seç"
+
+#: src/features/products/components/forms/product-form.tsx
+msgid "Selling Price ($)"
+msgstr "Satış Fiyatı ($)"
 
 #: src/features/auth/components/forgot-password-view.tsx
 msgid "Send reset link"
@@ -1006,9 +1201,18 @@ msgstr "Kaydol"
 msgid "Signed out."
 msgstr "Çıkış yapıldı."
 
+#: src/features/products/components/forms/product-form.tsx
+#: src/features/products/components/product-details/product-detail-content.tsx
+msgid "SKU"
+msgstr "SKU"
+
 #: src/config/color-palette.constants.ts
 msgid "Sky"
 msgstr "Gökyüzü"
+
+#: src/components/molecules/query-state.tsx
+msgid "Something went wrong while loading data."
+msgstr "Veriler yüklenirken bir sorun oluştu."
 
 #: src/features/account/components/account-organization-view.tsx
 #: src/features/account/components/account-role-view.tsx
@@ -1023,9 +1227,28 @@ msgstr "Roller yüklenirken bir sorun oluştu. Lütfen tekrar deneyin."
 msgid "Something went wrong while loading sessions. Please try again."
 msgstr "Oturumlar yüklenirken bir sorun oluştu. Lütfen tekrar deneyin."
 
+#: src/features/products/config/products-filter.config.ts
+msgid "Sort by"
+msgstr "Sıralama ölçütü"
+
 #: src/components/organisms/filters/utils/filter-fields.utils.ts
 msgid "Sort order"
 msgstr "Sıralama yönü"
+
+#: src/features/products/config/products-filter.config.ts
+msgid "Start date"
+msgstr "Başlangıç tarihi"
+
+#: src/features/products/components/forms/product-form.tsx
+#: src/features/products/components/product-list/products-table-columns.tsx
+#: src/features/products/config/products-filter.config.ts
+msgid "Status"
+msgstr "Durum"
+
+#: src/features/products/components/product-list/products-table-columns.tsx
+#: src/features/products/config/products-filter.config.ts
+msgid "Stock"
+msgstr "Stok"
 
 #: src/lib/authorization/organization-role.utils.ts
 msgid "Super Admin"
@@ -1121,6 +1344,10 @@ msgstr "Bilinmeyen"
 msgid "Update your password to keep your account secure."
 msgstr "Şifrenizi güvenlik nedeniyle değiştirebilirsiniz."
 
+#: src/features/products/config/products-filter.config.ts
+msgid "Updated date"
+msgstr "Güncelleme tarihi"
+
 #: src/utils/error.utils.ts
 msgid "Validation failed. Please check your input."
 msgstr "Doğrulama başarısız oldu. Lütfen girdiğiniz bilgileri kontrol edin."
@@ -1128,6 +1355,10 @@ msgstr "Doğrulama başarısız oldu. Lütfen girdiğiniz bilgileri kontrol edin
 #: src/features/account/components/organization/organization-role-card.tsx
 msgid "View"
 msgstr "Görüntüle"
+
+#: src/features/products/components/product-list/products-table-columns.tsx
+msgid "View details"
+msgstr "Detayları görüntüle"
 
 #: src/config/color-palette.constants.ts
 msgid "Violet"

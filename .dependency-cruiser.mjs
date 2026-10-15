@@ -49,6 +49,7 @@ export default {
         pathNot: '^src/features/$1/',
       },
     },
+
     {
       comment:
         'Organisms can import files within their own folder hierarchy, but cannot escape to other organisms via relative paths.',

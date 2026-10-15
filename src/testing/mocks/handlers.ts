@@ -4,6 +4,7 @@ import {
   MOCK_MEMBERS,
   MOCK_ORGANIZATION_ME,
   MOCK_ORGANIZATION_MEMBERS,
+  MOCK_PRODUCTS,
   MOCK_SESSION,
   MOCK_USER,
 } from './data';
@@ -20,6 +21,7 @@ let currentSession: typeof MOCK_SESSION | null = isLoggedOutInMock
   : { ...MOCK_SESSION };
 let organizationMe = { ...MOCK_ORGANIZATION_ME };
 let organizationMembers = [...MOCK_MEMBERS];
+let productsList = [...MOCK_PRODUCTS];
 
 export const handlers = [
   // -------------------------------------------------------------
@@ -231,5 +233,151 @@ export const handlers = [
       };
     }
     return HttpResponse.json(currentUser);
+  }),
+
+  // -------------------------------------------------------------
+  // Products Endpoints
+  // -------------------------------------------------------------
+
+  // List products with filtering & pagination
+  http.get('*/api/products', ({ request }) => {
+    const url = new URL(request.url);
+    const search = url.searchParams.get('search')?.toLowerCase();
+    const category = url.searchParams.get('category');
+    const status = url.searchParams.get('status');
+    const dateStart = url.searchParams.get('dateStart');
+    const dateEnd = url.searchParams.get('dateEnd');
+    const sortBy = url.searchParams.get('sortBy');
+    const sortOrder = url.searchParams.get('sortOrder') || 'asc';
+    const page = Math.max(1, Number(url.searchParams.get('page') || 1));
+    const pageSize = Math.max(
+      1,
+      Number(url.searchParams.get('pageSize') || 10)
+    );
+
+    let filtered = [...productsList];
+
+    if (search) {
+      filtered = filtered.filter(
+        (p) =>
+          p.name.toLowerCase().includes(search) ||
+          p.sku.toLowerCase().includes(search)
+      );
+    }
+
+    if (category) {
+      filtered = filtered.filter((p) => p.category === category);
+    }
+
+    if (status) {
+      filtered = filtered.filter((p) => p.status === status);
+    }
+
+    if (dateStart) {
+      filtered = filtered.filter(
+        (p) => new Date(p.createdAt) >= new Date(dateStart)
+      );
+    }
+
+    if (dateEnd) {
+      const endOfDay = new Date(dateEnd);
+      endOfDay.setHours(23, 59, 59, 999);
+      filtered = filtered.filter((p) => new Date(p.createdAt) <= endOfDay);
+    }
+
+    if (sortBy) {
+      filtered.sort((a, b) => {
+        const valA = a[sortBy as keyof typeof a];
+        const valB = b[sortBy as keyof typeof b];
+        if (valA == null || valB == null) return 0;
+        let comparison = 0;
+        if (typeof valA === 'number' && typeof valB === 'number') {
+          comparison = valA - valB;
+        } else {
+          comparison = String(valA).localeCompare(String(valB));
+        }
+        return sortOrder === 'desc' ? -comparison : comparison;
+      });
+    }
+
+    const total = filtered.length;
+    const totalPages = Math.ceil(total / pageSize);
+    const start = (page - 1) * pageSize;
+    const paginated = filtered.slice(start, start + pageSize);
+
+    return HttpResponse.json({
+      data: paginated,
+      meta: {
+        page,
+        pageSize,
+        total,
+        totalPages,
+      },
+    });
+  }),
+
+  // Get single product
+  http.get('*/api/products/:id', ({ params }) => {
+    const product = productsList.find((p) => p.id === params.id);
+    if (!product) {
+      return HttpResponse.json(
+        { message: 'Product not found' },
+        { status: 404 }
+      );
+    }
+    return HttpResponse.json(product);
+  }),
+
+  // Create product
+  http.post('*/api/products', async ({ request }) => {
+    const body = (await request.json()) as Record<string, unknown>;
+    const newProduct = {
+      ...body,
+      createdAt: new Date().toISOString(),
+      id: `prod_${Date.now()}`,
+      updatedAt: new Date().toISOString(),
+      version: 1,
+    };
+    productsList = [
+      newProduct as (typeof productsList)[number],
+      ...productsList,
+    ];
+    return HttpResponse.json(newProduct, { status: 201 });
+  }),
+
+  // Update product
+  http.patch('*/api/products/:id', async ({ params, request }) => {
+    const body = (await request.json()) as Record<string, unknown>;
+    const index = productsList.findIndex((p) => p.id === params.id);
+    if (index === -1) {
+      return HttpResponse.json(
+        { message: 'Product not found' },
+        { status: 404 }
+      );
+    }
+    const current = productsList[index];
+    if (typeof body.version === 'number' && body.version !== current.version) {
+      return HttpResponse.json(
+        {
+          message:
+            'Product has been modified by another process. Please refresh.',
+        },
+        { status: 409 }
+      );
+    }
+    const updated = {
+      ...current,
+      ...body,
+      updatedAt: new Date().toISOString(),
+      version: (current.version ?? 0) + 1,
+    };
+    productsList[index] = updated;
+    return HttpResponse.json(updated);
+  }),
+
+  // Delete product
+  http.delete('*/api/products/:id', ({ params }) => {
+    productsList = productsList.filter((p) => p.id !== params.id);
+    return HttpResponse.json({ success: true });
   }),
 ];

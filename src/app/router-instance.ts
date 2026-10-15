@@ -1,11 +1,12 @@
 import { createRouter, parseSearchWith } from '@tanstack/react-router';
-import type { LoaderData, RootRouteContext } from '@/app/router.types';
+import type { RootRouteContext } from '@/app/router.types';
 import type {
   SidebarHeaderMode,
   SidebarNavItem,
 } from '@/components/organisms/sidebar/sidebar.types';
 import type { APP_ROUTES } from '@/config/app-routes.constants';
 import { queryClient } from '@/lib/react-query';
+import type { LoaderData } from '@/types/meta.types';
 import { stringifySearch } from '@/utils/router-search.utils';
 import {
   ADMIN_SCROLL_CONTAINER_ID,

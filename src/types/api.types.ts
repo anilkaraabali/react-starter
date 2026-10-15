@@ -1,17 +1,22 @@
-import type { SortOrder } from '@/types/sort.types';
-
-export type CollectionQueryParams = {
-  page?: number;
-  pageSize?: number;
-  search?: string;
-  sortBy?: string;
-  sortOrder?: SortOrder;
+type BaseEntity = {
+  createdAt: string;
+  id: string;
+  updatedAt: string;
+  version: number;
 };
 
-export type CollectionFilterState = CollectionQueryParams & {
-  page?: number;
+export type Entity<T> = {
+  [K in keyof T]: T[K];
+} & BaseEntity;
+
+type Meta = {
+  page: number;
   pageSize?: number;
-  search?: string;
-  sortBy?: string;
-  sortOrder?: SortOrder;
+  total: number;
+  totalPages: number;
+};
+
+export type PaginatedResponse<T> = {
+  data: T[];
+  meta: Meta;
 };

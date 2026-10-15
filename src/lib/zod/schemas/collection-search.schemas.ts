@@ -19,7 +19,7 @@ export function createCollectionSearchSchema<
   const schema = z.object({
     ...collectionSearchFields,
     ...extra,
-  });
+  } as Omit<typeof collectionSearchFields, keyof T> & T);
 
   return schema.catch({} as z.infer<typeof schema>);
 }

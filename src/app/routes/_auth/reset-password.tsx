@@ -1,9 +1,9 @@
 import { msg } from '@lingui/core/macro';
 import { createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
-import type { MetaFunction } from '@/app/router.types';
 import { ResetPasswordView } from '@/features/auth/components/reset-password-view';
 import { ResetPasswordSearchSchema } from '@/features/auth/types/reset-password-search.schema';
+import type { MetaFunction } from '@/types/meta.types';
 
 const meta: MetaFunction = (i18n) => [
   {

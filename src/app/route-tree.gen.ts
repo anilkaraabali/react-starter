@@ -24,8 +24,12 @@ import { Route as AdminAccountProfileRouteImport } from './routes/_admin/account
 import { Route as AdminAccountRolesRouteImport } from './routes/_admin/account/roles'
 import { Route as AdminAccountSecurityRouteImport } from './routes/_admin/account/security'
 import { Route as AdminAccountSessionsRouteImport } from './routes/_admin/account/sessions'
+import { Route as AdminProductsIndexRouteImport } from './routes/_admin/products/index'
+import { Route as AdminProductsNewRouteImport } from './routes/_admin/products/new'
 import { Route as AdminAccountRolesIndexRouteImport } from './routes/_admin/account/roles/index'
 import { Route as AdminAccountRolesRoleRouteImport } from './routes/_admin/account/roles/$role'
+import { Route as AdminProductsProductIdIndexRouteImport } from './routes/_admin/products/$productId/index'
+import { Route as AdminProductsProductIdEditRouteImport } from './routes/_admin/products/$productId/edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -101,6 +105,16 @@ const AdminAccountSessionsRoute = AdminAccountSessionsRouteImport.update({
   path: '/sessions',
   getParentRoute: () => AdminAccountRoute,
 } as any)
+const AdminProductsIndexRoute = AdminProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
+const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
+  id: '/products/new',
+  path: '/products/new',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const AdminAccountRolesIndexRoute = AdminAccountRolesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -111,6 +125,18 @@ const AdminAccountRolesRoleRoute = AdminAccountRolesRoleRouteImport.update({
   path: '/$role',
   getParentRoute: () => AdminAccountRolesRoute,
 } as any)
+const AdminProductsProductIdIndexRoute =
+  AdminProductsProductIdIndexRouteImport.update({
+    id: '/products/$productId/',
+    path: '/products/$productId/',
+    getParentRoute: () => AdminRouteRoute,
+  } as any)
+const AdminProductsProductIdEditRoute =
+  AdminProductsProductIdEditRouteImport.update({
+    id: '/products/$productId/edit',
+    path: '/products/$productId/edit',
+    getParentRoute: () => AdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -125,9 +151,13 @@ export interface FileRoutesByFullPath {
   '/account/roles': typeof AdminAccountRolesRouteWithChildren
   '/account/security': typeof AdminAccountSecurityRoute
   '/account/sessions': typeof AdminAccountSessionsRoute
+  '/products/new': typeof AdminProductsNewRoute
   '/account/': typeof AdminAccountIndexRoute
+  '/products/': typeof AdminProductsIndexRoute
   '/account/roles/$role': typeof AdminAccountRolesRoleRoute
+  '/products/$productId/edit': typeof AdminProductsProductIdEditRoute
   '/account/roles/': typeof AdminAccountRolesIndexRoute
+  '/products/$productId/': typeof AdminProductsProductIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -140,9 +170,13 @@ export interface FileRoutesByTo {
   '/account/profile': typeof AdminAccountProfileRoute
   '/account/security': typeof AdminAccountSecurityRoute
   '/account/sessions': typeof AdminAccountSessionsRoute
+  '/products/new': typeof AdminProductsNewRoute
   '/account': typeof AdminAccountIndexRoute
+  '/products': typeof AdminProductsIndexRoute
   '/account/roles/$role': typeof AdminAccountRolesRoleRoute
+  '/products/$productId/edit': typeof AdminProductsProductIdEditRoute
   '/account/roles': typeof AdminAccountRolesIndexRoute
+  '/products/$productId': typeof AdminProductsProductIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,9 +194,13 @@ export interface FileRoutesById {
   '/_admin/account/roles': typeof AdminAccountRolesRouteWithChildren
   '/_admin/account/security': typeof AdminAccountSecurityRoute
   '/_admin/account/sessions': typeof AdminAccountSessionsRoute
+  '/_admin/products/new': typeof AdminProductsNewRoute
   '/_admin/account/': typeof AdminAccountIndexRoute
+  '/_admin/products/': typeof AdminProductsIndexRoute
   '/_admin/account/roles/$role': typeof AdminAccountRolesRoleRoute
+  '/_admin/products/$productId/edit': typeof AdminProductsProductIdEditRoute
   '/_admin/account/roles/': typeof AdminAccountRolesIndexRoute
+  '/_admin/products/$productId/': typeof AdminProductsProductIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -179,9 +217,13 @@ export interface FileRouteTypes {
     | '/account/roles'
     | '/account/security'
     | '/account/sessions'
+    | '/products/new'
     | '/account/'
+    | '/products/'
     | '/account/roles/$role'
+    | '/products/$productId/edit'
     | '/account/roles/'
+    | '/products/$productId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -194,9 +236,13 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/security'
     | '/account/sessions'
+    | '/products/new'
     | '/account'
+    | '/products'
     | '/account/roles/$role'
+    | '/products/$productId/edit'
     | '/account/roles'
+    | '/products/$productId'
   id:
     | '__root__'
     | '/'
@@ -213,9 +259,13 @@ export interface FileRouteTypes {
     | '/_admin/account/roles'
     | '/_admin/account/security'
     | '/_admin/account/sessions'
+    | '/_admin/products/new'
     | '/_admin/account/'
+    | '/_admin/products/'
     | '/_admin/account/roles/$role'
+    | '/_admin/products/$productId/edit'
     | '/_admin/account/roles/'
+    | '/_admin/products/$productId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -331,6 +381,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAccountSessionsRouteImport
       parentRoute: typeof AdminAccountRoute
     }
+    '/_admin/products/': {
+      id: '/_admin/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof AdminProductsIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/_admin/products/new': {
+      id: '/_admin/products/new'
+      path: '/products/new'
+      fullPath: '/products/new'
+      preLoaderRoute: typeof AdminProductsNewRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/_admin/account/roles/': {
       id: '/_admin/account/roles/'
       path: '/'
@@ -344,6 +408,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/account/roles/$role'
       preLoaderRoute: typeof AdminAccountRolesRoleRouteImport
       parentRoute: typeof AdminAccountRolesRoute
+    }
+    '/_admin/products/$productId/': {
+      id: '/_admin/products/$productId/'
+      path: '/products/$productId'
+      fullPath: '/products/$productId/'
+      preLoaderRoute: typeof AdminProductsProductIdIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
+    '/_admin/products/$productId/edit': {
+      id: '/_admin/products/$productId/edit'
+      path: '/products/$productId/edit'
+      fullPath: '/products/$productId/edit'
+      preLoaderRoute: typeof AdminProductsProductIdEditRouteImport
+      parentRoute: typeof AdminRouteRoute
     }
   }
 }
@@ -386,11 +464,19 @@ const AdminAccountRouteWithChildren = AdminAccountRoute._addFileChildren(
 interface AdminRouteRouteChildren {
   AdminAccountRoute: typeof AdminAccountRouteWithChildren
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminProductsNewRoute: typeof AdminProductsNewRoute
+  AdminProductsIndexRoute: typeof AdminProductsIndexRoute
+  AdminProductsProductIdEditRoute: typeof AdminProductsProductIdEditRoute
+  AdminProductsProductIdIndexRoute: typeof AdminProductsProductIdIndexRoute
 }
 
 const AdminRouteRouteChildren: AdminRouteRouteChildren = {
   AdminAccountRoute: AdminAccountRouteWithChildren,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminProductsNewRoute: AdminProductsNewRoute,
+  AdminProductsIndexRoute: AdminProductsIndexRoute,
+  AdminProductsProductIdEditRoute: AdminProductsProductIdEditRoute,
+  AdminProductsProductIdIndexRoute: AdminProductsProductIdIndexRoute,
 }
 
 const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(

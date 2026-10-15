@@ -2,15 +2,8 @@
   "$schema": "node_modules/knip/schema.json",
   "entry": ["lingui.config.ts"],
   "ignore": [
-    "src/api/**",
-    "src/components/organisms/data-table/**",
     "src/components/organisms/filters/**",
-    "src/components/molecules/simple-detail-field.tsx",
-    "src/config/string.constants.ts",
-    "src/components/organisms/form/actions/**",
-    "src/app/use-page-title.ts",
     "public/mockServiceWorker.js"
   ],
-  "ignoreDependencies": ["@biomejs/biome"],
   "ignoreExportsUsedInFile": true
 }

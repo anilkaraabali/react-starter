@@ -45,8 +45,3 @@ export function FormActions({
 
   return primaryButton ?? moreMenu;
 }
-
-export type {
-  FormActionDropdownItem,
-  FormActionsProps,
-} from './form-actions.types';

@@ -25,13 +25,13 @@ export function PageHeader({
   return (
     <div
       className={cn(
-        'mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between',
+        'mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between',
         className
       )}
     >
       <div className='flex flex-col gap-1'>
         {resolvedTitle && (
-          <h1 className='font-bold text-2xl text-foreground'>
+          <h1 className='font-bold text-2xl text-foreground tracking-tight'>
             {resolvedTitle}
           </h1>
         )}
