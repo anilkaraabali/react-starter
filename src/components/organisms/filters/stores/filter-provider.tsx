@@ -43,6 +43,7 @@ export function FilterProvider<TSearch extends object>({
   );
 }
 
+/** @public */
 export function useFilter<
   TSearch extends object = DefaultFilterState,
 >(): FilterContextValue<TSearch> {

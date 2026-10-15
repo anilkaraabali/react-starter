@@ -27,8 +27,3 @@ export type FilterFieldConfig<TState extends object = DefaultFilterState> = {
   prefix?: string;
   type: FilterFieldType;
 };
-
-export type FilterSchema<TState extends object> = {
-  fields: FilterFieldConfig<TState>[];
-  initialState: TState;
-};

@@ -1,11 +1,6 @@
 {
   "$schema": "node_modules/knip/schema.json",
   "entry": ["lingui.config.ts"],
-  "ignore": [
-    "src/components/organisms/filters/**",
-    "public/mockServiceWorker.js",
-    "scripts/generate-route-tree.mjs"
-  ],
-  "ignoreDependencies": ["@types/handlebars"],
+  "ignore": ["public/mockServiceWorker.js", "scripts/generate-route-tree.mjs"],
   "ignoreExportsUsedInFile": true
 }
