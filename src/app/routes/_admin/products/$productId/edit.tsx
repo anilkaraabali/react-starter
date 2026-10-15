@@ -1,5 +1,6 @@
 import { msg } from '@lingui/core/macro';
 import { createFileRoute } from '@tanstack/react-router';
+import { getProductQueryOptions } from '@/features/products/api/get-product';
 import { EditProductView } from '@/features/products/components/forms/edit-product-view';
 import type { MetaFunction } from '@/types/meta.types';
 
@@ -11,7 +12,13 @@ const meta: MetaFunction = (i18n) => [
 
 export const Route = createFileRoute('/_admin/products/$productId/edit')({
   component: EditProductRouteComponent,
-  loader: () => ({ meta }),
+  loader: ({ context: { queryClient }, params }) => {
+    void queryClient.query({
+      ...getProductQueryOptions(params.productId),
+      staleTime: 'static',
+    });
+    return { meta };
+  },
 });
 
 function EditProductRouteComponent() {
