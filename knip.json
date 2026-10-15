@@ -6,6 +6,5 @@
     "public/mockServiceWorker.js",
     "scripts/generate-route-tree.mjs"
   ],
-  "ignoreDependencies": ["@types/handlebars"],
   "ignoreExportsUsedInFile": true
 }
