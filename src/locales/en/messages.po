@@ -41,6 +41,10 @@ msgstr "Access your account quickly and securely to get started."
 msgid "Account deleted."
 msgstr "Account deleted."
 
+#: src/features/products/components/product-list/products-table-columns.tsx
+msgid "Actions"
+msgstr "Actions"
+
 #. placeholder {0}: member.name
 #: src/features/account/components/members/member-row.tsx
 msgid "Actions for {0}"

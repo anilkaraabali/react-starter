@@ -1,0 +1,50 @@
+import { toast } from '@heroui/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { Trans } from '@lingui/react/macro';
+import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
+import { useDelete{{entityPascal}} } from '@/features/{{featureDir}}/api/delete-{{entityKebab}}';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+type Delete{{entityPascal}}ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess?: () => void;
+  {{entityCamel}}: {{entityPascal}} | null;
+};
+
+export function Delete{{entityPascal}}Modal({
+  isOpen,
+  onClose,
+  onSuccess,
+  {{entityCamel}},
+}: Delete{{entityPascal}}ModalProps) {
+  const { _ } = useLingui();
+  const delete{{entityPascal}}Mutation = useDelete{{entityPascal}}({
+    mutationConfig: {
+      onSuccess: () => {
+        toast.success(_(msg`{{singularTitle}} deleted.`));
+        onClose();
+        onSuccess?.();
+      },
+    },
+  });
+
+  if (!{{entityCamel}}) return null;
+
+  return (
+    <ConfirmDialog
+      confirmLabel={_(msg`Delete`)}
+      isOpen={isOpen}
+      isPending={delete{{entityPascal}}Mutation.isPending}
+      onClose={onClose}
+      onConfirm={() => delete{{entityPascal}}Mutation.mutateAsync({{entityCamel}}.id)}
+      title={_(msg`Delete {{singularTitle}}`)}
+    >
+      <Trans>
+        Are you sure you want to delete <b>{{entityCamel}}.name</b>? This action
+        cannot be undone.
+      </Trans>
+    </ConfirmDialog>
+  );
+}

@@ -80,8 +80,73 @@ Vite serves the app at **http://localhost:4200** (or the next free port).
 | `pnpm knip`                     | Detect unused files, exports, and dependencies                |
 | `pnpm jscpd`                    | Duplicate code analysis                                       |
 | `pnpm intl:extract`             | Extract messages into Lingui catalogs and sync translations   |
+| `pnpm generate`                 | Scaffold feature modules with the Plop generators             |
 | `pnpm script:check-docs`        | Verify documentation and link integrity                       |
 | `pnpm agents:heroui`            | Update HeroUI documentation reference (`AGENTS.md`)           |
+
+### Generators
+
+`pnpm generate` scaffolds a feature module from the same patterns the
+`products` module implements, so a new module does not start as a blank folder.
+
+```bash
+pnpm generate            # interactive picker
+pnpm generate api invoice
+```
+
+### Running several generators at once
+
+`pnpm generate all` opens a checkbox instead of a single-choice list. Tick with
+`Space`, `a` toggles all, `Enter` confirms:
+
+```bash
+pnpm generate all
+pnpm generate all invoice invoices "types,config,api"
+```
+
+Selections are always executed in dependency order, not the order you ticked
+them, and the route tree is regenerated once at the end. If the selection leaves
+a generator without something it imports, the output lists what is missing
+rather than leaving you to discover it at `pnpm typecheck`.
+
+### Granular generators
+
+| Generator | Produces |
+| --- | --- |
+| `types`   | `types/<entity>.types.ts` — entity plus a `draft`/`active`/`archived` status enum |
+| `config`  | `config/<entity>.constants.ts` and `config/<plural>-filter.config.ts` — status options and the URL-backed filter/sort config |
+| `api`     | Query-key factory, list and detail queries, create/update/delete mutations |
+| `modal`   | `components/modals/delete-<entity>-modal.tsx` |
+| `detail`  | Query boundary, status chip, detail view and content |
+| `form`    | Shared form, form options, entity-to-form mapper, create and edit views |
+| `list`    | List view, data table and column definitions |
+| `routes`  | The four file-based routes, registers them in `APP_ROUTES` / `APP_ROUTE_IDS`, then regenerates `route-tree.gen.ts` |
+
+Generators only write production code. Tests are written by hand, so a new
+module ships without the scaffolding of specs that its first real test would
+replace anyway.
+
+The `routes` generator edits three things: the route files themselves, the two
+maps in `src/config/app-routes.constants.ts`, and the generated route tree. The
+registration step is idempotent, so re-running it never duplicates a group. The
+remaining shared files still need a hand edit and are listed in the generator's
+output.
+
+Every generator asks for an entity name (`invoice`) and a feature folder, and
+derives all other names from it: `Invoice`, `Invoices`, `invoiceId`,
+`invoiceKeys`, `/invoices`, `/api/invoices`. Generated files are formatted with
+Biome before they are written, so `pnpm lint:ci` stays green.
+
+The entity shape is deliberately generic (`name`, `description`, `status`) —
+domain fields are added by hand on top. Of the shared files that could need
+editing, the route constants are handled automatically; the sidebar, the
+local-storage keys and the MSW handlers are listed in the generator's output
+rather than patched automatically.
+
+Templates live in `generators/<name>/*.hbs` and are covered by
+`generators/__tests__/templates.spec.ts`, which renders each one and checks the
+result parses. `generators/__tests__/register-routes.spec.ts` covers the
+constants-file patch against a temp copy of the real file.
 
 ### Build Validation
 

@@ -1,0 +1,42 @@
+import { Chip, type ChipProps } from '@heroui/react';
+import type { MessageDescriptor } from '@lingui/core';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import type { {{entityPascal}}Status } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+const STATUS_CONFIG = {
+  active: {
+    color: 'success',
+    label: msg`Active`,
+  },
+  archived: {
+    color: 'warning',
+    label: msg`Archived`,
+  },
+  draft: {
+    color: 'default',
+    label: msg`Draft`,
+  },
+} as const satisfies Record<
+  {{entityPascal}}Status,
+  { color: NonNullable<ChipProps['color']>; label: MessageDescriptor }
+>;
+
+type {{entityPascal}}StatusChipProps = Omit<ChipProps, 'children'> & {
+  status: {{entityPascal}}Status;
+};
+
+export function {{entityPascal}}StatusChip({
+  size = 'sm',
+  status,
+  ...rest
+}: {{entityPascal}}StatusChipProps) {
+  const { _ } = useLingui();
+  const config = STATUS_CONFIG[status];
+
+  return (
+    <Chip color={config.color} size={size} variant='soft' {...rest}>
+      {_(config.label)}
+    </Chip>
+  );
+}

@@ -1,0 +1,61 @@
+import { queryOptions, useQuery } from '@tanstack/react-query';
+import { z } from 'zod';
+import { {{keysFactory}} } from '@/features/{{featureDir}}/api/{{entityKebab}}.keys';
+import {
+  DEFAULT_{{entityConst}}_SORT_BY,
+  DEFAULT_{{entityConst}}_SORT_ORDER,
+  {{entityConst}}_SORT_FIELDS,
+} from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
+import {
+  {{entityConst}}_STATUSES,
+  type {{entityPascal}},
+} from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import { api } from '@/lib/api-client';
+import type { QueryConfig } from '@/lib/react-query';
+import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
+import { SearchParamSortOrderSchema } from '@/lib/zod/schemas/search-params.schemas';
+import type { PaginatedResponse } from '@/types/api.types';
+
+export const get{{pluralPascal}}QuerySchema = createCollectionSearchSchema({
+  sortBy: z.enum({{entityConst}}_SORT_FIELDS).default(DEFAULT_{{entityConst}}_SORT_BY),
+  sortOrder: SearchParamSortOrderSchema.default(DEFAULT_{{entityConst}}_SORT_ORDER),
+  status: z.enum({{entityConst}}_STATUSES).optional(),
+});
+
+export type Get{{pluralPascal}}Query = z.infer<typeof get{{pluralPascal}}QuerySchema>;
+export type {{pluralPascal}}ResponseDto = PaginatedResponse<{{entityPascal}}>;
+
+export const get{{pluralPascal}} = (
+  params?: Get{{pluralPascal}}Query,
+  signal?: AbortSignal
+) => {
+  return api.get<never, {{pluralPascal}}ResponseDto>('{{apiPath}}', {
+    params,
+    signal,
+  });
+};
+
+export const get{{pluralPascal}}QueryOptions = (
+  params?: Get{{pluralPascal}}Query
+) =>
+  queryOptions({
+    queryFn: ({ signal }) => get{{pluralPascal}}(params, signal),
+    queryKey: {{keysFactory}}.list(params),
+  });
+
+type Use{{pluralPascal}}Options = {
+  params?: Get{{pluralPascal}}Query;
+  queryConfig?: QueryConfig<
+    () => ReturnType<typeof get{{pluralPascal}}QueryOptions>
+  >;
+};
+
+export const use{{pluralPascal}} = ({
+  params,
+  queryConfig,
+}: Use{{pluralPascal}}Options = {}) => {
+  return useQuery({
+    ...get{{pluralPascal}}QueryOptions(params),
+    ...queryConfig,
+  });
+};

@@ -1,0 +1,62 @@
+import { useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+import { FormActions } from '@/components/organisms/form/actions/form-actions';
+import { ContentLayout } from '@/components/templates/content-layout';
+import { APP_ROUTES } from '@/config/app-routes.constants';
+import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/modals/delete-{{entityKebab}}-modal';
+import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
+import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import { {{entityPascal}}DetailContent } from './{{entityKebab}}-detail-content';
+
+type {{entityPascal}}DetailViewProps = {
+  {{routeParam}}: string;
+};
+
+export function {{entityPascal}}DetailView({ {{routeParam}} }: {{entityPascal}}DetailViewProps) {
+  return (
+    <{{entityPascal}}QueryBoundary {{routeParam}}={ {{routeParam}} }>
+      {({{entityCamel}}) => <{{entityPascal}}DetailLayout {{entityCamel}}={ {{entityCamel}} } />}
+    </{{entityPascal}}QueryBoundary>
+  );
+}
+
+function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{entityPascal}} }) {
+  const navigate = useNavigate();
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  return (
+    <ContentLayout
+      actions={
+        <FormActions
+          onDelete={() => setIsDeleteModalOpen(true)}
+          onEdit={() => {
+            void navigate({
+              params: {
+                {{routeParam}}: {{entityCamel}}.id,
+              },
+              to: APP_ROUTES.{{routeKeyEdit}},
+            });
+          }}
+        />
+      }
+      title={
+        <div className='flex items-center gap-3'>
+          <span>{{entityCamel}}.name</span>
+          <{{entityPascal}}StatusChip status={ {{entityCamel}}.status } />
+        </div>
+      }
+    >
+      <{{entityPascal}}DetailContent {{entityCamel}}={ {{entityCamel}} } />
+
+      <Delete{{entityPascal}}Modal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onSuccess={() => {
+          void navigate({ to: APP_ROUTES.{{routeKeyList}} });
+        }}
+        {{entityCamel}}={ {{entityCamel}} }
+      />
+    </ContentLayout>
+  );
+}

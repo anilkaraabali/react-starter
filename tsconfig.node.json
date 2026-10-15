@@ -18,6 +18,8 @@
     "vite.config.ts",
     "vitest.config.ts",
     "lingui.config.ts",
+    "plopfile.ts",
+    "generators/**/*.ts",
     "scripts/**/*"
   ]
 }

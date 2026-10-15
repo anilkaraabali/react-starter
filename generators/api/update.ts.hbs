@@ -1,0 +1,53 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { z } from 'zod';
+import { create{{entityPascal}}InputSchema } from '@/features/{{featureDir}}/api/create-{{entityKebab}}';
+import { {{keysFactory}} } from '@/features/{{featureDir}}/api/{{entityKebab}}.keys';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import { api } from '@/lib/api-client';
+import type { MutationConfig } from '@/lib/react-query';
+
+export const update{{entityPascal}}InputSchema =
+  create{{entityPascal}}InputSchema.partial();
+
+export type Update{{entityPascal}}Input = z.infer<
+  typeof update{{entityPascal}}InputSchema
+>;
+
+export const update{{entityPascal}} = ({
+  data,
+  {{routeParam}},
+}: {
+  data: Update{{entityPascal}}Input;
+  {{routeParam}}: string;
+}): Promise<{{entityPascal}}> => {
+  return api.patch<never, {{entityPascal}}>(
+    `{{apiPath}}/${ {{routeParam}} }`,
+    data
+  );
+};
+
+type UseUpdate{{entityPascal}}Options = {
+  mutationConfig?: MutationConfig<typeof update{{entityPascal}}>;
+};
+
+export const useUpdate{{entityPascal}} = ({
+  mutationConfig,
+}: UseUpdate{{entityPascal}}Options = {}) => {
+  const queryClient = useQueryClient();
+
+  const { onSuccess, ...restConfig } = mutationConfig || {};
+
+  return useMutation({
+    mutationFn: update{{entityPascal}},
+    onSuccess: (data, variables, ...args) => {
+      void queryClient.invalidateQueries({
+        queryKey: {{keysFactory}}.lists(),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: {{keysFactory}}.detail(variables.{{routeParam}}),
+      });
+      onSuccess?.(data, variables, ...args);
+    },
+    ...restConfig,
+  });
+};

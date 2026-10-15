@@ -1,0 +1,11 @@
+language js
+
+`$call` as $nav where {
+  $call <: or {
+    `navigate($arg)`,
+    `$obj.navigate($arg)`
+  },
+  $arg <: contains `to: $val` as $target,
+  $val <: r"^['\"][^'\"]*['\"]",
+  register_diagnostic(span=$target, message="Static strings in navigate({ to }) are prohibited. Use APP_ROUTES constants instead (e.g. APP_ROUTES.PRODUCTS).", severity="error")
+}

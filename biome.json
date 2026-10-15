@@ -168,6 +168,9 @@
       "path": "./plugins/no-relative-imports-in-features.grit"
     },
     {
+      "path": "./plugins/no-static-navigate-to.grit"
+    },
+    {
       "path": "./plugins/no-test-suffix.grit"
     }
   ],

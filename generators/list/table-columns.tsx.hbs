@@ -1,0 +1,98 @@
+import { Button, buttonVariants } from '@heroui/react';
+import { i18n } from '@lingui/core';
+import { msg } from '@lingui/core/macro';
+import { Link } from '@tanstack/react-router';
+import { EyeIcon, PencilLineIcon, Trash2Icon } from 'lucide-react';
+import type { TableColumnDef } from '@/components/organisms/data-table/data-table.types';
+import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+type Create{{pluralPascal}}TableColumnsOptions = {
+  onDeleteClick: ({{entityCamel}}: {{entityPascal}}) => void;
+};
+
+/**
+ * The column list is the single source of truth for column ids, so the
+ * visibility toggle and the row actions cannot drift apart.
+ */
+export const create{{pluralPascal}}TableColumns = ({
+  onDeleteClick,
+}: Create{{pluralPascal}}TableColumnsOptions) =>
+  [
+    {
+      cell: ({{entityCamel}}: {{entityPascal}}) => (
+        <Link
+          className='hover:underline'
+          params={
+            {
+              {{routeParam}}: {{entityCamel}}.id,
+            }
+          }
+          to='{{routePath}}/${{routeParam}}'
+        >
+          { {{entityCamel}}.name }
+        </Link>
+      ),
+      header: () => i18n._(msg`{{singularTitle}}`),
+      id: 'name',
+      isRowHeader: true,
+    },
+    {
+      cell: ({{entityCamel}}: {{entityPascal}}) => (
+        <{{entityPascal}}StatusChip status={ {{entityCamel}}.status } />
+      ),
+      header: () => i18n._(msg`Status`),
+      id: 'status',
+    },
+    {
+      cell: ({{entityCamel}}: {{entityPascal}}) => (
+        <div className='flex items-center justify-end gap-1'>
+          <Link
+            aria-label={i18n._(msg`View details`)}
+            className={buttonVariants({
+              isIconOnly: true,
+              size: 'sm',
+              variant: 'tertiary',
+            })}
+            params={
+              {
+                {{routeParam}}: {{entityCamel}}.id,
+              }
+            }
+            to='{{routePath}}/${{routeParam}}'
+          >
+            <EyeIcon />
+          </Link>
+          <Link
+            aria-label={i18n._(msg`Edit {{entityKebab}}`)}
+            className={buttonVariants({
+              isIconOnly: true,
+              size: 'sm',
+              variant: 'tertiary',
+            })}
+            params={
+              {
+                {{routeParam}}: {{entityCamel}}.id,
+              }
+            }
+            to='{{routePath}}/${{routeParam}}/edit'
+          >
+            <PencilLineIcon />
+          </Link>
+          <Button
+            aria-label={i18n._(msg`Delete {{entityKebab}}`)}
+            isIconOnly
+            onPress={() => onDeleteClick({{entityCamel}})}
+            size='sm'
+            variant='danger-soft'
+          >
+            <Trash2Icon className='text-danger' />
+          </Button>
+        </div>
+      ),
+      header: () => '',
+      hideable: true,
+      id: 'actions',
+      label: () => i18n._(msg`Actions`),
+    },
+  ] as const satisfies readonly TableColumnDef<{{entityPascal}}>[];

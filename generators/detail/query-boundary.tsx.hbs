@@ -1,0 +1,35 @@
+import { useNavigate } from '@tanstack/react-router';
+import type { ReactNode } from 'react';
+import { QueryState } from '@/components/molecules/query-state';
+import { APP_ROUTES } from '@/config/app-routes.constants';
+import { use{{entityPascal}} } from '@/features/{{featureDir}}/api/get-{{entityKebab}}';
+import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+
+type {{entityPascal}}QueryBoundaryProps = {
+  children: ({{entityCamel}}: {{entityPascal}}) => ReactNode;
+  {{routeParam}}: string;
+};
+
+export function {{entityPascal}}QueryBoundary({
+  children,
+  {{routeParam}},
+}: {{entityPascal}}QueryBoundaryProps) {
+  const navigate = useNavigate();
+  const {{entityCamel}}Query = use{{entityPascal}}({ id: {{routeParam}} });
+
+  return (
+    <QueryState
+      data={ {{entityCamel}}Query.data }
+      isError={ {{entityCamel}}Query.isError }
+      isPending={ {{entityCamel}}Query.isLoading }
+      onBack={() => {
+        void navigate({ to: APP_ROUTES.{{routeKeyList}} });
+      }}
+      onRetry={() => {
+        void {{entityCamel}}Query.refetch();
+      }}
+    >
+      {children}
+    </QueryState>
+  );
+}

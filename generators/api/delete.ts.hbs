@@ -1,0 +1,31 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { {{keysFactory}} } from '@/features/{{featureDir}}/api/{{entityKebab}}.keys';
+import { api } from '@/lib/api-client';
+import type { MutationConfig } from '@/lib/react-query';
+
+export const delete{{entityPascal}} = (id: string) => {
+  return api.delete<never, void>(`{{apiPath}}/${id}`);
+};
+
+type UseDelete{{entityPascal}}Options = {
+  mutationConfig?: MutationConfig<typeof delete{{entityPascal}}>;
+};
+
+export const useDelete{{entityPascal}} = ({
+  mutationConfig,
+}: UseDelete{{entityPascal}}Options = {}) => {
+  const queryClient = useQueryClient();
+
+  const { onSuccess, ...restConfig } = mutationConfig || {};
+
+  return useMutation({
+    onSuccess: (...args) => {
+      void queryClient.invalidateQueries({
+        queryKey: {{keysFactory}}.lists(),
+      });
+      onSuccess?.(...args);
+    },
+    ...restConfig,
+    mutationFn: delete{{entityPascal}},
+  });
+};

@@ -1,0 +1,50 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { z } from 'zod';
+import { {{keysFactory}} } from '@/features/{{featureDir}}/api/{{entityKebab}}.keys';
+import {
+  {{entityConst}}_STATUSES,
+  type {{entityPascal}},
+} from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import { api } from '@/lib/api-client';
+import type { MutationConfig } from '@/lib/react-query';
+
+export const create{{entityPascal}}InputSchema = z.object({
+  description: z.string().optional(),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  status: z.enum({{entityConst}}_STATUSES),
+});
+
+export type Create{{entityPascal}}Input = z.infer<
+  typeof create{{entityPascal}}InputSchema
+>;
+
+export const create{{entityPascal}} = ({
+  data,
+}: {
+  data: Create{{entityPascal}}Input;
+}): Promise<{{entityPascal}}> => {
+  return api.post<never, {{entityPascal}}>('{{apiPath}}', data);
+};
+
+type UseCreate{{entityPascal}}Options = {
+  mutationConfig?: MutationConfig<typeof create{{entityPascal}}>;
+};
+
+export const useCreate{{entityPascal}} = ({
+  mutationConfig,
+}: UseCreate{{entityPascal}}Options = {}) => {
+  const queryClient = useQueryClient();
+
+  const { onSuccess, ...restConfig } = mutationConfig || {};
+
+  return useMutation({
+    mutationFn: create{{entityPascal}},
+    onSuccess: (...args) => {
+      void queryClient.invalidateQueries({
+        queryKey: {{keysFactory}}.lists(),
+      });
+      onSuccess?.(...args);
+    },
+    ...restConfig,
+  });
+};
