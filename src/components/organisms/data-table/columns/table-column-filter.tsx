@@ -23,13 +23,9 @@ export function TableColumnFilter<TRow, TColumnId extends string>({
 
   return (
     <Popover>
-      <Button
-        aria-label={_(msg`Edit columns`)}
-        isIconOnly
-        size='sm'
-        variant='tertiary'
-      >
+      <Button aria-label={_(msg`Edit columns`)} variant='tertiary'>
         <Columns3CogIcon aria-hidden />
+        {_(msg`Columns`)}
       </Button>
       <Popover.Content className='w-56' placement='bottom end'>
         <Popover.Dialog className='p-3'>
