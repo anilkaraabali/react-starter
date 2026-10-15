@@ -1,9 +1,9 @@
 import { msg } from '@lingui/core/macro';
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import type { MetaFunction } from '@/app/router.types';
 import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AccountRoleView } from '@/features/account/components/account-role-view';
 import { isOrganizationMemberRole } from '@/lib/authorization/organization-role.utils';
+import type { MetaFunction } from '@/types/meta.types';
 import type { OrganizationMemberRole } from '@/types/organization.types';
 
 const meta: MetaFunction = (i18n) => [

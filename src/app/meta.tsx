@@ -2,7 +2,7 @@ import { useLingui } from '@lingui/react';
 import { useRouterState } from '@tanstack/react-router';
 import { Fragment, type ReactNode } from 'react';
 
-import type { LoaderData } from '@/app/router.types';
+import type { LoaderData } from '@/types/meta.types';
 
 type MetaProps = {
   titleTemplate: string;

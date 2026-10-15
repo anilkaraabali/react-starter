@@ -12,6 +12,11 @@ export type TableColumnDef<TRow, TColumnId extends string = string> = {
   hideable?: boolean;
   id: TColumnId;
   isRowHeader?: boolean;
+  /**
+   * Optional custom label used in TableColumnFilter popover.
+   * Falls back to `header()` if not provided.
+   */
+  label?: () => string;
 };
 
 export type TableColumnVisibility<TColumnId extends string> = Record<

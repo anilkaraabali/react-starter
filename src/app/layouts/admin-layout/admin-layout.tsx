@@ -53,7 +53,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             <AdminHeader onOpenMobileDrawer={mobileDrawer.open} />
           )}
           <main
-            className={`min-w-0 flex-1 ${CONTENT_PADDING[contentPadding]}`}
+            className={`min-w-0 flex-1 outline-none ${CONTENT_PADDING[contentPadding]}`}
             id={MAIN_CONTENT_ID}
             tabIndex={-1}
           >

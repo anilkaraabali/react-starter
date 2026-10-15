@@ -40,9 +40,7 @@ export function AdminHeaderUserMenu() {
             {userName}
           </p>
           {email ? (
-            <p className='mt-0.5 truncate text-muted-foreground text-xs'>
-              {email}
-            </p>
+            <p className='mt-0.5 truncate text-muted text-xs'>{email}</p>
           ) : null}
         </div>
         <Dropdown.Menu

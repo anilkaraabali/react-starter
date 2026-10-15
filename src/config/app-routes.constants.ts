@@ -23,6 +23,12 @@ export const APP_ROUTES = {
   ACCOUNT_ORGANIZATION: '/account/organization',
   ACCOUNT_ROLES: '/account/roles',
   ACCOUNT_ROLE: '/account/roles/$role',
+
+  // Products
+  PRODUCTS: '/products',
+  PRODUCT_NEW: '/products/new',
+  PRODUCT_DETAIL: '/products/$productId',
+  PRODUCT_EDIT: '/products/$productId/edit',
 } as const;
 
 /**
@@ -50,4 +56,10 @@ export const APP_ROUTE_IDS = {
   ACCOUNT_ORGANIZATION: '/_admin/account/organization',
   ACCOUNT_ROLES: '/_admin/account/roles/',
   ACCOUNT_ROLE: '/_admin/account/roles/$role',
+
+  // Products
+  PRODUCTS: '/_admin/products/',
+  PRODUCT_NEW: '/_admin/products/new',
+  PRODUCT_DETAIL: '/_admin/products/$productId/',
+  PRODUCT_EDIT: '/_admin/products/$productId/edit',
 } as const;

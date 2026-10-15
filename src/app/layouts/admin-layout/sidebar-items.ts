@@ -104,7 +104,7 @@ export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
         {
           icon: PackageIcon,
           label: msg`Products`,
-          to: '/commerce/products',
+          to: APP_ROUTES.PRODUCTS,
         },
         {
           icon: UsersIcon,
