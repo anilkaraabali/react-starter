@@ -4,7 +4,7 @@ import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 import type { OrganizationMemberRole } from '@/types/organization.types';
 
-export const updateMemberRole = ({
+const updateMemberRole = ({
   data,
   memberId,
 }: {

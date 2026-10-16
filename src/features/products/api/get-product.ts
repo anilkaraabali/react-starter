@@ -4,7 +4,7 @@ import type { Product } from '@/features/products/types/product.types';
 import { api } from '@/lib/api-client';
 import type { QueryConfig } from '@/lib/react-query';
 
-export const getProduct = (id: string, signal?: AbortSignal) => {
+const getProduct = (id: string, signal?: AbortSignal) => {
   return api.get<never, Product>(`/api/products/${id}`, {
     signal,
   });

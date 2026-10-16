@@ -6,7 +6,7 @@ import {
   CreateMemberSchema,
 } from '@/features/account/types/create-member-input';
 
-export const createMemberDefaultValues: CreateMemberInput = {
+const createMemberDefaultValues: CreateMemberInput = {
   email: '',
   name: '',
   password: '',

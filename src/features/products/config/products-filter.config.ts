@@ -35,7 +35,7 @@ export const INITIAL_PRODUCTS_SEARCH_STATE: GetProductsQuery = {
   status: undefined,
 };
 
-export const getProductSortOptions = (): {
+const getProductSortOptions = (): {
   label: string;
   value: ProductSortField;
 }[] => [

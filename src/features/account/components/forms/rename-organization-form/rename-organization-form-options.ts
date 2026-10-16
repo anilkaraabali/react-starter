@@ -6,7 +6,7 @@ import {
   RenameOrganizationSchema,
 } from '@/features/account/types/rename-organization-input';
 
-export const renameOrganizationDefaultValues: RenameOrganizationInput = {
+const renameOrganizationDefaultValues: RenameOrganizationInput = {
   name: '',
 };
 

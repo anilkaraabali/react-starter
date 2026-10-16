@@ -1,6 +1,6 @@
 import type { I18n } from '@lingui/core';
 
-export type MetaObject =
+type MetaObject =
   | { content: string; name: string }
   | { content: string; property: string }
   | { title: string };

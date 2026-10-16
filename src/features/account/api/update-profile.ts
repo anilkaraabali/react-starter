@@ -4,11 +4,7 @@ import { authClient } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 import type { AccountProfileUpdateDto } from '@/types/organization.types';
 
-export const updateProfile = async ({
-  data,
-}: {
-  data: AccountProfileUpdateDto;
-}) => {
+const updateProfile = async ({ data }: { data: AccountProfileUpdateDto }) => {
   const response = await api.patch('/api/account/profile', data);
   // Bypass cookie cache (stale user fields) and update the useSession atom.
   await authClient.$store.atoms.session.get().refetch({

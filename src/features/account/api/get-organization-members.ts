@@ -4,14 +4,14 @@ import { api } from '@/lib/api-client';
 import type { QueryConfig } from '@/lib/react-query';
 import type { OrganizationMembersResponseDto } from '@/types/organization.types';
 
-export const getOrganizationMembers = (signal?: AbortSignal) => {
+const getOrganizationMembers = (signal?: AbortSignal) => {
   return api.get<never, OrganizationMembersResponseDto>(
     '/api/organizations/members',
     { signal }
   );
 };
 
-export const getOrganizationMembersQueryOptions = () =>
+const getOrganizationMembersQueryOptions = () =>
   queryOptions({
     queryFn: ({ signal }) => getOrganizationMembers(signal),
     queryKey: organizationKeys.members(),

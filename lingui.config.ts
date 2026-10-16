@@ -18,4 +18,10 @@ const config: LinguiConfig = {
   locales: ['en', 'tr'],
 };
 
+/**
+ * Entry point for the Lingui CLI, so the export is consumed by the toolchain
+ * rather than by app code — knip cannot see that on its own.
+ *
+ * @public
+ */
 export default config;

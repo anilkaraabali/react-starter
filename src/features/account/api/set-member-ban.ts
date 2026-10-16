@@ -3,7 +3,7 @@ import { organizationKeys } from '@/api/organization.keys';
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const setMemberBan = ({
+const setMemberBan = ({
   banned,
   userId,
 }: {

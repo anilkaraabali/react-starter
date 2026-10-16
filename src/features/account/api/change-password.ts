@@ -2,17 +2,13 @@ import { useMutation } from '@tanstack/react-query';
 import { authClient } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export type ChangePasswordInput = {
+type ChangePasswordInput = {
   currentPassword: string;
   newPassword: string;
   revokeOtherSessions?: boolean;
 };
 
-export const changePassword = async ({
-  data,
-}: {
-  data: ChangePasswordInput;
-}) => {
+const changePassword = async ({ data }: { data: ChangePasswordInput }) => {
   const { error } = await authClient.changePassword({
     currentPassword: data.currentPassword,
     newPassword: data.newPassword,

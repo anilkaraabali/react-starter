@@ -1,6 +1,6 @@
 import type { Key } from '@heroui/react';
 
-export type FilterFieldType =
+type FilterFieldType =
   | 'autocomplete'
   | 'date'
   | 'multiselect'
@@ -8,7 +8,7 @@ export type FilterFieldType =
   | 'search'
   | 'select';
 
-export type FilterOption = {
+type FilterOption = {
   description?: string;
   label: string;
   value: Key;

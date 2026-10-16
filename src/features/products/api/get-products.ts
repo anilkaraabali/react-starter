@@ -30,12 +30,9 @@ export const getProductsQuerySchema = createCollectionSearchSchema({
 });
 
 export type GetProductsQuery = z.infer<typeof getProductsQuerySchema>;
-export type ProductsResponseDto = PaginatedResponse<Product>;
+type ProductsResponseDto = PaginatedResponse<Product>;
 
-export const getProducts = (
-  params?: GetProductsQuery,
-  signal?: AbortSignal
-) => {
+const getProducts = (params?: GetProductsQuery, signal?: AbortSignal) => {
   return api.get<never, ProductsResponseDto>('/api/products', {
     params,
     signal,

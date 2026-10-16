@@ -4,7 +4,7 @@ import type { CreateMemberInput } from '@/features/account/types/create-member-i
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const createMember = ({ data }: { data: CreateMemberInput }) => {
+const createMember = ({ data }: { data: CreateMemberInput }) => {
   return api.post('/api/organizations/members', data);
 };
 

@@ -8,7 +8,7 @@ import pluralize from 'pluralize';
 
 import { buildNaming, type EntityNaming, toKebab } from './naming.ts';
 
-export function validateEntityName(input: string | undefined): true | string {
+function validateEntityName(input: string | undefined): true | string {
   const name = toKebab(input ?? '');
 
   if (!name) {

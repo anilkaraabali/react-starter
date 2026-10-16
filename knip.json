@@ -1,6 +1,0 @@
-{
-  "$schema": "node_modules/knip/schema.json",
-  "entry": ["lingui.config.ts"],
-  "ignore": ["public/mockServiceWorker.js", "scripts/generate-route-tree.mjs"],
-  "ignoreExportsUsedInFile": true
-}
