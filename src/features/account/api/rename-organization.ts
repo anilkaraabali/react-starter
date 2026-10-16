@@ -4,11 +4,7 @@ import type { RenameOrganizationInput } from '@/features/account/types/rename-or
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const renameOrganization = ({
-  data,
-}: {
-  data: RenameOrganizationInput;
-}) => {
+const renameOrganization = ({ data }: { data: RenameOrganizationInput }) => {
   return api.patch('/api/organizations/me', data);
 };
 

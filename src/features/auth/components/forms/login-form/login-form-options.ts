@@ -6,7 +6,7 @@ import {
   LoginSchema,
 } from '@/features/auth/types/login-input';
 
-export const loginDefaultValues: LoginInput = {
+const loginDefaultValues: LoginInput = {
   email: '',
   password: '',
 };

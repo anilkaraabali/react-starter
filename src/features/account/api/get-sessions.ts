@@ -4,7 +4,7 @@ import { authClient } from '@/lib/auth-client';
 import type { QueryConfig } from '@/lib/react-query';
 import { accountKeys } from './account.keys';
 
-export const getSessions = async (): Promise<AuthSession[]> => {
+const getSessions = async (): Promise<AuthSession[]> => {
   const { data, error } = await authClient.listSessions();
   if (error) {
     throw Object.assign(new Error(error.message || 'Failed to load sessions'), {
@@ -14,7 +14,7 @@ export const getSessions = async (): Promise<AuthSession[]> => {
   return (data ?? []) as AuthSession[];
 };
 
-export const getSessionsQueryOptions = () => {
+const getSessionsQueryOptions = () => {
   return queryOptions<AuthSession[], Error & { code?: string }>({
     queryFn: getSessions,
     queryKey: accountKeys.sessions(),

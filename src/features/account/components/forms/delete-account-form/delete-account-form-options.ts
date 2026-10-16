@@ -6,7 +6,7 @@ import {
   DeleteAccountSchema,
 } from '@/features/account/types/delete-account-input';
 
-export const deleteAccountDefaultValues: DeleteAccountInput = {
+const deleteAccountDefaultValues: DeleteAccountInput = {
   password: '',
 };
 

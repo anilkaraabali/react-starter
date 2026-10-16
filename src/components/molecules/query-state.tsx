@@ -3,7 +3,7 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import type { ReactElement, ReactNode } from 'react';
 
-export type QueryStateErrorProps = {
+type QueryStateErrorProps = {
   description?: ReactNode;
   onBack?: () => void;
   onRetry?: () => void;

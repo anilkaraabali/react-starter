@@ -6,7 +6,7 @@ import {
   ChangePasswordSchema,
 } from '@/features/account/types/change-password-input';
 
-export const changePasswordDefaultValues: ChangePasswordInput = {
+const changePasswordDefaultValues: ChangePasswordInput = {
   confirmPassword: '',
   currentPassword: '',
   newPassword: '',

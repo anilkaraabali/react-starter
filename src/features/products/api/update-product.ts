@@ -6,11 +6,11 @@ import type { Product } from '@/features/products/types/product.types';
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const updateProductInputSchema = createProductInputSchema.partial();
+const updateProductInputSchema = createProductInputSchema.partial();
 
-export type UpdateProductInput = z.infer<typeof updateProductInputSchema>;
+type UpdateProductInput = z.infer<typeof updateProductInputSchema>;
 
-export const updateProduct = ({
+const updateProduct = ({
   data,
   productId,
 }: {

@@ -9,8 +9,9 @@ import { AxiosError } from 'axios';
 import { getErrorMessage } from '@/utils/error.utils';
 
 // biome-ignore lint/suspicious/noExplicitAny: Required for universal API function type inference
-export type ApiFnReturnType<FnType extends (...args: any[]) => Promise<any>> =
-  Awaited<ReturnType<FnType>>;
+type ApiFnReturnType<FnType extends (...args: any[]) => Promise<any>> = Awaited<
+  ReturnType<FnType>
+>;
 
 export type QueryConfig<T extends (...args: unknown[]) => unknown> = Omit<
   ReturnType<T>,

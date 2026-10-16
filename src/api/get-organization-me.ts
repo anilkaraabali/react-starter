@@ -4,7 +4,7 @@ import type { QueryConfig } from '@/lib/react-query';
 import type { OrganizationMeResponseDto } from '@/types/organization.types';
 import { organizationKeys } from './organization.keys';
 
-export const getOrganizationMe = (signal?: AbortSignal) => {
+const getOrganizationMe = (signal?: AbortSignal) => {
   return api.get<never, OrganizationMeResponseDto>('/api/organizations/me', {
     signal,
   });

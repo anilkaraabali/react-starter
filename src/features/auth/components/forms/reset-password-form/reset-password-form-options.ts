@@ -6,7 +6,7 @@ import {
   ResetPasswordSchema,
 } from '@/features/auth/types/reset-password-input';
 
-export const resetPasswordDefaultValues: ResetPasswordInput = {
+const resetPasswordDefaultValues: ResetPasswordInput = {
   confirmPassword: '',
   password: '',
 };

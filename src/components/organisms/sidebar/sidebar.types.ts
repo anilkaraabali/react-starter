@@ -21,7 +21,7 @@ export type SidebarNavItem<TPolicy extends string = string> =
       | { children?: never; sections?: readonly SidebarNavSection<TPolicy>[] }
     );
 
-export type SidebarNavSection<TPolicy extends string = string> = {
+type SidebarNavSection<TPolicy extends string = string> = {
   items: readonly SidebarNavItem<TPolicy>[];
   title: MessageDescriptor;
 };

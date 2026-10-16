@@ -4,12 +4,12 @@ import { authClient, signOut } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 import { accountKeys } from './account.keys';
 
-export type RevokeSessionInput = {
+type RevokeSessionInput = {
   isCurrent: boolean;
   token: string;
 };
 
-export const revokeSession = async ({ data }: { data: RevokeSessionInput }) => {
+const revokeSession = async ({ data }: { data: RevokeSessionInput }) => {
   const { error } = await authClient.revokeSession({ token: data.token });
 
   if (error) {

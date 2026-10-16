@@ -1,0 +1,31 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  // Entry files Knip cannot infer on its own. Everything else is contributed by
+  // plugins (index.html → Vite, plopfile.ts → Plop, *.spec.ts(x) → Vitest,
+  // public/mockServiceWorker.js → MSW) or by package.json scripts.
+  "entry": [
+    // Routes are loaded by @tanstack/router-plugin, never imported by app code.
+    "src/app/routes/**/*.{ts,tsx}",
+    // Loaded by the Lingui CLI; knip has no Lingui plugin.
+    "lingui.config.ts",
+    // generate-route-tree.mjs is spawned through execFileSync, which script
+    // parsing cannot see.
+    "scripts/**/*.{ts,mjs}"
+  ],
+  // Private, self-contained app: dead code in a route file is still dead code.
+  "includeEntryExports": true,
+  // `.css` has to stay in scope or knip stops following CSS imports; the `@/*`
+  // alias is read from tsconfig and is deliberately not duplicated here.
+  "project": [
+    "src/**/*.{css,ts,tsx}",
+    "scripts/**/*.{ts,mjs}",
+    "generators/**/*.ts"
+  ],
+  // The generated route tree sits outside the plugin's default path, so point
+  // the plugin at the real one. Plugin entries are exempt from
+  // `includeEntryExports`, so the generated file needs no `ignore` either.
+  "tanstack-router": { "entry": ["src/app/route-tree.gen.ts"] },
+  // Fail the run (and CI) on config hints, e.g. a pattern that stopped matching
+  // and silently shrank the analysis.
+  "treatConfigHintsAsErrors": true
+}

@@ -6,7 +6,7 @@ import {
   UpdateProfileSchema,
 } from '@/features/account/types/update-profile-input';
 
-export const updateProfileDefaultValues: UpdateProfileInput = {
+const updateProfileDefaultValues: UpdateProfileInput = {
   email: '',
   name: '',
 };

@@ -3,7 +3,7 @@ import { productKeys } from '@/features/products/api/products.keys';
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const deleteProduct = (id: string) => {
+const deleteProduct = (id: string) => {
   return api.delete<never, void>(`/api/products/${id}`);
 };
 

@@ -6,7 +6,7 @@ import {
   RegisterSchema,
 } from '@/features/auth/types/register-input';
 
-export const registerDefaultValues: RegisterInput = {
+const registerDefaultValues: RegisterInput = {
   confirmPassword: '',
   email: '',
   name: '',

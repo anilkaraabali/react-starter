@@ -3,7 +3,7 @@ import { organizationKeys } from '@/api/organization.keys';
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const removeMember = ({ memberId }: { memberId: string }) => {
+const removeMember = ({ memberId }: { memberId: string }) => {
   return api.delete(`/api/organizations/members/${memberId}`);
 };
 

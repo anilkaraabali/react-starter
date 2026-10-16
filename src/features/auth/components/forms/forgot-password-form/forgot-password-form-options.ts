@@ -6,7 +6,7 @@ import {
   ForgotPasswordSchema,
 } from '@/features/auth/types/forgot-password-input';
 
-export const forgotPasswordDefaultValues: ForgotPasswordInput = {
+const forgotPasswordDefaultValues: ForgotPasswordInput = {
   email: '',
 };
 

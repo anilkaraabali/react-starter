@@ -11,11 +11,11 @@ const statement = {
 
 export const ac = createAccessControl(statement);
 
-export const adminRole = ac.newRole({
+const adminRole = ac.newRole({
   ...adminAc.statements,
 });
 
-export const userRole = ac.newRole({
+const userRole = ac.newRole({
   ...userAc.statements,
 });
 

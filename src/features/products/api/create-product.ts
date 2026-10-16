@@ -25,7 +25,7 @@ export const createProductInputSchema = z.object({
 
 export type CreateProductInput = z.infer<typeof createProductInputSchema>;
 
-export const createProduct = ({
+const createProduct = ({
   data,
 }: {
   data: CreateProductInput;

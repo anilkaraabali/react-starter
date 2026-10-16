@@ -5,11 +5,11 @@ import { KNOWN_SESSION_STORAGE_KEYS } from '@/config/known-session-storage-keys.
 import { authClient } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export type DeleteAccountInput = {
+type DeleteAccountInput = {
   password: string;
 };
 
-export const deleteAccount = async ({ data }: { data: DeleteAccountInput }) => {
+const deleteAccount = async ({ data }: { data: DeleteAccountInput }) => {
   const { error } = await authClient.deleteUser({ password: data.password });
 
   if (error) {

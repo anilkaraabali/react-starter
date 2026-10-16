@@ -3,7 +3,7 @@ import { authClient } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 import { accountKeys } from './account.keys';
 
-export const revokeOtherSessions = async () => {
+const revokeOtherSessions = async () => {
   const { error } = await authClient.revokeOtherSessions();
 
   if (error) {
