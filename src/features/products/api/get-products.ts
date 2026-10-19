@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
-import { z } from 'zod';
+import type { z } from 'zod';
 import { productKeys } from '@/features/products/api/products.keys';
 import {
   DEFAULT_PRODUCT_SORT_BY,
@@ -15,18 +15,21 @@ import { api } from '@/lib/api-client';
 import type { QueryConfig } from '@/lib/react-query';
 import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
 import {
-  OptionalIsoDateSearchParam,
+  createSearchParamEnumSchema,
+  SearchParamIsoDateSchema,
   SearchParamSortOrderSchema,
 } from '@/lib/zod/schemas/search-params.schemas';
 import type { PaginatedResponse } from '@/types/api.types';
 
 export const getProductsQuerySchema = createCollectionSearchSchema({
-  category: z.enum(PRODUCT_CATEGORIES).optional(),
-  dateEnd: OptionalIsoDateSearchParam,
-  dateStart: OptionalIsoDateSearchParam,
-  sortBy: z.enum(PRODUCT_SORT_FIELDS).default(DEFAULT_PRODUCT_SORT_BY),
+  category: createSearchParamEnumSchema(PRODUCT_CATEGORIES),
+  dateEnd: SearchParamIsoDateSchema,
+  dateStart: SearchParamIsoDateSchema,
+  sortBy: createSearchParamEnumSchema(PRODUCT_SORT_FIELDS).default(
+    DEFAULT_PRODUCT_SORT_BY
+  ),
   sortOrder: SearchParamSortOrderSchema.default(DEFAULT_PRODUCT_SORT_ORDER),
-  status: z.enum(PRODUCT_STATUSES).optional(),
+  status: createSearchParamEnumSchema(PRODUCT_STATUSES),
 });
 
 export type GetProductsQuery = z.infer<typeof getProductsQuerySchema>;

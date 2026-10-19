@@ -2,9 +2,42 @@ import { z } from 'zod';
 import { ISO_DATE_PATTERN } from '@/config/date.constants';
 import { SORT_ORDERS } from '@/types/sort.types';
 
-export const SearchParamSortOrderSchema = z.enum(SORT_ORDERS).optional();
+export function createSearchParamEnumSchema<
+  T extends string,
+  const TValues extends readonly [T, ...T[]] | readonly T[] | Record<string, T>,
+>(valuesOrEnum: TValues) {
+  const values = Array.isArray(valuesOrEnum)
+    ? (valuesOrEnum as readonly T[])
+    : (Object.values(valuesOrEnum) as readonly T[]);
 
-function optionalMatchingSearchParam(pattern: RegExp) {
+  return z.preprocess((value) => {
+    if (value == null) return undefined;
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      return values.includes(trimmed as T) ? trimmed : undefined;
+    }
+    return undefined;
+  }, z.enum(values as unknown as [T, ...T[]]).optional());
+}
+
+export const SearchParamSortOrderSchema =
+  createSearchParamEnumSchema(SORT_ORDERS);
+
+export const SearchParamBooleanSchema = z
+  .union([z.boolean(), z.literal('true'), z.literal('false')])
+  .transform((value) => value === true || value === 'true')
+  .optional();
+
+export const SearchParamStringSchema = z.preprocess((value) => {
+  if (value == null) return undefined;
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    return trimmed === '' ? undefined : trimmed;
+  }
+  return String(value);
+}, z.string().optional());
+
+function createSearchParamPatternSchema(pattern: RegExp) {
   return z
     .string()
     .optional()
@@ -15,16 +48,16 @@ function optionalMatchingSearchParam(pattern: RegExp) {
     });
 }
 
-export const OptionalIsoDateSearchParam =
-  optionalMatchingSearchParam(ISO_DATE_PATTERN);
+export const SearchParamIsoDateSchema =
+  createSearchParamPatternSchema(ISO_DATE_PATTERN);
 
-export const OptionalNonNegativeNumberSearchParam = z.preprocess((value) => {
+export const SearchParamNonNegativeNumberSchema = z.preprocess((value) => {
   if (value === '' || value == null) return undefined;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : undefined;
 }, z.number().nonnegative().optional());
 
-export const optionalArraySearchParam = <T extends z.ZodType>(item: T) =>
+export const createSearchParamArraySchema = <T extends z.ZodType>(item: T) =>
   z.preprocess((value) => {
     if (value == null || value === '') return undefined;
     const array = Array.isArray(value) ? value : [value];
