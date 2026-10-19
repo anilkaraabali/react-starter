@@ -1,15 +1,16 @@
 import { z } from 'zod';
 
 import {
-  OptionalNonNegativeNumberSearchParam,
+  SearchParamNonNegativeNumberSchema,
   SearchParamSortOrderSchema,
+  SearchParamStringSchema,
 } from './search-params.schemas';
 
 const collectionSearchFields = {
-  page: OptionalNonNegativeNumberSearchParam,
-  pageSize: OptionalNonNegativeNumberSearchParam,
-  search: z.string().optional(),
-  sortBy: z.string().optional(),
+  page: SearchParamNonNegativeNumberSchema,
+  pageSize: SearchParamNonNegativeNumberSchema,
+  search: SearchParamStringSchema,
+  sortBy: SearchParamStringSchema,
   sortOrder: SearchParamSortOrderSchema,
 };
 

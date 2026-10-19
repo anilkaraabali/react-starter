@@ -36,17 +36,21 @@ describe('getProductsQuerySchema', () => {
     expect(parsed.status).toBeUndefined();
   });
 
-  it('safely falls back for invalid inputs via catch fallback', () => {
+  it('safely falls back for invalid inputs without crashing the query', () => {
     const invalid = {
+      category: 'not-a-category',
       dateStart: 'not-a-date',
       sortBy: 'unsupportedField',
       sortOrder: 'invalidOrder',
+      status: 'unknownStatus',
     };
 
     const parsed = getProductsQuerySchema.parse(invalid);
     expect(parsed).toBeDefined();
+    expect(parsed.category).toBeUndefined();
     expect(parsed.dateStart).toBeUndefined();
-    expect(parsed.sortBy).toBeUndefined();
-    expect(parsed.sortOrder).toBeUndefined();
+    expect(parsed.sortBy).toBe('createdAt');
+    expect(parsed.sortOrder).toBe('desc');
+    expect(parsed.status).toBeUndefined();
   });
 });

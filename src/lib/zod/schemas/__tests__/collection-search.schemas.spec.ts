@@ -2,24 +2,28 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 
 import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
-import { OptionalNonNegativeNumberSearchParam } from '@/lib/zod/schemas/search-params.schemas';
+import { SearchParamNonNegativeNumberSchema } from '@/lib/zod/schemas/search-params.schemas';
 
 describe('collection-search.schemas', () => {
   describe('createCollectionSearchSchema', () => {
     it('reads the shared pagination and sort fields', () => {
       const schema = createCollectionSearchSchema();
 
-      expect(schema.parse({ page: '2', pageSize: '25' })).toEqual({
+      expect(
+        schema.parse({ page: '2', pageSize: '25', search: '  keyword  ' })
+      ).toEqual({
         page: 2,
         pageSize: 25,
+        search: 'keyword',
       });
+      expect(schema.parse({ search: '   ' })).toEqual({});
       expect(schema.parse({ sortOrder: 'asc' })).toEqual({ sortOrder: 'asc' });
       expect(schema.parse({})).toEqual({});
     });
 
     it('adds the feature’s own fields', () => {
       const schema = createCollectionSearchSchema({
-        enabled: OptionalNonNegativeNumberSearchParam,
+        enabled: SearchParamNonNegativeNumberSchema,
       });
 
       expect(schema.parse({ enabled: '1' })).toEqual({ enabled: 1 });
