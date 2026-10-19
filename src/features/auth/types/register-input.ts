@@ -1,20 +1,27 @@
 import { z } from 'zod';
 
 import {
-  EmailSchema,
-  PasswordSchema,
-  RequiredPasswordSchema,
-  StringSchema,
+  emailFieldSchema,
+  passwordFieldSchema,
+  requiredPasswordFieldSchema,
+  stringFieldSchema,
   withPasswordConfirmation,
 } from '@/lib/zod/schemas/field.schemas';
 
-export const RegisterSchema = withPasswordConfirmation(
+export const registerInputSchema = withPasswordConfirmation(
   z.object({
-    confirmPassword: RequiredPasswordSchema,
-    email: EmailSchema,
-    name: StringSchema,
-    password: PasswordSchema,
+    confirmPassword: requiredPasswordFieldSchema,
+    email: emailFieldSchema,
+    name: stringFieldSchema,
+    password: passwordFieldSchema,
   })
 );
 
-export type RegisterInput = z.infer<typeof RegisterSchema>;
+export type RegisterInput = z.infer<typeof registerInputSchema>;
+
+export const registerDefaultValues: RegisterInput = {
+  confirmPassword: '',
+  email: '',
+  name: '',
+  password: '',
+};

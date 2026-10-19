@@ -18,6 +18,12 @@ export type Create{{entityPascal}}Input = z.infer<
   typeof create{{entityPascal}}InputSchema
 >;
 
+export const {{entityCamel}}DefaultValues: Create{{entityPascal}}Input = {
+  description: '',
+  name: '',
+  status: 'draft',
+};
+
 export const create{{entityPascal}} = ({
   data,
 }: {

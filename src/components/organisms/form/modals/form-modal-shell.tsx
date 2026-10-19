@@ -16,7 +16,7 @@ type ShellForm = FormModalForm & {
 };
 
 type FormModalShellProps<TForm extends ShellForm> = {
-  children: (form: TForm) => ReactNode;
+  children: ReactNode | ((form: TForm) => ReactNode);
   form: TForm;
   isOpen: boolean;
   onClose: () => void;
@@ -51,7 +51,9 @@ export function FormModalShell<TForm extends ShellForm>({
       title={title}
     >
       <form.AppForm>
-        <form.Root id={formId}>{children(form)}</form.Root>
+        <form.Root id={formId}>
+          {typeof children === 'function' ? children(form) : children}
+        </form.Root>
       </form.AppForm>
     </FormModal>
   );

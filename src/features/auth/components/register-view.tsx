@@ -3,39 +3,42 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
 
+import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { useForm } from '@/components/organisms/form/use-form';
 import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
-import { RegisterForm } from '@/features/auth/components/forms/register-form/register-form';
-import { registerFormOptions } from '@/features/auth/components/forms/register-form/register-form-options';
-import type { RegisterInput } from '@/features/auth/types/register-input';
+import {
+  type RegisterInput,
+  registerDefaultValues,
+  registerInputSchema,
+} from '@/features/auth/types/register-input';
 import { signUp } from '@/lib/auth-client';
 
 export function RegisterView() {
   const { _ } = useLingui();
 
-  const form = useForm(
-    registerFormOptions({
-      onSubmit: async (data: RegisterInput) => {
-        await signUp.email(
-          {
-            callbackURL: APP_ROUTES.DASHBOARD,
-            email: data.email,
-            name: data.name,
-            password: data.password,
+  const form = useForm({
+    defaultValues: registerDefaultValues,
+    onSubmit: async (data: RegisterInput) => {
+      await signUp.email(
+        {
+          callbackURL: APP_ROUTES.DASHBOARD,
+          email: data.email,
+          name: data.name,
+          password: data.password,
+        },
+        {
+          onError(context) {
+            toast.danger(context.error.message);
           },
-          {
-            onError(context) {
-              toast.danger(context.error.message);
-            },
-            onSuccess() {
-              window.location.href = APP_ROUTES.DASHBOARD;
-            },
-          }
-        );
-      },
-    })
-  );
+          onSuccess() {
+            window.location.href = APP_ROUTES.DASHBOARD;
+          },
+        }
+      );
+    },
+    schema: registerInputSchema,
+  });
 
   return (
     <AuthFormShell
@@ -52,7 +55,39 @@ export function RegisterView() {
     >
       <form.AppForm>
         <form.Root>
-          <RegisterForm form={form} />
+          <form.AppField name='name'>
+            {(field) => (
+              <field.FormInput
+                autoComplete='name'
+                isRequired
+                label={_(msg`Full name`)}
+                placeholder='John Doe'
+                variant='secondary'
+              />
+            )}
+          </form.AppField>
+
+          <form.AppField name='email'>
+            {(field) => (
+              <field.FormInput
+                autoComplete='email'
+                isRequired
+                label={_(msg`Email address`)}
+                placeholder='foo@example.com'
+                variant='secondary'
+              />
+            )}
+          </form.AppField>
+
+          <PasswordFieldsGroup
+            confirmLabel={_(msg`Confirm password`)}
+            fields={{
+              confirmPassword: 'confirmPassword',
+              password: 'password',
+            }}
+            form={form}
+            passwordLabel={_(msg`Password`)}
+          />
 
           <form.SubmitButton fullWidth>{_(msg`Sign up`)}</form.SubmitButton>
         </form.Root>

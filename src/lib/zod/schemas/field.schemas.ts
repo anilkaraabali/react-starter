@@ -7,14 +7,15 @@ import {
 } from '../validation.constants';
 import { ValidationMessages } from '../validation-messages';
 
-export const EmailSchema = z.email().trim().max(EMAIL_MAX_LENGTH);
+export const emailFieldSchema = z.email().trim().max(EMAIL_MAX_LENGTH);
 
-export const StringSchema = z.string().trim().min(1);
+export const stringFieldSchema = z.string().trim().min(1);
 
 /** For existing passwords (sign-in, confirmation): strength rules may postdate them. */
-export const RequiredPasswordSchema = z.string().min(1);
+export const requiredPasswordFieldSchema = z.string().min(1);
 
-export const PasswordSchema = RequiredPasswordSchema.min(PASSWORD_MIN_LENGTH)
+export const passwordFieldSchema = requiredPasswordFieldSchema
+  .min(PASSWORD_MIN_LENGTH)
   .max(PASSWORD_MAX_LENGTH)
   .regex(PASSWORD_STRENGTH_REGEX);
 

@@ -25,6 +25,18 @@ export const createProductInputSchema = z.object({
 
 export type CreateProductInput = z.infer<typeof createProductInputSchema>;
 
+export const productDefaultValues: CreateProductInput = {
+  barcode: '',
+  category: 'electronics',
+  costPrice: 0,
+  description: '',
+  name: '',
+  price: 0,
+  sku: '',
+  status: 'draft',
+  stock: 0,
+};
+
 const createProduct = ({
   data,
 }: {

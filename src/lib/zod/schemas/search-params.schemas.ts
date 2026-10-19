@@ -20,15 +20,15 @@ export function createSearchParamEnumSchema<
   }, z.enum(values as unknown as [T, ...T[]]).optional());
 }
 
-export const SearchParamSortOrderSchema =
+export const searchParamSortOrderSchema =
   createSearchParamEnumSchema(SORT_ORDERS);
 
-export const SearchParamBooleanSchema = z
+export const searchParamBooleanSchema = z
   .union([z.boolean(), z.literal('true'), z.literal('false')])
   .transform((value) => value === true || value === 'true')
   .optional();
 
-export const SearchParamStringSchema = z.preprocess((value) => {
+export const searchParamStringSchema = z.preprocess((value) => {
   if (value == null) return undefined;
   if (typeof value === 'string') {
     const trimmed = value.trim();
@@ -48,10 +48,10 @@ function createSearchParamPatternSchema(pattern: RegExp) {
     });
 }
 
-export const SearchParamIsoDateSchema =
+export const searchParamIsoDateSchema =
   createSearchParamPatternSchema(ISO_DATE_PATTERN);
 
-export const SearchParamNonNegativeNumberSchema = z.preprocess((value) => {
+export const searchParamNonNegativeNumberSchema = z.preprocess((value) => {
   if (value === '' || value == null) return undefined;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : undefined;

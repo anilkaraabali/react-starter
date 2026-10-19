@@ -1,16 +1,16 @@
 import { z } from 'zod';
 
 import {
-  PasswordSchema,
-  RequiredPasswordSchema,
+  passwordFieldSchema,
+  requiredPasswordFieldSchema,
 } from '@/lib/zod/schemas/field.schemas';
 import { ValidationMessages } from '@/lib/zod/validation-messages';
 
-export const ChangePasswordSchema = z
+export const changePasswordInputSchema = z
   .object({
-    confirmPassword: RequiredPasswordSchema,
-    currentPassword: RequiredPasswordSchema,
-    newPassword: PasswordSchema,
+    confirmPassword: requiredPasswordFieldSchema,
+    currentPassword: requiredPasswordFieldSchema,
+    newPassword: passwordFieldSchema,
     revokeOtherSessions: z.boolean(),
   })
   .superRefine((data, ctx) => {
@@ -30,4 +30,11 @@ export const ChangePasswordSchema = z
     }
   });
 
-export type ChangePasswordInput = z.infer<typeof ChangePasswordSchema>;
+export type ChangePasswordInput = z.infer<typeof changePasswordInputSchema>;
+
+export const changePasswordDefaultValues: ChangePasswordInput = {
+  confirmPassword: '',
+  currentPassword: '',
+  newPassword: '',
+  revokeOtherSessions: false,
+};

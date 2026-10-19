@@ -25,10 +25,6 @@ const formGenerator: PlopGeneratorConfig = {
           templateFile: 'generators/form/form.tsx.hbs',
         },
         {
-          path: `${base}/${e}-form-options.ts`,
-          templateFile: 'generators/form/form-options.ts.hbs',
-        },
-        {
           path: `${base}/${e}-form-mappers.ts`,
           templateFile: 'generators/form/form-mappers.ts.hbs',
         },
