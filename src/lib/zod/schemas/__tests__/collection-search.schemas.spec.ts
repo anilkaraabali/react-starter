@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 
 import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
-import { SearchParamNonNegativeNumberSchema } from '@/lib/zod/schemas/search-params.schemas';
+import { searchParamNonNegativeNumberSchema } from '@/lib/zod/schemas/search-params.schemas';
 
 describe('collection-search.schemas', () => {
   describe('createCollectionSearchSchema', () => {
@@ -23,7 +23,7 @@ describe('collection-search.schemas', () => {
 
     it('adds the feature’s own fields', () => {
       const schema = createCollectionSearchSchema({
-        enabled: SearchParamNonNegativeNumberSchema,
+        enabled: searchParamNonNegativeNumberSchema,
       });
 
       expect(schema.parse({ enabled: '1' })).toEqual({ enabled: 1 });

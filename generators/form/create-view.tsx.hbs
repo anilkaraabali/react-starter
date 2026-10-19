@@ -8,10 +8,11 @@ import { ContentLayout } from '@/components/templates/content-layout';
 import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type Create{{entityPascal}}Input,
+  create{{entityPascal}}InputSchema,
+  {{entityCamel}}DefaultValues,
   useCreate{{entityPascal}},
 } from '@/features/{{featureDir}}/api/create-{{entityKebab}}';
 import { {{entityPascal}}Form } from './{{entityKebab}}-form';
-import { {{entityCamel}}FormOptions } from './{{entityKebab}}-form-options';
 
 export function Create{{entityPascal}}View() {
   const { _ } = useLingui();
@@ -27,13 +28,13 @@ export function Create{{entityPascal}}View() {
     },
   });
 
-  const form = useForm(
-    {{entityCamel}}FormOptions({
-      onSubmit: async (values: Create{{entityPascal}}Input) => {
-        await create{{entityPascal}}Mutation.mutateAsync({ data: values });
-      },
-    })
-  );
+  const form = useForm({
+    defaultValues: {{entityCamel}}DefaultValues,
+    onSubmit: async (values: Create{{entityPascal}}Input) => {
+      await create{{entityPascal}}Mutation.mutateAsync({ data: values });
+    },
+    schema: create{{entityPascal}}InputSchema,
+  });
 
   return (
     <ContentLayout

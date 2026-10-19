@@ -1,16 +1,21 @@
 import { z } from 'zod';
 
 import {
-  PasswordSchema,
-  RequiredPasswordSchema,
+  passwordFieldSchema,
+  requiredPasswordFieldSchema,
   withPasswordConfirmation,
 } from '@/lib/zod/schemas/field.schemas';
 
-export const ResetPasswordSchema = withPasswordConfirmation(
+export const resetPasswordInputSchema = withPasswordConfirmation(
   z.object({
-    confirmPassword: RequiredPasswordSchema,
-    password: PasswordSchema,
+    confirmPassword: requiredPasswordFieldSchema,
+    password: passwordFieldSchema,
   })
 );
 
-export type ResetPasswordInput = z.infer<typeof ResetPasswordSchema>;
+export type ResetPasswordInput = z.infer<typeof resetPasswordInputSchema>;
+
+export const resetPasswordDefaultValues: ResetPasswordInput = {
+  confirmPassword: '',
+  password: '',
+};

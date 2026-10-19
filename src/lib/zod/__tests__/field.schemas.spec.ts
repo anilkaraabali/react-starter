@@ -2,65 +2,67 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 
 import {
-  EmailSchema,
-  PasswordSchema,
-  RequiredPasswordSchema,
-  StringSchema,
+  emailFieldSchema,
+  passwordFieldSchema,
+  requiredPasswordFieldSchema,
+  stringFieldSchema,
   withPasswordConfirmation,
 } from '@/lib/zod/schemas/field.schemas';
 
 const ok = (result: { success: boolean }) => result.success;
 
 describe('field.schemas', () => {
-  describe('EmailSchema', () => {
+  describe('emailFieldSchema', () => {
     it('accepts a normal address', () => {
-      expect(ok(EmailSchema.safeParse('ada@example.com'))).toBe(true);
+      expect(ok(emailFieldSchema.safeParse('ada@example.com'))).toBe(true);
     });
 
     it('rejects a missing @ or a missing domain', () => {
-      expect(ok(EmailSchema.safeParse('ada.example.com'))).toBe(false);
-      expect(ok(EmailSchema.safeParse('ada@'))).toBe(false);
-      expect(ok(EmailSchema.safeParse(''))).toBe(false);
+      expect(ok(emailFieldSchema.safeParse('ada.example.com'))).toBe(false);
+      expect(ok(emailFieldSchema.safeParse('ada@'))).toBe(false);
+      expect(ok(emailFieldSchema.safeParse(''))).toBe(false);
     });
 
     it('caps the length at 50, counting the domain', () => {
       expect(
-        EmailSchema.safeParse(`${'a'.repeat(38)}@example.com`).success
+        emailFieldSchema.safeParse(`${'a'.repeat(38)}@example.com`).success
       ).toBe(true);
       expect(
-        EmailSchema.safeParse(`${'a'.repeat(39)}@example.com`).success
+        emailFieldSchema.safeParse(`${'a'.repeat(39)}@example.com`).success
       ).toBe(false);
     });
   });
 
-  describe('StringSchema', () => {
+  describe('stringFieldSchema', () => {
     it('accepts text and rejects an empty or blank value', () => {
-      expect(ok(StringSchema.safeParse('Ada'))).toBe(true);
-      expect(ok(StringSchema.safeParse(''))).toBe(false);
-      expect(ok(StringSchema.safeParse('   '))).toBe(false);
+      expect(ok(stringFieldSchema.safeParse('Ada'))).toBe(true);
+      expect(ok(stringFieldSchema.safeParse(''))).toBe(false);
+      expect(ok(stringFieldSchema.safeParse('   '))).toBe(false);
     });
   });
 
-  describe('RequiredPasswordSchema', () => {
+  describe('requiredPasswordFieldSchema', () => {
     it('asks only for a non-empty value, because an old password may predate the rules', () => {
-      expect(ok(RequiredPasswordSchema.safeParse('a'))).toBe(true);
-      expect(ok(RequiredPasswordSchema.safeParse(''))).toBe(false);
+      expect(ok(requiredPasswordFieldSchema.safeParse('a'))).toBe(true);
+      expect(ok(requiredPasswordFieldSchema.safeParse(''))).toBe(false);
     });
   });
 
-  describe('PasswordSchema', () => {
+  describe('passwordFieldSchema', () => {
     it('needs at least 8 and at most 50 characters', () => {
-      expect(ok(PasswordSchema.safeParse('Abcdef1!'))).toBe(true);
-      expect(ok(PasswordSchema.safeParse('Abc1!a'))).toBe(false);
-      expect(ok(PasswordSchema.safeParse(`Ab1!${'a'.repeat(60)}`))).toBe(false);
+      expect(ok(passwordFieldSchema.safeParse('Abcdef1!'))).toBe(true);
+      expect(ok(passwordFieldSchema.safeParse('Abc1!a'))).toBe(false);
+      expect(ok(passwordFieldSchema.safeParse(`Ab1!${'a'.repeat(60)}`))).toBe(
+        false
+      );
     });
 
     it('needs an uppercase letter, a lowercase letter, a digit and a special character', () => {
-      expect(ok(PasswordSchema.safeParse('abcdefg1!'))).toBe(false);
-      expect(ok(PasswordSchema.safeParse('ABCDEFG1!'))).toBe(false);
-      expect(ok(PasswordSchema.safeParse('Abcdefgh!'))).toBe(false);
-      expect(ok(PasswordSchema.safeParse('Abcdefg1'))).toBe(false);
-      expect(ok(PasswordSchema.safeParse('Abcdef1!'))).toBe(true);
+      expect(ok(passwordFieldSchema.safeParse('abcdefg1!'))).toBe(false);
+      expect(ok(passwordFieldSchema.safeParse('ABCDEFG1!'))).toBe(false);
+      expect(ok(passwordFieldSchema.safeParse('Abcdefgh!'))).toBe(false);
+      expect(ok(passwordFieldSchema.safeParse('Abcdefg1'))).toBe(false);
+      expect(ok(passwordFieldSchema.safeParse('Abcdef1!'))).toBe(true);
     });
   });
 

@@ -16,7 +16,7 @@ type Meta = {
   totalPages: number;
 };
 
-export type PaginatedResponse<T> = {
+export type Collection<T> = {
   data: T[];
   meta: Meta;
 };

@@ -7,14 +7,17 @@ import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { APP_ROUTES } from '@/config/app-routes.constants';
-import type { CreateProductInput } from '@/features/products/api/create-product';
+import {
+  type CreateProductInput,
+  createProductInputSchema,
+  productDefaultValues,
+} from '@/features/products/api/create-product';
 import { useUpdateProduct } from '@/features/products/api/update-product';
 import { DeleteProductModal } from '@/features/products/components/modals/delete-product-modal';
 import { ProductQueryBoundary } from '@/features/products/components/product-query-boundary';
 import type { Product } from '@/features/products/types/product.types';
 import { ProductForm } from './product-form';
 import { productToFormValues } from './product-form-mappers';
-import { productFormOptions } from './product-form-options';
 
 type EditProductViewProps = {
   productId: string;
@@ -43,17 +46,16 @@ function EditProductLayout({ product }: { product: Product }) {
     },
   });
 
-  const form = useForm(
-    productFormOptions({
-      defaultValues: productToFormValues(product),
-      onSubmit: async (values: CreateProductInput) => {
-        await updateProductMutation.mutateAsync({
-          data: values,
-          productId: product.id,
-        });
-      },
-    })
-  );
+  const form = useForm({
+    defaultValues: { ...productDefaultValues, ...productToFormValues(product) },
+    onSubmit: async (values: CreateProductInput) => {
+      await updateProductMutation.mutateAsync({
+        data: values,
+        productId: product.id,
+      });
+    },
+    schema: createProductInputSchema,
+  });
 
   return (
     <ContentLayout

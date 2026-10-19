@@ -8,10 +8,11 @@ import { ContentLayout } from '@/components/templates/content-layout';
 import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type CreateProductInput,
+  createProductInputSchema,
+  productDefaultValues,
   useCreateProduct,
 } from '@/features/products/api/create-product';
 import { ProductForm } from './product-form';
-import { productFormOptions } from './product-form-options';
 
 export function CreateProductView() {
   const { _ } = useLingui();
@@ -27,13 +28,13 @@ export function CreateProductView() {
     },
   });
 
-  const form = useForm(
-    productFormOptions({
-      onSubmit: async (values: CreateProductInput) => {
-        await createProductMutation.mutateAsync({ data: values });
-      },
-    })
-  );
+  const form = useForm({
+    defaultValues: productDefaultValues,
+    onSubmit: async (values: CreateProductInput) => {
+      await createProductMutation.mutateAsync({ data: values });
+    },
+    schema: createProductInputSchema,
+  });
 
   return (
     <ContentLayout

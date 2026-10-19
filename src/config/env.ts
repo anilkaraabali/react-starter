@@ -1,7 +1,7 @@
 import * as z from 'zod';
 
 const createEnv = () => {
-  const EnvSchema = z.object({
+  const envSchema = z.object({
     API_URL: z.string(),
     APP_MOCK_API_PORT: z.string().optional().default('8080'),
     APP_URL: z.string().optional().default('http://localhost:3000'),
@@ -22,7 +22,7 @@ const createEnv = () => {
     return acc;
   }, {});
 
-  const parsedEnv = EnvSchema.safeParse(envVars);
+  const parsedEnv = envSchema.safeParse(envVars);
 
   if (!parsedEnv.success) {
     throw new Error(

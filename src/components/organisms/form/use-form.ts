@@ -1,4 +1,5 @@
-import { createFormHook } from '@tanstack/react-form';
+import { createFormHook, type StandardSchemaV1 } from '@tanstack/react-form';
+import type { input as ZodInput, output as ZodOutput, ZodType } from 'zod';
 import { FormAutocomplete } from './fields/form-autocomplete';
 import { FormCheckbox } from './fields/form-checkbox';
 import { FormDateField } from './fields/form-date-field';
@@ -15,11 +16,7 @@ import { FormSubmitButton } from './form-components/form-submit-button';
 import { FormUnsavedChangesGuard } from './form-components/form-unsaved-changes-guard';
 import { fieldContext, formContext } from './form-context';
 
-export const {
-  useAppForm: useForm,
-  withFieldGroup,
-  withForm,
-} = createFormHook({
+const { useAppForm, withFieldGroup } = createFormHook({
   fieldComponents: {
     FormAutocomplete,
     FormCheckbox,
@@ -41,3 +38,35 @@ export const {
   },
   formContext,
 });
+
+type UseFormOptions<TSchema extends ZodType> = {
+  defaultValues: ZodInput<TSchema>;
+  onSubmit: (data: ZodOutput<TSchema>) => Promise<void> | void;
+  schema: TSchema;
+};
+
+export function useForm<TSchema extends ZodType>({
+  defaultValues,
+  onSubmit,
+  schema,
+}: UseFormOptions<TSchema>) {
+  const validator: StandardSchemaV1<
+    ZodInput<TSchema>,
+    ZodOutput<TSchema>
+  > = schema;
+
+  return useAppForm({
+    defaultValues,
+    onSubmit: ({ value }) => onSubmit(schema.parse(value)),
+    validators: {
+      onChange: validator,
+      onSubmit: validator,
+    },
+  });
+}
+
+export type AppForm<TSchema extends ZodType> = ReturnType<
+  typeof useForm<TSchema>
+>;
+
+export { withFieldGroup };

@@ -3,13 +3,16 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
+import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { useForm } from '@/components/organisms/form/use-form';
 import { APP_ROUTE_IDS, APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
-import { ResetPasswordForm } from '@/features/auth/components/forms/reset-password-form/reset-password-form';
-import { resetPasswordFormOptions } from '@/features/auth/components/forms/reset-password-form/reset-password-form-options';
 import { ResetPasswordInvalidLink } from '@/features/auth/components/reset-password-invalid-link';
-import type { ResetPasswordInput } from '@/features/auth/types/reset-password-input';
+import {
+  type ResetPasswordInput,
+  resetPasswordDefaultValues,
+  resetPasswordInputSchema,
+} from '@/features/auth/types/reset-password-input';
 import { authClient } from '@/lib/auth-client';
 
 export function ResetPasswordView() {
@@ -17,31 +20,31 @@ export function ResetPasswordView() {
   const navigate = useNavigate();
   const { error, token } = useSearch({ from: APP_ROUTE_IDS.RESET_PASSWORD });
 
-  const form = useForm(
-    resetPasswordFormOptions({
-      onSubmit: async (data: ResetPasswordInput) => {
-        if (!token) {
-          return;
-        }
+  const form = useForm({
+    defaultValues: resetPasswordDefaultValues,
+    onSubmit: async (data: ResetPasswordInput) => {
+      if (!token) {
+        return;
+      }
 
-        await authClient.resetPassword(
-          {
-            newPassword: data.password,
-            token,
+      await authClient.resetPassword(
+        {
+          newPassword: data.password,
+          token,
+        },
+        {
+          onError(context) {
+            toast.danger(context.error.message);
           },
-          {
-            onError(context) {
-              toast.danger(context.error.message);
-            },
-            onSuccess() {
-              toast.success(_(msg`Password has been reset successfully`));
-              navigate({ to: APP_ROUTES.LOGIN });
-            },
-          }
-        );
-      },
-    })
-  );
+          onSuccess() {
+            toast.success(_(msg`Password has been reset successfully`));
+            navigate({ to: APP_ROUTES.LOGIN });
+          },
+        }
+      );
+    },
+    schema: resetPasswordInputSchema,
+  });
 
   if (error || !token) {
     return <ResetPasswordInvalidLink />;
@@ -54,7 +57,15 @@ export function ResetPasswordView() {
     >
       <form.AppForm>
         <form.Root>
-          <ResetPasswordForm form={form} />
+          <PasswordFieldsGroup
+            confirmLabel={_(msg`Confirm New Password`)}
+            fields={{
+              confirmPassword: 'confirmPassword',
+              password: 'password',
+            }}
+            form={form}
+            passwordLabel={_(msg`New Password`)}
+          />
 
           <form.SubmitButton fullWidth>
             {_(msg`Reset password`)}

@@ -4,9 +4,11 @@ import { useLingui } from '@lingui/react';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
 import { useRenameOrganization } from '@/features/account/api/rename-organization';
-import { RenameOrganizationForm } from '@/features/account/components/forms/rename-organization-form/rename-organization-form';
-import { renameOrganizationFormOptions } from '@/features/account/components/forms/rename-organization-form/rename-organization-form-options';
-import type { RenameOrganizationInput } from '@/features/account/types/rename-organization-input';
+import {
+  type RenameOrganizationInput,
+  renameOrganizationDefaultValues,
+  renameOrganizationInputSchema,
+} from '@/features/account/types/rename-organization-input';
 
 type RenameOrganizationModalProps = {
   defaultName: string;
@@ -29,21 +31,20 @@ export function RenameOrganizationModal({
     },
   });
 
-  const form = useForm(
-    renameOrganizationFormOptions({
-      defaultValues: { name: defaultName },
-      onSubmit: async (data: RenameOrganizationInput) => {
-        if (data.name === defaultName) {
-          onClose();
-          return;
-        }
+  const form = useForm({
+    defaultValues: { ...renameOrganizationDefaultValues, name: defaultName },
+    onSubmit: async (data: RenameOrganizationInput) => {
+      if (data.name === defaultName) {
+        onClose();
+        return;
+      }
 
-        await renameOrganizationMutation.mutateAsync({
-          data: { name: data.name },
-        });
-      },
-    })
-  );
+      await renameOrganizationMutation.mutateAsync({
+        data: { name: data.name },
+      });
+    },
+    schema: renameOrganizationInputSchema,
+  });
 
   return (
     <FormModalShell
@@ -53,7 +54,16 @@ export function RenameOrganizationModal({
       submitLabel={_(msg`Save`)}
       title={_(msg`Rename Organization`)}
     >
-      {(shellForm) => <RenameOrganizationForm form={shellForm} />}
+      <form.AppField name='name'>
+        {(field) => (
+          <field.FormInput
+            autoComplete='organization'
+            isRequired
+            label={_(msg`Organization name`)}
+            variant='secondary'
+          />
+        )}
+      </form.AppField>
     </FormModalShell>
   );
 }

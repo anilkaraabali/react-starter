@@ -7,36 +7,38 @@ import { useNavigate } from '@tanstack/react-router';
 import { useForm } from '@/components/organisms/form/use-form';
 import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
-import { ForgotPasswordForm } from '@/features/auth/components/forms/forgot-password-form/forgot-password-form';
-import { forgotPasswordFormOptions } from '@/features/auth/components/forms/forgot-password-form/forgot-password-form-options';
-import type { ForgotPasswordInput } from '@/features/auth/types/forgot-password-input';
+import {
+  type ForgotPasswordInput,
+  forgotPasswordDefaultValues,
+  forgotPasswordInputSchema,
+} from '@/features/auth/types/forgot-password-input';
 import { authClient } from '@/lib/auth-client';
 
 export function ForgotPasswordView() {
   const { _ } = useLingui();
   const navigate = useNavigate();
 
-  const form = useForm(
-    forgotPasswordFormOptions({
-      onSubmit: async (data: ForgotPasswordInput) => {
-        await authClient.requestPasswordReset(
-          {
-            email: data.email,
-            redirectTo: APP_ROUTES.RESET_PASSWORD,
+  const form = useForm({
+    defaultValues: forgotPasswordDefaultValues,
+    onSubmit: async (data: ForgotPasswordInput) => {
+      await authClient.requestPasswordReset(
+        {
+          email: data.email,
+          redirectTo: APP_ROUTES.RESET_PASSWORD,
+        },
+        {
+          onError(context) {
+            toast.danger(context.error.message);
           },
-          {
-            onError(context) {
-              toast.danger(context.error.message);
-            },
-            onSuccess() {
-              toast.success(_(msg`Password reset link sent to your email`));
-              navigate({ to: APP_ROUTES.LOGIN });
-            },
-          }
-        );
-      },
-    })
-  );
+          onSuccess() {
+            toast.success(_(msg`Password reset link sent to your email`));
+            navigate({ to: APP_ROUTES.LOGIN });
+          },
+        }
+      );
+    },
+    schema: forgotPasswordInputSchema,
+  });
 
   return (
     <AuthFormShell
@@ -52,7 +54,17 @@ export function ForgotPasswordView() {
     >
       <form.AppForm>
         <form.Root>
-          <ForgotPasswordForm form={form} />
+          <form.AppField name='email'>
+            {(field) => (
+              <field.FormInput
+                autoComplete='email'
+                isRequired
+                label={_(msg`Email address`)}
+                placeholder='foo@example.com'
+                variant='secondary'
+              />
+            )}
+          </form.AppField>
 
           <form.SubmitButton fullWidth>
             {_(msg`Send reset link`)}

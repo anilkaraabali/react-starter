@@ -1,9 +1,13 @@
 import { z } from 'zod';
 
-import { RequiredPasswordSchema } from '@/lib/zod/schemas/field.schemas';
+import { requiredPasswordFieldSchema } from '@/lib/zod/schemas/field.schemas';
 
-export const DeleteAccountSchema = z.object({
-  password: RequiredPasswordSchema,
+export const deleteAccountInputSchema = z.object({
+  password: requiredPasswordFieldSchema,
 });
 
-export type DeleteAccountInput = z.infer<typeof DeleteAccountSchema>;
+export type DeleteAccountInput = z.infer<typeof deleteAccountInputSchema>;
+
+export const deleteAccountDefaultValues: DeleteAccountInput = {
+  password: '',
+};

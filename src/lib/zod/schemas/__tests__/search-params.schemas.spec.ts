@@ -3,25 +3,25 @@ import { z } from 'zod';
 import {
   createSearchParamArraySchema,
   createSearchParamEnumSchema,
-  SearchParamBooleanSchema,
-  SearchParamIsoDateSchema,
-  SearchParamNonNegativeNumberSchema,
-  SearchParamSortOrderSchema,
-  SearchParamStringSchema,
+  searchParamBooleanSchema,
+  searchParamIsoDateSchema,
+  searchParamNonNegativeNumberSchema,
+  searchParamSortOrderSchema,
+  searchParamStringSchema,
 } from '@/lib/zod/schemas/search-params.schemas';
 
 describe('search-params.schemas', () => {
-  describe('createSearchParamEnumSchema & SearchParamSortOrderSchema', () => {
+  describe('createSearchParamEnumSchema & searchParamSortOrderSchema', () => {
     it('accepts valid enum values and trims string input', () => {
-      expect(SearchParamSortOrderSchema.safeParse('asc').data).toBe('asc');
-      expect(SearchParamSortOrderSchema.safeParse('desc').data).toBe('desc');
-      expect(SearchParamSortOrderSchema.safeParse('  asc  ').data).toBe('asc');
+      expect(searchParamSortOrderSchema.safeParse('asc').data).toBe('asc');
+      expect(searchParamSortOrderSchema.safeParse('desc').data).toBe('desc');
+      expect(searchParamSortOrderSchema.safeParse('  asc  ').data).toBe('asc');
       expect(
-        SearchParamSortOrderSchema.safeParse(undefined).data
+        searchParamSortOrderSchema.safeParse(undefined).data
       ).toBeUndefined();
-      expect(SearchParamSortOrderSchema.safeParse(null).data).toBeUndefined();
+      expect(searchParamSortOrderSchema.safeParse(null).data).toBeUndefined();
       expect(
-        SearchParamSortOrderSchema.safeParse('sideways').data
+        searchParamSortOrderSchema.safeParse('sideways').data
       ).toBeUndefined();
     });
 
@@ -35,30 +35,30 @@ describe('search-params.schemas', () => {
     });
   });
 
-  describe('SearchParamBooleanSchema', () => {
+  describe('searchParamBooleanSchema', () => {
     it('parses booleans and string literals', () => {
-      expect(SearchParamBooleanSchema.parse(true)).toBe(true);
-      expect(SearchParamBooleanSchema.parse('true')).toBe(true);
-      expect(SearchParamBooleanSchema.parse(false)).toBe(false);
-      expect(SearchParamBooleanSchema.parse('false')).toBe(false);
-      expect(SearchParamBooleanSchema.parse(undefined)).toBeUndefined();
+      expect(searchParamBooleanSchema.parse(true)).toBe(true);
+      expect(searchParamBooleanSchema.parse('true')).toBe(true);
+      expect(searchParamBooleanSchema.parse(false)).toBe(false);
+      expect(searchParamBooleanSchema.parse('false')).toBe(false);
+      expect(searchParamBooleanSchema.parse(undefined)).toBeUndefined();
     });
   });
 
-  describe('SearchParamStringSchema', () => {
+  describe('searchParamStringSchema', () => {
     it('trims strings and returns undefined for empty strings', () => {
-      expect(SearchParamStringSchema.parse('hello')).toBe('hello');
-      expect(SearchParamStringSchema.parse('  hello  ')).toBe('hello');
-      expect(SearchParamStringSchema.parse('')).toBeUndefined();
-      expect(SearchParamStringSchema.parse('   ')).toBeUndefined();
-      expect(SearchParamStringSchema.parse(undefined)).toBeUndefined();
-      expect(SearchParamStringSchema.parse(null)).toBeUndefined();
-      expect(SearchParamStringSchema.parse(123)).toBe('123');
+      expect(searchParamStringSchema.parse('hello')).toBe('hello');
+      expect(searchParamStringSchema.parse('  hello  ')).toBe('hello');
+      expect(searchParamStringSchema.parse('')).toBeUndefined();
+      expect(searchParamStringSchema.parse('   ')).toBeUndefined();
+      expect(searchParamStringSchema.parse(undefined)).toBeUndefined();
+      expect(searchParamStringSchema.parse(null)).toBeUndefined();
+      expect(searchParamStringSchema.parse(123)).toBe('123');
     });
   });
 
-  describe('SearchParamIsoDateSchema', () => {
-    const parse = (value: unknown) => SearchParamIsoDateSchema.parse(value);
+  describe('searchParamIsoDateSchema', () => {
+    const parse = (value: unknown) => searchParamIsoDateSchema.parse(value);
 
     it('drops anything that is not a date, instead of failing the search', () => {
       expect(parse(undefined)).toBeUndefined();
@@ -80,25 +80,25 @@ describe('search-params.schemas', () => {
     });
   });
 
-  describe('SearchParamNonNegativeNumberSchema', () => {
+  describe('searchParamNonNegativeNumberSchema', () => {
     it('reads a query string value as a number', () => {
-      expect(SearchParamNonNegativeNumberSchema.parse('5')).toBe(5);
-      expect(SearchParamNonNegativeNumberSchema.parse(0)).toBe(0);
+      expect(searchParamNonNegativeNumberSchema.parse('5')).toBe(5);
+      expect(searchParamNonNegativeNumberSchema.parse(0)).toBe(0);
     });
 
     it('drops an empty, missing or unparsable value', () => {
-      expect(SearchParamNonNegativeNumberSchema.parse('')).toBeUndefined();
+      expect(searchParamNonNegativeNumberSchema.parse('')).toBeUndefined();
       expect(
-        SearchParamNonNegativeNumberSchema.parse(undefined)
+        searchParamNonNegativeNumberSchema.parse(undefined)
       ).toBeUndefined();
-      expect(SearchParamNonNegativeNumberSchema.parse('abc')).toBeUndefined();
+      expect(searchParamNonNegativeNumberSchema.parse('abc')).toBeUndefined();
       expect(
-        SearchParamNonNegativeNumberSchema.parse(Infinity)
+        searchParamNonNegativeNumberSchema.parse(Infinity)
       ).toBeUndefined();
     });
 
     it('rejects a negative number rather than dropping it', () => {
-      expect(SearchParamNonNegativeNumberSchema.safeParse('-1').success).toBe(
+      expect(searchParamNonNegativeNumberSchema.safeParse('-1').success).toBe(
         false
       );
     });

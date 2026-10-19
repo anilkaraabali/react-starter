@@ -15,20 +15,20 @@ import type { QueryConfig } from '@/lib/react-query';
 import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
 import {
   createSearchParamEnumSchema,
-  SearchParamSortOrderSchema,
+  searchParamSortOrderSchema,
 } from '@/lib/zod/schemas/search-params.schemas';
-import type { PaginatedResponse } from '@/types/api.types';
+import type { Collection } from '@/types/api.types';
 
 export const get{{pluralPascal}}QuerySchema = createCollectionSearchSchema({
   sortBy: createSearchParamEnumSchema({{entityConst}}_SORT_FIELDS).default(
     DEFAULT_{{entityConst}}_SORT_BY
   ),
-  sortOrder: SearchParamSortOrderSchema.default(DEFAULT_{{entityConst}}_SORT_ORDER),
+  sortOrder: searchParamSortOrderSchema.default(DEFAULT_{{entityConst}}_SORT_ORDER),
   status: createSearchParamEnumSchema({{entityConst}}_STATUSES),
 });
 
 export type Get{{pluralPascal}}Query = z.infer<typeof get{{pluralPascal}}QuerySchema>;
-export type {{pluralPascal}}ResponseDto = PaginatedResponse<{{entityPascal}}>;
+export type {{pluralPascal}}ResponseDto = Collection<{{entityPascal}}>;
 
 export const get{{pluralPascal}} = (
   params?: Get{{pluralPascal}}Query,

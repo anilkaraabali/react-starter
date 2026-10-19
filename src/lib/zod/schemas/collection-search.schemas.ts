@@ -1,17 +1,17 @@
 import { z } from 'zod';
 
 import {
-  SearchParamNonNegativeNumberSchema,
-  SearchParamSortOrderSchema,
-  SearchParamStringSchema,
+  searchParamNonNegativeNumberSchema,
+  searchParamSortOrderSchema,
+  searchParamStringSchema,
 } from './search-params.schemas';
 
 const collectionSearchFields = {
-  page: SearchParamNonNegativeNumberSchema,
-  pageSize: SearchParamNonNegativeNumberSchema,
-  search: SearchParamStringSchema,
-  sortBy: SearchParamStringSchema,
-  sortOrder: SearchParamSortOrderSchema,
+  page: searchParamNonNegativeNumberSchema,
+  pageSize: searchParamNonNegativeNumberSchema,
+  search: searchParamStringSchema,
+  sortBy: searchParamStringSchema,
+  sortOrder: searchParamSortOrderSchema,
 };
 
 export function createCollectionSearchSchema<

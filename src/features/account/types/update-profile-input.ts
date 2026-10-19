@@ -1,10 +1,18 @@
 import { z } from 'zod';
-import { EmailSchema, StringSchema } from '@/lib/zod/schemas/field.schemas';
+import {
+  emailFieldSchema,
+  stringFieldSchema,
+} from '@/lib/zod/schemas/field.schemas';
 
-export const UpdateProfileSchema = z.object({
-  email: EmailSchema,
+export const updateProfileInputSchema = z.object({
+  email: emailFieldSchema,
   image: z.string().nullable().optional(),
-  name: StringSchema,
+  name: stringFieldSchema,
 });
 
-export type UpdateProfileInput = z.infer<typeof UpdateProfileSchema>;
+export type UpdateProfileInput = z.infer<typeof updateProfileInputSchema>;
+
+export const updateProfileDefaultValues: UpdateProfileInput = {
+  email: '',
+  name: '',
+};

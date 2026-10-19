@@ -16,27 +16,26 @@ import type { QueryConfig } from '@/lib/react-query';
 import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
 import {
   createSearchParamEnumSchema,
-  SearchParamIsoDateSchema,
-  SearchParamSortOrderSchema,
+  searchParamIsoDateSchema,
+  searchParamSortOrderSchema,
 } from '@/lib/zod/schemas/search-params.schemas';
-import type { PaginatedResponse } from '@/types/api.types';
+import type { Collection } from '@/types/api.types';
 
 export const getProductsQuerySchema = createCollectionSearchSchema({
   category: createSearchParamEnumSchema(PRODUCT_CATEGORIES),
-  dateEnd: SearchParamIsoDateSchema,
-  dateStart: SearchParamIsoDateSchema,
+  dateEnd: searchParamIsoDateSchema,
+  dateStart: searchParamIsoDateSchema,
   sortBy: createSearchParamEnumSchema(PRODUCT_SORT_FIELDS).default(
     DEFAULT_PRODUCT_SORT_BY
   ),
-  sortOrder: SearchParamSortOrderSchema.default(DEFAULT_PRODUCT_SORT_ORDER),
+  sortOrder: searchParamSortOrderSchema.default(DEFAULT_PRODUCT_SORT_ORDER),
   status: createSearchParamEnumSchema(PRODUCT_STATUSES),
 });
 
 export type GetProductsQuery = z.infer<typeof getProductsQuerySchema>;
-type ProductsResponseDto = PaginatedResponse<Product>;
 
 const getProducts = (params?: GetProductsQuery, signal?: AbortSignal) => {
-  return api.get<never, ProductsResponseDto>('/api/products', {
+  return api.get<never, Collection<Product>>('/api/products', {
     params,
     signal,
   });

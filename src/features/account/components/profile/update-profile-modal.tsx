@@ -5,9 +5,12 @@ import { useLingui } from '@lingui/react';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
 import { useUpdateProfile } from '@/features/account/api/update-profile';
-import { UpdateProfileForm } from '@/features/account/components/forms/update-profile-form/update-profile-form';
-import { updateProfileFormOptions } from '@/features/account/components/forms/update-profile-form/update-profile-form-options';
-import type { UpdateProfileInput } from '@/features/account/types/update-profile-input';
+import { NameEmailFieldsGroup } from '@/features/account/components/forms/name-email-fields-group';
+import {
+  type UpdateProfileInput,
+  updateProfileDefaultValues,
+  updateProfileInputSchema,
+} from '@/features/account/types/update-profile-input';
 
 type UpdateProfileModalProps = {
   defaultValues: UpdateProfileInput;
@@ -31,31 +34,30 @@ export function UpdateProfileModal({
   });
   const { email: defaultEmail, name: defaultName } = defaultValues;
 
-  const form = useForm(
-    updateProfileFormOptions({
-      defaultValues,
-      onSubmit: async (data: UpdateProfileInput) => {
-        const payload: {
-          email?: string;
-          name?: string;
-        } = {};
+  const form = useForm({
+    defaultValues: { ...updateProfileDefaultValues, ...defaultValues },
+    onSubmit: async (data: UpdateProfileInput) => {
+      const payload: {
+        email?: string;
+        name?: string;
+      } = {};
 
-        if (data.name !== defaultName) {
-          payload.name = data.name;
-        }
-        if (data.email !== defaultEmail) {
-          payload.email = data.email;
-        }
+      if (data.name !== defaultName) {
+        payload.name = data.name;
+      }
+      if (data.email !== defaultEmail) {
+        payload.email = data.email;
+      }
 
-        if (!payload.name && !payload.email) {
-          onClose();
-          return;
-        }
+      if (!payload.name && !payload.email) {
+        onClose();
+        return;
+      }
 
-        await updateProfileMutation.mutateAsync({ data: payload });
-      },
-    })
-  );
+      await updateProfileMutation.mutateAsync({ data: payload });
+    },
+    schema: updateProfileInputSchema,
+  });
 
   return (
     <FormModalShell
@@ -65,7 +67,15 @@ export function UpdateProfileModal({
       submitLabel={_(msg`Save`)}
       title={_(msg`Edit Profile`)}
     >
-      {(shellForm) => <UpdateProfileForm form={shellForm} />}
+      <div className='grid gap-4'>
+        <NameEmailFieldsGroup
+          fields={{
+            email: 'email',
+            name: 'name',
+          }}
+          form={form}
+        />
+      </div>
     </FormModalShell>
   );
 }

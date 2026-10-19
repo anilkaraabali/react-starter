@@ -1,8 +1,14 @@
 import { z } from 'zod';
-import { StringSchema } from '@/lib/zod/schemas/field.schemas';
+import { stringFieldSchema } from '@/lib/zod/schemas/field.schemas';
 
-export const RenameOrganizationSchema = z.object({
-  name: StringSchema,
+export const renameOrganizationInputSchema = z.object({
+  name: stringFieldSchema,
 });
 
-export type RenameOrganizationInput = z.infer<typeof RenameOrganizationSchema>;
+export type RenameOrganizationInput = z.infer<
+  typeof renameOrganizationInputSchema
+>;
+
+export const renameOrganizationDefaultValues: RenameOrganizationInput = {
+  name: '',
+};

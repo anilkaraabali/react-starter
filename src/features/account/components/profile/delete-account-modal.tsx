@@ -6,9 +6,11 @@ import { useSelector } from '@tanstack/react-form';
 import { useEffect, useId } from 'react';
 import { useForm } from '@/components/organisms/form/use-form';
 import { useDeleteAccount } from '@/features/account/api/delete-account';
-import { DeleteAccountForm } from '@/features/account/components/forms/delete-account-form/delete-account-form';
-import { deleteAccountFormOptions } from '@/features/account/components/forms/delete-account-form/delete-account-form-options';
-import type { DeleteAccountInput } from '@/features/account/types/delete-account-input';
+import {
+  type DeleteAccountInput,
+  deleteAccountDefaultValues,
+  deleteAccountInputSchema,
+} from '@/features/account/types/delete-account-input';
 import { useSession } from '@/lib/auth-client';
 
 type DeleteAccountModalProps = {
@@ -27,15 +29,15 @@ export function DeleteAccountModal({
   const isAdmin = user?.role === 'admin';
   const deleteAccountMutation = useDeleteAccount();
 
-  const form = useForm(
-    deleteAccountFormOptions({
-      onSubmit: async (data: DeleteAccountInput) => {
-        await deleteAccountMutation.mutateAsync({
-          data: { password: data.password },
-        });
-      },
-    })
-  );
+  const form = useForm({
+    defaultValues: deleteAccountDefaultValues,
+    onSubmit: async (data: DeleteAccountInput) => {
+      await deleteAccountMutation.mutateAsync({
+        data: { password: data.password },
+      });
+    },
+    schema: deleteAccountInputSchema,
+  });
 
   const isPending = useSelector(form.store, (s) => s.isSubmitting);
 
@@ -85,7 +87,16 @@ export function DeleteAccountModal({
               )}
               <form.AppForm>
                 <form.Root id={formId}>
-                  <DeleteAccountForm form={form} />
+                  <form.AppField name='password'>
+                    {(field) => (
+                      <field.FormPasswordInput
+                        autoComplete='current-password'
+                        isRequired
+                        label={_(msg`Password`)}
+                        variant='secondary'
+                      />
+                    )}
+                  </form.AppField>
                 </form.Root>
               </form.AppForm>
             </AlertDialog.Body>
