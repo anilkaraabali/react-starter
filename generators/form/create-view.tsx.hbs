@@ -55,12 +55,7 @@ export function Create{{entityPascal}}View() {
       description={_(msg`Add a new {{entityKebab}} to your workspace.`)}
     >
       <Card className='p-6'>
-        <form.AppForm>
-          <form.Root id='create-{{entityKebab}}-form'>
-            <form.UnsavedChangesGuard />
-            <{{entityPascal}}Form form={form} />
-          </form.Root>
-        </form.AppForm>
+        <{{entityPascal}}Form form={form} formId='create-{{entityKebab}}-form' />
       </Card>
     </ContentLayout>
   );

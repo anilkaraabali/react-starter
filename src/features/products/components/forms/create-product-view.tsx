@@ -55,12 +55,7 @@ export function CreateProductView() {
       description={_(msg`Add a new product to your inventory catalog.`)}
     >
       <Card className='p-6'>
-        <form.AppForm>
-          <form.Root id='create-product-form'>
-            <form.UnsavedChangesGuard />
-            <ProductForm form={form} />
-          </form.Root>
-        </form.AppForm>
+        <ProductForm form={form} formId='create-product-form' />
       </Card>
     </ContentLayout>
   );

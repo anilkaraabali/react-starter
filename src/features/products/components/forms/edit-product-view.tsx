@@ -69,12 +69,7 @@ function EditProductLayout({ product }: { product: Product }) {
       title={product.name}
     >
       <Card>
-        <form.AppForm>
-          <form.Root id='edit-product-form'>
-            <form.UnsavedChangesGuard />
-            <ProductForm form={form} />
-          </form.Root>
-        </form.AppForm>
+        <ProductForm form={form} formId='edit-product-form' />
       </Card>
 
       <DeleteProductModal

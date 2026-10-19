@@ -72,12 +72,7 @@ function Edit{{entityPascal}}Layout({ {{entityCamel}} }: { {{entityCamel}}: {{en
       title={ {{entityCamel}}.name }
     >
       <Card>
-        <form.AppForm>
-          <form.Root id='edit-{{entityKebab}}-form'>
-            <form.UnsavedChangesGuard />
-            <{{entityPascal}}Form form={form} />
-          </form.Root>
-        </form.AppForm>
+        <{{entityPascal}}Form form={form} formId='edit-{{entityKebab}}-form' />
       </Card>
 
       <Delete{{entityPascal}}Modal
