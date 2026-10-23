@@ -10,7 +10,7 @@ import ServerErrorIcon from '@/assets/500.svg?react';
 import { ErrorActions } from './error-actions';
 import { ErrorLayout } from './error-layout';
 
-export function ErrorGenericLayout({ error }: ErrorComponentProps) {
+export function GlobalError({ error }: ErrorComponentProps) {
   const { _ } = useLingui();
 
   const getErrorTitle = () =>

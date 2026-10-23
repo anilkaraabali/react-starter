@@ -12,7 +12,6 @@ import {
   ADMIN_SCROLL_CONTAINER_ID,
   type ContentPadding,
 } from './layouts/admin-layout/admin-layout.constants';
-import { ErrorGenericLayout } from './layouts/error/error-generic-layout';
 import { routeTree } from './route-tree.gen';
 
 export const router = createRouter({
@@ -21,7 +20,6 @@ export const router = createRouter({
     auth: undefined!,
     queryClient,
   } as RootRouteContext,
-  defaultErrorComponent: ErrorGenericLayout,
   // Performance optimization: When a user hovers or taps a link (intent),
   // it preloads the route code and fetches the loader data in the background.
   // This makes navigation feel "instant" upon clicking.

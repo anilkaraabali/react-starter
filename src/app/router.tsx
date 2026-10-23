@@ -3,7 +3,6 @@ import { APP_ROUTES } from '@/config/app-routes.constants';
 import { useAppEvent } from '@/hooks/use-app-event';
 import { authClient } from '@/lib/auth-client';
 import { Devtools } from './devtools';
-import { ErrorNotFoundLayout } from './layouts/error/error-not-found-layout';
 import { Loader } from './loader';
 import { router } from './router-instance';
 
@@ -29,7 +28,6 @@ export function AppRouter({ isLanguageLoaded }: AppRouterProps) {
         context={{
           auth: session,
         }}
-        defaultNotFoundComponent={ErrorNotFoundLayout}
         router={router}
       />
       <Devtools />
