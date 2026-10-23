@@ -1,7 +1,10 @@
 import { act, renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { useResponsivePageSize } from '@/hooks/use-responsive-page-size';
+import {
+  getResponsivePageSize,
+  useResponsivePageSize,
+} from '@/hooks/use-responsive-page-size';
 
 function setViewportHeight(height: number) {
   Object.defineProperty(window, 'innerHeight', {
@@ -96,5 +99,18 @@ describe('use-responsive-page-size', () => {
     const { result } = renderHook(() => useResponsivePageSize());
 
     expect([10, 25, 50, 100]).toContain(result.current);
+  });
+
+  describe('getResponsivePageSize', () => {
+    it('returns the page size directly without hook context', () => {
+      setViewportHeight(2000);
+      expect(getResponsivePageSize()).toBe(50);
+
+      setViewportHeight(1200);
+      expect(getResponsivePageSize()).toBe(25);
+
+      setViewportHeight(800);
+      expect(getResponsivePageSize()).toBe(25);
+    });
   });
 });

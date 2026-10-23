@@ -49,35 +49,17 @@
 }
 
 @layer utilities {
-  .card-form [data-slot="card-header"] {
-    @apply -mx-4 border-b px-4 pb-3;
-  }
-
-  .card-form [data-slot="card-title"] {
-    @apply text-base;
-  }
-
   .card-form [data-slot="card-content"] {
     @apply grid grid-cols-1 gap-4 md:grid-cols-2;
   }
 
-  .card-form.card-detail [data-slot="card-content"] {
-    @apply xl:grid-cols-3;
+  .card-detail [data-slot="card-content"] {
+    @apply grid grid-cols-1 gap-4 gap-y-8 md:grid-cols-2 xl:grid-cols-3;
   }
 }
 
 @layer components {
-  /*
-   * Recharts 3: browser focus ring on the chart SVG / z-index portal layers
-   * (accessibilityLayer still defaults true until ReportChartProps useEffect).
-   * See https://github.com/recharts/recharts/issues/5988
-   */
-  .recharts-wrapper :focus {
-    outline: none;
-  }
-
-  .table__column,
-  .table__cell {
+  .table__column {
     @apply whitespace-nowrap;
   }
 
