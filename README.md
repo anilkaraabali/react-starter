@@ -29,7 +29,7 @@ This is a **showcase and starter template** of a production-shaped React admin a
 
 ## Prerequisites
 
-- Node.js (`>=22.22.1`) and pnpm (`>=9.12.0`) as defined in [`package.json`](package.json)
+- Node.js (`>=22.23.4`) and pnpm (`>=9.12.0`) as defined in [`package.json`](package.json)
 - Companion API running at `http://localhost:3000` or MSW mocking enabled (`VITE_APP_ENABLE_API_MOCKING=true`)
 
 ## Getting Started
