@@ -1,7 +1,8 @@
 import { Button, Popover, Switch, Typography } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { Columns3CogIcon } from 'lucide-react';
+import { SlidersHorizontalIcon } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-is-mobile';
 import type {
   TableColumnDef,
   TableColumnVisibility,
@@ -20,12 +21,17 @@ export function TableColumnFilter<TRow, TColumnId extends string>({
   visibility,
 }: TableColumnFilterProps<TRow, TColumnId>) {
   const { _ } = useLingui();
+  const isMobile = useIsMobile();
 
   return (
     <Popover>
-      <Button aria-label={_(msg`Edit columns`)} variant='tertiary'>
-        <Columns3CogIcon aria-hidden />
-        {_(msg`Columns`)}
+      <Button
+        aria-label={_(msg`Edit columns`)}
+        isIconOnly={isMobile}
+        variant='tertiary'
+      >
+        <SlidersHorizontalIcon aria-hidden />
+        {isMobile ? null : _(msg`Columns`)}
       </Button>
       <Popover.Content className='w-56' placement='bottom end'>
         <Popover.Dialog className='p-3'>

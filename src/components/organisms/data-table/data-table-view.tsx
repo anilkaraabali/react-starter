@@ -1,4 +1,4 @@
-import { Checkbox, cn, Spinner, Table } from '@heroui/react';
+import { Checkbox, cn, Spinner, Table, tv } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import type { ReactNode } from 'react';
@@ -10,7 +10,7 @@ import type {
 } from './data-table.types';
 import { TablePaginationFooter } from './pagination/table-pagination-footer';
 import { TableEmptyState } from './table-empty-state';
-import { TableToolbar } from './table-toolbar';
+import { TableToolbar, type TableToolbarSlot } from './table-toolbar';
 
 const preventRowSelection = {
   onClick: (event: React.MouseEvent) => event.stopPropagation(),
@@ -25,8 +25,20 @@ type DataTableViewProps<TRow, TColumnId extends string = string> = {
   onRowAction?: (id: string) => void;
   pagination?: DataTablePagination;
   selection?: DataTableSelection<TRow>;
-  toolbar?: ReactNode;
+  toolbar?: TableToolbarSlot;
+  toolbarActions?: ReactNode;
 };
+
+const tableCellVariants = tv({
+  variants: {
+    overflow: {
+      nowrap: 'whitespace-nowrap',
+      // Truncation lives on the inner span so it can carry a `title`.
+      truncate: '',
+      wrap: 'whitespace-normal',
+    },
+  },
+});
 
 export function DataTableView<
   TRow extends { id: string },
@@ -40,21 +52,20 @@ export function DataTableView<
   pagination,
   selection,
   toolbar,
+  toolbarActions,
 }: DataTableViewProps<TRow, TColumnId>) {
   const { _ } = useLingui();
   const hasResults = data.length > 0;
 
   return (
     <div className='flex flex-col gap-4'>
-      <TableToolbar columnFilter={columnFilterNode} toolbar={toolbar} />
+      <TableToolbar
+        actions={toolbarActions}
+        columnFilter={columnFilterNode}
+        toolbar={toolbar}
+      />
 
-      <Table
-        aria-busy={isLoading}
-        className={cn(
-          'min-h-80.25 transition-opacity',
-          isLoading && hasResults && 'opacity-60'
-        )}
-      >
+      <Table aria-busy={isLoading} className='min-h-80.25'>
         <Table.ScrollContainer>
           <Table.Content
             aria-label={_(msg`Data table`)}
@@ -126,9 +137,34 @@ export function DataTableView<
                       </Checkbox>
                     </Table.Cell>
                   ) : null}
-                  {activeColumns.map((column) => (
-                    <Table.Cell key={column.id}>{column.cell(item)}</Table.Cell>
-                  ))}
+                  {activeColumns.map((column) => {
+                    const { overflow } = column;
+                    const value = column.cell(item);
+
+                    return (
+                      <Table.Cell
+                        className={tableCellVariants({ overflow })}
+                        key={column.id}
+                        // Buttons in the actions column must not trigger the row action.
+                        {...(column.id === 'actions'
+                          ? preventRowSelection
+                          : {})}
+                      >
+                        {overflow === 'truncate' ? (
+                          <span
+                            className='block max-w-xs truncate'
+                            title={
+                              typeof value === 'string' ? value : undefined
+                            }
+                          >
+                            {value}
+                          </span>
+                        ) : (
+                          value
+                        )}
+                      </Table.Cell>
+                    );
+                  })}
                 </Table.Row>
               )}
             </Table.Body>
