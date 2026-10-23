@@ -1,5 +1,7 @@
 import { useLingui } from '@lingui/react';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import { GlobalError } from '@/app/layouts/error/global-error';
+import { NotFound } from '@/app/layouts/error/not-found';
 import { Meta } from '@/app/meta';
 import type { RootRouteContext } from '@/app/router.types';
 import { RouterNavigationProgress } from '@/app/router-navigation-progress';
@@ -20,4 +22,6 @@ function RootComponent() {
 
 export const Route = createRootRouteWithContext<RootRouteContext>()({
   component: RootComponent,
+  errorComponent: GlobalError,
+  notFoundComponent: NotFound,
 });

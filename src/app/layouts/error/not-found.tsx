@@ -5,7 +5,7 @@ import NotFoundIcon from '@/assets/404.svg?react';
 import { ErrorActions } from './error-actions';
 import { ErrorLayout } from './error-layout';
 
-export function ErrorNotFoundLayout() {
+export function NotFound() {
   const { _ } = useLingui();
 
   return (
