@@ -7,7 +7,6 @@ import { useMemo, useState } from 'react';
 import { Filters } from '@/components/organisms/filters/filters';
 import { RouteFilterProvider } from '@/components/organisms/filters/stores/route-filter-provider';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type Get{{pluralPascal}}Query,
   use{{pluralPascal}},
@@ -101,7 +100,7 @@ export function {{entityPascal}}ListView() {
           onRowAction={(id) => {
             void navigate({
               params: { {{routeParam}}: id },
-              to: APP_ROUTES.{{routeKeyDetail}},
+              to: '{{routePath}}/${{routeParam}}',
             });
           }}
           pagination={pagination}

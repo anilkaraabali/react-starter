@@ -6,10 +6,6 @@ import type {
   NodePlopAPI,
   PlopGeneratorConfig,
 } from 'node-plop';
-import {
-  registerRoutes,
-  resolveAppRoutesFile,
-} from './generators/_lib/register-routes.ts';
 import { GENERATORS } from './generators/_lib/registry.ts';
 import allGenerator from './generators/all/index.ts';
 
@@ -59,38 +55,6 @@ export default function init(plop: NodePlopAPI): void {
       );
 
       return `Formatted ${paths.length} file(s) with Biome`;
-    }
-  );
-
-  /**
-   * Adds the module's routes to `APP_ROUTES` / `APP_ROUTE_IDS` so the generated
-   * module is not shipped half-registered.
-   */
-  plop.setActionType(
-    'register-routes',
-    (_answers, config: CustomActionConfig<string>) => {
-      const filePath = resolveAppRoutesFile();
-      const { changed } = registerRoutes(filePath, {
-        featureDir: String(config.featureDir),
-        pluralTitle: String(config.pluralTitle),
-        routeKeyDetail: String(config.routeKeyDetail),
-        routeKeyEdit: String(config.routeKeyEdit),
-        routeKeyList: String(config.routeKeyList),
-        routeKeyNew: String(config.routeKeyNew),
-        routeParam: String(config.routeParam),
-      });
-
-      if (!changed) {
-        return 'app-routes.constants.ts already up to date';
-      }
-
-      execFileSync(
-        path.join(process.cwd(), 'node_modules/.bin/biome'),
-        ['check', '--write', filePath],
-        { stdio: 'ignore' }
-      );
-
-      return `Registered ${config.routeKeyList} in src/config/app-routes.constants.ts`;
     }
   );
 

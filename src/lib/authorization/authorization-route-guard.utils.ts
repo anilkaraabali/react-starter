@@ -3,7 +3,6 @@ import { msg } from '@lingui/core/macro';
 import type { QueryClient } from '@tanstack/react-query';
 import { redirect } from '@tanstack/react-router';
 import { getOrganizationMeQueryOptions } from '@/api/get-organization-me';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   checkPolicy,
   type ResourcelessPolicyName,
@@ -30,7 +29,7 @@ function normalizePathname(pathname: string) {
 export async function requireAuthorization(
   { context, location }: AuthorizationGuardOptions,
   policy: ResourcelessPolicyName,
-  redirectTo: string = APP_ROUTES.DASHBOARD
+  redirectTo = '/dashboard'
 ) {
   // `staleTime: 'static'` = former `ensureQueryData` semantics (use cache if present).
   const me = await context.queryClient.query({

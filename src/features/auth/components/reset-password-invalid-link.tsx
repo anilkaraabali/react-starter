@@ -2,8 +2,6 @@ import { Link } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 
-import { APP_ROUTES } from '@/config/app-routes.constants';
-
 export function ResetPasswordInvalidLink() {
   const { _ } = useLingui();
 
@@ -19,9 +17,7 @@ export function ResetPasswordInvalidLink() {
       </div>
 
       <p className='text-center text-muted text-sm'>
-        <Link href={APP_ROUTES.FORGOT_PASSWORD}>
-          {_(msg`Request a new link`)}
-        </Link>
+        <Link href='/forgot-password'>{_(msg`Request a new link`)}</Link>
       </p>
     </>
   );

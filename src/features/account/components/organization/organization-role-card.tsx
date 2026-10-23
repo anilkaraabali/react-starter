@@ -3,7 +3,6 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Link } from '@tanstack/react-router';
 import { LockIcon, ShieldCheckIcon, UsersIcon } from 'lucide-react';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { ROLE_PERMISSIONS } from '@/features/account/config/organization-permissions.constants';
 import { getOrganizationRoleDescription } from '@/features/account/utils/member-role.utils';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
@@ -53,7 +52,7 @@ export function OrganizationRoleCard({
         <Link
           className={cn(link.base(), 'text-accent text-sm')}
           params={{ role }}
-          to={APP_ROUTES.ACCOUNT_ROLE}
+          to='/account/roles/$role'
         >
           {_(msg`View`)}
         </Link>

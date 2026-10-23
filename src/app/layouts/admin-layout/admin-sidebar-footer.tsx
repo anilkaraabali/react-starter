@@ -6,7 +6,6 @@ import { LogOutIcon } from 'lucide-react';
 import { useOrganizationMe } from '@/api/get-organization-me';
 import { SidebarFooter } from '@/components/organisms/sidebar/footer/sidebar-footer';
 import { SidebarUserLink } from '@/components/organisms/sidebar/footer/sidebar-user-link';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { signOut, useSession } from '@/lib/auth-client';
 import {
   getOrganizationRoleLabel,
@@ -36,21 +35,21 @@ export function AdminSidebarFooter({
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          window.location.href = APP_ROUTES.LOGIN;
+          window.location.href = '/login';
         },
       },
     });
   };
 
   const handleAccountClick = () => {
-    navigate({ to: APP_ROUTES.ACCOUNT });
+    navigate({ to: '/account' });
   };
 
   return (
     <SidebarFooter compact={isCollapsed}>
       <SidebarUserLink
         compact={isCollapsed}
-        href={APP_ROUTES.ACCOUNT}
+        href='/account'
         onPress={handleAccountClick}
         roleLabel={roleLabel}
         userName={userName}

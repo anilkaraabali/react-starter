@@ -4,7 +4,6 @@ import { useLingui } from '@lingui/react';
 import { useNavigate } from '@tanstack/react-router';
 import { BellIcon, LogOutIcon, SettingsIcon } from 'lucide-react';
 import { UserAvatar } from '@/components/atoms/user-avatar';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { signOut, useSession } from '@/lib/auth-client';
 
 export function AdminHeaderUserMenu() {
@@ -20,7 +19,7 @@ export function AdminHeaderUserMenu() {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          window.location.href = APP_ROUTES.LOGIN;
+          window.location.href = '/login';
         },
       },
     });
@@ -46,7 +45,7 @@ export function AdminHeaderUserMenu() {
         <Dropdown.Menu
           onAction={(key) => {
             if (key === 'settings') {
-              navigate({ to: APP_ROUTES.ACCOUNT });
+              navigate({ to: '/account' });
             }
             if (key === 'logout') {
               void handleLogout();

@@ -7,7 +7,6 @@ import { useMemo, useState } from 'react';
 import { Filters } from '@/components/organisms/filters/filters';
 import { RouteFilterProvider } from '@/components/organisms/filters/stores/route-filter-provider';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type GetProductsQuery,
   useProducts,
@@ -60,7 +59,7 @@ export function ProductListView() {
       actions={
         <Link
           className={buttonVariants({ variant: 'primary' })}
-          to={APP_ROUTES.PRODUCT_NEW}
+          to='/products/new'
         >
           <PlusIcon />
           {_(msg`Add product`)}
@@ -82,7 +81,7 @@ export function ProductListView() {
           onRowAction={(id) => {
             void navigate({
               params: { productId: id },
-              to: APP_ROUTES.PRODUCT_DETAIL,
+              to: '/products/$productId',
             });
           }}
           pagination={{

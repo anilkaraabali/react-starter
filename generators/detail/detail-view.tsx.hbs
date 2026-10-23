@@ -2,7 +2,6 @@ import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/modals/delete-{{entityKebab}}-modal';
 import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
 import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
@@ -35,7 +34,7 @@ function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{
               params: {
                 {{routeParam}}: {{entityCamel}}.id,
               },
-              to: APP_ROUTES.{{routeKeyEdit}},
+              to: '{{routePath}}/${{routeParam}}/edit',
             });
           }}
         />
@@ -53,7 +52,7 @@ function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onSuccess={() => {
-          void navigate({ to: APP_ROUTES.{{routeKeyList}} });
+          void navigate({ to: '{{routePath}}' });
         }}
         {{entityCamel}}={ {{entityCamel}} }
       />

@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { useSessionStorage } from 'usehooks-ts';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { KNOWN_SESSION_STORAGE_KEYS } from '@/config/known-session-storage-keys.constants';
 import { authClient } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
@@ -34,7 +33,7 @@ export const useDeleteAccount = ({
   return useMutation({
     onSuccess: (...args) => {
       setFlash(true);
-      window.location.href = APP_ROUTES.LOGIN;
+      window.location.href = '/login';
       onSuccess?.(...args);
     },
     ...restConfig,

@@ -4,7 +4,6 @@ import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
 
 import { useForm } from '@/components/organisms/form/use-form';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import { useAccountDeletedToast } from '@/features/auth/hooks/use-account-deleted-toast';
 import {
@@ -24,14 +23,14 @@ export function LoginView() {
       await signIn.email(
         {
           ...data,
-          callbackURL: APP_ROUTES.DASHBOARD,
+          callbackURL: '/dashboard',
         },
         {
           onError(context) {
             toast.danger(context.error.message);
           },
           onSuccess() {
-            window.location.href = APP_ROUTES.DASHBOARD;
+            window.location.href = '/dashboard';
           },
         }
       );
@@ -46,8 +45,7 @@ export function LoginView() {
       )}
       footer={
         <Trans>
-          New here? Use your email to{' '}
-          <Link href={APP_ROUTES.REGISTER}>sign up.</Link>
+          New here? Use your email to <Link href='/register'>sign up.</Link>
         </Trans>
       }
       title={_(msg`Sign in`)}
@@ -79,7 +77,7 @@ export function LoginView() {
 
           {/* -mt-3 keeps the same tight gap the link had inside the field. */}
           <div className='-mt-3 flex justify-end'>
-            <Link className='text-xs' href={APP_ROUTES.FORGOT_PASSWORD}>
+            <Link className='text-xs' href='/forgot-password'>
               {_(msg`Forgot password?`)}
             </Link>
           </div>
