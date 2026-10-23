@@ -5,7 +5,6 @@ import { Trans } from '@lingui/react/macro';
 
 import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { useForm } from '@/components/organisms/form/use-form';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import {
   type RegisterInput,
@@ -22,7 +21,7 @@ export function RegisterView() {
     onSubmit: async (data: RegisterInput) => {
       await signUp.email(
         {
-          callbackURL: APP_ROUTES.DASHBOARD,
+          callbackURL: '/dashboard',
           email: data.email,
           name: data.name,
           password: data.password,
@@ -32,7 +31,7 @@ export function RegisterView() {
             toast.danger(context.error.message);
           },
           onSuccess() {
-            window.location.href = APP_ROUTES.DASHBOARD;
+            window.location.href = '/dashboard';
           },
         }
       );
@@ -48,7 +47,7 @@ export function RegisterView() {
       footer={
         <Trans>
           If you already have an account, please{' '}
-          <Link href={APP_ROUTES.LOGIN}>sign in.</Link>
+          <Link href='/login'>sign in.</Link>
         </Trans>
       }
       title={_(msg`Sign up`)}

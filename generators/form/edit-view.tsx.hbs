@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type Create{{entityPascal}}Input,
   create{{entityPascal}}InputSchema,
@@ -40,7 +39,7 @@ function Edit{{entityPascal}}Layout({ {{entityCamel}} }: { {{entityCamel}}: {{en
       onSuccess: () => {
         toast.success(_(msg`{{singularTitle}} updated.`));
         void navigate({
-          to: APP_ROUTES.{{routeKeyList}},
+          to: '{{routePath}}',
         });
       },
     },
@@ -79,7 +78,7 @@ function Edit{{entityPascal}}Layout({ {{entityCamel}} }: { {{entityCamel}}: {{en
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onSuccess={() => {
-          void navigate({ to: APP_ROUTES.{{routeKeyList}} });
+          void navigate({ to: '{{routePath}}' });
         }}
         {{entityCamel}}={ {{entityCamel}} }
       />

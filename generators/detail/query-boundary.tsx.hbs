@@ -1,7 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { QueryState } from '@/components/molecules/query-state';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { use{{entityPascal}} } from '@/features/{{featureDir}}/api/get-{{entityKebab}}';
 import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 
@@ -23,7 +22,7 @@ export function {{entityPascal}}QueryBoundary({
       isError={ {{entityCamel}}Query.isError }
       isPending={ {{entityCamel}}Query.isLoading }
       onBack={() => {
-        void navigate({ to: APP_ROUTES.{{routeKeyList}} });
+        void navigate({ to: '{{routePath}}' });
       }}
       onRetry={() => {
         void {{entityCamel}}Query.refetch();

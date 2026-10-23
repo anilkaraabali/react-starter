@@ -1,7 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { QueryState } from '@/components/molecules/query-state';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { useProduct } from '@/features/products/api/get-product';
 import type { Product } from '@/features/products/types/product.types';
 
@@ -23,7 +22,7 @@ export function ProductQueryBoundary({
       isError={productQuery.isError}
       isPending={productQuery.isLoading}
       onBack={() => {
-        void navigate({ to: APP_ROUTES.PRODUCTS });
+        void navigate({ to: '/products' });
       }}
       onRetry={() => {
         void productQuery.refetch();

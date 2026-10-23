@@ -4,7 +4,6 @@ import type {
   SidebarHeaderMode,
   SidebarNavItem,
 } from '@/components/organisms/sidebar/sidebar.types';
-import type { APP_ROUTES } from '@/config/app-routes.constants';
 import { queryClient } from '@/lib/react-query';
 import type { LoaderData } from '@/types/meta.types';
 import { stringifySearch } from '@/utils/router-search.utils';
@@ -12,7 +11,7 @@ import {
   ADMIN_SCROLL_CONTAINER_ID,
   type ContentPadding,
 } from './layouts/admin-layout/admin-layout.constants';
-import { routeTree } from './route-tree.gen';
+import { type FileRouteTypes, routeTree } from './route-tree.gen';
 
 export const router = createRouter({
   basepath: import.meta.env.BASE_URL,
@@ -42,7 +41,7 @@ declare module '@tanstack/react-router' {
   }
 
   interface HistoryState {
-    from?: (typeof APP_ROUTES)[keyof typeof APP_ROUTES];
+    from?: FileRouteTypes['to'];
   }
 
   interface StaticDataRouteOption {

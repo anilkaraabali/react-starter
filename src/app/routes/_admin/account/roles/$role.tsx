@@ -1,6 +1,5 @@
 import { msg } from '@lingui/core/macro';
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AccountRoleView } from '@/features/account/components/account-role-view';
 import { isOrganizationMemberRole } from '@/lib/authorization/organization-role.utils';
 import type { MetaFunction } from '@/types/meta.types';
@@ -22,7 +21,7 @@ function AccountRoleRouteComponent() {
 export const Route = createFileRoute('/_admin/account/roles/$role')({
   beforeLoad: async ({ params }) => {
     if (!isOrganizationMemberRole(params.role)) {
-      throw redirect({ to: APP_ROUTES.ACCOUNT_ROLES });
+      throw redirect({ to: '/account/roles' });
     }
   },
   component: AccountRoleRouteComponent,

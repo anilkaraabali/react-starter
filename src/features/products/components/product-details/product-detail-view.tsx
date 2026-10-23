@@ -2,7 +2,6 @@ import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { DeleteProductModal } from '@/features/products/components/modals/delete-product-modal';
 import { ProductQueryBoundary } from '@/features/products/components/product-query-boundary';
 import { ProductStatusChip } from '@/features/products/components/product-status-chip';
@@ -33,7 +32,7 @@ function ProductDetailLayout({ product }: { product: Product }) {
           onEdit={() => {
             void navigate({
               params: { productId: product.id },
-              to: APP_ROUTES.PRODUCT_EDIT,
+              to: '/products/$productId/edit',
             });
           }}
         />
@@ -51,7 +50,7 @@ function ProductDetailLayout({ product }: { product: Product }) {
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onSuccess={() => {
-          void navigate({ to: APP_ROUTES.PRODUCTS });
+          void navigate({ to: '/products' });
         }}
         product={product}
       />

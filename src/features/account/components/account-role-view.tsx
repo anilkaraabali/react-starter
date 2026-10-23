@@ -10,7 +10,6 @@ import { useLingui } from '@lingui/react';
 import { Link } from '@tanstack/react-router';
 import { ShieldIcon, UsersIcon } from 'lucide-react';
 import { UserAvatar } from '@/components/atoms/user-avatar';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { useOrganizationMembers } from '@/features/account/api/get-organization-members';
 import { Account } from '@/features/account/components/blocks/account';
 import { ORGANIZATION_PERMISSION_LABELS } from '@/features/account/config/organization-permission-labels.constants';
@@ -38,7 +37,7 @@ export function AccountRoleView({ role }: AccountRolePageProps) {
   const allRolesLink = (
     <Link
       className={buttonVariants({ size: 'sm', variant: 'secondary' })}
-      to={APP_ROUTES.ACCOUNT_ROLES}
+      to='/account/roles'
     >
       <ShieldIcon />
       {_(msg`All roles`)}

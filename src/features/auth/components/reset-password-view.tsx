@@ -5,7 +5,6 @@ import { useNavigate, useSearch } from '@tanstack/react-router';
 
 import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { useForm } from '@/components/organisms/form/use-form';
-import { APP_ROUTE_IDS, APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import { ResetPasswordInvalidLink } from '@/features/auth/components/reset-password-invalid-link';
 import {
@@ -18,7 +17,7 @@ import { authClient } from '@/lib/auth-client';
 export function ResetPasswordView() {
   const { _ } = useLingui();
   const navigate = useNavigate();
-  const { error, token } = useSearch({ from: APP_ROUTE_IDS.RESET_PASSWORD });
+  const { error, token } = useSearch({ from: '/_auth/reset-password' });
 
   const form = useForm({
     defaultValues: resetPasswordDefaultValues,
@@ -38,7 +37,7 @@ export function ResetPasswordView() {
           },
           onSuccess() {
             toast.success(_(msg`Password has been reset successfully`));
-            navigate({ to: APP_ROUTES.LOGIN });
+            navigate({ to: '/login' });
           },
         }
       );

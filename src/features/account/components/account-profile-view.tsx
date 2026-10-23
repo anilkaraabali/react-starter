@@ -7,7 +7,6 @@ import { UserAvatar } from '@/components/atoms/user-avatar';
 import { ColorPalettePicker } from '@/components/molecules/color-palette-picker';
 import { LanguagePicker } from '@/components/molecules/language-picker';
 import { ThemePicker } from '@/components/molecules/theme-picker';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { DEFAULT_COLOR_PALETTE } from '@/config/color-palette.constants';
 import { DEFAULT_THEME } from '@/config/theme.constants';
 import { Account } from '@/features/account/components/blocks/account';
@@ -39,7 +38,7 @@ export function AccountProfileView() {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          window.location.href = APP_ROUTES.LOGIN;
+          window.location.href = '/login';
         },
       },
     });

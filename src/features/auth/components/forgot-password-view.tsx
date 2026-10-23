@@ -5,7 +5,6 @@ import { Trans } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 
 import { useForm } from '@/components/organisms/form/use-form';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import {
   type ForgotPasswordInput,
@@ -24,7 +23,7 @@ export function ForgotPasswordView() {
       await authClient.requestPasswordReset(
         {
           email: data.email,
-          redirectTo: APP_ROUTES.RESET_PASSWORD,
+          redirectTo: '/reset-password',
         },
         {
           onError(context) {
@@ -32,7 +31,7 @@ export function ForgotPasswordView() {
           },
           onSuccess() {
             toast.success(_(msg`Password reset link sent to your email`));
-            navigate({ to: APP_ROUTES.LOGIN });
+            navigate({ to: '/login' });
           },
         }
       );
@@ -47,7 +46,7 @@ export function ForgotPasswordView() {
       )}
       footer={
         <Trans>
-          Remember your password? <Link href={APP_ROUTES.LOGIN}>Sign in.</Link>
+          Remember your password? <Link href='/login'>Sign in.</Link>
         </Trans>
       }
       title={_(msg`Forgot password`)}

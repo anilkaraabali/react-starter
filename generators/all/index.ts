@@ -79,27 +79,9 @@ const allGenerator: PlopGeneratorConfig = {
       // at the end is enough, and the codegen has to run after all the writes.
       ...actions.filter((action) => {
         const type = actionType(action);
-        return (
-          type !== 'print' &&
-          type !== 'routes-codegen' &&
-          type !== 'register-routes'
-        );
+        return type !== 'print' && type !== 'routes-codegen';
       }),
-      ...(selected.includes('routes')
-        ? [
-            {
-              featureDir: data.featureDir,
-              pluralTitle: data.pluralTitle,
-              routeKeyDetail: data.routeKeyDetail,
-              routeKeyEdit: data.routeKeyEdit,
-              routeKeyList: data.routeKeyList,
-              routeKeyNew: data.routeKeyNew,
-              routeParam: data.routeParam,
-              type: 'register-routes',
-            },
-            { type: 'routes-codegen' },
-          ]
-        : []),
+      ...(selected.includes('routes') ? [{ type: 'routes-codegen' }] : []),
       {
         message: `${nextSteps(data)}\n\nRan: ${selected.join(' → ')}${
           missing.length > 0

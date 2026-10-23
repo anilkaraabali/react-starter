@@ -127,7 +127,6 @@ export function nextSteps(data: GeneratorData): string {
     `  4. Register the MSW handlers for ${routePath} in src/testing/mocks/handlers.ts`,
     '',
     `Generated names: ${entityPascal} / ${pluralTitle}, route param \`${routeParam}\``,
-    'Routes are already added to APP_ROUTES and APP_ROUTE_IDS by this generator.',
     'The generators build on each other: types + config + api come first, then',
     'modal and detail, then form, list and routes. `form` and `list` both import',
     'the modal, and `form` also imports the query boundary, so running them out of',

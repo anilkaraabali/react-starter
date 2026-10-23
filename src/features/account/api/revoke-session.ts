@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { authClient, signOut } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 import { accountKeys } from './account.keys';
@@ -34,7 +33,7 @@ export const useRevokeSession = ({
         await signOut({
           fetchOptions: {
             onSuccess: () => {
-              window.location.href = APP_ROUTES.LOGIN;
+              window.location.href = '/login';
             },
           },
         });

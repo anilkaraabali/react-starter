@@ -45,16 +45,6 @@ const routesGenerator: PlopGeneratorConfig = {
         data,
         { print: false }
       ),
-      {
-        featureDir: data.featureDir,
-        pluralTitle: data.pluralTitle,
-        routeKeyDetail: data.routeKeyDetail,
-        routeKeyEdit: data.routeKeyEdit,
-        routeKeyList: data.routeKeyList,
-        routeKeyNew: data.routeKeyNew,
-        routeParam: data.routeParam,
-        type: 'register-routes',
-      },
       { type: 'routes-codegen' },
       { message: nextSteps(data), type: 'print' },
     ];

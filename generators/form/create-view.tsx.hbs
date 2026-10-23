@@ -5,7 +5,6 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type Create{{entityPascal}}Input,
   create{{entityPascal}}InputSchema,
@@ -22,7 +21,7 @@ export function Create{{entityPascal}}View() {
       onSuccess: () => {
         toast.success(_(msg`{{singularTitle}} created.`));
         void navigate({
-          to: APP_ROUTES.{{routeKeyList}},
+          to: '{{routePath}}',
         });
       },
     },

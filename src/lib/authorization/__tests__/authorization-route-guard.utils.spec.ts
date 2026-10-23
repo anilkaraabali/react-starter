@@ -1,7 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 import { isRedirect } from '@tanstack/react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { OrganizationPermission } from '@/types/organization.types';
 import { requireAuthorization } from '../authorization-route-guard.utils';
 
@@ -51,7 +50,7 @@ describe('requireAuthorization', () => {
 
     await expect(
       requireAuthorization(
-        guardOptions(queryClient, APP_ROUTES.DASHBOARD),
+        guardOptions(queryClient, '/dashboard'),
         'members:list'
       )
     ).resolves.toBeUndefined();
@@ -60,53 +59,53 @@ describe('requireAuthorization', () => {
   it('redirects a guest without permission to the dashboard', async () => {
     const thrown = await captureThrown(
       requireAuthorization(
-        guardOptions(queryClient, APP_ROUTES.ACCOUNT_ORGANIZATION),
+        guardOptions(queryClient, '/account/organization'),
         'members:list',
-        APP_ROUTES.DASHBOARD
+        '/dashboard'
       )
     );
 
     expect(isRedirect(thrown)).toBe(true);
     expect((thrown as { options: { to: string } }).options.to).toBe(
-      APP_ROUTES.DASHBOARD
+      '/dashboard'
     );
   });
 
   it('defaults the redirect to the dashboard', async () => {
     const thrown = await captureThrown(
       requireAuthorization(
-        guardOptions(queryClient, APP_ROUTES.ACCOUNT_ORGANIZATION),
+        guardOptions(queryClient, '/account/organization'),
         'members:list'
       )
     );
 
     expect(isRedirect(thrown)).toBe(true);
     expect((thrown as { options: { to: string } }).options.to).toBe(
-      APP_ROUTES.DASHBOARD
+      '/dashboard'
     );
   });
 
   it('redirects to an explicit target (account routes use the profile page)', async () => {
     const thrown = await captureThrown(
       requireAuthorization(
-        guardOptions(queryClient, APP_ROUTES.ACCOUNT_ROLES),
+        guardOptions(queryClient, '/account/roles'),
         'members:list',
-        APP_ROUTES.ACCOUNT_PROFILE
+        '/account/profile'
       )
     );
 
     expect(isRedirect(thrown)).toBe(true);
     expect((thrown as { options: { to: string } }).options.to).toBe(
-      APP_ROUTES.ACCOUNT_PROFILE
+      '/account/profile'
     );
   });
 
   it('throws a forbidden error instead of redirecting to the current page', async () => {
     const thrown = await captureThrown(
       requireAuthorization(
-        guardOptions(queryClient, APP_ROUTES.ACCOUNT_ORGANIZATION),
+        guardOptions(queryClient, '/account/organization'),
         'members:list',
-        APP_ROUTES.ACCOUNT_ORGANIZATION
+        '/account/organization'
       )
     );
 

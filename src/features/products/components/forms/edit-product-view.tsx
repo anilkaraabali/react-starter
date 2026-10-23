@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import {
   type CreateProductInput,
   createProductInputSchema,
@@ -40,7 +39,7 @@ function EditProductLayout({ product }: { product: Product }) {
       onSuccess: () => {
         toast.success(_(msg`Product updated.`));
         void navigate({
-          to: APP_ROUTES.PRODUCTS,
+          to: '/products',
         });
       },
     },
@@ -76,7 +75,7 @@ function EditProductLayout({ product }: { product: Product }) {
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onSuccess={() => {
-          void navigate({ to: APP_ROUTES.PRODUCTS });
+          void navigate({ to: '/products' });
         }}
         product={product}
       />

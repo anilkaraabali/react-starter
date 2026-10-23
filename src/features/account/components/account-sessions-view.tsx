@@ -10,7 +10,6 @@ import { useLingui } from '@lingui/react';
 import { MonitorOffIcon } from 'lucide-react';
 import { useState } from 'react';
 
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import { useSessions } from '@/features/account/api/get-sessions';
 import { useRevokeSession } from '@/features/account/api/revoke-session';
 import { Account } from '@/features/account/components/blocks/account';
@@ -45,7 +44,7 @@ export function AccountSessionsView() {
     await signOut({
       fetchOptions: {
         onSuccess: () => {
-          window.location.href = APP_ROUTES.LOGIN;
+          window.location.href = '/login';
         },
       },
     });

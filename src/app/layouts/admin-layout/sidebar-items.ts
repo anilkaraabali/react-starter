@@ -21,7 +21,6 @@ import {
   WalletIcon,
 } from 'lucide-react';
 import type { SidebarNavItem } from '@/components/organisms/sidebar/sidebar.types';
-import { APP_ROUTES } from '@/config/app-routes.constants';
 import type { ResourcelessPolicyName } from '@/lib/authorization/authorization-policies.utils';
 
 export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
@@ -29,7 +28,7 @@ export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
     {
       icon: LayoutDashboardIcon,
       label: msg`Dashboard`,
-      to: APP_ROUTES.DASHBOARD,
+      to: '/dashboard',
     },
     {
       icon: BarChart3Icon,
@@ -104,7 +103,7 @@ export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
         {
           icon: PackageIcon,
           label: msg`Products`,
-          to: APP_ROUTES.PRODUCTS,
+          to: '/products',
         },
         {
           icon: UsersIcon,

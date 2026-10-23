@@ -37,11 +37,6 @@ export type EntityNaming = {
   singularTitle: string;
   /** PascalCase query-key factory, e.g. `productKeys`. */
   keysFactory: string;
-  /** `APP_ROUTES` keys, e.g. `PRODUCTS`, `PRODUCT_NEW`, ... */
-  routeKeyList: string;
-  routeKeyNew: string;
-  routeKeyDetail: string;
-  routeKeyEdit: string;
 };
 
 export function toKebab(value: string): string {
@@ -104,10 +99,6 @@ export function buildNaming(rawName: string): EntityNaming {
     pluralKebab,
     pluralPascal,
     pluralTitle: toTitle(pluralKebab),
-    routeKeyDetail: `${toConst(entityKebab)}_DETAIL`,
-    routeKeyEdit: `${toConst(entityKebab)}_EDIT`,
-    routeKeyList: toConst(pluralKebab),
-    routeKeyNew: `${toConst(entityKebab)}_NEW`,
     routeParam: `${entityCamel}Id`,
     routePath: `/${pluralKebab}`,
     singularTitle: toTitle(entityKebab),
