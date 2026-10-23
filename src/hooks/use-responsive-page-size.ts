@@ -11,7 +11,9 @@ const HEIGHT_BREAKPOINTS: readonly {
   { minHeight: 1200, pageSize: 25 },
 ];
 
-function getSnapshot(): TablePageSize {
+/** Non-hook variant for route definitions (search defaults, loaders). */
+export function getResponsivePageSize(): TablePageSize {
+  if (typeof window === 'undefined') return DEFAULT_PAGE_SIZE;
   const height = window.innerHeight;
   return (
     HEIGHT_BREAKPOINTS.find((breakpoint) => height >= breakpoint.minHeight)
@@ -25,5 +27,9 @@ function subscribe(onStoreChange: () => void) {
 }
 
 export function useResponsivePageSize(): TablePageSize {
-  return useSyncExternalStore(subscribe, getSnapshot, () => DEFAULT_PAGE_SIZE);
+  return useSyncExternalStore(
+    subscribe,
+    getResponsivePageSize,
+    () => DEFAULT_PAGE_SIZE
+  );
 }

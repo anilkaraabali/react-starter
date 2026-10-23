@@ -34,8 +34,10 @@ export const getProductsQuerySchema = createCollectionSearchSchema({
 
 export type GetProductsQuery = z.infer<typeof getProductsQuerySchema>;
 
+export type ProductsResponseDto = Collection<Product>;
+
 const getProducts = (params?: GetProductsQuery, signal?: AbortSignal) => {
-  return api.get<never, Collection<Product>>('/api/products', {
+  return api.get<never, ProductsResponseDto>('/api/products', {
     params,
     signal,
   });

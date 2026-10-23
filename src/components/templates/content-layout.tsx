@@ -11,21 +11,13 @@ export type ContentLayoutProps = PageHeaderProps & {
 };
 
 export function ContentLayout({
-  actions,
   children,
-  className,
   containerClassName,
-  description,
-  title,
+  ...headerProps
 }: ContentLayoutProps) {
   return (
     <div className={cn('container mx-auto space-y-6', containerClassName)}>
-      <PageHeader
-        actions={actions}
-        className={className}
-        description={description}
-        title={title}
-      />
+      <PageHeader {...headerProps} />
       {children}
     </div>
   );
