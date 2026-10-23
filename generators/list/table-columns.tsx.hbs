@@ -1,9 +1,9 @@
-import { Button, buttonVariants } from '@heroui/react';
 import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { Link } from '@tanstack/react-router';
 import { EyeIcon, PencilLineIcon, Trash2Icon } from 'lucide-react';
 import type { TableColumnDef } from '@/components/organisms/data-table/data-table.types';
+import { TableAction } from '@/components/organisms/data-table/table-action';
 import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
 import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 
@@ -47,13 +47,8 @@ export const create{{pluralPascal}}TableColumns = ({
     {
       cell: ({{entityCamel}}: {{entityPascal}}) => (
         <div className='flex items-center justify-end gap-1'>
-          <Link
-            aria-label={i18n._(msg`View details`)}
-            className={buttonVariants({
-              isIconOnly: true,
-              size: 'sm',
-              variant: 'tertiary',
-            })}
+          <TableAction.Link
+            label={i18n._(msg`View details`)}
             params={
               {
                 {{routeParam}}: {{entityCamel}}.id,
@@ -62,14 +57,9 @@ export const create{{pluralPascal}}TableColumns = ({
             to='{{routePath}}/${{routeParam}}'
           >
             <EyeIcon />
-          </Link>
-          <Link
-            aria-label={i18n._(msg`Edit {{entityKebab}}`)}
-            className={buttonVariants({
-              isIconOnly: true,
-              size: 'sm',
-              variant: 'tertiary',
-            })}
+          </TableAction.Link>
+          <TableAction.Link
+            label={i18n._(msg`Edit {{entityKebab}}`)}
             params={
               {
                 {{routeParam}}: {{entityCamel}}.id,
@@ -78,16 +68,14 @@ export const create{{pluralPascal}}TableColumns = ({
             to='{{routePath}}/${{routeParam}}/edit'
           >
             <PencilLineIcon />
-          </Link>
-          <Button
-            aria-label={i18n._(msg`Delete {{entityKebab}}`)}
-            isIconOnly
+          </TableAction.Link>
+          <TableAction.Button
+            label={i18n._(msg`Delete {{entityKebab}}`)}
             onPress={() => onDeleteClick({{entityCamel}})}
-            size='sm'
             variant='danger-soft'
           >
             <Trash2Icon className='text-danger' />
-          </Button>
+          </TableAction.Button>
         </div>
       ),
       header: () => '',

@@ -1,6 +1,8 @@
 import type { Selection } from '@heroui/react';
 import type { ReactNode } from 'react';
 
+type TableCellOverflow = 'nowrap' | 'truncate' | 'wrap';
+
 export type TableColumnDef<TRow, TColumnId extends string = string> = {
   cell: (row: TRow) => ReactNode;
   /** Resolved at render time so locale switches stay fresh. */
@@ -17,6 +19,8 @@ export type TableColumnDef<TRow, TColumnId extends string = string> = {
    * Falls back to `header()` if not provided.
    */
   label?: () => string;
+  /** Cell text layout. When omitted, the cell keeps native table behaviour. */
+  overflow?: TableCellOverflow;
 };
 
 export type TableColumnVisibility<TColumnId extends string> = Record<

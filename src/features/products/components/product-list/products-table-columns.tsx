@@ -1,9 +1,9 @@
-import { Button, buttonVariants } from '@heroui/react';
 import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { Link } from '@tanstack/react-router';
 import { EyeIcon, PencilLineIcon, Trash2Icon } from 'lucide-react';
 import type { TableColumnDef } from '@/components/organisms/data-table/data-table.types';
+import { TableAction } from '@/components/organisms/data-table/table-action';
 import { ProductStatusChip } from '@/features/products/components/product-status-chip';
 import type { Product } from '@/features/products/types/product.types';
 import { formatCurrency } from '@/utils/format.utils';
@@ -60,39 +60,27 @@ export const createProductsTableColumns = ({
     {
       cell: (p: Product) => (
         <div className='flex items-center justify-end gap-1'>
-          <Link
-            aria-label={i18n._(msg`View details`)}
-            className={buttonVariants({
-              isIconOnly: true,
-              size: 'sm',
-              variant: 'tertiary',
-            })}
+          <TableAction.Link
+            label={i18n._(msg`View details`)}
             params={{ productId: p.id }}
             to='/products/$productId'
           >
             <EyeIcon />
-          </Link>
-          <Link
-            aria-label={i18n._(msg`Edit product`)}
-            className={buttonVariants({
-              isIconOnly: true,
-              size: 'sm',
-              variant: 'tertiary',
-            })}
+          </TableAction.Link>
+          <TableAction.Link
+            label={i18n._(msg`Edit product`)}
             params={{ productId: p.id }}
             to='/products/$productId/edit'
           >
             <PencilLineIcon />
-          </Link>
-          <Button
-            aria-label={i18n._(msg`Delete product`)}
-            isIconOnly
+          </TableAction.Link>
+          <TableAction.Button
+            label={i18n._(msg`Delete product`)}
             onPress={() => onDeleteClick(p)}
-            size='sm'
             variant='danger-soft'
           >
             <Trash2Icon className='text-danger' />
-          </Button>
+          </TableAction.Button>
         </div>
       ),
       header: () => '',

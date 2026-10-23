@@ -8,6 +8,7 @@ import type {
   TableColumnDef,
 } from './data-table.types';
 import { DataTableView } from './data-table-view';
+import type { TableToolbarSlot } from './table-toolbar';
 
 type DataTableProps<TRow, TColumnId extends string = string> = {
   columnStorageKey?: string;
@@ -18,7 +19,8 @@ type DataTableProps<TRow, TColumnId extends string = string> = {
   onRowAction?: (id: string) => void;
   pagination?: DataTablePagination;
   selection?: DataTableSelection<TRow>;
-  toolbar?: ReactNode;
+  toolbar?: TableToolbarSlot;
+  toolbarActions?: ReactNode;
 };
 
 export function DataTable<
@@ -34,6 +36,7 @@ export function DataTable<
   pagination,
   selection,
   toolbar,
+  toolbarActions,
 }: DataTableProps<TRow, TColumnId>) {
   const { setColumnVisible, visibility, visibleColumns } =
     useTableColumnVisibility(columns, columnStorageKey);
@@ -58,6 +61,7 @@ export function DataTable<
       pagination={pagination}
       selection={selection}
       toolbar={toolbar}
+      toolbarActions={toolbarActions}
     />
   );
 }
