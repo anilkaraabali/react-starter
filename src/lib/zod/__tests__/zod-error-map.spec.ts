@@ -51,4 +51,11 @@ describe('zod-error-map', () => {
   it('keeps Zod’s own message for an unknown issue', () => {
     expect(message(z.number(), 'not a number')).not.toBe('');
   });
+
+  it('localizes enum validation', () => {
+    const schema = z.object({ status: z.enum(['draft', 'active']) });
+
+    expect(message(schema, {})).toBe('This field is required');
+    expect(message(schema, { status: 'archived' })).toBe('Invalid format');
+  });
 });
