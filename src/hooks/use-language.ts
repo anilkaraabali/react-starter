@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-import { KNOWN_LOCAL_STORAGE_KEYS } from '@/config/known-local-storage-keys.constants';
 import {
   DEFAULT_LANGUAGE,
-  LANGUAGE_LOCALES,
   type Language,
-} from '@/config/language.constants';
+  languageLocales,
+} from '@/config/language';
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage-keys';
 import { loadCatalog } from '@/lib/i18n';
 import { isLanguage } from '@/utils/language.utils';
 
@@ -14,7 +14,7 @@ import 'dayjs/locale/tr';
 
 export function useLanguage() {
   const [language, setLanguage] = useLocalStorage<Language>(
-    KNOWN_LOCAL_STORAGE_KEYS.LANGUAGE,
+    LOCAL_STORAGE_KEYS.LANGUAGE,
     DEFAULT_LANGUAGE,
     {
       deserializer: (v) => (isLanguage(v) ? v : DEFAULT_LANGUAGE),
@@ -22,7 +22,7 @@ export function useLanguage() {
     }
   );
 
-  const locale = LANGUAGE_LOCALES[language];
+  const locale = languageLocales[language];
 
   const _setLanguage = (language: Language) => {
     setLanguage(language);

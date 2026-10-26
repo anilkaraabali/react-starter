@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useSessionStorage } from 'usehooks-ts';
-import { KNOWN_SESSION_STORAGE_KEYS } from '@/config/known-session-storage-keys.constants';
+import { SESSION_STORAGE_KEYS } from '@/config/session-storage-keys';
 import { authClient } from '@/lib/auth-client';
 import type { MutationConfig } from '@/lib/react-query';
 
@@ -24,7 +24,7 @@ export const useDeleteAccount = ({
   mutationConfig,
 }: UseDeleteAccountOptions = {}) => {
   const [, setFlash] = useSessionStorage<boolean | null>(
-    KNOWN_SESSION_STORAGE_KEYS.ACCOUNT_DELETED_FLASH,
+    SESSION_STORAGE_KEYS.ACCOUNT_DELETED_FLASH,
     null
   );
 

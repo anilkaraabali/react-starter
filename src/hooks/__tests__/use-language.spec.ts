@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { KNOWN_LOCAL_STORAGE_KEYS } from '@/config/known-local-storage-keys.constants';
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage-keys';
 import { useLanguage } from '@/hooks/use-language';
 
 const loadCatalog = vi.fn();
@@ -10,7 +10,7 @@ vi.mock('@/lib/i18n', () => ({
   loadCatalog: (...args: unknown[]) => loadCatalog(...args),
 }));
 
-const { LANGUAGES } = await import('@/config/language.constants');
+const { languageOptions } = await import('@/config/language');
 
 describe('use-language', () => {
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('use-language', () => {
   });
 
   it('reads the stored language', () => {
-    window.localStorage.setItem(KNOWN_LOCAL_STORAGE_KEYS.LANGUAGE, 'tr');
+    window.localStorage.setItem(LOCAL_STORAGE_KEYS.LANGUAGE, 'tr');
 
     const { result } = renderHook(() => useLanguage());
 
@@ -39,7 +39,7 @@ describe('use-language', () => {
   });
 
   it('ignores a stored value that is not a known language', () => {
-    window.localStorage.setItem(KNOWN_LOCAL_STORAGE_KEYS.LANGUAGE, 'de');
+    window.localStorage.setItem(LOCAL_STORAGE_KEYS.LANGUAGE, 'de');
 
     const { result } = renderHook(() => useLanguage());
 
@@ -47,11 +47,8 @@ describe('use-language', () => {
   });
 
   it('maps every declared language to its locale', () => {
-    for (const language of LANGUAGES) {
-      window.localStorage.setItem(
-        KNOWN_LOCAL_STORAGE_KEYS.LANGUAGE,
-        language.key
-      );
+    for (const language of languageOptions) {
+      window.localStorage.setItem(LOCAL_STORAGE_KEYS.LANGUAGE, language.key);
 
       const { result, unmount } = renderHook(() => useLanguage());
 
@@ -66,9 +63,7 @@ describe('use-language', () => {
     act(() => result.current.setLanguage('tr'));
 
     expect(result.current.language).toBe('tr');
-    expect(window.localStorage.getItem(KNOWN_LOCAL_STORAGE_KEYS.LANGUAGE)).toBe(
-      'tr'
-    );
+    expect(window.localStorage.getItem(LOCAL_STORAGE_KEYS.LANGUAGE)).toBe('tr');
     expect(loadCatalog).toHaveBeenCalledWith('tr');
   });
 

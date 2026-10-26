@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { SIDEBAR_VARIANTS } from '@/config/preferences.constants';
-import { isSidebarVariant } from '@/utils/preferences.utils';
+import { sidebarVariants } from '@/config/layout-options';
+import { isSidebarVariant } from '@/utils/layout.utils';
 
-describe('preferences.utils', () => {
+describe('layout.utils', () => {
   describe('isSidebarVariant', () => {
     it('accepts every declared variant', () => {
-      for (const variant of SIDEBAR_VARIANTS) {
+      for (const variant of sidebarVariants) {
         expect(isSidebarVariant(variant)).toBe(true);
       }
     });

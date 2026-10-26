@@ -8,17 +8,17 @@ import {
 } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import {
-  COLOR_PALETTE_KEYS,
+  colorPaletteKeys,
   DEFAULT_COLOR_PALETTE,
-} from '@/config/color-palette.constants';
-import { KNOWN_LOCAL_STORAGE_KEYS } from '@/config/known-local-storage-keys.constants';
-import { DEFAULT_SIDEBAR_VARIANT } from '@/config/preferences.constants';
-import { DEFAULT_THEME, THEME_COLOR_SCHEME } from '@/config/theme.constants';
+} from '@/config/color-palette';
+import { DEFAULT_SIDEBAR_VARIANT } from '@/config/layout-options';
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage-keys';
+import { DEFAULT_THEME, THEME_COLOR_SCHEME } from '@/config/theme';
 import type { ColorPalette } from '@/types/color-palette.types';
 import type { SidebarVariant } from '@/types/layout.types';
 import type { Theme } from '@/types/theme.types';
 import { isColorPalette } from '@/utils/color-palette.utils';
-import { isSidebarVariant } from '@/utils/preferences.utils';
+import { isSidebarVariant } from '@/utils/layout.utils';
 import { applyDocumentTheme, isTheme } from '@/utils/theme.utils';
 
 export type PreferencesContextValue = {
@@ -44,7 +44,7 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
   const { close, isOpen, open } = useOverlayState();
 
   const [sidebarVariant, setSidebarVariant] = useLocalStorage<SidebarVariant>(
-    KNOWN_LOCAL_STORAGE_KEYS.SIDEBAR_VARIANT,
+    LOCAL_STORAGE_KEYS.SIDEBAR_VARIANT,
     DEFAULT_SIDEBAR_VARIANT,
     {
       deserializer: (v) => (isSidebarVariant(v) ? v : DEFAULT_SIDEBAR_VARIANT),
@@ -53,7 +53,7 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
   );
 
   const [theme, setTheme] = useLocalStorage<Theme>(
-    KNOWN_LOCAL_STORAGE_KEYS.THEME,
+    LOCAL_STORAGE_KEYS.THEME,
     DEFAULT_THEME,
     {
       deserializer: (v) => (isTheme(v) ? v : DEFAULT_THEME),
@@ -62,7 +62,7 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
   );
 
   const [palette, setPalette] = useLocalStorage<ColorPalette>(
-    KNOWN_LOCAL_STORAGE_KEYS.PALETTE,
+    LOCAL_STORAGE_KEYS.PALETTE,
     DEFAULT_COLOR_PALETTE,
     {
       deserializer: (v) =>
@@ -90,7 +90,7 @@ export function PreferencesProvider({ children }: PreferencesProviderProps) {
   }, [theme]);
 
   useEffect(() => {
-    document.documentElement.classList.remove(...COLOR_PALETTE_KEYS);
+    document.documentElement.classList.remove(...colorPaletteKeys);
     document.documentElement.classList.add(palette);
   }, [palette]);
 

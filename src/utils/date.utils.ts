@@ -3,7 +3,7 @@ import {
   type DateValue,
   parseDate,
 } from '@internationalized/date';
-import { ISO_DATE_PATTERN } from '@/config/date.constants';
+import { ISO_DATE_PATTERN } from '@/config/date';
 
 export function toCalendarDate(value: string | undefined): CalendarDate | null {
   if (!value || !ISO_DATE_PATTERN.test(value)) {

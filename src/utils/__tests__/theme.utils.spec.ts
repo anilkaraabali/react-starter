@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { THEME_COLOR_SCHEME } from '@/config/theme.constants';
+import { THEME_COLOR_SCHEME } from '@/config/theme';
 import { applyDocumentTheme, isTheme, resolveTheme } from '@/utils/theme.utils';
 
 describe('theme.utils', () => {

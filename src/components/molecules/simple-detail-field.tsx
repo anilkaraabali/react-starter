@@ -7,7 +7,7 @@ import {
   useContext,
 } from 'react';
 
-import { FALLBACK_VALUE } from '@/config/string.constants';
+import { FALLBACK_VALUE } from '@/config/string';
 
 type TypographySize = ComponentProps<typeof Typography.Paragraph>['size'];
 

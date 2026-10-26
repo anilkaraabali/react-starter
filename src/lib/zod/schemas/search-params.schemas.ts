@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ISO_DATE_PATTERN } from '@/config/date.constants';
+import { ISO_DATE_PATTERN } from '@/config/date';
 import { SORT_ORDERS } from '@/types/sort.types';
 
 export function createSearchParamEnumSchema<

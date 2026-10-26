@@ -7,7 +7,7 @@ import type {
 export const DEFAULT_COLOR_PALETTE: ColorPalette = 'emerald';
 
 /** Chromatic palettes from [shadcn colors](https://ui.shadcn.com/colors) — each swatch is the `500` stop (primary). */
-export const COLOR_PALETTE: readonly ColorPaletteOption[] = [
+export const colorPaletteOptions: readonly ColorPaletteOption[] = [
   { color: '#fb2c36', key: 'red', label: msg`Red` },
   { color: '#ff6900', key: 'orange', label: msg`Orange` },
   { color: '#fe9a00', key: 'amber', label: msg`Amber` },
@@ -27,6 +27,5 @@ export const COLOR_PALETTE: readonly ColorPaletteOption[] = [
   { color: '#ff2056', key: 'rose', label: msg`Rose` },
 ];
 
-export const COLOR_PALETTE_KEYS: readonly ColorPalette[] = COLOR_PALETTE.map(
-  (palette) => palette.key
-);
+export const colorPaletteKeys: readonly ColorPalette[] =
+  colorPaletteOptions.map((palette) => palette.key);

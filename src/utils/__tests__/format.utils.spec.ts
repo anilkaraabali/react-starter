@@ -1,6 +1,6 @@
 import { i18n } from '@lingui/core';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { FALLBACK_VALUE } from '@/config/string.constants';
+import { FALLBACK_VALUE } from '@/config/string';
 import {
   formatCurrency,
   formatDate,

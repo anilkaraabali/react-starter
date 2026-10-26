@@ -1,4 +1,4 @@
-import { THEME_COLOR_SCHEME } from '@/config/theme.constants';
+import { THEME_COLOR_SCHEME } from '@/config/theme';
 import { THEMES, type Theme } from '@/types/theme.types';
 
 export function isTheme(value: unknown): value is Theme {
