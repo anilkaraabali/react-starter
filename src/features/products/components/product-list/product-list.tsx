@@ -1,7 +1,7 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useMemo, useState } from 'react';
 import { Filters } from '@/components/organisms/filters/filters';
-import { RouteFilterProvider } from '@/components/organisms/filters/stores/route-filter-provider';
+import { RouteFilterProvider } from '@/components/organisms/filters/stores/filter-provider';
 import {
   type GetProductsQuery,
   useProducts,
@@ -10,12 +10,12 @@ import { DeleteProductModal } from '@/features/products/components/modals/delete
 import { ProductsTable } from '@/features/products/components/product-list/products-table';
 import {
   getProductsFilterFields,
-  INITIAL_PRODUCTS_SEARCH_STATE,
+  initialProductsFiltersState,
 } from '@/features/products/config/products-filter.config';
 import type { Product } from '@/features/products/types/product.types';
 import { useResponsivePageSize } from '@/hooks/use-responsive-page-size';
 
-export function ProductListView() {
+export function ProductList() {
   const navigate = useNavigate();
   const searchParams = useSearch({ strict: false }) as GetProductsQuery;
   const responsivePageSize = useResponsivePageSize();
@@ -24,7 +24,7 @@ export function ProductListView() {
   const filterFields = useMemo(() => getProductsFilterFields(), []);
 
   const params: GetProductsQuery = {
-    ...INITIAL_PRODUCTS_SEARCH_STATE,
+    ...initialProductsFiltersState,
     pageSize: responsivePageSize,
     ...searchParams,
   };
@@ -34,7 +34,7 @@ export function ProductListView() {
   return (
     <RouteFilterProvider
       fields={filterFields}
-      initialState={INITIAL_PRODUCTS_SEARCH_STATE}
+      initialState={initialProductsFiltersState}
       navigate={navigate}
       search={params}
     >

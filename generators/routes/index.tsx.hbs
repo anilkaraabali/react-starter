@@ -8,7 +8,7 @@ import {
   get{{pluralPascal}}QuerySchema,
 } from '@/features/{{featureDir}}/api/get-{{pluralKebab}}';
 import { {{entityPascal}}ListView } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{entityKebab}}-list-view';
-import { INITIAL_{{pluralConst}}_SEARCH_STATE } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
+import { initial{{pluralPascal}}FiltersState } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
 import type { MetaFunction } from '@/types/meta.types';
 
 const meta: MetaFunction = (i18n) => [
@@ -34,7 +34,7 @@ export const Route = createFileRoute('/_admin/{{featureDir}}/')({
   },
   loaderDeps: ({ search }) => search,
   search: {
-    middlewares: [stripSearchParams(INITIAL_{{pluralConst}}_SEARCH_STATE)],
+    middlewares: [stripSearchParams(initial{{pluralPascal}}FiltersState)],
   },
   validateSearch: zodValidator(get{{pluralPascal}}QuerySchema),
 });

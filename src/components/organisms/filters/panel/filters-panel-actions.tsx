@@ -5,12 +5,14 @@ import { XIcon } from 'lucide-react';
 
 type FiltersPanelActionsProps = {
   hasActiveFilters: boolean;
+  onApply: () => void;
   onCancel: () => void;
   onClear: () => void;
 };
 
 export function FiltersPanelActions({
   hasActiveFilters,
+  onApply,
   onCancel,
   onClear,
 }: FiltersPanelActionsProps) {
@@ -18,7 +20,10 @@ export function FiltersPanelActions({
 
   return (
     <div className='flex flex-wrap items-center gap-2'>
-      <Button onPress={onCancel} variant='tertiary'>
+      <Button onPress={onApply} variant='primary'>
+        {_(msg`Apply`)}
+      </Button>
+      <Button onPress={onCancel} variant='secondary'>
         {_(msg`Cancel`)}
       </Button>
       {hasActiveFilters ? (

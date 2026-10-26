@@ -38,7 +38,7 @@ describe('useFilterState', () => {
     expect(emptyState.getFilterValue('search')).toBe('');
   });
 
-  it('updates filter value, clears empty strings, and resets page', () => {
+  it('updates filter values and resets page', () => {
     const navigate = vi.fn();
     const search: TestSearch = { category: 'books', page: 3 };
 
@@ -57,13 +57,13 @@ describe('useFilterState', () => {
       page: undefined,
     });
 
-    // Setting empty string omits the value
+    // Route validation and search middleware normalize empty values.
     setFilterValue('search', '');
     const updaterEmpty = navigate.mock.calls[1][0];
     expect(updaterEmpty({ category: 'books', search: 'prev' })).toEqual({
       category: 'books',
       page: undefined,
-      search: undefined,
+      search: '',
     });
   });
 
@@ -71,13 +71,13 @@ describe('useFilterState', () => {
     const navigate = vi.fn();
     const search: TestSearch = { category: 'music', search: 'guitar' };
 
-    const { clearFilter } = useFilterState({
+    const { clearFilters } = useFilterState({
       initialState,
       navigate,
       search,
     });
 
-    clearFilter('category');
+    clearFilters('category');
 
     expect(navigate).toHaveBeenCalledTimes(1);
     const updater = navigate.mock.calls[0][0];

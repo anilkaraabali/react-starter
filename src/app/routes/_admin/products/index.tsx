@@ -9,8 +9,8 @@ import {
   getProductsQuerySchema,
 } from '@/features/products/api/get-products';
 import { CreateProductButton } from '@/features/products/components/product-list/create-product-button';
-import { ProductListView } from '@/features/products/components/product-list/product-list-view';
-import { INITIAL_PRODUCTS_SEARCH_STATE } from '@/features/products/config/products-filter.config';
+import { ProductList } from '@/features/products/components/product-list/product-list';
+import { initialProductsFiltersState } from '@/features/products/config/products-filter.config';
 import { getResponsivePageSize } from '@/hooks/use-responsive-page-size';
 import type { MetaFunction } from '@/types/meta.types';
 
@@ -31,7 +31,7 @@ export const Route = createFileRoute('/_admin/products/')({
   }) => {
     void queryClient.query({
       ...getProductsQueryOptions({
-        ...INITIAL_PRODUCTS_SEARCH_STATE,
+        ...initialProductsFiltersState,
         pageSize: getResponsivePageSize(),
         ...deps,
       }),
@@ -41,7 +41,7 @@ export const Route = createFileRoute('/_admin/products/')({
   },
   loaderDeps: ({ search }) => search,
   search: {
-    middlewares: [stripSearchParams(INITIAL_PRODUCTS_SEARCH_STATE)],
+    middlewares: [stripSearchParams(initialProductsFiltersState)],
   },
   validateSearch: zodValidator(getProductsQuerySchema),
 });
@@ -49,7 +49,7 @@ export const Route = createFileRoute('/_admin/products/')({
 function ProductsRoute() {
   return (
     <ContentLayout actions={<CreateProductButton />}>
-      <ProductListView />
+      <ProductList />
     </ContentLayout>
   );
 }

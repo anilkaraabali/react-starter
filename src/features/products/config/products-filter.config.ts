@@ -23,7 +23,7 @@ type ProductSortField = (typeof PRODUCT_SORT_FIELDS)[number];
 export const DEFAULT_PRODUCT_SORT_BY: ProductSortField = 'createdAt';
 export const DEFAULT_PRODUCT_SORT_ORDER = 'desc' as const;
 
-export const INITIAL_PRODUCTS_SEARCH_STATE: GetProductsQuery = {
+export const initialProductsFiltersState: GetProductsQuery = {
   category: undefined,
   dateEnd: undefined,
   dateStart: undefined,
@@ -58,19 +58,23 @@ export const getProductsFilterFields =
     {
       key: 'category',
       label: i18n._(msg`Category`),
-      options: PRODUCT_CATEGORY_OPTIONS.map((c) => ({
-        label: c.label,
-        value: c.value,
-      })),
+      props: {
+        options: PRODUCT_CATEGORY_OPTIONS.map((c) => ({
+          label: c.label,
+          value: c.value,
+        })),
+      },
       type: 'select',
     },
     {
       key: 'status',
       label: i18n._(msg`Status`),
-      options: PRODUCT_STATUS_OPTIONS.map((s) => ({
-        label: s.label,
-        value: s.value,
-      })),
+      props: {
+        options: PRODUCT_STATUS_OPTIONS.map((s) => ({
+          label: s.label,
+          value: s.value,
+        })),
+      },
       type: 'select',
     },
     {
@@ -86,10 +90,12 @@ export const getProductsFilterFields =
     {
       key: 'sortBy',
       label: i18n._(msg`Sort by`),
-      options: getProductSortOptions().map((s) => ({
-        label: s.label,
-        value: s.value,
-      })),
+      props: {
+        options: getProductSortOptions().map((s) => ({
+          label: s.label,
+          value: s.value,
+        })),
+      },
       type: 'select',
     },
     getSortOrderFilterField<GetProductsQuery>(),
