@@ -59,9 +59,9 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        'group/sidebar flex shrink-0 flex-col transition-[width,margin,border-radius,box-shadow] duration-300 ease-in-out motion-reduce:transition-none',
+        'group/sidebar relative flex shrink-0 flex-col transition-[width,margin,border-radius,box-shadow] duration-300 ease-in-out motion-reduce:transition-none',
         {
-          'm-3 h-[calc(100svh-24px)] overflow-hidden rounded-2xl border bg-surface shadow-surface':
+          'm-3 h-[calc(100svh-24px)] overflow-visible rounded-2xl border bg-surface shadow-surface':
             isFloating,
           'size-full': isDrawer,
           'sticky top-0 h-svh border-(--sidebar-edge-outline) border-r':
@@ -107,7 +107,7 @@ export function Sidebar({
           <Separator />
           <div className='flex h-(--header-height) gap-1 px-4'>
             {typeof footer === 'function'
-              ? footer({ isCollapsed: !showExpanded && !isCompact })
+              ? footer({ isCollapsed: !showExpanded || isCompact })
               : footer}
           </div>
         </>
