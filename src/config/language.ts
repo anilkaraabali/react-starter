@@ -16,6 +16,3 @@ export const languageLocales = {
   en: 'en-GB',
   tr: 'tr-TR',
 } as const satisfies Record<Language, string>;
-
-export type LanguageLocale =
-  (typeof languageLocales)[keyof typeof languageLocales];
