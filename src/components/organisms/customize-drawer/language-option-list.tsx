@@ -1,7 +1,7 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { GlobeIcon } from 'lucide-react';
-import { LANGUAGES, type Language } from '@/config/language.constants';
+import { type Language, languageOptions } from '@/config/language';
 import { PreferenceOptionCard } from './preference-option-card';
 
 type LanguageOptionListProps = {
@@ -21,7 +21,7 @@ export function LanguageOptionList({
         {_(msg`Language`)}
       </h4>
       <div className='grid grid-cols-3 gap-2.5'>
-        {LANGUAGES.map((lang) => {
+        {languageOptions.map((lang) => {
           const isSelected = selectedLanguage === lang.key;
 
           return (

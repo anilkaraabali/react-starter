@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { THEME_OPTIONS } from '@/config/theme.constants';
+import { themeOptions } from '@/config/theme';
 import type { Theme } from '@/types/theme.types';
 import { PreferenceOptionCard } from './preference-option-card';
 
@@ -21,7 +21,7 @@ export function ThemeOptionList({
         {_(msg`Theme`)}
       </h4>
       <div className='grid grid-cols-3 gap-2.5'>
-        {THEME_OPTIONS.map((opt) => {
+        {themeOptions.map((opt) => {
           const isSelected = selectedTheme === opt.key;
           const Icon = opt.icon;
 

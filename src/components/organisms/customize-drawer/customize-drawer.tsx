@@ -2,7 +2,7 @@ import { Button, Drawer, Typography } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { RotateCcwIcon } from 'lucide-react';
-import type { Language } from '@/config/language.constants';
+import type { Language } from '@/config/language';
 import type { ColorPalette } from '@/types/color-palette.types';
 import type { SidebarVariant } from '@/types/layout.types';
 import type { Theme } from '@/types/theme.types';

@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { LAYOUT_OPTIONS } from '@/config/layout-options.constants';
+import { layoutOptions } from '@/config/layout-options';
 import type { SidebarVariant } from '@/types/layout.types';
 import { LayoutOptionCard } from './layout-option-card';
 
@@ -23,7 +23,7 @@ export function LayoutOptionList({
         </h4>
       </div>
       <div className='grid grid-cols-2 gap-2.5'>
-        {LAYOUT_OPTIONS.map((opt) => (
+        {layoutOptions.map((opt) => (
           <LayoutOptionCard
             isSelected={selectedVariant === opt.key}
             key={opt.key}

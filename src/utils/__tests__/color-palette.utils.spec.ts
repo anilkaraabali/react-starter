@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
-  COLOR_PALETTE,
+  colorPaletteOptions,
   DEFAULT_COLOR_PALETTE,
-} from '@/config/color-palette.constants';
+} from '@/config/color-palette';
 import {
   getColorPaletteOption,
   isColorPalette,
@@ -11,7 +11,7 @@ import {
 describe('color-palette.utils', () => {
   describe('isColorPalette', () => {
     it('returns true for all registered palettes', () => {
-      for (const palette of COLOR_PALETTE) {
+      for (const palette of colorPaletteOptions) {
         expect(isColorPalette(palette.key)).toBe(true);
       }
     });
@@ -31,7 +31,7 @@ describe('color-palette.utils', () => {
 
     it('falls back to the first palette when not found', () => {
       const option = getColorPaletteOption('unknown' as never);
-      expect(option).toBe(COLOR_PALETTE[0]);
+      expect(option).toBe(colorPaletteOptions[0]);
     });
   });
 });

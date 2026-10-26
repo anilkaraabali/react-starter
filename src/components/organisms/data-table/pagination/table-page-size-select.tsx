@@ -1,5 +1,5 @@
 import { ListBox, Select } from '@heroui/react';
-import { TABLE_PAGE_SIZE_OPTIONS } from '@/config/pagination.constants';
+import { TABLE_PAGE_SIZE_OPTIONS } from '@/config/pagination';
 
 type TablePageSizeSelectProps = {
   onPageSizeChange: (pageSize: number) => void;

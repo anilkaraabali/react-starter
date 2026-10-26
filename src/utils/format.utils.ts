@@ -4,8 +4,8 @@ import { msg } from '@lingui/core/macro';
 import dayjs, { type Dayjs } from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from '@/config/date.constants';
-import { FALLBACK_VALUE } from '@/config/string.constants';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from '@/config/date';
+import { FALLBACK_VALUE } from '@/config/string';
 
 import 'dayjs/locale/tr';
 

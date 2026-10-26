@@ -1,6 +1,6 @@
 import { cn } from '@heroui/styles';
 import { useLingui } from '@lingui/react';
-import type { LayoutCardOption } from '@/config/layout-options.constants';
+import type { LayoutCardOption } from '@/config/layout-options';
 import type { SidebarVariant } from '@/types/layout.types';
 import { LayoutPreview } from './layout-preview';
 

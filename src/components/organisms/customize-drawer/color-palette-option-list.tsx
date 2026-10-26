@@ -1,7 +1,7 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { PaletteSwatch } from '@/components/atoms/palette-swatch';
-import { COLOR_PALETTE } from '@/config/color-palette.constants';
+import { colorPaletteOptions } from '@/config/color-palette';
 import type { ColorPalette } from '@/types/color-palette.types';
 import { PreferenceOptionCard } from './preference-option-card';
 
@@ -22,7 +22,7 @@ export function ColorPaletteOptionList({
         {_(msg`Color`)}
       </h4>
       <div className='grid grid-cols-3 gap-2.5'>
-        {COLOR_PALETTE.map((pal) => {
+        {colorPaletteOptions.map((pal) => {
           const isSelected = selectedPalette === pal.key;
 
           return (

@@ -123,7 +123,7 @@ export function nextSteps(data: GeneratorData): string {
     `Next steps for ${feature}:`,
     '  1. pnpm intl:build        - extract new messages, then translate the empty msgstr entries',
     `  2. Register ${routePath} in src/app/layouts/admin-layout/sidebar-items.ts (needs an icon import)`,
-    '  3. Add a column-storage key in src/config/known-local-storage-keys.constants.ts, then pass it to the table',
+    '  3. Add a column-storage key in src/config/local-storage-keys.ts, then pass it to the table',
     `  4. Register the MSW handlers for ${routePath} in src/testing/mocks/handlers.ts`,
     '',
     `Generated names: ${entityPascal} / ${pluralTitle}, route param \`${routeParam}\``,

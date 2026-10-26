@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { DataTable } from '@/components/organisms/data-table/data-table';
 import type { TableToolbarSlot } from '@/components/organisms/data-table/table-toolbar';
 import { useFilter } from '@/components/organisms/filters/stores/filter-provider';
-import { KNOWN_LOCAL_STORAGE_KEYS } from '@/config/known-local-storage-keys.constants';
+import { LOCAL_STORAGE_KEYS } from '@/config/local-storage-keys';
 import type {
   GetProductsQuery,
   ProductsResponseDto,
@@ -41,7 +41,7 @@ export function ProductsTable({
 
   return (
     <DataTable
-      columnStorageKey={KNOWN_LOCAL_STORAGE_KEYS.COLUMNS.PRODUCTS}
+      columnStorageKey={LOCAL_STORAGE_KEYS.COLUMNS.PRODUCTS}
       columns={columns}
       data={data?.data ?? []}
       enableColumnVisibility

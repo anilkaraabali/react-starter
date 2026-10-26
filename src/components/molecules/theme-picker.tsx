@@ -2,7 +2,7 @@ import { Button, Dropdown, Label } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { ChevronDownIcon } from 'lucide-react';
-import { THEME_OPTIONS } from '@/config/theme.constants';
+import { themeOptions } from '@/config/theme';
 import { usePreferences } from '@/stores/preferences-provider';
 import type { Theme } from '@/types/theme.types';
 
@@ -10,7 +10,7 @@ export function ThemePicker() {
   const { _ } = useLingui();
   const { setTheme, theme } = usePreferences();
 
-  const activeTheme = THEME_OPTIONS.find((t) => t.key === theme);
+  const activeTheme = themeOptions.find((t) => t.key === theme);
 
   return (
     <Dropdown>
@@ -25,7 +25,7 @@ export function ThemePicker() {
           selectedKeys={[theme]}
           selectionMode='single'
         >
-          {THEME_OPTIONS.map((themeOption) => (
+          {themeOptions.map((themeOption) => (
             <Dropdown.Item
               id={themeOption.key}
               key={themeOption.key}

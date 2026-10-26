@@ -7,7 +7,7 @@ export type LayoutCardOption = {
   label: MessageDescriptor;
 };
 
-export const LAYOUT_OPTIONS: readonly LayoutCardOption[] = [
+export const layoutOptions: readonly LayoutCardOption[] = [
   {
     key: 'default',
     label: msg`Default`,
@@ -21,3 +21,9 @@ export const LAYOUT_OPTIONS: readonly LayoutCardOption[] = [
     label: msg`Floating`,
   },
 ];
+
+export const DEFAULT_SIDEBAR_VARIANT: SidebarVariant = 'default';
+
+export const sidebarVariants: readonly SidebarVariant[] = layoutOptions.map(
+  (option) => option.key
+);

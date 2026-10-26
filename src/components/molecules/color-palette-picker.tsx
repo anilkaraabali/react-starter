@@ -3,7 +3,7 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { ChevronDownIcon } from 'lucide-react';
 import { PaletteSwatch } from '@/components/atoms/palette-swatch';
-import { COLOR_PALETTE } from '@/config/color-palette.constants';
+import { colorPaletteOptions } from '@/config/color-palette';
 import { usePreferences } from '@/stores/preferences-provider';
 import type { ColorPalette } from '@/types/color-palette.types';
 import { getColorPaletteOption } from '@/utils/color-palette.utils';
@@ -31,7 +31,7 @@ export function ColorPalettePicker() {
           selectedKeys={[palette]}
           selectionMode='single'
         >
-          {COLOR_PALETTE.map((paletteOption) => (
+          {colorPaletteOptions.map((paletteOption) => (
             <Dropdown.Item
               id={paletteOption.key}
               key={paletteOption.key}
