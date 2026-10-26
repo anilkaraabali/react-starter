@@ -3,6 +3,8 @@ import { z } from 'zod';
 
 import {
   emailFieldSchema,
+  nonNegativeIntegerFieldSchema,
+  nonNegativeNumberFieldSchema,
   passwordFieldSchema,
   requiredPasswordFieldSchema,
   stringFieldSchema,
@@ -30,6 +32,25 @@ describe('field.schemas', () => {
       expect(
         emailFieldSchema.safeParse(`${'a'.repeat(39)}@example.com`).success
       ).toBe(false);
+    });
+  });
+
+  describe('nonNegativeNumberFieldSchema', () => {
+    it('coerces numeric strings and accepts zero', () => {
+      expect(ok(nonNegativeNumberFieldSchema.safeParse('29.99'))).toBe(true);
+      expect(nonNegativeNumberFieldSchema.parse('29.99')).toBe(29.99);
+      expect(ok(nonNegativeNumberFieldSchema.safeParse(0))).toBe(true);
+    });
+
+    it('rejects negative values', () => {
+      expect(ok(nonNegativeNumberFieldSchema.safeParse(-1))).toBe(false);
+    });
+  });
+
+  describe('nonNegativeIntegerFieldSchema', () => {
+    it('coerces whole numbers and rejects decimals', () => {
+      expect(nonNegativeIntegerFieldSchema.parse('100')).toBe(100);
+      expect(ok(nonNegativeIntegerFieldSchema.safeParse('10.5'))).toBe(false);
     });
   });
 

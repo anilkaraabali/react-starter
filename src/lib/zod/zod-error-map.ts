@@ -11,7 +11,11 @@ export function setupZodErrorMap() {
     customError: (issue) => {
       switch (issue.code) {
         case 'invalid_type':
-          if (issue.input === undefined || issue.input === null) {
+          if (
+            issue.input === undefined ||
+            issue.input === null ||
+            (typeof issue.input === 'number' && Number.isNaN(issue.input))
+          ) {
             return ValidationMessages.required();
           }
           return undefined;
@@ -26,6 +30,15 @@ export function setupZodErrorMap() {
           return issue.origin === 'string'
             ? ValidationMessages.maxLength(Number(issue.maximum))
             : undefined;
+        case 'invalid_value':
+          if (
+            issue.input === undefined ||
+            issue.input === null ||
+            issue.input === ''
+          ) {
+            return ValidationMessages.required();
+          }
+          return ValidationMessages.invalidFormat();
         case 'invalid_format':
           switch (issue.format) {
             case 'email':

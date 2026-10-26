@@ -9,7 +9,67 @@ import { ValidationMessages } from '../validation-messages';
 
 export const emailFieldSchema = z.email().trim().max(EMAIL_MAX_LENGTH);
 
+/** @public */
+export const isoDateFieldSchema = z.iso.date({
+  error: () => ValidationMessages.invalidDate(),
+});
+
 export const stringFieldSchema = z.string().trim().min(1);
+
+/** @public */
+export function arrayFieldSchema<const T extends z.ZodType>(itemSchema: T) {
+  return z.array(itemSchema);
+}
+
+/** @public */
+export function enumFieldSchema<const T extends Record<string, string>>(
+  values: T
+) {
+  return z.enum(Object.values(values) as [T[keyof T], ...T[keyof T][]]);
+}
+
+function normalizeNumericFieldInput(input: unknown): unknown {
+  if (input === undefined || input === null || input === '') {
+    return undefined;
+  }
+
+  if (typeof input === 'number') {
+    return Number.isNaN(input) ? undefined : input;
+  }
+
+  if (typeof input === 'string') {
+    const trimmed = input.trim();
+
+    if (trimmed === '') {
+      return undefined;
+    }
+
+    const parsed = Number(trimmed);
+
+    return Number.isNaN(parsed) ? undefined : parsed;
+  }
+
+  return input;
+}
+
+/** Required positive number from form inputs (empty / NaN → missing). */
+/** @public */
+export const positiveNumberFieldSchema = z.preprocess(
+  normalizeNumericFieldInput,
+  z.number().positive()
+);
+
+/** Required non-negative number from form inputs (empty / NaN → missing). */
+export const nonNegativeNumberFieldSchema = z.preprocess(
+  normalizeNumericFieldInput,
+  z.number().min(0)
+);
+
+/** Required whole non-negative number from form inputs. */
+export const nonNegativeIntegerFieldSchema = z.preprocess(
+  normalizeNumericFieldInput,
+  z.number().int().min(0)
+);
 
 /** For existing passwords (sign-in, confirmation): strength rules may postdate them. */
 export const requiredPasswordFieldSchema = z.string().min(1);
