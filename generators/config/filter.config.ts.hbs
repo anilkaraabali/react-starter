@@ -18,7 +18,7 @@ export const DEFAULT_{{entityConst}}_SORT_BY: {{entityPascal}}SortField =
   'createdAt';
 export const DEFAULT_{{entityConst}}_SORT_ORDER = 'desc' as const;
 
-export const INITIAL_{{pluralConst}}_SEARCH_STATE: Get{{pluralPascal}}Query = {
+export const initial{{pluralPascal}}FiltersState: Get{{pluralPascal}}Query = {
   page: 1,
   pageSize: undefined,
   search: '',
@@ -47,19 +47,23 @@ export const get{{pluralPascal}}FilterFields =
     {
       key: 'status',
       label: i18n._(msg`Status`),
-      options: {{entityConst}}_STATUS_OPTIONS.map((s) => ({
-        label: s.label,
-        value: s.value,
-      })),
+      props: {
+        options: {{entityConst}}_STATUS_OPTIONS.map((s) => ({
+          label: s.label,
+          value: s.value,
+        })),
+      },
       type: 'select',
     },
     {
       key: 'sortBy',
       label: i18n._(msg`Sort by`),
-      options: get{{entityPascal}}SortOptions().map((s) => ({
-        label: s.label,
-        value: s.value,
-      })),
+      props: {
+        options: get{{entityPascal}}SortOptions().map((s) => ({
+          label: s.label,
+          value: s.value,
+        })),
+      },
       type: 'select',
     },
     getSortOrderFilterField<Get{{pluralPascal}}Query>(),

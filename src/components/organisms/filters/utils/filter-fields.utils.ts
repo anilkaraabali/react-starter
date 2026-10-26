@@ -4,15 +4,17 @@ import type { FilterFieldConfig } from '@/components/organisms/filters/filters.t
 import { SORT_ORDERS } from '@/types/sort.types';
 
 export function getSortOrderFilterField<
-  TState extends object,
->(): FilterFieldConfig<TState> {
+  TFilters extends object,
+>(): FilterFieldConfig<TFilters> {
   return {
-    key: 'sortOrder' as keyof TState & string,
+    key: 'sortOrder' as keyof TFilters & string,
     label: i18n._(msg`Sort order`),
-    options: [
-      { label: i18n._(msg`Ascending (A-Z)`), value: SORT_ORDERS[0] },
-      { label: i18n._(msg`Descending (Z-A)`), value: SORT_ORDERS[1] },
-    ],
+    props: {
+      options: [
+        { label: i18n._(msg`Ascending (A-Z)`), value: SORT_ORDERS[0] },
+        { label: i18n._(msg`Descending (Z-A)`), value: SORT_ORDERS[1] },
+      ],
+    },
     type: 'select',
   };
 }

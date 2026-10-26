@@ -3,53 +3,24 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 
 import type {
-  FilterFieldConfig,
+  FilterOption,
   FilterValue,
 } from '@/components/organisms/filters/filters.types';
 
 type FilterSelectProps = {
-  config: FilterFieldConfig;
+  label: string;
+  options?: FilterOption[];
   onChange: (value: FilterValue) => void;
   value: FilterValue;
 };
 
-export function FilterSelect({ config, onChange, value }: FilterSelectProps) {
+export function FilterSelect({
+  label,
+  onChange,
+  options = [],
+  value,
+}: FilterSelectProps) {
   const { _ } = useLingui();
-  const options = config.options ?? [];
-  const isMulti = config.type === 'multiselect';
-
-  if (isMulti) {
-    return (
-      <Select
-        fullWidth
-        onChange={(keys) => onChange(keys as Key[])}
-        placeholder={_(msg`Select one`)}
-        selectionMode='multiple'
-        value={value as Key[]}
-        variant='secondary'
-      >
-        <Label>{config.label}</Label>
-        <Select.Trigger>
-          <Select.Value />
-          <Select.Indicator />
-        </Select.Trigger>
-        <Select.Popover>
-          <ListBox selectionMode='multiple'>
-            {options.map((option) => (
-              <ListBox.Item
-                id={option.value}
-                key={option.value}
-                textValue={option.label}
-              >
-                {option.label}
-                <ListBox.ItemIndicator />
-              </ListBox.Item>
-            ))}
-          </ListBox>
-        </Select.Popover>
-      </Select>
-    );
-  }
 
   return (
     <Select
@@ -59,7 +30,7 @@ export function FilterSelect({ config, onChange, value }: FilterSelectProps) {
       value={value as Key}
       variant='secondary'
     >
-      <Label>{config.label}</Label>
+      <Label>{label}</Label>
       <Select.Trigger>
         <Select.Value />
         <Select.Indicator />

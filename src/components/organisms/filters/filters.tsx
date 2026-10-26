@@ -1,96 +1,101 @@
+import { Disclosure } from '@heroui/react';
 import { type ReactNode, useState } from 'react';
-
 import type {
-  FilterFieldConfig,
+  FilterState,
   FilterValue,
+  SearchFilterFieldConfig,
 } from '@/components/organisms/filters/filters.types';
-import { useOptionalFilter } from '@/components/organisms/filters/stores/filter-provider';
-import { FiltersView } from './filters-view';
+import { FiltersToolbar } from '@/components/organisms/filters/filters-toolbar';
+import { FiltersPanel } from '@/components/organisms/filters/panel/filters-panel';
+import { useFilter } from '@/components/organisms/filters/stores/filter-provider';
 
 type FiltersProps = {
-  activePanelFilterCount?: number;
   endActions?: ReactNode;
-  fields?: readonly FilterFieldConfig[];
-  getFilterValue?: (key: string) => FilterValue;
-  isExpanded?: boolean;
-  onClearPanelFilters?: () => void;
-  onExpandedChange?: (expanded: boolean) => void;
-  onFilterChange?: (key: string, value: FilterValue) => void;
-  onSearchChange?: (value: string) => void;
-  searchField?: FilterFieldConfig;
-  searchValue?: FilterValue;
 };
 
-export function Filters({
-  activePanelFilterCount: explicitActiveCount,
-  endActions,
-  fields: explicitFields,
-  getFilterValue: explicitGetFilterValue,
-  isExpanded: controlledExpanded,
-  onClearPanelFilters: explicitOnClearPanelFilters,
-  onExpandedChange: controlledOnExpandedChange,
-  onFilterChange: explicitOnFilterChange,
-  onSearchChange: explicitOnSearchChange,
-  searchField: explicitSearchField,
-  searchValue: explicitSearchValue,
-}: FiltersProps) {
-  const [internalExpanded, setInternalExpanded] = useState(false);
-  const filterContext = useOptionalFilter();
+export function Filters({ endActions }: FiltersProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { fields, getFilterValue, isActive, setFilterValue, setFilters } =
+    useFilter<FilterState>();
 
-  const isExpanded = controlledExpanded ?? internalExpanded;
-  const onExpandedChange = controlledOnExpandedChange ?? setInternalExpanded;
-
-  // Use props if provided, otherwise context
-  const fields = explicitFields ?? filterContext?.fields ?? [];
-
-  const searchField =
-    explicitSearchField ?? fields.find((field) => field.type === 'search');
+  const searchField = fields.find(
+    (field): field is SearchFilterFieldConfig => field.type === 'search'
+  );
   const filterFields = fields.filter((field) => field.type !== 'search');
 
-  const getFilterValue =
-    explicitGetFilterValue ??
-    ((key: string) => filterContext?.getFilterValue(key));
+  const [draftValues, setDraftValues] = useState<Record<string, FilterValue>>(
+    () =>
+      Object.fromEntries(
+        filterFields.map((field) => [field.key, getFilterValue(field.key)])
+      )
+  );
 
-  const onFilterChange =
-    explicitOnFilterChange ??
-    ((key: string, value: FilterValue) =>
-      filterContext?.setFilterValue(key, value));
+  const handleExpandedChange = (expanded: boolean) => {
+    if (expanded) {
+      setDraftValues(
+        Object.fromEntries(
+          filterFields.map((field) => [field.key, getFilterValue(field.key)])
+        )
+      );
+    }
+    setIsExpanded(expanded);
+  };
 
-  const onSearchChange =
-    explicitOnSearchChange ??
-    (searchField
-      ? (value: string) => filterContext?.setFilterValue(searchField.key, value)
-      : undefined);
+  const handleApplyPanelFilters = () => {
+    setFilters(draftValues);
+    setIsExpanded(false);
+  };
 
-  const searchValue =
-    explicitSearchValue ??
-    (searchField ? getFilterValue(searchField.key) : undefined);
+  const handleDraftFilterChange = (key: string, value: FilterValue) => {
+    setDraftValues((current) => ({ ...current, [key]: value }));
+  };
 
-  const activePanelFilterCount =
-    explicitActiveCount ??
-    filterFields.filter((field) => filterContext?.isActive(field.key)).length;
+  const handleClearPanelFilters = () => {
+    setDraftValues(
+      Object.fromEntries(filterFields.map((field) => [field.key, undefined]))
+    );
+  };
 
-  const onClearPanelFilters =
-    explicitOnClearPanelFilters ??
-    (() => {
-      if (filterContext) {
-        filterContext.clearFilter(...filterFields.map((field) => field.key));
-      }
-    });
+  const activePanelFilterCount = filterFields.filter((field) =>
+    isActive(field.key)
+  ).length;
+  const hasPanelFilters = activePanelFilterCount > 0;
+
+  if (filterFields.length === 0) {
+    return null;
+  }
 
   return (
-    <FiltersView
-      activePanelFilterCount={activePanelFilterCount}
-      endActions={endActions}
-      filterFields={filterFields}
-      getFilterValue={getFilterValue}
+    <Disclosure
+      className='w-full'
       isExpanded={isExpanded}
-      onClearPanelFilters={onClearPanelFilters}
-      onExpandedChange={onExpandedChange}
-      onFilterChange={onFilterChange}
-      onSearchChange={onSearchChange}
-      searchField={searchField}
-      searchValue={searchValue}
-    />
+      onExpandedChange={handleExpandedChange}
+    >
+      <FiltersToolbar
+        activeCount={activePanelFilterCount}
+        endActions={endActions}
+        hasPanelFilters={hasPanelFilters}
+        onSearchChange={
+          searchField
+            ? (value: string) => setFilterValue(searchField.key, value)
+            : undefined
+        }
+        searchPlaceholder={
+          searchField?.props?.placeholder ?? searchField?.label
+        }
+        searchValue={searchField ? getFilterValue(searchField.key) : undefined}
+        showFilterTrigger
+      />
+
+      <FiltersPanel
+        fields={filterFields}
+        getFilterValue={(key) => draftValues[key]}
+        hasActiveFilters={hasPanelFilters}
+        onApply={handleApplyPanelFilters}
+        onCancel={() => setIsExpanded(false)}
+        onClear={handleClearPanelFilters}
+        onFilterChange={handleDraftFilterChange}
+      />
+    </Disclosure>
   );
 }

@@ -1,21 +1,27 @@
 import { DatePicker, Label } from '@heroui/react';
-import type { CalendarDate } from '@internationalized/date';
 import { DatePickerGroup } from '@/components/molecules/date-picker-group';
 import { DatePickerPopover } from '@/components/molecules/date-picker-popover';
-import type { FilterFieldConfig } from '@/components/organisms/filters/filters.types';
+import type { FilterValue } from '@/components/organisms/filters/filters.types';
+import {
+  parseDateFilterValue,
+  serializeDateFilterValue,
+} from '@/components/organisms/filters/utils/filter-date.utils';
 
 type FilterDateProps = {
-  config: FilterFieldConfig;
-  onChange: (value: CalendarDate | null) => void;
-  value: CalendarDate | null;
+  label: string;
+  onChange: (value: FilterValue) => void;
+  value: FilterValue;
 };
 
-export function FilterDate({ config, onChange, value }: FilterDateProps) {
+export function FilterDate({ label, onChange, value }: FilterDateProps) {
   return (
-    <DatePicker onChange={onChange} value={value}>
-      <Label>{config.label}</Label>
+    <DatePicker
+      onChange={(next) => onChange(serializeDateFilterValue(next))}
+      value={parseDateFilterValue(value)}
+    >
+      <Label>{label}</Label>
       <DatePickerGroup variant='secondary' />
-      <DatePickerPopover label={config.label} />
+      <DatePickerPopover label={label} />
     </DatePicker>
   );
 }

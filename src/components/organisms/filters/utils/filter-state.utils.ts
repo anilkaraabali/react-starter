@@ -19,10 +19,10 @@ export function isFilterValueActive<T = FilterValue>(
 }
 
 /** Route-level helper: are any declared filter fields non-default? */
-export function hasActiveFilterFields<TState extends object>(
-  search: Partial<TState>,
-  initialState: TState,
-  fields: FilterFieldConfig<TState>[]
+export function hasActiveFilterFields<TFilters extends object>(
+  search: Partial<TFilters>,
+  initialState: TFilters,
+  fields: FilterFieldConfig<TFilters>[]
 ): boolean {
   return fields.some((field) =>
     isFilterValueActive(search[field.key], initialState[field.key])

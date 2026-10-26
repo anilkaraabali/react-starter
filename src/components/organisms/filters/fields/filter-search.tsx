@@ -4,24 +4,21 @@ import { useLingui } from '@lingui/react';
 import { useEffect, useState } from 'react';
 import { useDebounceCallback } from 'usehooks-ts';
 
-import type {
-  FilterFieldConfig,
-  FilterValue,
-} from '@/components/organisms/filters/filters.types';
+import type { FilterValue } from '@/components/organisms/filters/filters.types';
 
 const SEARCH_DEBOUNCE_MS = 300;
 
 type FilterSearchProps = {
   className?: string;
-  config: FilterFieldConfig;
   onChange: (value: string) => void;
+  placeholder: string;
   value: FilterValue;
 };
 
 export function FilterSearch({
   className,
-  config,
   onChange,
+  placeholder,
   value,
 }: FilterSearchProps) {
   const { _ } = useLingui();
@@ -53,7 +50,7 @@ export function FilterSearch({
     >
       <SearchField.Group>
         <SearchField.SearchIcon />
-        <SearchField.Input placeholder={config.label} />
+        <SearchField.Input placeholder={placeholder} />
         <SearchField.ClearButton />
       </SearchField.Group>
     </SearchField>

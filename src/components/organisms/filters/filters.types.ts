@@ -1,14 +1,6 @@
 import type { Key } from '@heroui/react';
 
-type FilterFieldType =
-  | 'autocomplete'
-  | 'date'
-  | 'multiselect'
-  | 'number'
-  | 'search'
-  | 'select';
-
-type FilterOption = {
+export type FilterOption = {
   description?: string;
   label: string;
   value: Key;
@@ -16,14 +8,26 @@ type FilterOption = {
 
 export type FilterValue = Key | Key[] | null | undefined;
 
-export type DefaultFilterState = Record<string, FilterValue>;
+export type FilterState = Record<string, FilterValue>;
 
-export type FilterFieldConfig<TState extends object = DefaultFilterState> = {
-  /** API / search key, e.g. "categoryId" */
-  key: keyof TState & string;
-  /** Visible field label, e.g. "Category" */
-  label: string;
+type FilterFieldProps = {
   options?: FilterOption[];
   prefix?: string;
-  type: FilterFieldType;
+  placeholder?: string;
 };
+
+type FilterFieldConfigBase<TKey extends string> = {
+  key: TKey;
+  label: string;
+  props?: FilterFieldProps;
+};
+
+export type SearchFilterFieldConfig<TKey extends string = string> =
+  FilterFieldConfigBase<TKey> & {
+    type: 'search';
+  };
+
+export type FilterFieldConfig<TFilters extends object = FilterState> =
+  FilterFieldConfigBase<keyof TFilters & string> & {
+    type: 'autocomplete' | 'date' | 'number' | 'search' | 'select';
+  };

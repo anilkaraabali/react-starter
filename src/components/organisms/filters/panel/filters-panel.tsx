@@ -11,6 +11,7 @@ type FiltersPanelProps = {
   fields: readonly FilterFieldConfig[];
   getFilterValue: (key: string) => FilterValue;
   hasActiveFilters: boolean;
+  onApply: () => void;
   onCancel: () => void;
   onClear: () => void;
   onFilterChange: (key: string, value: FilterValue) => void;
@@ -20,6 +21,7 @@ export function FiltersPanel({
   fields,
   getFilterValue,
   hasActiveFilters,
+  onApply,
   onCancel,
   onClear,
   onFilterChange,
@@ -40,6 +42,7 @@ export function FiltersPanel({
 
         <FiltersPanelActions
           hasActiveFilters={hasActiveFilters}
+          onApply={onApply}
           onCancel={onCancel}
           onClear={onClear}
         />

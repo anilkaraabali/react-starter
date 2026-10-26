@@ -1,47 +1,41 @@
 import { isFilterValueActive } from '@/components/organisms/filters/utils/filter-state.utils';
 
-type UseFilterStateOptions<TSearch extends object> = {
-  initialState: TSearch;
-  navigate: (updater: (prev: TSearch) => TSearch) => void;
-  search: TSearch;
+type UseFilterStateOptions<TFilters extends object> = {
+  initialState: TFilters;
+  navigate: (updater: (prev: TFilters) => TFilters) => void;
+  search: TFilters;
 };
 
-/** Empty strings stay in the query as `?search=`; omit them instead. */
-function omitEmptySearchValue<T>(value: T): T | undefined {
-  if ((value as string) === '' || value === null) return undefined;
-  return value;
-}
-
-export function useFilterState<TSearch extends object>({
+export function useFilterState<TFilters extends object>({
   initialState,
   navigate,
   search,
-}: UseFilterStateOptions<TSearch>) {
-  const patchSearch = (patch: Partial<TSearch>) => {
+}: UseFilterStateOptions<TFilters>) {
+  const setFilters = (patch: Partial<TFilters>) => {
     navigate((prev) => ({ ...prev, ...patch, page: undefined }));
   };
 
-  const getFilterValue = <K extends keyof TSearch>(
+  const getFilterValue = <K extends keyof TFilters>(
     key: K
-  ): TSearch[K] | undefined =>
+  ): TFilters[K] | undefined =>
     search[key] !== undefined ? search[key] : initialState[key];
 
-  const setFilterValue = <K extends keyof TSearch>(
+  const setFilterValue = <K extends keyof TFilters>(
     key: K,
-    value: TSearch[K] | undefined
+    value: TFilters[K] | undefined
   ) => {
-    patchSearch({ [key]: omitEmptySearchValue(value) } as Partial<TSearch>);
+    setFilters({ [key]: value } as Partial<TFilters>);
   };
 
-  const clearFilter = (...keys: (keyof TSearch)[]) => {
-    patchSearch(
+  const clearFilters = (...keys: (keyof TFilters)[]) => {
+    setFilters(
       Object.fromEntries(
-        keys.map((key) => [key, omitEmptySearchValue(initialState[key])])
-      ) as Partial<TSearch>
+        keys.map((key) => [key, initialState[key]])
+      ) as Partial<TFilters>
     );
   };
 
-  const isActive = (key: keyof TSearch): boolean =>
+  const isActive = (key: keyof TFilters): boolean =>
     isFilterValueActive(search[key], initialState[key]);
 
   const setPage = (page: number) => {
@@ -52,9 +46,10 @@ export function useFilterState<TSearch extends object>({
   };
 
   return {
-    clearFilter,
+    clearFilters,
     getFilterValue,
     isActive,
+    setFilters,
     setFilterValue,
     setPage,
   };

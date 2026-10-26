@@ -15,7 +15,7 @@ import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/component
 import { {{pluralPascal}}Table } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{pluralKebab}}-table';
 import {
   get{{pluralPascal}}FilterFields,
-  INITIAL_{{pluralConst}}_SEARCH_STATE,
+  initial{{pluralPascal}}FiltersState,
 } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
 import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 import { useResponsivePageSize } from '@/hooks/use-responsive-page-size';
@@ -30,13 +30,13 @@ export function {{entityPascal}}ListView() {
 
   const filterFields = useMemo(() => get{{pluralPascal}}FilterFields(), []);
 
-  const page = searchParams.page ?? INITIAL_{{pluralConst}}_SEARCH_STATE.page ?? 1;
+  const page = searchParams.page ?? initial{{pluralPascal}}FiltersState.page ?? 1;
   const pageSize = searchParams.pageSize ?? responsivePageSize;
   const search = searchParams.search ?? '';
   const status = searchParams.status;
-  const sortBy = searchParams.sortBy ?? INITIAL_{{pluralConst}}_SEARCH_STATE.sortBy;
+  const sortBy = searchParams.sortBy ?? initial{{pluralPascal}}FiltersState.sortBy;
   const sortOrder =
-    searchParams.sortOrder ?? INITIAL_{{pluralConst}}_SEARCH_STATE.sortOrder;
+    searchParams.sortOrder ?? initial{{pluralPascal}}FiltersState.sortOrder;
 
   const { data, isLoading } = use{{pluralPascal}}({
     params: {
@@ -90,7 +90,7 @@ export function {{entityPascal}}ListView() {
     >
       <RouteFilterProvider
         fields={filterFields}
-        initialState={INITIAL_{{pluralConst}}_SEARCH_STATE}
+        initialState={initial{{pluralPascal}}FiltersState}
         navigate={navigate}
         search={searchParams}
       >

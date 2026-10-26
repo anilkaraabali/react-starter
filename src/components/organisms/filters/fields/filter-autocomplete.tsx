@@ -3,23 +3,24 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { AutocompletePopover } from '@/components/molecules/autocomplete-popover';
 import type {
-  FilterFieldConfig,
+  FilterOption,
   FilterValue,
 } from '@/components/organisms/filters/filters.types';
 
 type FilterAutocompleteProps = {
-  config: FilterFieldConfig;
+  label: string;
+  options?: FilterOption[];
   onChange: (value: FilterValue) => void;
   value: FilterValue;
 };
 
 export function FilterAutocomplete({
-  config,
+  label,
   onChange,
+  options = [],
   value,
 }: FilterAutocompleteProps) {
   const { _ } = useLingui();
-  const options = config.options ?? [];
 
   return (
     <Autocomplete
@@ -31,7 +32,7 @@ export function FilterAutocomplete({
       value={value as Key}
       variant='secondary'
     >
-      <Label>{config.label}</Label>
+      <Label>{label}</Label>
       <Autocomplete.Trigger>
         <Autocomplete.Value />
         <Autocomplete.ClearButton />

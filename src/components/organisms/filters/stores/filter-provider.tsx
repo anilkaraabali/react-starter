@@ -1,33 +1,41 @@
 import { createContext, type ReactNode, useContext } from 'react';
 import type {
-  DefaultFilterState,
   FilterFieldConfig,
+  FilterState,
 } from '@/components/organisms/filters/filters.types';
 import { useFilterState } from '@/components/organisms/filters/stores/use-filter-state';
 
-export type FilterContextValue<TSearch extends object = DefaultFilterState> = {
-  fields: FilterFieldConfig<TSearch>[];
-} & ReturnType<typeof useFilterState<TSearch>>;
+type FilterContextValue<TFilters extends object> = {
+  fields: FilterFieldConfig<TFilters>[];
+} & ReturnType<typeof useFilterState<TFilters>>;
 
-const FilterContext =
-  createContext<FilterContextValue<DefaultFilterState> | null>(null);
+const FilterContext = createContext<FilterContextValue<FilterState> | null>(
+  null
+);
 
-type FilterProviderProps<TSearch extends object> = {
+type RouteFilterProviderProps<TFilters extends object> = {
   children: ReactNode;
-  fields: FilterFieldConfig<TSearch>[];
-  initialState: TSearch;
-  navigate: (updater: (prev: TSearch) => TSearch) => void;
-  search: TSearch;
+  fields: FilterFieldConfig<TFilters>[];
+  initialState: TFilters;
+  navigate: (options: never) => unknown;
+  search: TFilters;
 };
 
-export function FilterProvider<TSearch extends object>({
+export function RouteFilterProvider<TFilters extends object>({
   children,
   fields,
   initialState,
   navigate,
   search,
-}: FilterProviderProps<TSearch>) {
-  const filterState = useFilterState({ initialState, navigate, search });
+}: RouteFilterProviderProps<TFilters>) {
+  const filterState = useFilterState({
+    initialState,
+    navigate: (updater) =>
+      navigate({
+        search: updater as never,
+      } as never),
+    search,
+  });
 
   return (
     <FilterContext.Provider
@@ -35,7 +43,7 @@ export function FilterProvider<TSearch extends object>({
         {
           ...filterState,
           fields,
-        } as FilterContextValue<TSearch> as FilterContextValue<DefaultFilterState>
+        } as unknown as FilterContextValue<FilterState>
       }
     >
       {children}
@@ -43,21 +51,13 @@ export function FilterProvider<TSearch extends object>({
   );
 }
 
-/** @public */
 export function useFilter<
-  TSearch extends object = DefaultFilterState,
->(): FilterContextValue<TSearch> {
+  TFilters extends object,
+>(): FilterContextValue<TFilters> {
   const context = useContext(FilterContext);
   if (!context) {
-    throw new Error('useFilter must be used within a FilterProvider');
+    throw new Error('useFilter must be used within a route filter provider');
   }
 
-  return context as FilterContextValue<TSearch>;
-}
-
-export function useOptionalFilter<
-  TSearch extends object = DefaultFilterState,
->(): FilterContextValue<TSearch> | null {
-  const context = useContext(FilterContext);
-  return (context as FilterContextValue<TSearch>) ?? null;
+  return context as unknown as FilterContextValue<TFilters>;
 }

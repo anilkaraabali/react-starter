@@ -1,4 +1,4 @@
-import { Button, Disclosure } from '@heroui/react';
+import { Badge, Button, Disclosure } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { ListFilterIcon } from 'lucide-react';
@@ -17,18 +17,27 @@ export function FiltersTriggerButton({
   const isMobile = useIsMobile();
 
   return (
-    <Button
-      isIconOnly={isMobile}
-      slot='trigger'
-      variant={hasActiveFilters ? 'secondary' : 'tertiary'}
-    >
-      <ListFilterIcon />
-      {isMobile
-        ? null
-        : hasActiveFilters
-          ? _(msg`Filters (${activeCount})`)
-          : _(msg`Filters`)}
-      {isMobile ? null : <Disclosure.Indicator />}
-    </Button>
+    <Badge.Anchor>
+      <Button
+        aria-label={_(msg`Filters`)}
+        isIconOnly={isMobile}
+        slot='trigger'
+        variant='tertiary'
+      >
+        <ListFilterIcon />
+        {isMobile ? null : _(msg`Filters`)}
+        {isMobile ? null : <Disclosure.Indicator />}
+      </Button>
+      {hasActiveFilters ? (
+        <Badge.Root
+          color='accent'
+          placement='top-right'
+          size='sm'
+          variant='soft'
+        >
+          <Badge.Label>{activeCount}</Badge.Label>
+        </Badge.Root>
+      ) : null}
+    </Badge.Anchor>
   );
 }
