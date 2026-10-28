@@ -20,7 +20,7 @@ export function Logo({ className, showWordmark = true, ...props }: LogoProps) {
     >
       <Brandmark aria-hidden className='size-8 shrink-0' />
       {showWordmark ? (
-        <span className='font-semibold font-serif text-xl tracking-tight'>
+        <span className='font-serif text-xl font-semibold tracking-tight'>
           Admin
         </span>
       ) : null}

@@ -58,10 +58,10 @@ export function Sidebar({
       className={cn(
         'group/sidebar relative flex shrink-0 flex-col transition-[width,margin,border-radius,box-shadow] duration-300 ease-in-out motion-reduce:transition-none',
         {
-          'm-3 h-[calc(100svh-24px)] overflow-visible rounded-2xl border bg-surface shadow-surface':
+          'bg-surface shadow-surface m-3 h-[calc(100svh-24px)] overflow-visible rounded-2xl border':
             isFloating,
           'size-full': isDrawer,
-          'sticky top-0 h-svh border-(--sidebar-edge-outline) border-r':
+          'sticky top-0 h-svh border-r border-(--sidebar-edge-outline)':
             isDocked,
           'w-16 min-w-16': !isDrawer && !isCompact && !showExpanded,
           'w-22 min-w-22': !isDrawer && isCompact,

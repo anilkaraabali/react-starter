@@ -34,11 +34,11 @@ export function AdminHeaderUserMenu() {
       </Button>
       <Dropdown.Popover className='min-w-56'>
         <div className='border-b px-3 py-2.5'>
-          <p className='font-semibold text-foreground text-sm leading-tight'>
+          <p className='text-foreground text-sm leading-tight font-semibold'>
             {userName}
           </p>
           {email ? (
-            <p className='mt-0.5 truncate text-muted text-xs'>{email}</p>
+            <p className='text-muted mt-0.5 truncate text-xs'>{email}</p>
           ) : null}
         </div>
         <Dropdown.Menu
@@ -59,7 +59,7 @@ export function AdminHeaderUserMenu() {
           <Dropdown.Item id='notifications' textValue={t`Notifications`}>
             <BellIcon className='text-muted' />
             <Label>{t`Notifications`}</Label>
-            <span className='ms-auto rounded-full bg-accent-soft px-1.5 py-0.5 text-[10px] text-accent-soft-foreground'>
+            <span className='bg-accent-soft text-accent-soft-foreground ms-auto rounded-full px-1.5 py-0.5 text-[10px]'>
               4
             </span>
           </Dropdown.Item>

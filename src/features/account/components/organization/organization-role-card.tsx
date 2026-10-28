@@ -38,7 +38,7 @@ export function OrganizationRoleCard({
         </div>
       </Card.Header>
       <Card.Footer className='mt-auto flex items-center justify-between gap-3'>
-        <div className='flex flex-wrap items-center gap-4 text-muted text-sm'>
+        <div className='text-muted flex flex-wrap items-center gap-4 text-sm'>
           <span className='inline-flex items-center gap-1'>
             <ShieldCheckIcon />
             <span>{t`${permissionCount} permissions`}</span>

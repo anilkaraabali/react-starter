@@ -16,7 +16,7 @@ export function LanguageOptionList({
 
   return (
     <div>
-      <h4 className='mb-2 font-semibold text-foreground text-xs'>
+      <h4 className='text-foreground mb-2 text-xs font-semibold'>
         {t`Language`}
       </h4>
       <div className='grid grid-cols-3 gap-2.5'>

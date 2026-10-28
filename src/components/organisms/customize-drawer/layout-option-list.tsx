@@ -17,7 +17,7 @@ export function LayoutOptionList({
   return (
     <div>
       <div className='mb-2 flex items-center justify-between'>
-        <h4 className='font-semibold text-foreground text-xs'>{t`Layout`}</h4>
+        <h4 className='text-foreground text-xs font-semibold'>{t`Layout`}</h4>
       </div>
       <div className='grid grid-cols-2 gap-2.5'>
         {layoutOptions.map((opt) => (

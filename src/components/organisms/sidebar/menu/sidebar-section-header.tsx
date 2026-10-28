@@ -19,8 +19,8 @@ export function SidebarSectionHeader({
       aria-controls={contentId}
       aria-expanded={isOpen}
       className={cn(
-        'flex w-full items-center gap-2 rounded-md px-3 py-1.5 font-semibold text-[10px] text-foreground/80 uppercase tracking-widest transition-colors',
-        'cursor-pointer hover:text-foreground'
+        'text-foreground/80 flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-[10px] font-semibold tracking-widest uppercase transition-colors',
+        'hover:text-foreground cursor-pointer'
       )}
       onClick={onToggle}
       type='button'

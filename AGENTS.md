@@ -93,18 +93,21 @@ src/features/awesome-feature/
 ## Code Standards
 
 ### TypeScript
+
 - **Strict mode enabled** - All TypeScript strict checks are enforced
 - **Type-first approach** - Use `type` aliases for props and domain data; reserve `interface` strictly for `declare module` augmentation
 - **Absolute imports** - Use `@/` prefix for all src imports (e.g., `@/components/atoms/logo`)
 - **Zero barrel files** - Import directly from atomic files; never use `index.ts`
 
 ### Code Style
+
 - **Biome** configured for formatting, linting, and imports
 - **PascalCase** for React components
 - **camelCase** for functions and variables
 - **Sentence case for buttons and actions** - Use sentence case for button labels and action texts (e.g., "Add product", "Save changes", "Create member"; NOT Title Case like "Add Product" or "Save Changes")
 
 ### File Naming Conventions
+
 - **Components** - `kebab-case.tsx` (e.g., `user-profile.tsx`, `product-view.tsx`)
 - **Hooks** - `use-kebab-case.ts` (e.g., `use-discussions.ts`, `use-disclosure.ts`)
 - **Utilities** - `kebab-case.ts` (e.g., `format-date.ts`, `format-currency.ts`)
@@ -112,6 +115,7 @@ src/features/awesome-feature/
 - **Folders** - `kebab-case` throughout the entire repository
 
 ### Architecture Rules
+
 - **No cross-feature imports** - Features should not import from each other
 - **Unidirectional flow** - Code flows: shared → features → app
 - **Colocation** - Keep related code as close as possible to where it's used
@@ -119,6 +123,7 @@ src/features/awesome-feature/
 ## Component Guidelines
 
 ### Best Practices
+
 - **Composition over props** - Use children/slots instead of many props
 - **Single responsibility** - Shared components in `src/components/` must be pure ("dumb") with zero router, auth, or API dependencies
 - **Extract render functions** - Move complex JSX into separate components
@@ -126,12 +131,14 @@ src/features/awesome-feature/
 - **Atomic Design** - Higher level imports lower level (`organisms` → `molecules` → `atoms`; never reverse)
 
 ### Styling
+
 - **Tailwind CSS v4** is the primary styling solution
 - **HeroUI v3** components built on React Aria primitives
 
 ## State Management Strategy
 
 ### Component State
+
 - Use `useState` for simple independent state
 - Use `useReducer` for complex state with multiple related updates
 
@@ -141,11 +148,13 @@ src/features/awesome-feature/
 - Global error handling via `QueryCache` / `MutationCache` and toast alerts (`toast.danger`); opt-out with `meta: { handleGlobalError: false }`
 
 ### Form State
+
 - **TanStack Form** for form management
 - **Zod** for form validation schemas
 - Create reusable Form and Input components
 
 ### Application State
+
 - **React Context** (Kent C. Dodds pattern) for local and app-wide UI state (active drawer, theme, preferences)
 - Keep `createContext`, `<Name>Provider`, and `use<Name>()` in one atomic file; fail-fast if rendered outside provider
 
@@ -174,6 +183,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Testing Strategy
 
 ### Unit & Integration Tests
+
 - **Vitest & Testing Library** - Co-located in `__tests__/` subdirectories using `<name>.spec.ts(x)`
 - **Render Wrapper** - Use `renderWithI18n` (`src/testing/render.tsx`) for components requiring translation context
 - **Mocking** - Mock API calls using MSW (Mock Service Worker) handlers in `src/testing/mocks/`
@@ -182,12 +192,14 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Security Considerations
 
 ### Authentication
+
 - **HttpOnly Cookies** - JWT & session tokens stored in secure `HttpOnly` cookies (never `localStorage` or `sessionStorage`)
 - **Better Auth Client** - Built-in session state management (`authClient.useSession`) with automatic session tracking
 - **Automatic Session & Token Refresh** - Handled seamlessly via Better Auth cookie lifecycle and Axios interceptors
 - On `401 Unauthorized` responses, clear local session state and redirect to login
 
 ### Authorization
+
 - **RBAC (Role-Based Access Control)** for basic permissions
 - **PBAC (Permission-Based Access Control)** for granular control
 - **Client-side authorization for UX** (always validate server-side)
@@ -195,6 +207,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 - Restrict route access at loader or layout level using authenticated context and policies
 
 ### XSS Prevention
+
 - `dangerouslySetInnerHTML` is strictly prohibited
 - Sanitize all user inputs before rendering
 - Use DOMPurify for HTML content sanitization
@@ -205,15 +218,18 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Performance Optimization
 
 ### Code Splitting
+
 - **Route-level splitting** - Lazy load pages/routes automatically via TanStack Router
 - **Avoid excessive splitting** - Balance network requests vs bundle size; don't split small atomic components
 
 ### React Optimizations
+
 - **Children prop pattern** - Prevent unnecessary re-renders of heavy subtrees using composition
 - **State colocation** - Keep state as close to where it's used as possible
 - **State initializer functions** - Use lazy initial state (`useState(() => computeExpensiveValue())`) for heavy computations
 
 ### Image Optimization
+
 - **Lazy loading** - Native lazy loading (`loading="lazy"`) for images outside viewport
 - **Modern formats** - Prefer WebP/AVIF with suitable fallbacks
 - **Responsive images** - Use `srcset` and `sizes` attributes for resolution switching
@@ -221,11 +237,13 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Error Handling
 
 ### API Errors
+
 - **Global error interceptor** in API client (`src/lib/api-client.ts`)
 - **Automatic error notifications** via toast system (`toast.danger`)
 - **Automatic token refresh & redirect** on 401 Unauthorized errors
 
 ### Application Errors
+
 - **Error Boundaries at feature level** (not just root app level)
 - **Graceful fallbacks** for broken components via localized error UI
 - **Sentry integration** for production error tracking when configured
@@ -233,11 +251,13 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Build and Deployment
 
 ### Development
+
 - **Vite** for fast development builds and HMR
 - **TypeScript strict mode** for compile-time safety
 - **Biome** for formatting, linting, and imports code quality
 
 ### Production
+
 - **Deploy to CDN platforms** - Vercel, Netlify, or AWS CloudFront
 - **Source maps** uploaded to Sentry for error tracking
 - **Environment configuration** via `.env` files with validation (`src/config/env.ts`)
@@ -245,6 +265,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Development Workflow
 
 ### Git Hooks (Husky & lint-staged)
+
 - **Pre-commit** - Automated via `lint-staged`:
   - Biome formatting & lint check (`biome check --write`)
   - TypeScript type check (`tsc --noEmit`)
@@ -255,6 +276,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Common Patterns
 
 ### Feature Development
+
 - Start with API types and validation schemas
 - Create API fetcher functions and React Query hooks (`src/features/<feature>/api/`)
 - Build UI components with proper TypeScript integration (`src/features/<feature>/components/`)
@@ -262,12 +284,14 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 - Register file-based routes under `src/app/routes/`
 
 ### Component Creation
+
 - Follow Atomic Design (`atoms` → `molecules` → `organisms`) in `src/components/` or feature-level `components/`
 - Prioritize composition over prop drilling
 - Keep shared components pure with zero router/auth/API dependencies
 - Include unit tests for components with logic in co-located `__tests__/`
 
 ### State Management
+
 - Start with local component state (`useState`, `useReducer`)
 - Lift to parent component if needed by siblings
 - Application UI state in React Context (provider + custom hook in one file)
@@ -305,11 +329,6 @@ Justified exceptions: `// biome-ignore lint/plugin: <reason>` on the line above.
 - Top-level pages live in the "Overview" group of `src/app/layouts/admin-layout/sidebar-items.ts`.
 
 ---
-
-
-
-
-
 
 <!-- HEROUI-REACT-AGENTS-MD-START -->
 

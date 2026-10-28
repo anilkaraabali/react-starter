@@ -2,7 +2,7 @@ import { Outlet } from '@tanstack/react-router';
 
 export function AccountLayout() {
   return (
-    <div className='container mx-auto min-w-0 max-w-6xl'>
+    <div className='container mx-auto max-w-6xl min-w-0'>
       <Outlet />
     </div>
   );

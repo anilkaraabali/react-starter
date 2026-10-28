@@ -14,15 +14,15 @@ import type { ReactElement, ReactNode } from 'react';
  * component that reads through `useLingui` re-renders on locale change and
  * falls back to its source text.
  */
+function I18nWrapper({ children }: { children: ReactNode }) {
+  return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
+}
+
 export function renderWithI18n(
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>
 ): RenderResult & { rerenderWithI18n: (next: ReactElement) => void } {
-  function Wrapper({ children }: { children: ReactNode }) {
-    return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
-  }
-
-  const result = render(ui, { ...options, wrapper: Wrapper });
+  const result = render(ui, { ...options, wrapper: I18nWrapper });
 
   return {
     ...result,

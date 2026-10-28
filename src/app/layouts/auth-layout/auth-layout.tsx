@@ -25,7 +25,7 @@ type AuthLayoutProps = {
 /** Presentational layout shell for authentication screens (`/_auth`). */
 export function AuthLayout({ children }: AuthLayoutProps) {
   return (
-    <div className='relative flex h-dvh flex-col overflow-hidden bg-background'>
+    <div className='bg-background relative flex h-dvh flex-col overflow-hidden'>
       <div className='relative z-10 flex min-h-0 flex-1 overflow-y-auto p-6'>
         <motion.div
           animate='visible'
@@ -35,13 +35,13 @@ export function AuthLayout({ children }: AuthLayoutProps) {
         >
           <motion.div variants={slideUp}>
             <div className='mb-8 flex justify-center'>
-              <div className='flex items-center justify-center rounded-lg border border-accent/25 bg-accent/12 p-2.5'>
-                <Logo className='h-8 w-auto text-accent' />
+              <div className='border-accent/25 bg-accent/12 flex items-center justify-center rounded-lg border p-2.5'>
+                <Logo className='text-accent h-8 w-auto' />
               </div>
             </div>
 
             <div
-              className='relative rounded-2xl border border-accent/12 p-8 shadow-xl backdrop-blur-sm'
+              className='border-accent/12 relative rounded-2xl border p-8 shadow-xl backdrop-blur-sm'
               style={{
                 boxShadow:
                   '0 4px 6px -1px oklch(from var(--foreground) l c h / 0.04), 0 24px 48px -8px oklch(from var(--foreground) l c h / 0.08)',

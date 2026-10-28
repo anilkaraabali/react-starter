@@ -16,7 +16,7 @@ export function ThemeOptionList({
 
   return (
     <div>
-      <h4 className='mb-2 font-semibold text-foreground text-xs'>{t`Theme`}</h4>
+      <h4 className='text-foreground mb-2 text-xs font-semibold'>{t`Theme`}</h4>
       <div className='grid grid-cols-3 gap-2.5'>
         {themeOptions.map((opt) => {
           const isSelected = selectedTheme === opt.key;

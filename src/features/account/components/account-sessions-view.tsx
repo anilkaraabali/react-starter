@@ -138,7 +138,7 @@ export function AccountSessionsView() {
               </Alert.Content>
             </Alert>
           ) : sessions.length === 0 ? (
-            <EmptyState className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-surface px-4 py-10 text-center'>
+            <EmptyState className='bg-surface flex flex-col items-center justify-center gap-3 rounded-xl border px-4 py-10 text-center'>
               <MonitorOffIcon size={24} />
               <span className='text-sm'>{t`No active sessions.`}</span>
             </EmptyState>

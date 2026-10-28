@@ -19,9 +19,9 @@ export function PreferenceOptionCard({
   return (
     <button
       className={cn(
-        'flex h-16 flex-col items-center justify-center gap-1.5 rounded-xl border transition-all hover:border-accent',
+        'hover:border-accent flex h-16 flex-col items-center justify-center gap-1.5 rounded-xl border transition-all',
         {
-          'border-accent bg-accent-soft text-accent-soft-foreground ring-2 ring-accent-soft':
+          'border-accent bg-accent-soft text-accent-soft-foreground ring-accent-soft ring-2':
             isSelected,
         },
         className
@@ -30,7 +30,7 @@ export function PreferenceOptionCard({
       type='button'
     >
       {preview}
-      <span className='font-medium text-xs'>{label}</span>
+      <span className='text-xs font-medium'>{label}</span>
     </button>
   );
 }

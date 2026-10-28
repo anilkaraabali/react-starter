@@ -91,8 +91,8 @@ export function AccountRoleView({ role }: AccountRolePageProps) {
               </Alert.Content>
             </Alert>
           ) : members.length === 0 ? (
-            <EmptyState className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-surface px-4 py-10 text-center'>
-              <UsersIcon className='size-6! text-muted' />
+            <EmptyState className='bg-surface flex flex-col items-center justify-center gap-3 rounded-xl border px-4 py-10 text-center'>
+              <UsersIcon className='text-muted size-6!' />
               <span className='text-muted text-sm'>
                 {t`No members currently hold this role.`}
               </span>

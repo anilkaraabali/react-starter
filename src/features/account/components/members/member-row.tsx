@@ -172,7 +172,7 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
                         textValue={t`Ban user`}
                         variant='danger'
                       >
-                        <BanIcon aria-hidden className='shrink-0 text-danger' />
+                        <BanIcon aria-hidden className='text-danger shrink-0' />
                         <Label>{t`Ban user`}</Label>
                       </Dropdown.Item>
                     )}
@@ -184,7 +184,7 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
                     >
                       <Trash2Icon
                         aria-hidden
-                        className='shrink-0 text-danger'
+                        className='text-danger shrink-0'
                       />
                       <Label>{t`Remove member`}</Label>
                     </Dropdown.Item>

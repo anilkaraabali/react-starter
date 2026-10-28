@@ -17,7 +17,7 @@ export function ColorPaletteOptionList({
 
   return (
     <div>
-      <h4 className='mb-2 font-semibold text-foreground text-xs'>{t`Color`}</h4>
+      <h4 className='text-foreground mb-2 text-xs font-semibold'>{t`Color`}</h4>
       <div className='grid grid-cols-3 gap-2.5'>
         {colorPaletteOptions.map((pal) => {
           const isSelected = selectedPalette === pal.key;

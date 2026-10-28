@@ -49,7 +49,7 @@ export function SidebarMenuButton({
         <span className='flex-1 truncate text-start'>{label}</span>
       )}
       {isExpanded && item.badge != null && (
-        <span className='ms-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-soft px-1.5 font-semibold text-[10px] text-accent-soft-foreground'>
+        <span className='bg-accent-soft text-accent-soft-foreground ms-auto flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-semibold'>
           {item.badge}
         </span>
       )}

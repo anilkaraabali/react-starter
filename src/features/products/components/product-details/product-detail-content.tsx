@@ -49,7 +49,7 @@ export function ProductDetailContent({ product }: ProductDetailContentProps) {
               value={
                 <span
                   className={
-                    product.stock === 0 ? 'font-medium text-danger' : undefined
+                    product.stock === 0 ? 'text-danger font-medium' : undefined
                   }
                 >
                   {product.stock}{' '}

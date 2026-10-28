@@ -6,7 +6,7 @@ export function Loader() {
 
   return (
     <div
-      className='fixed inset-0 z-9999 flex size-screen flex-col items-center justify-center gap-2'
+      className='size-screen fixed inset-0 z-9999 flex flex-col items-center justify-center gap-2'
       tabIndex={-1}
     >
       <Spinner color='accent' />

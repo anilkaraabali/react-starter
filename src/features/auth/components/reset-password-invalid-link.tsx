@@ -8,15 +8,15 @@ export function ResetPasswordInvalidLink() {
   return (
     <>
       <div className='mb-6'>
-        <h1 className='font-bold text-xl'>{t`Invalid reset link`}</h1>
-        <p className='mt-1.5 text-muted text-sm'>
+        <h1 className='text-xl font-bold'>{t`Invalid reset link`}</h1>
+        <p className='text-muted mt-1.5 text-sm'>
           {t(
             msg`This password reset link is invalid or has expired. Request a new one to continue.`
           )}
         </p>
       </div>
 
-      <p className='text-center text-muted text-sm'>
+      <p className='text-muted text-center text-sm'>
         <Link href='/forgot-password'>{t`Request a new link`}</Link>
       </p>
     </>

@@ -68,7 +68,7 @@ export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
             variant='ghost'
           >
             <BellIcon />
-            <span className='absolute top-1.5 right-1.5 size-1.5 rounded-full bg-danger' />
+            <span className='bg-danger absolute top-1.5 right-1.5 size-1.5 rounded-full' />
           </Button>
           <Tooltip.Content showArrow>
             <Tooltip.Arrow />

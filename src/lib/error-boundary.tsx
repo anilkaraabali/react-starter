@@ -12,10 +12,10 @@ const MainErrorFallback = () => {
       className='flex min-h-dvh flex-col items-center justify-center p-6 text-center'
       role='alert'
     >
-      <h2 className='font-semibold text-lg'>
+      <h2 className='text-lg font-semibold'>
         Oops! That didn’t work as expected.
       </h2>
-      <p className='mt-2 max-w-md text-muted text-sm'>
+      <p className='text-muted mt-2 max-w-md text-sm'>
         We’ve been notified and will fix it soon.
       </p>
       <Button

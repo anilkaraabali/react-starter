@@ -33,24 +33,24 @@ export function SessionCard({
   const ipAddress = session.ipAddress?.trim();
 
   return (
-    <article className='flex items-start gap-4 rounded-xl border border-border bg-surface p-4'>
+    <article className='border-border bg-surface flex items-start gap-4 rounded-xl border p-4'>
       <SessionDeviceIcon device={device} />
       <div className='flex min-w-0 grow flex-col gap-1'>
-        <h3 className='flex items-center gap-2 font-medium text-foreground text-sm'>
+        <h3 className='text-foreground flex items-center gap-2 text-sm font-medium'>
           {device} <Separator orientation='vertical' /> {browser}
         </h3>
         <p className='text-muted text-xs'>
           {`${lastActive.fromNow()}, ${lastActive.format('LT')}`}
         </p>
-        <dl className='mt-1 flex flex-col gap-0.5 text-muted text-xs'>
+        <dl className='text-muted mt-1 flex flex-col gap-0.5 text-xs'>
           <div>
-            <dt className='inline font-medium text-foreground'>
+            <dt className='text-foreground inline font-medium'>
               {t`First Login`}:
             </dt>{' '}
             <dd className='inline'>{firstLogin.format('L, LT')}</dd>
           </div>
           <div>
-            <dt className='inline font-medium text-foreground'>
+            <dt className='text-foreground inline font-medium'>
               {t`IP Address`}:
             </dt>{' '}
             <dd className='inline'>{ipAddress ? ipAddress : t`Unknown`}</dd>

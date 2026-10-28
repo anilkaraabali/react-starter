@@ -14,7 +14,7 @@ export function HeaderSearch() {
           placeholder={t`Search anything...`}
           readOnly
         />
-        <Kbd className='hidden shrink-0 bg-background md:flex'>
+        <Kbd className='bg-background hidden shrink-0 md:flex'>
           <Kbd.Abbr keyValue='command' />
           <Kbd.Content>K</Kbd.Content>
         </Kbd>
