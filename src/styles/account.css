@@ -75,8 +75,9 @@
 }
 
 .account-sub-section-list > .account-cell + .account-cell::before {
-  content: "";
   inset-inline: 1rem;
+  /* stylelint-disable-next-line order/properties-alphabetical-order -- Biome useSortedProperties order */
+  content: "";
 
   @apply bg-separator absolute top-0 h-px;
 }
