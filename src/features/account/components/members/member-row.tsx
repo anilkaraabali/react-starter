@@ -9,8 +9,7 @@ import {
   toast,
   useOverlayState,
 } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import {
   BanIcon,
   MoreHorizontalIcon,
@@ -39,20 +38,20 @@ type MemberRowProps = {
 };
 
 export function MemberRow({ isCurrent, member }: MemberRowProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const banModal = useOverlayState();
   const deleteModal = useOverlayState();
   const setMemberBanMutation = useSetMemberBan({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Member unbanned.`));
+        toast.success(t`Member unbanned.`);
       },
     },
   });
   const updateMemberRoleMutation = useUpdateMemberRole({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Role updated.`));
+        toast.success(t`Role updated.`);
       },
     },
   });
@@ -99,12 +98,12 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
                 {member.name}
                 {isCurrent ? (
                   <Chip color='success' size='sm' variant='soft'>
-                    {_(msg`You`)}
+                    {t`You`}
                   </Chip>
                 ) : null}
                 {member.banned ? (
                   <Chip color='danger' size='sm' variant='soft'>
-                    {_(msg`Banned`)}
+                    {t`Banned`}
                   </Chip>
                 ) : null}
               </span>
@@ -116,7 +115,7 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
           {canManage ? (
             <>
               <Select
-                aria-label={_(msg`Role for ${member.name}`)}
+                aria-label={t`Role for ${member.name}`}
                 isDisabled={isUpdatingRole}
                 onChange={handleRoleChange}
                 value={member.role}
@@ -147,7 +146,7 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
               </Select>
               <Dropdown>
                 <Button
-                  aria-label={_(msg`Actions for ${member.name}`)}
+                  aria-label={t`Actions for ${member.name}`}
                   isIconOnly
                   size='sm'
                   slot='trigger'
@@ -156,40 +155,38 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
                   <MoreHorizontalIcon aria-hidden className='shrink-0' />
                 </Button>
                 <Dropdown.Popover placement='bottom end'>
-                  <Dropdown.Menu
-                    aria-label={_(msg`Actions for ${member.name}`)}
-                  >
+                  <Dropdown.Menu aria-label={t`Actions for ${member.name}`}>
                     {member.banned ? (
                       <Dropdown.Item
                         id='unban'
                         onPress={handleUnban}
-                        textValue={_(msg`Unban user`)}
+                        textValue={t`Unban user`}
                       >
                         <ShieldCheckIcon aria-hidden className='shrink-0' />
-                        <Label>{_(msg`Unban user`)}</Label>
+                        <Label>{t`Unban user`}</Label>
                       </Dropdown.Item>
                     ) : (
                       <Dropdown.Item
                         id='ban'
                         onPress={banModal.open}
-                        textValue={_(msg`Ban user`)}
+                        textValue={t`Ban user`}
                         variant='danger'
                       >
                         <BanIcon aria-hidden className='shrink-0 text-danger' />
-                        <Label>{_(msg`Ban user`)}</Label>
+                        <Label>{t`Ban user`}</Label>
                       </Dropdown.Item>
                     )}
                     <Dropdown.Item
                       id='remove'
                       onPress={deleteModal.open}
-                      textValue={_(msg`Remove member`)}
+                      textValue={t`Remove member`}
                       variant='danger'
                     >
                       <Trash2Icon
                         aria-hidden
                         className='shrink-0 text-danger'
                       />
-                      <Label>{_(msg`Remove member`)}</Label>
+                      <Label>{t`Remove member`}</Label>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown.Popover>

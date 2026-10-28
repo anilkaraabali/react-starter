@@ -1,6 +1,6 @@
 import { toast } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
 import { useRevokeOtherSessions } from '@/features/account/api/revoke-other-sessions';
@@ -14,11 +14,11 @@ export function RevokeOtherSessionsModal({
   isOpen,
   onClose,
 }: RevokeOtherSessionsModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const revokeOtherSessionsMutation = useRevokeOtherSessions({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`All other sessions revoked.`));
+        toast.success(t`All other sessions revoked.`);
         onClose();
       },
     },
@@ -26,14 +26,14 @@ export function RevokeOtherSessionsModal({
 
   return (
     <ConfirmDialog
-      confirmLabel={_(msg`Sign out`)}
+      confirmLabel={t`Sign out`}
       isOpen={isOpen}
       isPending={revokeOtherSessionsMutation.isPending}
       onClose={onClose}
       onConfirm={() => revokeOtherSessionsMutation.mutateAsync()}
-      title={_(msg`Sign Out of All Other Devices`)}
+      title={t`Sign Out of All Other Devices`}
     >
-      {_(
+      {t(
         msg`All devices except this one will be signed out. This action cannot be undone.`
       )}
     </ConfirmDialog>

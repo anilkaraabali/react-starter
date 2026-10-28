@@ -1,5 +1,5 @@
 import { cn } from '@heroui/styles';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { LayoutCardOption } from '@/config/layout-options';
 import type { SidebarVariant } from '@/types/layout.types';
 import { LayoutPreview } from './layout-preview';
@@ -15,7 +15,7 @@ export function LayoutOptionCard({
   onSelect,
   option,
 }: LayoutOptionCardProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <button
@@ -30,7 +30,7 @@ export function LayoutOptionCard({
       type='button'
     >
       <LayoutPreview variant={option.key} />
-      <span className='text-center font-medium text-xs'>{_(option.label)}</span>
+      <span className='text-center font-medium text-xs'>{t(option.label)}</span>
     </button>
   );
 }

@@ -1,10 +1,10 @@
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { GlobalError } from '@/app/layouts/error/global-error';
 import { NotFound } from '@/app/layouts/error/not-found';
 import { Meta } from '@/app/meta';
+import { NavigationProgress } from '@/app/navigation-progress';
 import type { RootRouteContext } from '@/app/router.types';
-import { RouterNavigationProgress } from '@/app/router-navigation-progress';
 import { getPageTitleTemplate } from '@/utils/page-title.utils';
 
 function RootComponent() {
@@ -14,7 +14,7 @@ function RootComponent() {
   return (
     <>
       <Meta titleTemplate={titleTemplate} />
-      <RouterNavigationProgress />
+      <NavigationProgress />
       <Outlet />
     </>
   );

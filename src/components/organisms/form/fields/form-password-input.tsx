@@ -1,6 +1,5 @@
 import { Button } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { EyeClosedIcon, EyeIcon } from 'lucide-react';
 import { useState } from 'react';
 
@@ -12,7 +11,7 @@ type FormPasswordInputProps = Omit<
 >;
 
 export function FormPasswordInput(props: FormPasswordInputProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -21,7 +20,7 @@ export function FormPasswordInput(props: FormPasswordInputProps) {
       classNames={{ suffix: 'pr-0.5' }}
       suffix={
         <Button
-          aria-label={isVisible ? _(msg`Hide password`) : _(msg`Show password`)}
+          aria-label={isVisible ? t`Hide password` : t`Show password`}
           isIconOnly
           onPress={() => setIsVisible((visible) => !visible)}
           size='sm'

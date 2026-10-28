@@ -1,7 +1,6 @@
 import { Link, toast } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 
 import { useForm } from '@/components/organisms/form/use-form';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
@@ -14,7 +13,7 @@ import {
 import { signIn } from '@/lib/auth-client';
 
 export function LoginView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   useAccountDeletedToast();
 
   const form = useForm({
@@ -40,7 +39,7 @@ export function LoginView() {
 
   return (
     <AuthFormShell
-      description={_(
+      description={t(
         msg`Access your account quickly and securely to get started.`
       )}
       footer={
@@ -48,7 +47,7 @@ export function LoginView() {
           New here? Use your email to <Link href='/register'>sign up.</Link>
         </Trans>
       }
-      title={_(msg`Sign in`)}
+      title={t`Sign in`}
     >
       <form.AppForm>
         <form.Root>
@@ -57,7 +56,7 @@ export function LoginView() {
               <field.FormInput
                 autoComplete='email'
                 isRequired
-                label={_(msg`Email address`)}
+                label={t`Email address`}
                 placeholder='foo@example.com'
                 variant='secondary'
               />
@@ -69,7 +68,7 @@ export function LoginView() {
               <field.FormPasswordInput
                 autoComplete='current-password'
                 isRequired
-                label={_(msg`Password`)}
+                label={t`Password`}
                 variant='secondary'
               />
             )}
@@ -78,11 +77,11 @@ export function LoginView() {
           {/* -mt-3 keeps the same tight gap the link had inside the field. */}
           <div className='-mt-3 flex justify-end'>
             <Link className='text-xs' href='/forgot-password'>
-              {_(msg`Forgot password?`)}
+              {t`Forgot password?`}
             </Link>
           </div>
 
-          <form.SubmitButton fullWidth>{_(msg`Sign in`)}</form.SubmitButton>
+          <form.SubmitButton fullWidth>{t`Sign in`}</form.SubmitButton>
         </form.Root>
       </form.AppForm>
     </AuthFormShell>

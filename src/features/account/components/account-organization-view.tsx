@@ -1,6 +1,6 @@
 import { Alert, Button, EmptyState, useOverlayState } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { PlusIcon, UsersIcon } from 'lucide-react';
 import { useOrganizationMe } from '@/api/get-organization-me';
 import { useOrganizationMembers } from '@/features/account/api/get-organization-members';
@@ -13,7 +13,7 @@ import { OrganizationSkeleton } from './organization/organization-skeleton';
 import { RenameOrganizationModal } from './organization/rename-organization-modal';
 
 export function AccountOrganizationView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { data: session } = useSession();
   const currentUser = session?.user;
   const organizationMeQuery = useOrganizationMe();
@@ -31,8 +31,8 @@ export function AccountOrganizationView() {
 
   const tabHeader = (
     <Account.PageHeader
-      description={_(msg`Manage your organization details and team members.`)}
-      title={_(msg`Organization`)}
+      description={t`Manage your organization details and team members.`}
+      title={t`Organization`}
     />
   );
 
@@ -52,9 +52,9 @@ export function AccountOrganizationView() {
         <Alert status='danger'>
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title>{_(msg`Unable to load members`)}</Alert.Title>
+            <Alert.Title>{t`Unable to load members`}</Alert.Title>
             <Alert.Description>
-              {_(
+              {t(
                 msg`Something went wrong while loading members. Please try again.`
               )}
             </Alert.Description>
@@ -67,7 +67,7 @@ export function AccountOrganizationView() {
               size='sm'
               variant='danger'
             >
-              {_(msg`Retry`)}
+              {t`Retry`}
             </Button>
           </Alert.Content>
         </Alert>
@@ -80,11 +80,11 @@ export function AccountOrganizationView() {
       {tabHeader}
       <Account.Sections>
         <Account.Section id='organization-details'>
-          <Account.SectionHeader title={_(msg`General`)} />
+          <Account.SectionHeader title={t`General`} />
           <Account.CellList>
             <Account.Row
               description={organizationName}
-              label={_(msg`Organization name`)}
+              label={t`Organization name`}
             >
               {canRename ? (
                 <Button
@@ -92,7 +92,7 @@ export function AccountOrganizationView() {
                   size='sm'
                   variant='secondary'
                 >
-                  {_(msg`Rename`)}
+                  {t`Rename`}
                 </Button>
               ) : null}
             </Account.Row>
@@ -109,27 +109,25 @@ export function AccountOrganizationView() {
                   variant='secondary'
                 >
                   <PlusIcon />
-                  {_(msg`Add member`)}
+                  {t`Add member`}
                 </Button>
               ) : null
             }
             description={
               canManageRoles
-                ? _(
+                ? t(
                     msg`People in this organization. Invite guests or members, change roles, or remove them.`
                   )
-                : _(
+                : t(
                     msg`People in this organization. Contact the owner to change membership.`
                   )
             }
-            title={_(msg`Members`)}
+            title={t`Members`}
           />
           {members.length === 0 ? (
             <EmptyState className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-surface px-4 py-10 text-center'>
               <UsersIcon className='size-6! text-muted' />
-              <span className='text-muted text-sm'>
-                {_(msg`No members found.`)}
-              </span>
+              <span className='text-muted text-sm'>{t`No members found.`}</span>
             </EmptyState>
           ) : (
             <Account.CellList>

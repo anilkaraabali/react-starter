@@ -1,0 +1,7 @@
+// Syntactic check: prefer the macro hook. A file that only needs the bare
+// subscription `useLingui()` (no destructuring, which the macro forbids) may
+// suppress it with `// biome-ignore lint/plugin: <reason>`.
+`import { $imports } from '@lingui/react'` as $import where {
+  $imports <: contains `useLingui`,
+  register_diagnostic(span=$import, message="Import `useLingui` from `@lingui/react/macro`, not the runtime `@lingui/react`. [syntactic check]", severity="error")
+}

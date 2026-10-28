@@ -1,5 +1,17 @@
 # AGENTS.md
 
+<!-- intent-skills:start -->
+## Skill Loading
+
+Use the repository’s installed Intent. If it is unavailable, report the missing dependency instead of downloading a replacement.
+Before editing files for a substantial task:
+- Run `pnpm exec intent list` from the workspace root to see available local skills.
+- If a listed skill matches the task, run `pnpm exec intent load <package>#<skill>` before changing files.
+- Use the loaded `SKILL.md` guidance while making the change.
+- Monorepos: when working across packages, run the skill check from the workspace root and prefer the local skill for the package being changed.
+- Multiple matches: prefer the most specific local skill for the package or concern you are changing; load additional skills only when the task spans multiple packages or concerns.
+<!-- intent-skills:end -->
+
 ## Project Overview
 
 A scalable admin template built on modern React best practices and bulletproof architecture:
@@ -25,6 +37,10 @@ pnpm typecheck
 
 # Run tests
 pnpm test
+
+# Extract Lingui messages / verify catalogs are in sync
+pnpm intl:extract
+pnpm intl:check
 
 # Lint and auto-fix code style & dependencies
 pnpm lint
@@ -257,6 +273,36 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 - Application UI state in React Context (provider + custom hook in one file)
 - Server state in TanStack Query (with query key factory)
 - Form state in TanStack Form + Zod
+
+## Lingui (i18n)
+
+- Lingui Agent Skills are installed in the gitignored .agents/skills directory (`lingui-best-practices`, `find-unwrapped-strings`, `enhanced-message-context`, `lingui-framework-setup`, `migrate-i18next-to-lingui`, `swc-plugin-compatibility`). Read the relevant skill before i18n work. Restore the skills from the tracked `skills-lock.json` with `npx skills experimental_install`.
+- Lingui docs for agents: https://lingui.dev/llms.txt. Any doc page is available as Markdown by appending `.md` to its URL.
+- Use the macro hook (`useLingui` from `@lingui/react/macro`) in components; import `i18n` directly from `@lingui/core` (`src/lib/i18n.ts` only exports `loadCatalog` / `getSavedLanguage`).
+- The saved locale is activated in `src/main.tsx` before `App` is imported; `loadCatalog` is the single place that activates a locale and sets `<html lang>`.
+- Never translate at module scope (`i18n._`/`t` in top-level constants or zod schemas). Use `msg` descriptors or zod `{ error: () => ... }` so messages resolve at render/validation time.
+- `pnpm intl:extract` updates the catalogs; `pnpm intl:check` (CI) fails on stale catalogs or missing `tr` translations. The `pseudo` locale is a development-only QA locale.
+
+## Better Auth
+
+Auth uses the Better Auth client (`src/lib/auth-client.ts`). Before changing auth flows, read the Better Auth skills in the gitignored .agents/skills directory (`better-auth-best-practices`, `better-auth-security-best-practices`, `email-and-password-best-practices`, `two-factor-authentication-best-practices`, `organization-best-practices`, `create-auth`). Docs as Markdown: https://better-auth.com/llms.txt. Restore skills with `npx skills experimental_install`.
+
+## Custom Biome rules
+
+GritQL plugins in `plugins/` (registered under `plugins` in `biome.json`) run with `pnpm lint` / `biome ci` and fail as errors. They are syntactic, not type-aware:
+
+- `no-lingui-format-helpers`: `i18n.number()` / `i18n.date()` (deprecated) → `formatNumber` / `Intl.DateTimeFormat`.
+- `no-runtime-use-lingui`: `useLingui` from `@lingui/react` → `@lingui/react/macro`.
+- `no-implicit-locale-format`: argument-less `toLocaleString/DateString/TimeString()`.
+- `no-module-level-t`: `t` macro outside a function → `msg`.
+
+Justified exceptions: `// biome-ignore lint/plugin: <reason>` on the line above.
+
+## Sidebar
+
+- Sidebar items (`SidebarNavItem`) are either a direct link (`to`) or a group heading with `children` links (one level only). A group has no `to`; the types forbid it.
+- Groups are keyed by their label message id, start expanded and only a click on the heading collapses or expands them (also the active one). Navigation never changes group state, and the state lives in memory only (not `localStorage`), so a reload expands everything again.
+- Top-level pages live in the "Overview" group of `src/app/layouts/admin-layout/sidebar-items.ts`.
 
 ---
 

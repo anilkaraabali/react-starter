@@ -1,6 +1,5 @@
 import { type Key, Label, ListBox, Select } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import type {
   FilterOption,
@@ -20,13 +19,13 @@ export function FilterSelect({
   options = [],
   value,
 }: FilterSelectProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <Select
       fullWidth
       onChange={onChange}
-      placeholder={_(msg`Select one`)}
+      placeholder={t`Select one`}
       value={value as Key}
       variant='secondary'
     >

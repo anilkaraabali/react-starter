@@ -1,6 +1,5 @@
 import { Button, Spinner } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { PencilLineIcon, SaveIcon } from 'lucide-react';
 
 type FormPrimaryActionButtonProps = {
@@ -14,7 +13,7 @@ export function FormPrimaryActionButton({
   isSavePending = false,
   onEdit,
 }: FormPrimaryActionButtonProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   if (formId) {
     return (
@@ -26,7 +25,7 @@ export function FormPrimaryActionButton({
             ) : (
               <SaveIcon aria-hidden />
             )}
-            {_(msg`Save`)}
+            {t`Save`}
           </>
         )}
       </Button>
@@ -37,7 +36,7 @@ export function FormPrimaryActionButton({
     return (
       <Button onPress={onEdit} type='button'>
         <PencilLineIcon aria-hidden />
-        {_(msg`Edit`)}
+        {t`Edit`}
       </Button>
     );
   }

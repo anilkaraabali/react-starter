@@ -1,6 +1,6 @@
 import { Button, useOverlayState } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { PencilLineIcon } from 'lucide-react';
 import { useOrganizationMe } from '@/api/get-organization-me';
 import { UserAvatar } from '@/components/atoms/user-avatar';
@@ -20,7 +20,7 @@ import { DeleteAccountModal } from './profile/delete-account-modal';
 import { UpdateProfileModal } from './profile/update-profile-modal';
 
 export function AccountProfileView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { data: session } = useSession();
   const user = session?.user;
   const organizationMeQuery = useOrganizationMe();
@@ -47,10 +47,10 @@ export function AccountProfileView() {
   return (
     <Account.SettingsChunk>
       <Account.PageHeader
-        description={_(
+        description={t(
           msg`Manage your profile, language, and appearance preferences.`
         )}
-        title={_(msg`Settings`)}
+        title={t`Settings`}
       />
 
       <Account.Sections>
@@ -64,39 +64,39 @@ export function AccountProfileView() {
                 variant='secondary'
               >
                 <PencilLineIcon />
-                {_(msg`Edit profile`)}
+                {t`Edit profile`}
               </Button>
             }
-            title={_(msg`Personal Information`)}
+            title={t`Personal Information`}
           />
           <Account.CellList>
             <Account.Row
               className='items-start'
-              label={_(msg`Avatar`)}
+              label={t`Avatar`}
               trailingClassName='max-h-none items-stretch justify-items-end'
             >
               <UserAvatar name={user?.name} />
             </Account.Row>
-            <Account.Row label={_(msg`Full name`)}>
+            <Account.Row label={t`Full name`}>
               <Account.CellDescription>
                 {user?.name || '—'}
               </Account.CellDescription>
             </Account.Row>
-            <Account.Row label={_(msg`Email`)}>
+            <Account.Row label={t`Email`}>
               <Account.CellDescription>
                 {user?.email || '—'}
               </Account.CellDescription>
             </Account.Row>
-            <Account.Row label={_(msg`Organization role`)}>
+            <Account.Row label={t`Organization role`}>
               <Account.CellDescription>{roleLabel}</Account.CellDescription>
             </Account.Row>
           </Account.CellList>
         </Account.Section>
 
         <Account.Section id='language'>
-          <Account.SectionHeader title={_(msg`Language & Region`)} />
+          <Account.SectionHeader title={t`Language & Region`} />
           <Account.CellList>
-            <Account.Row label={_(msg`Interface language`)}>
+            <Account.Row label={t`Interface language`}>
               <LanguagePicker />
             </Account.Row>
           </Account.CellList>
@@ -111,20 +111,20 @@ export function AccountProfileView() {
                 size='sm'
                 variant='secondary'
               >
-                {_(msg`Reset to defaults`)}
+                {t`Reset to defaults`}
               </Button>
             }
-            title={_(msg`Appearance`)}
+            title={t`Appearance`}
           />
           <Account.CellList>
-            <Account.Row label={_(msg`Theme`)}>
+            <Account.Row label={t`Theme`}>
               <ThemePicker />
             </Account.Row>
             <Account.Row
-              description={_(
+              description={t(
                 msg`Choose a primary color for buttons, links, and active states.`
               )}
-              label={_(msg`Color scheme`)}
+              label={t`Color scheme`}
             >
               <ColorPalettePicker />
             </Account.Row>
@@ -132,9 +132,9 @@ export function AccountProfileView() {
         </Account.Section>
 
         <Account.Section id='more'>
-          <Account.SectionHeader title={_(msg`More`)} />
+          <Account.SectionHeader title={t`More`} />
           <Account.CellList>
-            <Account.Row label={_(msg`End your session on this device`)}>
+            <Account.Row label={t`End your session on this device`}>
               <Button
                 onPress={() => {
                   void handleLogout();
@@ -142,12 +142,12 @@ export function AccountProfileView() {
                 size='sm'
                 variant='secondary'
               >
-                {_(msg`Log out`)}
+                {t`Log out`}
               </Button>
             </Account.Row>
-            <Account.Row label={_(msg`Delete my account`)}>
+            <Account.Row label={t`Delete my account`}>
               <Button onPress={deleteModal.open} size='sm' variant='danger'>
-                {_(msg`Delete`)}
+                {t`Delete`}
               </Button>
             </Account.Row>
           </Account.CellList>

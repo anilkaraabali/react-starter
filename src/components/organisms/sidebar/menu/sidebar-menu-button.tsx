@@ -1,12 +1,12 @@
 import { Button, cn } from '@heroui/react';
-import { useLingui } from '@lingui/react';
-import type { SidebarNavItem } from '../sidebar.types';
+import { useLingui } from '@lingui/react/macro';
+import type { SidebarLeafItem } from '../sidebar.types';
 
 type SidebarMenuButtonProps = {
   isActive?: boolean;
   isCompact?: boolean;
   isExpanded: boolean;
-  item: SidebarNavItem;
+  item: SidebarLeafItem;
   onPress: () => void;
 };
 
@@ -17,9 +17,9 @@ export function SidebarMenuButton({
   item,
   onPress,
 }: SidebarMenuButtonProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const Icon = item.icon;
-  const label = _(item.label);
+  const label = t(item.label);
 
   if (isCompact) {
     return (

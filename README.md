@@ -79,7 +79,8 @@ Vite serves the app at **http://localhost:4200** (or the next free port).
 | `pnpm lint:deps`                | Dependency Cruiser architecture validation                    |
 | `pnpm knip`                     | Detect unused files, exports, and dependencies                |
 | `pnpm jscpd`                    | Duplicate code analysis                                       |
-| `pnpm intl:extract`             | Extract messages into Lingui catalogs and sync translations   |
+| `pnpm intl:extract`             | Extract messages into the Lingui catalogs                     |
+| `pnpm intl:check`               | Fail if catalogs are stale or a `tr` translation is missing   |
 | `pnpm generate`                 | Scaffold feature modules with the Plop generators             |
 | `pnpm script:check-docs`        | Verify documentation and link integrity                       |
 | `pnpm agents:heroui`            | Update HeroUI documentation reference (`AGENTS.md`)           |
@@ -144,9 +145,10 @@ result parses.
 
 `pnpm build` executes the following sequence:
 
-1. `intl:build` (`intl:extract`): Extracts UI strings with Lingui and synchronizes English message strings.
-2. `tsc -b`: Project type checking with no emit.
-3. `vite build`: Production asset compilation and bundling.
+1. `tsc -b`: Project type checking with no emit.
+2. `vite build`: Production asset compilation and bundling.
+
+Run `pnpm intl:extract` after changing UI strings and `pnpm intl:check` (also run in CI) to verify the catalogs are in sync.
 
 ## Project Structure
 

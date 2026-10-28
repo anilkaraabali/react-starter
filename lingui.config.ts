@@ -12,10 +12,13 @@ const config: LinguiConfig = {
       path: 'src/locales/{locale}/messages',
     },
   ],
+  fallbackLocales: { default: 'en' },
   format: formatter({
     lineNumbers: false,
   }),
-  locales: ['en', 'tr'],
+  locales: ['en', 'tr', 'pseudo'],
+  pseudoLocale: 'pseudo',
+  sourceLocale: 'en',
 };
 
 /**

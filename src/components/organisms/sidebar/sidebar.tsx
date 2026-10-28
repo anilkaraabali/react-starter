@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 
 import { SidebarHeader } from './header/sidebar-header';
 import { SidebarToggleButton } from './header/sidebar-toggle-button';
+import { useSidebarCollapsedGroups } from './hooks/use-sidebar-collapsed-groups';
 import { useSidebarExpanded } from './hooks/use-sidebar-expanded';
-import { useSidebarOpenItem } from './hooks/use-sidebar-open-item';
 import { useSidebarToggleShortcut } from './hooks/use-sidebar-toggle-shortcut';
 import { SidebarMenu } from './menu/sidebar-menu';
 
@@ -36,9 +36,7 @@ export function Sidebar({
   variant = 'default',
 }: SidebarProps) {
   const { isExpanded, isNarrowViewport, toggleExpanded } = useSidebarExpanded();
-  const { closeItem, isItemOpen, toggleItem } = useSidebarOpenItem({
-    items,
-  });
+  const { isGroupCollapsed, toggleGroup } = useSidebarCollapsedGroups();
 
   const isCompact = variant === 'compact';
   const isFloating = !isDrawer && variant === 'floating';
@@ -50,7 +48,6 @@ export function Sidebar({
 
   const handleToggleExpanded = () => {
     if (!canToggle) return;
-    closeItem();
     toggleExpanded();
   };
 
@@ -95,11 +92,10 @@ export function Sidebar({
         currentPath={currentPath}
         isCompact={isCompact}
         isExpanded={showExpanded}
-        isItemOpen={isItemOpen}
+        isGroupCollapsed={isGroupCollapsed}
         items={items}
-        onCloseItem={closeItem}
         onNavigate={onNavigate}
-        onToggleItem={toggleItem}
+        onToggleGroup={toggleGroup}
       />
 
       {footer ? (

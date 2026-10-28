@@ -1,5 +1,4 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { AppForm } from '@/components/organisms/form/use-form';
 import type { create{{entityPascal}}InputSchema } from '@/features/{{featureDir}}/api/create-{{entityKebab}}';
 import { {{entityConst}}_STATUS_OPTIONS } from '@/features/{{featureDir}}/config/{{entityKebab}}.constants';
@@ -13,7 +12,7 @@ export function {{entityPascal}}Form({
   form,
   formId,
 }: {{entityPascal}}FormProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <form.AppForm>
@@ -24,8 +23,8 @@ export function {{entityPascal}}Form({
             {(field) => (
               <field.FormInput
                 isRequired
-                label={_(msg`{{singularTitle}} name`)}
-                placeholder={_(msg`Enter a name`)}
+                label={t`{{singularTitle}} name`}
+                placeholder={t`Enter a name`}
                 variant='secondary'
               />
             )}
@@ -35,7 +34,7 @@ export function {{entityPascal}}Form({
             {(field) => (
               <field.FormSelect
                 isRequired
-                label={_(msg`Status`)}
+                label={t`Status`}
                 options={ {{entityConst}}_STATUS_OPTIONS.map((s) => ({
                   label: s.label,
                   value: s.value,
@@ -48,8 +47,8 @@ export function {{entityPascal}}Form({
           <form.AppField name='description'>
             {(field) => (
               <field.FormTextArea
-                label={_(msg`Description`)}
-                placeholder={_(msg`Optional description`)}
+                label={t`Description`}
+                placeholder={t`Optional description`}
                 rows={4}
                 variant='secondary'
               />

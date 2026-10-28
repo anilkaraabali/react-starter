@@ -1,9 +1,8 @@
 import { Spinner } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 export function Loader() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <div
@@ -11,7 +10,7 @@ export function Loader() {
       tabIndex={-1}
     >
       <Spinner color='accent' />
-      <span className='text-muted text-xs'>{_(msg`Loading`)}...</span>
+      <span className='text-muted text-xs'>{t`Loading`}...</span>
     </div>
   );
 }

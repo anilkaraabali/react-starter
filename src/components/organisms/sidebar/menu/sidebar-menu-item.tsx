@@ -1,38 +1,47 @@
-import type { SidebarNavItem } from '../sidebar.types';
-import { isPathActive } from '../sidebar.utils';
+import { Tooltip } from '@heroui/react';
+import { useLingui } from '@lingui/react/macro';
+import type { SidebarLeafItem } from '../sidebar.types';
 import { SidebarMenuButton } from './sidebar-menu-button';
 
 type SidebarMenuItemProps = {
-  currentPath: string;
+  isActive: boolean;
   isCompact?: boolean;
   isExpanded: boolean;
-  item: SidebarNavItem;
-  onClose?: () => void;
+  item: SidebarLeafItem;
   onNavigate?: (to: string) => void;
 };
 
 export function SidebarMenuItem({
-  currentPath,
+  isActive,
   isCompact = false,
   isExpanded,
   item,
-  onClose,
   onNavigate,
 }: SidebarMenuItemProps) {
-  const isItemActive = isPathActive(currentPath, item.to);
+  const { t } = useLingui();
 
-  const handlePress = () => {
-    onClose?.();
-    onNavigate?.(item.to);
-  };
-
-  return (
+  const button = (
     <SidebarMenuButton
-      isActive={isItemActive}
+      isActive={isActive}
       isCompact={isCompact}
       isExpanded={isExpanded}
       item={item}
-      onPress={handlePress}
+      onPress={() => onNavigate?.(item.to)}
     />
   );
+
+  // Icon-only rail: show the label in a tooltip.
+  if (!isExpanded && !isCompact) {
+    return (
+      <Tooltip delay={0}>
+        {button}
+        <Tooltip.Content placement='right' showArrow>
+          <Tooltip.Arrow />
+          {t(item.label)}
+        </Tooltip.Content>
+      </Tooltip>
+    );
+  }
+
+  return button;
 }

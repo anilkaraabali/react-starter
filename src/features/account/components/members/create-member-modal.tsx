@@ -1,6 +1,5 @@
 import { toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
 import { useCreateMember } from '@/features/account/api/create-member';
@@ -19,11 +18,11 @@ type CreateMemberModalProps = {
 };
 
 export function CreateMemberModal({ isOpen, onClose }: CreateMemberModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const createMemberMutation = useCreateMember({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Member added.`));
+        toast.success(t`Member added.`);
         onClose();
       },
     },
@@ -42,8 +41,8 @@ export function CreateMemberModal({ isOpen, onClose }: CreateMemberModalProps) {
       form={form}
       isOpen={isOpen}
       onClose={onClose}
-      submitLabel={_(msg`Create`)}
-      title={_(msg`Add member`)}
+      submitLabel={t`Create`}
+      title={t`Add member`}
     >
       <div className='grid gap-4'>
         <NameEmailFieldsGroup
@@ -59,7 +58,7 @@ export function CreateMemberModal({ isOpen, onClose }: CreateMemberModalProps) {
             <field.FormPasswordInput
               autoComplete='new-password'
               isRequired
-              label={_(msg`Temporary password`)}
+              label={t`Temporary password`}
               variant='secondary'
             />
           )}
@@ -69,7 +68,7 @@ export function CreateMemberModal({ isOpen, onClose }: CreateMemberModalProps) {
           {(field) => (
             <field.FormSelect
               isRequired
-              label={_(msg`Role`)}
+              label={t`Role`}
               options={ORGANIZATION_INVITE_ROLES.map((role) => ({
                 label: getOrganizationRoleLabel(role),
                 value: role,

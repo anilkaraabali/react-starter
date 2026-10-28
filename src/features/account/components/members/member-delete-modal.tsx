@@ -1,7 +1,5 @@
 import { toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
 import { useRemoveMember } from '@/features/account/api/remove-member';
 import type { OrganizationMemberDto } from '@/types/organization.types';
@@ -17,11 +15,11 @@ export function MemberDeleteModal({
   member,
   onClose,
 }: MemberDeleteModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const removeMemberMutation = useRemoveMember({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Member removed.`));
+        toast.success(t`Member removed.`);
         onClose();
       },
     },
@@ -29,14 +27,14 @@ export function MemberDeleteModal({
 
   return (
     <ConfirmDialog
-      confirmLabel={_(msg`Remove`)}
+      confirmLabel={t`Remove`}
       isOpen={isOpen}
       isPending={removeMemberMutation.isPending}
       onClose={onClose}
       onConfirm={() =>
         removeMemberMutation.mutateAsync({ memberId: member.id })
       }
-      title={_(msg`Remove Member`)}
+      title={t`Remove Member`}
     >
       <Trans>
         Are you sure you want to remove{' '}

@@ -1,7 +1,7 @@
 import { Chip, type ChipProps } from '@heroui/react';
 import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { {{entityPascal}}Status } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 
 const STATUS_CONFIG = {
@@ -31,12 +31,12 @@ export function {{entityPascal}}StatusChip({
   status,
   ...rest
 }: {{entityPascal}}StatusChipProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const config = STATUS_CONFIG[status];
 
   return (
     <Chip color={config.color} size={size} variant='soft' {...rest}>
-      {_(config.label)}
+      {t(config.label)}
     </Chip>
   );
 }

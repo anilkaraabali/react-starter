@@ -1,6 +1,6 @@
 import { Alert, Button, Chip, Skeleton, Typography } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useOrganizationMe } from '@/api/get-organization-me';
 import { useOrganizationMembers } from '@/features/account/api/get-organization-members';
 import { Account } from '@/features/account/components/blocks/account';
@@ -10,7 +10,7 @@ import { OrganizationPermissionsMatrix } from './organization/organization-permi
 import { OrganizationRoleCard } from './organization/organization-role-card';
 
 export function AccountRolesView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const organizationMeQuery = useOrganizationMe();
   const membersQuery = useOrganizationMembers();
   const members = membersQuery.data?.members ?? [];
@@ -18,10 +18,10 @@ export function AccountRolesView() {
 
   const tabHeader = (
     <Account.PageHeader
-      description={_(
+      description={t(
         msg`Built-in roles and the permissions they grant in this organization.`
       )}
-      title={_(msg`Roles & Permissions`)}
+      title={t`Roles & Permissions`}
     />
   );
 
@@ -46,9 +46,9 @@ export function AccountRolesView() {
         <Alert status='danger'>
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title>{_(msg`Unable to load roles`)}</Alert.Title>
+            <Alert.Title>{t`Unable to load roles`}</Alert.Title>
             <Alert.Description>
-              {_(
+              {t(
                 msg`Something went wrong while loading roles. Please try again.`
               )}
             </Alert.Description>
@@ -61,7 +61,7 @@ export function AccountRolesView() {
               size='sm'
               variant='danger'
             >
-              {_(msg`Retry`)}
+              {t`Retry`}
             </Button>
           </Alert.Content>
         </Alert>
@@ -74,7 +74,7 @@ export function AccountRolesView() {
       {tabHeader}
       <Account.Sections>
         <Account.Section id='organization-roles'>
-          <Account.SectionHeader title={_(msg`Roles`)} />
+          <Account.SectionHeader title={t`Roles`} />
           <div className='grid gap-4 sm:grid-cols-3'>
             {ORGANIZATION_ROLES.map((role) => (
               <OrganizationRoleCard
@@ -93,14 +93,14 @@ export function AccountRolesView() {
             actions={
               <div className='flex items-center gap-1'>
                 <Typography.Paragraph color='muted' size='sm'>
-                  {_(msg`Your current role`)}:
+                  {t`Your current role`}:
                 </Typography.Paragraph>
                 <Chip color='accent' size='sm' variant='soft'>
                   {getOrganizationRoleLabel(me.role)}
                 </Chip>
               </div>
             }
-            title={_(msg`Permission matrix`)}
+            title={t`Permission matrix`}
           />
           <OrganizationPermissionsMatrix currentRole={me.role} />
         </Account.Section>

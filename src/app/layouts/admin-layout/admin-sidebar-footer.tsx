@@ -1,6 +1,5 @@
 import { Button, Tooltip } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 import { LogOutIcon } from 'lucide-react';
 import { useOrganizationMe } from '@/api/get-organization-me';
@@ -19,7 +18,7 @@ type AdminSidebarFooterProps = {
 export function AdminSidebarFooter({
   isCollapsed = false,
 }: AdminSidebarFooterProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
   const { data: session } = useSession();
   const user = session?.user;
@@ -57,7 +56,7 @@ export function AdminSidebarFooter({
       {!isCollapsed && (
         <Tooltip delay={0}>
           <Button
-            aria-label={_(msg`Sign out`)}
+            aria-label={t`Sign out`}
             isIconOnly
             onPress={() => void handleLogout()}
             size='sm'
@@ -67,7 +66,7 @@ export function AdminSidebarFooter({
           </Button>
           <Tooltip.Content showArrow>
             <Tooltip.Arrow />
-            {_(msg`Sign out`)}
+            {t`Sign out`}
           </Tooltip.Content>
         </Tooltip>
       )}

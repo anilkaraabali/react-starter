@@ -1,13 +1,12 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { expect, it } from 'vitest';
 
 import { renderWithI18n } from '../render';
 
 function RoleCount({ count }: { count: number }) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
-  return <span>{_(msg`${count} roles`)}</span>;
+  return <span>{t`${count} roles`}</span>;
 }
 
 /**

@@ -1,7 +1,6 @@
 import { Link, toast } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 
 import { useForm } from '@/components/organisms/form/use-form';
@@ -14,7 +13,7 @@ import {
 import { authClient } from '@/lib/auth-client';
 
 export function ForgotPasswordView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -30,7 +29,7 @@ export function ForgotPasswordView() {
             toast.danger(context.error.message);
           },
           onSuccess() {
-            toast.success(_(msg`Password reset link sent to your email`));
+            toast.success(t`Password reset link sent to your email`);
             navigate({ to: '/login' });
           },
         }
@@ -41,7 +40,7 @@ export function ForgotPasswordView() {
 
   return (
     <AuthFormShell
-      description={_(
+      description={t(
         msg`Enter your email address and we will send you a link to reset your password.`
       )}
       footer={
@@ -49,7 +48,7 @@ export function ForgotPasswordView() {
           Remember your password? <Link href='/login'>Sign in.</Link>
         </Trans>
       }
-      title={_(msg`Forgot password`)}
+      title={t`Forgot password`}
     >
       <form.AppForm>
         <form.Root>
@@ -58,16 +57,14 @@ export function ForgotPasswordView() {
               <field.FormInput
                 autoComplete='email'
                 isRequired
-                label={_(msg`Email address`)}
+                label={t`Email address`}
                 placeholder='foo@example.com'
                 variant='secondary'
               />
             )}
           </form.AppField>
 
-          <form.SubmitButton fullWidth>
-            {_(msg`Send reset link`)}
-          </form.SubmitButton>
+          <form.SubmitButton fullWidth>{t`Send reset link`}</form.SubmitButton>
         </form.Root>
       </form.AppForm>
     </AuthFormShell>

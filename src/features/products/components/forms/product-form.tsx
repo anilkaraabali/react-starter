@@ -1,5 +1,4 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { AppForm } from '@/components/organisms/form/use-form';
 import type { createProductInputSchema } from '@/features/products/api/create-product';
 import {
@@ -13,7 +12,7 @@ type ProductFormProps = {
 };
 
 export function ProductForm({ form, formId }: ProductFormProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <form.AppForm>
@@ -25,8 +24,8 @@ export function ProductForm({ form, formId }: ProductFormProps) {
               {(field) => (
                 <field.FormInput
                   isRequired
-                  label={_(msg`Product Name`)}
-                  placeholder={_(msg`e.g. Ergonomic Keyboard`)}
+                  label={t`Product Name`}
+                  placeholder={t`e.g. Ergonomic Keyboard`}
                   variant='secondary'
                 />
               )}
@@ -36,8 +35,8 @@ export function ProductForm({ form, formId }: ProductFormProps) {
               {(field) => (
                 <field.FormInput
                   isRequired
-                  label={_(msg`SKU`)}
-                  placeholder={_(msg`e.g. PROD-001`)}
+                  label={t`SKU`}
+                  placeholder={t`e.g. PROD-001`}
                   variant='secondary'
                 />
               )}
@@ -49,7 +48,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
               {(field) => (
                 <field.FormSelect
                   isRequired
-                  label={_(msg`Category`)}
+                  label={t`Category`}
                   options={PRODUCT_CATEGORY_OPTIONS.map((c) => ({
                     label: c.label,
                     value: c.value,
@@ -63,7 +62,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
               {(field) => (
                 <field.FormSelect
                   isRequired
-                  label={_(msg`Status`)}
+                  label={t`Status`}
                   options={PRODUCT_STATUS_OPTIONS.map((s) => ({
                     label: s.label,
                     value: s.value,
@@ -76,8 +75,8 @@ export function ProductForm({ form, formId }: ProductFormProps) {
             <form.AppField name='barcode'>
               {(field) => (
                 <field.FormInput
-                  label={_(msg`Barcode / EAN`)}
-                  placeholder={_(msg`Optional barcode`)}
+                  label={t`Barcode / EAN`}
+                  placeholder={t`Optional barcode`}
                   variant='secondary'
                 />
               )}
@@ -89,7 +88,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
               {(field) => (
                 <field.FormNumberField
                   isRequired
-                  label={_(msg`Selling Price ($)`)}
+                  label={t`Selling Price ($)`}
                   minValue={0}
                   variant='secondary'
                 />
@@ -99,7 +98,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
             <form.AppField name='costPrice'>
               {(field) => (
                 <field.FormNumberField
-                  label={_(msg`Cost Price ($)`)}
+                  label={t`Cost Price ($)`}
                   minValue={0}
                   variant='secondary'
                 />
@@ -110,7 +109,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
               {(field) => (
                 <field.FormNumberField
                   isRequired
-                  label={_(msg`Available Stock`)}
+                  label={t`Available Stock`}
                   minValue={0}
                   variant='secondary'
                 />
@@ -121,8 +120,8 @@ export function ProductForm({ form, formId }: ProductFormProps) {
           <form.AppField name='description'>
             {(field) => (
               <field.FormTextArea
-                label={_(msg`Description`)}
-                placeholder={_(msg`Detailed product description...`)}
+                label={t`Description`}
+                placeholder={t`Detailed product description...`}
                 rows={4}
                 variant='secondary'
               />

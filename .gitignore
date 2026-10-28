@@ -64,3 +64,5 @@ visualizer.html
 .heroui-docs/
 .tanstack/
 .claude
+# Agent skills; restore with `npx skills experimental_install` (skills-lock.json)
+.agents/

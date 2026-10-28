@@ -1,6 +1,5 @@
 import { AlertDialog, Button, Spinner } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { ComponentProps, ReactNode } from 'react';
 
 type ConfirmDialogProps = {
@@ -24,7 +23,7 @@ export function ConfirmDialog({
   status = 'danger',
   title,
 }: ConfirmDialogProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   const handleConfirm = async () => {
     try {
@@ -65,7 +64,7 @@ export function ConfirmDialog({
                 slot='close'
                 variant='tertiary'
               >
-                {_(msg`Cancel`)}
+                {t`Cancel`}
               </Button>
               <Button
                 isPending={isPending}

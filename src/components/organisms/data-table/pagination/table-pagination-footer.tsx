@@ -1,6 +1,5 @@
 import { Pagination, Table } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useMemo } from 'react';
 import { TablePageSizeSelect } from './table-page-size-select';
 import { buildPaginationPages } from './table-pagination.utils';
@@ -22,7 +21,7 @@ export function TablePaginationFooter({
   total,
   totalPages,
 }: TablePaginationFooterProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const pages = useMemo(
     () => buildPaginationPages(currentPage, totalPages),
     [currentPage, totalPages]
@@ -43,7 +42,7 @@ export function TablePaginationFooter({
             onPageSizeChange={onPageSizeChange}
             pageSize={pageSize}
           />
-          {_(msg`${start} to ${end} of ${total} results`)}
+          {t`${start} to ${end} of ${total} results`}
         </Pagination.Summary>
         {totalPages > 1 ? (
           <Pagination.Content>
@@ -53,7 +52,7 @@ export function TablePaginationFooter({
                 onPress={() => onPageChange(Math.max(1, currentPage - 1))}
               >
                 <Pagination.PreviousIcon />
-                <span>{_(msg`Prev`)}</span>
+                <span>{t`Prev`}</span>
               </Pagination.Previous>
             </Pagination.Item>
             {pages.map((p) =>
@@ -79,7 +78,7 @@ export function TablePaginationFooter({
                   onPageChange(Math.min(totalPages, currentPage + 1))
                 }
               >
-                <span>{_(msg`Next`)}</span>
+                <span>{t`Next`}</span>
                 <Pagination.NextIcon />
               </Pagination.Next>
             </Pagination.Item>

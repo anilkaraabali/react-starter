@@ -1,6 +1,5 @@
 import { Button, Dropdown, Label } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { ChevronDownIcon } from 'lucide-react';
 import { PaletteSwatch } from '@/components/atoms/palette-swatch';
 import { colorPaletteOptions } from '@/config/color-palette';
@@ -9,20 +8,16 @@ import type { ColorPalette } from '@/types/color-palette.types';
 import { getColorPaletteOption } from '@/utils/color-palette.utils';
 
 export function ColorPalettePicker() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { palette, setPalette } = usePreferences();
 
   const activePalette = getColorPaletteOption(palette);
 
   return (
     <Dropdown>
-      <Button
-        aria-label={_(msg`Select color scheme`)}
-        size='sm'
-        variant='outline'
-      >
+      <Button aria-label={t`Select color scheme`} size='sm' variant='outline'>
         <PaletteSwatch color={activePalette.color} />
-        {_(activePalette.label)}
+        {t(activePalette.label)}
         <ChevronDownIcon />
       </Button>
       <Dropdown.Popover>
@@ -35,10 +30,10 @@ export function ColorPalettePicker() {
             <Dropdown.Item
               id={paletteOption.key}
               key={paletteOption.key}
-              textValue={_(paletteOption.label)}
+              textValue={t(paletteOption.label)}
             >
               <PaletteSwatch color={paletteOption.color} />
-              <Label>{_(paletteOption.label)}</Label>
+              <Label>{t(paletteOption.label)}</Label>
               <Dropdown.ItemIndicator />
             </Dropdown.Item>
           ))}

@@ -1,21 +1,21 @@
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import NotFoundIcon from '@/assets/404.svg?react';
 import { ErrorActions } from './error-actions';
 import { ErrorLayout } from './error-layout';
 
 export function NotFound() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <ErrorLayout
       actions={<ErrorActions />}
-      description={_(
+      description={t(
         msg`Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved.`
       )}
       icon={<NotFoundIcon className='text-accent' />}
-      title={_(msg`You have found a secret place.`)}
+      title={t`You have found a secret place.`}
     />
   );
 }

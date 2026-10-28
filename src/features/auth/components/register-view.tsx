@@ -1,7 +1,6 @@
 import { Link, toast } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 
 import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { useForm } from '@/components/organisms/form/use-form';
@@ -14,7 +13,7 @@ import {
 import { signUp } from '@/lib/auth-client';
 
 export function RegisterView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   const form = useForm({
     defaultValues: registerDefaultValues,
@@ -41,7 +40,7 @@ export function RegisterView() {
 
   return (
     <AuthFormShell
-      description={_(
+      description={t(
         msg`Create your account in just a few steps and start today.`
       )}
       footer={
@@ -50,7 +49,7 @@ export function RegisterView() {
           <Link href='/login'>sign in.</Link>
         </Trans>
       }
-      title={_(msg`Sign up`)}
+      title={t`Sign up`}
     >
       <form.AppForm>
         <form.Root>
@@ -59,7 +58,7 @@ export function RegisterView() {
               <field.FormInput
                 autoComplete='name'
                 isRequired
-                label={_(msg`Full name`)}
+                label={t`Full name`}
                 placeholder='John Doe'
                 variant='secondary'
               />
@@ -71,7 +70,7 @@ export function RegisterView() {
               <field.FormInput
                 autoComplete='email'
                 isRequired
-                label={_(msg`Email address`)}
+                label={t`Email address`}
                 placeholder='foo@example.com'
                 variant='secondary'
               />
@@ -79,16 +78,16 @@ export function RegisterView() {
           </form.AppField>
 
           <PasswordFieldsGroup
-            confirmLabel={_(msg`Confirm password`)}
+            confirmLabel={t`Confirm password`}
             fields={{
               confirmPassword: 'confirmPassword',
               password: 'password',
             }}
             form={form}
-            passwordLabel={_(msg`Password`)}
+            passwordLabel={t`Password`}
           />
 
-          <form.SubmitButton fullWidth>{_(msg`Sign up`)}</form.SubmitButton>
+          <form.SubmitButton fullWidth>{t`Sign up`}</form.SubmitButton>
         </form.Root>
       </form.AppForm>
     </AuthFormShell>

@@ -1,11 +1,11 @@
 import { AlertDialog, Button } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useBlocker } from '@tanstack/react-router';
 import { useFormContext } from '../form-context';
 
 export function FormUnsavedChangesGuard() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const form = useFormContext();
 
   // Submit handlers navigate on success while `isSubmitting` is still true.
@@ -32,20 +32,20 @@ export function FormUnsavedChangesGuard() {
             <AlertDialog.Header>
               <AlertDialog.Icon status='warning' />
               <AlertDialog.Heading>
-                {_(msg`Discard unsaved changes?`)}
+                {t`Discard unsaved changes?`}
               </AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
-              {_(
+              {t(
                 msg`You have unsaved changes. If you leave this page, they will be lost.`
               )}
             </AlertDialog.Body>
             <AlertDialog.Footer>
               <Button slot='close' variant='tertiary'>
-                {_(msg`Keep editing`)}
+                {t`Keep editing`}
               </Button>
               <Button onPress={proceed} variant='danger'>
-                {_(msg`Discard changes`)}
+                {t`Discard changes`}
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>

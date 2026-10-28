@@ -1,6 +1,5 @@
 import { Button, Popover, Switch, Typography } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { SlidersHorizontalIcon } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-is-mobile';
 import type {
@@ -20,23 +19,23 @@ export function TableColumnFilter<TRow, TColumnId extends string>({
   onColumnVisibleChange,
   visibility,
 }: TableColumnFilterProps<TRow, TColumnId>) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const isMobile = useIsMobile();
 
   return (
     <Popover>
       <Button
-        aria-label={_(msg`Edit columns`)}
+        aria-label={t`Edit columns`}
         isIconOnly={isMobile}
         variant='tertiary'
       >
         <SlidersHorizontalIcon aria-hidden />
-        {isMobile ? null : _(msg`Columns`)}
+        {isMobile ? null : t`Columns`}
       </Button>
       <Popover.Content className='w-56' placement='bottom end'>
         <Popover.Dialog className='p-3'>
           <Popover.Arrow />
-          <Popover.Heading className='pb-2'>{_(msg`Columns`)}</Popover.Heading>
+          <Popover.Heading className='pb-2'>{t`Columns`}</Popover.Heading>
           <ul className='flex flex-col gap-2'>
             {columns.map((column) => {
               const label = column.label ? column.label() : column.header();

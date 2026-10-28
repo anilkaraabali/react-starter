@@ -1,6 +1,5 @@
 import { Button, Tooltip } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { ArrowLeftIcon } from 'lucide-react';
 
 type SidebarBackButtonProps = {
@@ -12,7 +11,7 @@ export function SidebarBackButton({
   isExpanded,
   onPress,
 }: SidebarBackButtonProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   if (isExpanded) {
     return (
@@ -24,7 +23,7 @@ export function SidebarBackButton({
         variant='ghost'
       >
         <ArrowLeftIcon />
-        {_(msg`Back`)}
+        {t`Back`}
       </Button>
     );
   }
@@ -32,7 +31,7 @@ export function SidebarBackButton({
   return (
     <Tooltip delay={0}>
       <Button
-        aria-label={_(msg`Back`)}
+        aria-label={t`Back`}
         isIconOnly
         onPress={onPress}
         size='sm'
@@ -42,7 +41,7 @@ export function SidebarBackButton({
       </Button>
       <Tooltip.Content showArrow>
         <Tooltip.Arrow />
-        {_(msg`Back`)}
+        {t`Back`}
       </Tooltip.Content>
     </Tooltip>
   );

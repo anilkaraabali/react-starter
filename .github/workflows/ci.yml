@@ -77,6 +77,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: i18n catalogs (Lingui)
+        run: pnpm intl:check
+
   test:
     name: Test
     runs-on: ubuntu-latest

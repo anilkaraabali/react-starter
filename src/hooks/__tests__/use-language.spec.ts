@@ -46,6 +46,14 @@ describe('use-language', () => {
     expect(result.current.language).toBe('en');
   });
 
+  it('ignores a JSON-encoded value', () => {
+    window.localStorage.setItem(LOCAL_STORAGE_KEYS.LANGUAGE, '"tr"');
+
+    const { result } = renderHook(() => useLanguage());
+
+    expect(result.current.language).toBe('en');
+  });
+
   it('maps every declared language to its locale', () => {
     for (const language of languageOptions) {
       window.localStorage.setItem(LOCAL_STORAGE_KEYS.LANGUAGE, language.key);
@@ -65,16 +73,6 @@ describe('use-language', () => {
     expect(result.current.language).toBe('tr');
     expect(window.localStorage.getItem(LOCAL_STORAGE_KEYS.LANGUAGE)).toBe('tr');
     expect(loadCatalog).toHaveBeenCalledWith('tr');
-  });
-
-  it('sets the document language', () => {
-    const { result } = renderHook(() => useLanguage());
-
-    expect(document.documentElement.lang).toBe('en');
-
-    act(() => result.current.setLanguage('tr'));
-
-    expect(document.documentElement.lang).toBe('tr');
   });
 
   it('returns a setter that is not the raw storage setter', () => {

@@ -29,7 +29,8 @@
       "!**/*.gen.js",
       "!public/mockServiceWorker.js",
       "!.heroui-docs",
-      "!.claude"
+      "!.claude",
+      "!.agents"
     ]
   },
   "formatter": {
@@ -90,16 +91,6 @@
           "performance": {
             "noBarrelFile": "off",
             "noReExportAll": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": ["scripts/**/*.ts"],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noConsole": "off"
           }
         }
       }
@@ -169,7 +160,11 @@
     },
     {
       "path": "./plugins/no-test-suffix.grit"
-    }
+    },
+    "./plugins/no-lingui-format-helpers.grit",
+    "./plugins/no-runtime-use-lingui.grit",
+    "./plugins/no-implicit-locale-format.grit",
+    "./plugins/no-module-level-t.grit"
   ],
   "root": true,
   "vcs": {

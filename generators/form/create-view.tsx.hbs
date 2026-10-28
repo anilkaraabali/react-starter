@@ -1,6 +1,5 @@
 import { buttonVariants, Card, toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
@@ -14,12 +13,12 @@ import {
 import { {{entityPascal}}Form } from './{{entityKebab}}-form';
 
 export function Create{{entityPascal}}View() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
   const create{{entityPascal}}Mutation = useCreate{{entityPascal}}({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`{{singularTitle}} created.`));
+        toast.success(t`{{singularTitle}} created.`);
         void navigate({
           to: '{{routePath}}',
         });
@@ -43,7 +42,7 @@ export function Create{{entityPascal}}View() {
             className={buttonVariants({ variant: 'secondary' })}
             to='{{routePath}}'
           >
-            {_(msg`Cancel`)}
+            {t`Cancel`}
           </Link>
           <FormActions
             formId='create-{{entityKebab}}-form'
@@ -51,7 +50,7 @@ export function Create{{entityPascal}}View() {
           />
         </div>
       }
-      description={_(msg`Add a new {{entityKebab}} to your workspace.`)}
+      description={t`Add a new {{entityKebab}} to your workspace.`}
     >
       <Card className='p-6'>
         <{{entityPascal}}Form form={form} formId='create-{{entityKebab}}-form' />

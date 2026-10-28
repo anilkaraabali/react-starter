@@ -1,0 +1,10 @@
+// Syntactic check (no type info): any `.toLocaleString()`,
+// `.toLocaleDateString()` or `.toLocaleTimeString()` without arguments uses the
+// browser locale instead of the app's active locale.
+or {
+  `$obj.toLocaleString()`,
+  `$obj.toLocaleDateString()`,
+  `$obj.toLocaleTimeString()`
+} as $call where {
+  register_diagnostic(span=$call, message="Pass the active locale (e.g. `i18n.locale`) to toLocale*String(), or use `formatNumber` / `Intl.DateTimeFormat`. Without it the browser locale is used. [syntactic check]", severity="error")
+}

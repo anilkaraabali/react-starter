@@ -1,12 +1,11 @@
 import { Button } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useNavigate, useRouter } from '@tanstack/react-router';
 
 import { signOut } from '@/lib/auth-client';
 
 export function ErrorActions() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const router = useRouter();
   const navigate = useNavigate();
   const isHomePage = router.state.location.pathname === '/';
@@ -26,10 +25,10 @@ export function ErrorActions() {
   return (
     <>
       {!isHomePage && (
-        <Button onPress={handleGoBack}>{_(msg`Go back to dashboard`)}</Button>
+        <Button onPress={handleGoBack}>{t`Go back to dashboard`}</Button>
       )}
       <Button onPress={handleLogout} variant='ghost'>
-        {_(msg`Log out`)}
+        {t`Log out`}
       </Button>
     </>
   );

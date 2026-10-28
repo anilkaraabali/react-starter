@@ -1,6 +1,5 @@
 import { Button, Chip, Separator } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -27,7 +26,7 @@ export function SessionCard({
   onRevoke,
   session,
 }: SessionCardProps) {
-  const { _, i18n } = useLingui();
+  const { i18n, t } = useLingui();
   const { browser, device } = parseUserAgent(session.userAgent);
   const lastActive = dayjs(session.updatedAt).locale(i18n.locale);
   const firstLogin = dayjs(session.createdAt).locale(i18n.locale);
@@ -46,24 +45,22 @@ export function SessionCard({
         <dl className='mt-1 flex flex-col gap-0.5 text-muted text-xs'>
           <div>
             <dt className='inline font-medium text-foreground'>
-              {_(msg`First Login`)}:
+              {t`First Login`}:
             </dt>{' '}
             <dd className='inline'>{firstLogin.format('L, LT')}</dd>
           </div>
           <div>
             <dt className='inline font-medium text-foreground'>
-              {_(msg`IP Address`)}:
+              {t`IP Address`}:
             </dt>{' '}
-            <dd className='inline'>
-              {ipAddress ? ipAddress : _(msg`Unknown`)}
-            </dd>
+            <dd className='inline'>{ipAddress ? ipAddress : t`Unknown`}</dd>
           </div>
         </dl>
       </div>
       <div className='shrink-0 self-start'>
         {isCurrent ? (
           <Chip color='success' size='sm' variant='soft'>
-            {_(msg`Active Session`)}
+            {t`Active Session`}
           </Chip>
         ) : (
           <Button
@@ -72,7 +69,7 @@ export function SessionCard({
             size='sm'
             variant='secondary'
           >
-            {_(msg`Revoke`)}
+            {t`Revoke`}
           </Button>
         )}
       </div>

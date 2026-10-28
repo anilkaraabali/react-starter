@@ -1,6 +1,7 @@
 /* Base requirements */
 @import "tailwindcss";
 @import "@heroui/styles";
+@import "@bprogress/core/css";
 
 /* Theme variables */
 @import "./themes/red.css" layer(theme);
@@ -23,18 +24,18 @@
 
 /* Others */
 @import "./account.css" layer(components);
-@import "./nprogress.css" layer(components);
 
 /* stylelint-disable-next-line at-rule-empty-line-before */
 
 :root {
+  --bprogress-color: var(--accent);
+  --bprogress-z-index: 99999;
   --sidebar-width: 240px;
   --sidebar-width-collapsed: 64px;
   --sidebar-edge-outline: #00000014;
   --sidebar-menu-indent: calc(var(--spacing) * 4);
   --header-edge-outline: #00000014;
   --header-height: 64px;
-  --chart-grid-stroke: color-mix(in oklab, lab(90.952% 0 0) 50%, transparent);
   --font-sans:
     "Inter", system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
     sans-serif;
@@ -45,7 +46,6 @@
 :root[data-theme="dark"] {
   --sidebar-edge-outline: #ffffff1a;
   --header-edge-outline: #ffffff1a;
-  --chart-grid-stroke: lab(100% 0 0 / 10%);
 }
 
 @layer utilities {

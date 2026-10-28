@@ -1,6 +1,5 @@
 import { cn } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { HTMLAttributes } from 'react';
 
 import Brandmark from '@/assets/brandmark.svg?react';
@@ -10,11 +9,11 @@ type LogoProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export function Logo({ className, showWordmark = true, ...props }: LogoProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <div
-      aria-label={_(msg`Admin Starter logo`)}
+      aria-label={t`Admin Starter logo`}
       className={cn('flex items-center gap-2', className)}
       role='img'
       {...props}

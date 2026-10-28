@@ -1,5 +1,5 @@
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import {
   ErrorComponent,
   type ErrorComponentProps,
@@ -11,10 +11,10 @@ import { ErrorActions } from './error-actions';
 import { ErrorLayout } from './error-layout';
 
 export function GlobalError({ error }: ErrorComponentProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   const getErrorTitle = () =>
-    _(
+    t(
       msg`Oops! That didn’t work as expected. We’ve been notified and will fix it soon.`
     );
 

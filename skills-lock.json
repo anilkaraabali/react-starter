@@ -1,0 +1,82 @@
+{
+  "skills": {
+    "better-auth-best-practices": {
+      "computedHash": "0c30be0e118c2b7a0c4c57bd9e63bf110c7e420a79ec6ce7997153f3b1e066ee",
+      "skillPath": "better-auth/best-practices/SKILL.md",
+      "source": "better-auth/skills",
+      "sourceType": "github"
+    },
+    "better-auth-security-best-practices": {
+      "computedHash": "7a230edf3a24ce18162cb4379f59b6a19b8d24ca04db530609d0f15cede556dc",
+      "skillPath": "security/SKILL.md",
+      "source": "better-auth/skills",
+      "sourceType": "github"
+    },
+    "create-auth": {
+      "computedHash": "9a9b498bc144367b8e237233f89def63fb2bd69e8cafe173eaa58fe3a863cdc4",
+      "skillPath": "better-auth/create-auth/SKILL.md",
+      "source": "better-auth/skills",
+      "sourceType": "github"
+    },
+    "email-and-password-best-practices": {
+      "computedHash": "863886759f729081e265941f4f72c503835d55a1f34f6d63cebe6571159fff4a",
+      "skillPath": "better-auth/emailAndPassword/SKILL.md",
+      "source": "better-auth/skills",
+      "sourceType": "github"
+    },
+    "enhanced-message-context": {
+      "computedHash": "de808be0383d355a128534dc8f80676461317df447b46c6cf93005a71b6abc37",
+      "skillPath": "skills/enhanced-message-context/SKILL.md",
+      "source": "lingui/skills",
+      "sourceType": "github"
+    },
+    "find-unwrapped-strings": {
+      "computedHash": "b22e320a8edc46a3d1f1f3e95f1fb1d6aac97918384a7bff95dc2b37775ffe06",
+      "skillPath": "skills/find-unwrapped-strings/SKILL.md",
+      "source": "lingui/skills",
+      "sourceType": "github"
+    },
+    "heroui-react": {
+      "computedHash": "6116a849a6039e8b4d9dda3f6251c462e4ce8f583c53fda77838d0b2c124fe41",
+      "source": "heroui-inc/heroui",
+      "sourceType": "github"
+    },
+    "lingui-best-practices": {
+      "computedHash": "e206afb6a13bac33baba241dafb6f604b53d168e7ae55ef1a15a5d53e7e99855",
+      "skillPath": "skills/lingui-best-practices/SKILL.md",
+      "source": "lingui/skills",
+      "sourceType": "github"
+    },
+    "lingui-framework-setup": {
+      "computedHash": "2e328b06aadcb344596b28fcb61f1023103dbeef208c760e11140b698bad8a84",
+      "skillPath": "skills/lingui-framework-setup/SKILL.md",
+      "source": "lingui/skills",
+      "sourceType": "github"
+    },
+    "migrate-i18next-to-lingui": {
+      "computedHash": "e574ce86ebd86172f45d71dde6b32effa060865c921f2012a9a3279145901897",
+      "skillPath": "skills/migrate-i18next-to-lingui/SKILL.md",
+      "source": "lingui/skills",
+      "sourceType": "github"
+    },
+    "organization-best-practices": {
+      "computedHash": "8c85e683dabef4532f1e8b67bbed5c453d39e0e3d5aeedd69d16b568f6e6d44f",
+      "skillPath": "better-auth/organization/SKILL.md",
+      "source": "better-auth/skills",
+      "sourceType": "github"
+    },
+    "swc-plugin-compatibility": {
+      "computedHash": "991964ce5ae45e2ec7658d22e7dabc3cc465bffe1e9ebc5ad853bfe2b986f8be",
+      "skillPath": "skills/swc-plugin-compatibility/SKILL.md",
+      "source": "lingui/skills",
+      "sourceType": "github"
+    },
+    "two-factor-authentication-best-practices": {
+      "computedHash": "5bc3051aef5060db013f0b3cbe812c40dbae5c22d6ba3ddde4b941158362a197",
+      "skillPath": "better-auth/twoFactor/SKILL.md",
+      "source": "better-auth/skills",
+      "sourceType": "github"
+    }
+  },
+  "version": 1
+}
