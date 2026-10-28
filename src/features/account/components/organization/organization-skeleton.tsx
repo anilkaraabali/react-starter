@@ -1,20 +1,19 @@
 import { Skeleton } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import { Account } from '@/features/account/components/blocks/account';
 
 const MEMBER_ROW_KEYS = ['first', 'second', 'third'] as const;
 
 export function OrganizationSkeleton() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <Account.Sections>
       <Account.Section>
         <Account.Header titleOnly>
           <Account.HeaderLeadingItems>
-            <Account.HeaderLabel>{_(msg`General`)}</Account.HeaderLabel>
+            <Account.HeaderLabel>{t`General`}</Account.HeaderLabel>
           </Account.HeaderLeadingItems>
         </Account.Header>
         <Account.CellList>
@@ -32,7 +31,7 @@ export function OrganizationSkeleton() {
       <Account.Section>
         <Account.Header titleOnly>
           <Account.HeaderLeadingItems>
-            <Account.HeaderLabel>{_(msg`Members`)}</Account.HeaderLabel>
+            <Account.HeaderLabel>{t`Members`}</Account.HeaderLabel>
           </Account.HeaderLeadingItems>
         </Account.Header>
         <Account.CellList>

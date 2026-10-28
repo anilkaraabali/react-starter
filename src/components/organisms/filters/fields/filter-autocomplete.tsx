@@ -1,6 +1,5 @@
 import { Autocomplete, type Key, Label } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { AutocompletePopover } from '@/components/molecules/autocomplete-popover';
 import type {
   FilterOption,
@@ -20,14 +19,14 @@ export function FilterAutocomplete({
   options = [],
   value,
 }: FilterAutocompleteProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <Autocomplete
       allowsEmptyCollection
       fullWidth
       onChange={onChange}
-      placeholder={_(msg`Select one`)}
+      placeholder={t`Select one`}
       selectionMode='single'
       value={value as Key}
       variant='secondary'

@@ -1,6 +1,5 @@
 import { Card, toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
@@ -31,13 +30,13 @@ export function Edit{{entityPascal}}View({ {{routeParam}} }: Edit{{entityPascal}
 }
 
 function Edit{{entityPascal}}Layout({ {{entityCamel}} }: { {{entityCamel}}: {{entityPascal}} }) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const update{{entityPascal}}Mutation = useUpdate{{entityPascal}}({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`{{singularTitle}} updated.`));
+        toast.success(t`{{singularTitle}} updated.`);
         void navigate({
           to: '{{routePath}}',
         });

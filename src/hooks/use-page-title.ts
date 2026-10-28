@@ -1,4 +1,4 @@
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useRouterState } from '@tanstack/react-router';
 
 import type { LoaderData } from '@/types/meta.types';

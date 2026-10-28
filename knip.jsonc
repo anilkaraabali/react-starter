@@ -12,6 +12,9 @@
     // parsing cannot see.
     "scripts/**/*.{ts,mjs}"
   ],
+  // Run as `pnpm exec intent list|load` by coding agents (see AGENTS.md), never
+  // imported or referenced from a script.
+  "ignoreDependencies": ["@tanstack/intent"],
   // Private, self-contained app: dead code in a route file is still dead code.
   "includeEntryExports": true,
   // `.css` has to stay in scope or knip stops following CSS imports; the `@/*`

@@ -5,19 +5,16 @@ import { Devtools } from './devtools';
 import { Loader } from './loader';
 import { router } from './router-instance';
 
-type AppRouterProps = {
-  isLanguageLoaded: boolean;
-};
-
-export function AppRouter({ isLanguageLoaded }: AppRouterProps) {
+export function AppRouter() {
   const { data: session, isPending } = authClient.useSession();
 
   useAppEvent('auth:unauthorized', () => {
     router.navigate({ to: '/login' });
   });
 
-  // Don't render router until both language catalog and session are loaded
-  if (isPending || !isLanguageLoaded) {
+  // Don't render the router until the session is loaded (the language catalog
+  // is already active: `main.tsx` loads it before the app mounts).
+  if (isPending) {
     return <Loader />;
   }
 

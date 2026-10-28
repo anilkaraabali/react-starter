@@ -1,6 +1,5 @@
 import { Button } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { XIcon } from 'lucide-react';
 
 type FiltersPanelActionsProps = {
@@ -16,20 +15,20 @@ export function FiltersPanelActions({
   onCancel,
   onClear,
 }: FiltersPanelActionsProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <div className='flex flex-wrap items-center gap-2'>
       <Button onPress={onApply} variant='primary'>
-        {_(msg`Apply`)}
+        {t`Apply`}
       </Button>
       <Button onPress={onCancel} variant='secondary'>
-        {_(msg`Cancel`)}
+        {t`Cancel`}
       </Button>
       {hasActiveFilters ? (
         <Button onPress={onClear} variant='ghost'>
           <XIcon />
-          {_(msg`Clear filters`)}
+          {t`Clear filters`}
         </Button>
       ) : null}
     </div>

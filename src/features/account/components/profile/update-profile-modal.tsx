@@ -1,6 +1,5 @@
 import { toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
@@ -23,11 +22,11 @@ export function UpdateProfileModal({
   isOpen,
   onClose,
 }: UpdateProfileModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const updateProfileMutation = useUpdateProfile({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Profile updated.`));
+        toast.success(t`Profile updated.`);
         onClose();
       },
     },
@@ -64,8 +63,8 @@ export function UpdateProfileModal({
       form={form}
       isOpen={isOpen}
       onClose={onClose}
-      submitLabel={_(msg`Save`)}
-      title={_(msg`Edit Profile`)}
+      submitLabel={t`Save`}
+      title={t`Edit Profile`}
     >
       <div className='grid gap-4'>
         <NameEmailFieldsGroup

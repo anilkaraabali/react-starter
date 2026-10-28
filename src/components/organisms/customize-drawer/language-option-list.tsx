@@ -1,5 +1,4 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { GlobeIcon } from 'lucide-react';
 import { type Language, languageOptions } from '@/config/language';
 import { PreferenceOptionCard } from './preference-option-card';
@@ -13,12 +12,12 @@ export function LanguageOptionList({
   onSelect,
   selectedLanguage,
 }: LanguageOptionListProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <div>
-      <h4 className='mb-2 font-semibold text-foreground text-xs'>
-        {_(msg`Language`)}
+      <h4 className='text-foreground mb-2 text-xs font-semibold'>
+        {t`Language`}
       </h4>
       <div className='grid grid-cols-3 gap-2.5'>
         {languageOptions.map((lang) => {

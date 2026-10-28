@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useLanguage } from '@/hooks/use-language';
-import { loadCatalog } from '@/lib/i18n';
 import { AppProvider } from './provider';
 import { AppRouter } from './router';
 
@@ -9,6 +6,10 @@ if (import.meta.env.DEV && 'serviceWorker' in navigator) {
     .getRegistrations()
     .then((registrations) => {
       for (const registration of registrations) {
+        // Keep the MSW worker: mocking starts before this module is imported.
+        if (registration.active?.scriptURL.endsWith('/mockServiceWorker.js')) {
+          continue;
+        }
         registration.unregister().catch(console.error);
       }
     })
@@ -16,16 +17,9 @@ if (import.meta.env.DEV && 'serviceWorker' in navigator) {
 }
 
 export function App() {
-  const { language } = useLanguage();
-  const [languageLoaded, setLanguageLoaded] = useState(false);
-
-  useEffect(() => {
-    loadCatalog(language).then(() => setLanguageLoaded(true));
-  }, [language]);
-
   return (
     <AppProvider>
-      <AppRouter isLanguageLoaded={languageLoaded} />
+      <AppRouter />
     </AppProvider>
   );
 }

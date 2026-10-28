@@ -12,12 +12,17 @@ import { isLanguage } from '@/utils/language.utils';
 
 import 'dayjs/locale/tr';
 
+/** Stored as the plain language key; anything else falls back to the default. */
+function deserializeLanguage(value: string): Language {
+  return isLanguage(value) ? value : DEFAULT_LANGUAGE;
+}
+
 export function useLanguage() {
   const [language, setLanguage] = useLocalStorage<Language>(
     LOCAL_STORAGE_KEYS.LANGUAGE,
     DEFAULT_LANGUAGE,
     {
-      deserializer: (v) => (isLanguage(v) ? v : DEFAULT_LANGUAGE),
+      deserializer: deserializeLanguage,
       serializer: (v) => v,
     }
   );
@@ -29,8 +34,8 @@ export function useLanguage() {
     loadCatalog(language);
   };
 
+  // `<html lang>` is set by `loadCatalog`, the single place that activates a locale.
   useEffect(() => {
-    document.documentElement.lang = language;
     dayjs.locale(language);
   }, [language]);
 

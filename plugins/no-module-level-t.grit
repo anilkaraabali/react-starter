@@ -1,0 +1,19 @@
+// Syntactic check: the core `t` macro translates immediately, so at module
+// scope it runs before a locale is active and never updates on a language
+// switch. Flags `t`...`` and `t({...})` outside any function, arrow, method or
+// getter. Use `msg`...`` there and resolve it at render/validation time.
+or {
+  `t` as $tag where { $tag <: within JsTemplateExpression() as $node },
+  `t($args)` as $node
+} where {
+  not $node <: within or {
+    JsFunctionBody(),
+    JsArrowFunctionExpression(),
+    JsMethodClassMember(),
+    JsMethodObjectMember(),
+    JsGetterObjectMember(),
+    JsGetterClassMember(),
+    JsFunctionExpression()
+  },
+  register_diagnostic(span=$node, message="Module-level `t` translates once at import time (before a locale is active). Use `msg` and resolve it inside a component/function. [syntactic check]", severity="error")
+}

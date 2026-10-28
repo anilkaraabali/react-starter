@@ -7,7 +7,7 @@ export function SessionsSkeleton() {
     <div className='flex flex-col gap-3 self-stretch'>
       {SESSION_CARD_KEYS.map((key) => (
         <div
-          className='flex items-start gap-4 rounded-xl border border-border bg-surface p-4'
+          className='border-border bg-surface flex items-start gap-4 rounded-xl border p-4'
           key={key}
         >
           <Skeleton className='size-10 shrink-0 rounded-lg' />

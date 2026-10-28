@@ -1,6 +1,5 @@
 import { Checkbox, cn, Spinner, Table, tv } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { ReactNode } from 'react';
 
 import type {
@@ -54,7 +53,7 @@ export function DataTableView<
   toolbar,
   toolbarActions,
 }: DataTableViewProps<TRow, TColumnId>) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const hasResults = data.length > 0;
 
   return (
@@ -68,7 +67,7 @@ export function DataTableView<
       <Table aria-busy={isLoading} className='min-h-80.25'>
         <Table.ScrollContainer>
           <Table.Content
-            aria-label={_(msg`Data table`)}
+            aria-label={t`Data table`}
             className={cn({
               'h-full': !hasResults,
             })}
@@ -82,10 +81,7 @@ export function DataTableView<
             <Table.Header>
               {selection ? (
                 <Table.Column>
-                  <Checkbox
-                    aria-label={_(msg`Select all rows`)}
-                    slot='selection'
-                  >
+                  <Checkbox aria-label={t`Select all rows`} slot='selection'>
                     <Checkbox.Content>
                       <Checkbox.Control>
                         <Checkbox.Indicator />

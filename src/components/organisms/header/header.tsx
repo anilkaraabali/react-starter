@@ -21,7 +21,7 @@ export function Header({
 }: HeaderProps) {
   return (
     <header className='sticky top-0 z-30'>
-      <div className='flex h-(--header-height) items-center justify-between gap-3 border-(--header-edge-outline) border-b bg-background px-4 backdrop-blur-xl md:px-6'>
+      <div className='bg-background flex h-(--header-height) items-center justify-between gap-3 border-b border-(--header-edge-outline) px-4 backdrop-blur-xl md:px-6'>
         <div className='flex items-center gap-3'>
           {menuToggleSlot}
           {searchSlot}

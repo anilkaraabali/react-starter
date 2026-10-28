@@ -1,6 +1,5 @@
 import { EmptyState } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { InboxIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -9,12 +8,12 @@ type TableEmptyStateProps = {
 };
 
 export function TableEmptyState({ children }: TableEmptyStateProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <EmptyState className='table__empty-state'>
       <InboxIcon size={24} />
-      <span>{children ?? _(msg`No rows to display.`)}</span>
+      <span>{children ?? t`No rows to display.`}</span>
     </EmptyState>
   );
 }

@@ -1,5 +1,4 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { themeOptions } from '@/config/theme';
 import type { Theme } from '@/types/theme.types';
 import { PreferenceOptionCard } from './preference-option-card';
@@ -13,13 +12,11 @@ export function ThemeOptionList({
   onSelect,
   selectedTheme,
 }: ThemeOptionListProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <div>
-      <h4 className='mb-2 font-semibold text-foreground text-xs'>
-        {_(msg`Theme`)}
-      </h4>
+      <h4 className='text-foreground mb-2 text-xs font-semibold'>{t`Theme`}</h4>
       <div className='grid grid-cols-3 gap-2.5'>
         {themeOptions.map((opt) => {
           const isSelected = selectedTheme === opt.key;
@@ -29,7 +26,7 @@ export function ThemeOptionList({
             <PreferenceOptionCard
               isSelected={isSelected}
               key={opt.key}
-              label={_(opt.label)}
+              label={t(opt.label)}
               onSelect={() => onSelect(opt.key as Theme)}
               preview={<Icon />}
             />

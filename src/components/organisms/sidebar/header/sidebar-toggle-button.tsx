@@ -1,6 +1,5 @@
 import { Button, Kbd, Tooltip } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 
 const isMac = /Mac|iPhone|iPad/i.test(navigator.userAgent);
@@ -14,8 +13,8 @@ export function SidebarToggleButton({
   isExpanded,
   onToggle,
 }: SidebarToggleButtonProps) {
-  const { _ } = useLingui();
-  const label = isExpanded ? _(msg`Collapse sidebar`) : _(msg`Expand sidebar`);
+  const { t } = useLingui();
+  const label = isExpanded ? t`Collapse sidebar` : t`Expand sidebar`;
 
   return (
     <Tooltip delay={0}>

@@ -1,0 +1,10 @@
+// Syntactic check (no type info): flags `i18n.number(...)` / `i18n.date(...)`,
+// deprecated in Lingui 6 and scheduled for removal.
+or {
+  `i18n.number($args)` as $call where {
+    register_diagnostic(span=$call, message="`i18n.number` is deprecated in Lingui 6. Use `formatNumber(value, i18n.locale)` from `@/utils/number-format.utils` (Intl.NumberFormat). [syntactic check]", severity="error")
+  },
+  `i18n.date($args)` as $call where {
+    register_diagnostic(span=$call, message="`i18n.date` is deprecated in Lingui 6. Use `Intl.DateTimeFormat(i18n.locale, options)` directly. [syntactic check]", severity="error")
+  }
+}

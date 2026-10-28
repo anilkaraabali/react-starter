@@ -6,7 +6,7 @@ import {
   Skeleton,
 } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { Link } from '@tanstack/react-router';
 import { ShieldIcon, UsersIcon } from 'lucide-react';
 import { UserAvatar } from '@/components/atoms/user-avatar';
@@ -23,7 +23,7 @@ type AccountRolePageProps = {
 };
 
 export function AccountRoleView({ role }: AccountRolePageProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { data, isError, isPending, refetch } = useOrganizationMembers();
   const members = data?.members.filter((member) => member.role === role) ?? [];
 
@@ -40,7 +40,7 @@ export function AccountRoleView({ role }: AccountRolePageProps) {
       to='/account/roles'
     >
       <ShieldIcon />
-      {_(msg`All roles`)}
+      {t`All roles`}
     </Link>
   );
 
@@ -51,30 +51,30 @@ export function AccountRoleView({ role }: AccountRolePageProps) {
         <Account.Section id='role-permissions'>
           <Account.SectionHeader
             actions={allRolesLink}
-            title={_(msg`Permissions`)}
+            title={t`Permissions`}
           />
           <Account.CellList>
             {ROLE_PERMISSIONS[role].map((permission) => (
               <Account.Row
                 description={<code className='text-xs'>{permission}</code>}
                 key={permission}
-                label={_(ORGANIZATION_PERMISSION_LABELS[permission])}
+                label={t(ORGANIZATION_PERMISSION_LABELS[permission])}
               />
             ))}
           </Account.CellList>
         </Account.Section>
 
         <Account.Section id='role-members'>
-          <Account.SectionHeader title={_(msg`Members with this role`)} />
+          <Account.SectionHeader title={t`Members with this role`} />
           {isPending ? (
             <Skeleton className='h-16 rounded-xl' />
           ) : isError ? (
             <Alert status='danger'>
               <Alert.Indicator />
               <Alert.Content>
-                <Alert.Title>{_(msg`Unable to load members`)}</Alert.Title>
+                <Alert.Title>{t`Unable to load members`}</Alert.Title>
                 <Alert.Description>
-                  {_(
+                  {t(
                     msg`Something went wrong while loading members. Please try again.`
                   )}
                 </Alert.Description>
@@ -86,15 +86,15 @@ export function AccountRoleView({ role }: AccountRolePageProps) {
                   size='sm'
                   variant='danger'
                 >
-                  {_(msg`Retry`)}
+                  {t`Retry`}
                 </Button>
               </Alert.Content>
             </Alert>
           ) : members.length === 0 ? (
-            <EmptyState className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-surface px-4 py-10 text-center'>
-              <UsersIcon className='size-6! text-muted' />
+            <EmptyState className='bg-surface flex flex-col items-center justify-center gap-3 rounded-xl border px-4 py-10 text-center'>
+              <UsersIcon className='text-muted size-6!' />
               <span className='text-muted text-sm'>
-                {_(msg`No members currently hold this role.`)}
+                {t`No members currently hold this role.`}
               </span>
             </EmptyState>
           ) : (

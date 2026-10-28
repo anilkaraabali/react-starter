@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -7,7 +7,7 @@
         "useSortedAttributes": "on",
         "useSortedInterfaceMembers": "on",
         "useSortedKeys": "on",
-        "useSortedProperties": "off"
+        "useSortedProperties": "on"
       }
     },
     "enabled": true
@@ -29,7 +29,9 @@
       "!**/*.gen.js",
       "!public/mockServiceWorker.js",
       "!.heroui-docs",
-      "!.claude"
+      "!.claude",
+      "!.agents",
+      "!pnpm-lock.yaml"
     ]
   },
   "formatter": {
@@ -67,7 +69,7 @@
   "linter": {
     "rules": {
       "nursery": {
-        "useSortedClasses": {
+        "useTailwindSortedClasses": {
           "fix": "safe",
           "level": "error"
         }
@@ -90,16 +92,6 @@
           "performance": {
             "noBarrelFile": "off",
             "noReExportAll": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": ["scripts/**/*.ts"],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noConsole": "off"
           }
         }
       }
@@ -169,7 +161,11 @@
     },
     {
       "path": "./plugins/no-test-suffix.grit"
-    }
+    },
+    "./plugins/no-lingui-format-helpers.grit",
+    "./plugins/no-runtime-use-lingui.grit",
+    "./plugins/no-implicit-locale-format.grit",
+    "./plugins/no-module-level-t.grit"
   ],
   "root": true,
   "vcs": {

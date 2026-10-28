@@ -1,12 +1,11 @@
 import { Button } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 import { PlusIcon } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-is-mobile';
 
 export function CreateProductButton() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
 
@@ -17,7 +16,7 @@ export function CreateProductButton() {
       variant='primary'
     >
       <PlusIcon />
-      {isMobile ? null : _(msg`Add product`)}
+      {isMobile ? null : t`Add product`}
     </Button>
   );
 }

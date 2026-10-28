@@ -1,5 +1,17 @@
 # AGENTS.md
 
+<!-- intent-skills:start -->
+## Skill Loading
+
+Use the repository’s installed Intent. If it is unavailable, report the missing dependency instead of downloading a replacement.
+Before editing files for a substantial task:
+- Run `pnpm exec intent list` from the workspace root to see available local skills.
+- If a listed skill matches the task, run `pnpm exec intent load <package>#<skill>` before changing files.
+- Use the loaded `SKILL.md` guidance while making the change.
+- Monorepos: when working across packages, run the skill check from the workspace root and prefer the local skill for the package being changed.
+- Multiple matches: prefer the most specific local skill for the package or concern you are changing; load additional skills only when the task spans multiple packages or concerns.
+<!-- intent-skills:end -->
+
 ## Project Overview
 
 A scalable admin template built on modern React best practices and bulletproof architecture:
@@ -25,6 +37,10 @@ pnpm typecheck
 
 # Run tests
 pnpm test
+
+# Extract Lingui messages / verify catalogs are in sync
+pnpm intl:extract
+pnpm intl:check
 
 # Lint and auto-fix code style & dependencies
 pnpm lint
@@ -77,18 +93,21 @@ src/features/awesome-feature/
 ## Code Standards
 
 ### TypeScript
+
 - **Strict mode enabled** - All TypeScript strict checks are enforced
 - **Type-first approach** - Use `type` aliases for props and domain data; reserve `interface` strictly for `declare module` augmentation
 - **Absolute imports** - Use `@/` prefix for all src imports (e.g., `@/components/atoms/logo`)
 - **Zero barrel files** - Import directly from atomic files; never use `index.ts`
 
 ### Code Style
+
 - **Biome** configured for formatting, linting, and imports
 - **PascalCase** for React components
 - **camelCase** for functions and variables
 - **Sentence case for buttons and actions** - Use sentence case for button labels and action texts (e.g., "Add product", "Save changes", "Create member"; NOT Title Case like "Add Product" or "Save Changes")
 
 ### File Naming Conventions
+
 - **Components** - `kebab-case.tsx` (e.g., `user-profile.tsx`, `product-view.tsx`)
 - **Hooks** - `use-kebab-case.ts` (e.g., `use-discussions.ts`, `use-disclosure.ts`)
 - **Utilities** - `kebab-case.ts` (e.g., `format-date.ts`, `format-currency.ts`)
@@ -96,6 +115,7 @@ src/features/awesome-feature/
 - **Folders** - `kebab-case` throughout the entire repository
 
 ### Architecture Rules
+
 - **No cross-feature imports** - Features should not import from each other
 - **Unidirectional flow** - Code flows: shared → features → app
 - **Colocation** - Keep related code as close as possible to where it's used
@@ -103,6 +123,7 @@ src/features/awesome-feature/
 ## Component Guidelines
 
 ### Best Practices
+
 - **Composition over props** - Use children/slots instead of many props
 - **Single responsibility** - Shared components in `src/components/` must be pure ("dumb") with zero router, auth, or API dependencies
 - **Extract render functions** - Move complex JSX into separate components
@@ -110,12 +131,14 @@ src/features/awesome-feature/
 - **Atomic Design** - Higher level imports lower level (`organisms` → `molecules` → `atoms`; never reverse)
 
 ### Styling
+
 - **Tailwind CSS v4** is the primary styling solution
 - **HeroUI v3** components built on React Aria primitives
 
 ## State Management Strategy
 
 ### Component State
+
 - Use `useState` for simple independent state
 - Use `useReducer` for complex state with multiple related updates
 
@@ -125,11 +148,13 @@ src/features/awesome-feature/
 - Global error handling via `QueryCache` / `MutationCache` and toast alerts (`toast.danger`); opt-out with `meta: { handleGlobalError: false }`
 
 ### Form State
+
 - **TanStack Form** for form management
 - **Zod** for form validation schemas
 - Create reusable Form and Input components
 
 ### Application State
+
 - **React Context** (Kent C. Dodds pattern) for local and app-wide UI state (active drawer, theme, preferences)
 - Keep `createContext`, `<Name>Provider`, and `use<Name>()` in one atomic file; fail-fast if rendered outside provider
 
@@ -158,6 +183,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Testing Strategy
 
 ### Unit & Integration Tests
+
 - **Vitest & Testing Library** - Co-located in `__tests__/` subdirectories using `<name>.spec.ts(x)`
 - **Render Wrapper** - Use `renderWithI18n` (`src/testing/render.tsx`) for components requiring translation context
 - **Mocking** - Mock API calls using MSW (Mock Service Worker) handlers in `src/testing/mocks/`
@@ -166,12 +192,14 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Security Considerations
 
 ### Authentication
+
 - **HttpOnly Cookies** - JWT & session tokens stored in secure `HttpOnly` cookies (never `localStorage` or `sessionStorage`)
 - **Better Auth Client** - Built-in session state management (`authClient.useSession`) with automatic session tracking
 - **Automatic Session & Token Refresh** - Handled seamlessly via Better Auth cookie lifecycle and Axios interceptors
 - On `401 Unauthorized` responses, clear local session state and redirect to login
 
 ### Authorization
+
 - **RBAC (Role-Based Access Control)** for basic permissions
 - **PBAC (Permission-Based Access Control)** for granular control
 - **Client-side authorization for UX** (always validate server-side)
@@ -179,6 +207,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 - Restrict route access at loader or layout level using authenticated context and policies
 
 ### XSS Prevention
+
 - `dangerouslySetInnerHTML` is strictly prohibited
 - Sanitize all user inputs before rendering
 - Use DOMPurify for HTML content sanitization
@@ -189,15 +218,18 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Performance Optimization
 
 ### Code Splitting
+
 - **Route-level splitting** - Lazy load pages/routes automatically via TanStack Router
 - **Avoid excessive splitting** - Balance network requests vs bundle size; don't split small atomic components
 
 ### React Optimizations
+
 - **Children prop pattern** - Prevent unnecessary re-renders of heavy subtrees using composition
 - **State colocation** - Keep state as close to where it's used as possible
 - **State initializer functions** - Use lazy initial state (`useState(() => computeExpensiveValue())`) for heavy computations
 
 ### Image Optimization
+
 - **Lazy loading** - Native lazy loading (`loading="lazy"`) for images outside viewport
 - **Modern formats** - Prefer WebP/AVIF with suitable fallbacks
 - **Responsive images** - Use `srcset` and `sizes` attributes for resolution switching
@@ -205,11 +237,13 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Error Handling
 
 ### API Errors
+
 - **Global error interceptor** in API client (`src/lib/api-client.ts`)
 - **Automatic error notifications** via toast system (`toast.danger`)
 - **Automatic token refresh & redirect** on 401 Unauthorized errors
 
 ### Application Errors
+
 - **Error Boundaries at feature level** (not just root app level)
 - **Graceful fallbacks** for broken components via localized error UI
 - **Sentry integration** for production error tracking when configured
@@ -217,11 +251,13 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Build and Deployment
 
 ### Development
+
 - **Vite** for fast development builds and HMR
 - **TypeScript strict mode** for compile-time safety
 - **Biome** for formatting, linting, and imports code quality
 
 ### Production
+
 - **Deploy to CDN platforms** - Vercel, Netlify, or AWS CloudFront
 - **Source maps** uploaded to Sentry for error tracking
 - **Environment configuration** via `.env` files with validation (`src/config/env.ts`)
@@ -229,6 +265,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Development Workflow
 
 ### Git Hooks (Husky & lint-staged)
+
 - **Pre-commit** - Automated via `lint-staged`:
   - Biome formatting & lint check (`biome check --write`)
   - TypeScript type check (`tsc --noEmit`)
@@ -239,6 +276,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ## Common Patterns
 
 ### Feature Development
+
 - Start with API types and validation schemas
 - Create API fetcher functions and React Query hooks (`src/features/<feature>/api/`)
 - Build UI components with proper TypeScript integration (`src/features/<feature>/components/`)
@@ -246,24 +284,51 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 - Register file-based routes under `src/app/routes/`
 
 ### Component Creation
+
 - Follow Atomic Design (`atoms` → `molecules` → `organisms`) in `src/components/` or feature-level `components/`
 - Prioritize composition over prop drilling
 - Keep shared components pure with zero router/auth/API dependencies
 - Include unit tests for components with logic in co-located `__tests__/`
 
 ### State Management
+
 - Start with local component state (`useState`, `useReducer`)
 - Lift to parent component if needed by siblings
 - Application UI state in React Context (provider + custom hook in one file)
 - Server state in TanStack Query (with query key factory)
 - Form state in TanStack Form + Zod
 
+## Lingui (i18n)
+
+- Lingui Agent Skills are installed in the gitignored .agents/skills directory (`lingui-best-practices`, `find-unwrapped-strings`, `enhanced-message-context`, `lingui-framework-setup`, `migrate-i18next-to-lingui`, `swc-plugin-compatibility`). Read the relevant skill before i18n work. Restore the skills from the tracked `skills-lock.json` with `npx skills experimental_install`.
+- Lingui docs for agents: https://lingui.dev/llms.txt. Any doc page is available as Markdown by appending `.md` to its URL.
+- Use the macro hook (`useLingui` from `@lingui/react/macro`) in components; import `i18n` directly from `@lingui/core` (`src/lib/i18n.ts` only exports `loadCatalog` / `getSavedLanguage`).
+- The saved locale is activated in `src/main.tsx` before `App` is imported; `loadCatalog` is the single place that activates a locale and sets `<html lang>`.
+- Never translate at module scope (`i18n._`/`t` in top-level constants or zod schemas). Use `msg` descriptors or zod `{ error: () => ... }` so messages resolve at render/validation time.
+- `pnpm intl:extract` updates the catalogs; `pnpm intl:check` (CI) fails on stale catalogs or missing `tr` translations. The `pseudo` locale is a development-only QA locale.
+
+## Better Auth
+
+Auth uses the Better Auth client (`src/lib/auth-client.ts`). Before changing auth flows, read the Better Auth skills in the gitignored .agents/skills directory (`better-auth-best-practices`, `better-auth-security-best-practices`, `email-and-password-best-practices`, `two-factor-authentication-best-practices`, `organization-best-practices`, `create-auth`). Docs as Markdown: https://better-auth.com/llms.txt. Restore skills with `npx skills experimental_install`.
+
+## Custom Biome rules
+
+GritQL plugins in `plugins/` (registered under `plugins` in `biome.json`) run with `pnpm lint` / `biome ci` and fail as errors. They are syntactic, not type-aware:
+
+- `no-lingui-format-helpers`: `i18n.number()` / `i18n.date()` (deprecated) → `formatNumber` / `Intl.DateTimeFormat`.
+- `no-runtime-use-lingui`: `useLingui` from `@lingui/react` → `@lingui/react/macro`.
+- `no-implicit-locale-format`: argument-less `toLocaleString/DateString/TimeString()`.
+- `no-module-level-t`: `t` macro outside a function → `msg`.
+
+Justified exceptions: `// biome-ignore lint/plugin: <reason>` on the line above.
+
+## Sidebar
+
+- Sidebar items (`SidebarNavItem`) are either a direct link (`to`) or a group heading with `children` links (one level only). A group has no `to`; the types forbid it.
+- Groups are keyed by their label message id, start expanded and only a click on the heading collapses or expands them (also the active one). Navigation never changes group state, and the state lives in memory only (not `localStorage`), so a reload expands everything again.
+- Top-level pages live in the "Overview" group of `src/app/layouts/admin-layout/sidebar-items.ts`.
+
 ---
-
-
-
-
-
 
 <!-- HEROUI-REACT-AGENTS-MD-START -->
 

@@ -26,29 +26,60 @@ import type { ResourcelessPolicyName } from '@/lib/authorization/authorization-p
 export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
   [
     {
+      children: [
+        {
+          icon: LayoutDashboardIcon,
+          label: msg`Dashboard`,
+          to: '/dashboard',
+        },
+        {
+          icon: BarChart3Icon,
+          label: msg`Analytics`,
+          to: '/analytics',
+        },
+        {
+          icon: StoreIcon,
+          label: msg`eCommerce`,
+          to: '/ecommerce',
+        },
+        {
+          icon: HandshakeIcon,
+          label: msg`CRM`,
+          to: '/crm',
+        },
+        {
+          icon: FolderKanbanIcon,
+          label: msg`Project`,
+          to: '/project',
+        },
+        {
+          icon: UsersIcon,
+          label: msg`HR`,
+          to: '/hr',
+        },
+        {
+          icon: MegaphoneIcon,
+          label: msg`Marketing`,
+          to: '/marketing',
+        },
+        {
+          icon: GraduationCapIcon,
+          label: msg`Academy`,
+          to: '/academy',
+        },
+        {
+          icon: TruckIcon,
+          label: msg`Logistics`,
+          to: '/logistics',
+        },
+        {
+          icon: RocketIcon,
+          label: msg`SaaS`,
+          to: '/saas',
+        },
+      ],
       icon: LayoutDashboardIcon,
-      label: msg`Dashboard`,
-      to: '/dashboard',
-    },
-    {
-      icon: BarChart3Icon,
-      label: msg`Analytics`,
-      to: '/analytics',
-    },
-    {
-      icon: StoreIcon,
-      label: msg`eCommerce`,
-      to: '/ecommerce',
-    },
-    {
-      icon: HandshakeIcon,
-      label: msg`CRM`,
-      to: '/crm',
-    },
-    {
-      icon: FolderKanbanIcon,
-      label: msg`Project`,
-      to: '/project',
+      label: msg`Overview`,
     },
     {
       children: [
@@ -65,32 +96,6 @@ export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
       ],
       icon: WalletIcon,
       label: msg`Finance`,
-      to: '/finance',
-    },
-    {
-      icon: UsersIcon,
-      label: msg`HR`,
-      to: '/hr',
-    },
-    {
-      icon: MegaphoneIcon,
-      label: msg`Marketing`,
-      to: '/marketing',
-    },
-    {
-      icon: GraduationCapIcon,
-      label: msg`Academy`,
-      to: '/academy',
-    },
-    {
-      icon: TruckIcon,
-      label: msg`Logistics`,
-      to: '/logistics',
-    },
-    {
-      icon: RocketIcon,
-      label: msg`SaaS`,
-      to: '/saas',
     },
     {
       children: [
@@ -118,7 +123,6 @@ export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
       ],
       icon: ShoppingCartIcon,
       label: msg`Commerce`,
-      to: '/commerce',
     },
     {
       children: [
@@ -140,6 +144,5 @@ export const SIDEBAR_ITEMS: readonly SidebarNavItem<ResourcelessPolicyName>[] =
       ],
       icon: MailIcon,
       label: msg`Apps`,
-      to: '/apps',
     },
   ];

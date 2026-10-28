@@ -1,7 +1,5 @@
 import { AlertDialog, Button, Spinner } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { useSelector } from '@tanstack/react-form';
 import { useEffect, useId } from 'react';
 import { useForm } from '@/components/organisms/form/use-form';
@@ -22,7 +20,7 @@ export function DeleteAccountModal({
   isOpen,
   onClose,
 }: DeleteAccountModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const formId = useId();
   const { data: session } = useSession();
   const user = session?.user;
@@ -67,9 +65,7 @@ export function DeleteAccountModal({
             <AlertDialog.CloseTrigger isDisabled={isPending} />
             <AlertDialog.Header>
               <AlertDialog.Icon status='danger' />
-              <AlertDialog.Heading>
-                {_(msg`Delete Account`)}
-              </AlertDialog.Heading>
+              <AlertDialog.Heading>{t`Delete Account`}</AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body className='grid gap-4'>
               {isAdmin ? (
@@ -92,7 +88,7 @@ export function DeleteAccountModal({
                       <field.FormPasswordInput
                         autoComplete='current-password'
                         isRequired
-                        label={_(msg`Password`)}
+                        label={t`Password`}
                         variant='secondary'
                       />
                     )}
@@ -107,7 +103,7 @@ export function DeleteAccountModal({
                 slot='close'
                 variant='tertiary'
               >
-                {_(msg`Cancel`)}
+                {t`Cancel`}
               </Button>
               <Button
                 form={formId}
@@ -118,7 +114,7 @@ export function DeleteAccountModal({
                 {({ isPending: pending }) => (
                   <>
                     {pending ? <Spinner color='current' size='sm' /> : null}
-                    {_(msg`Delete Account`)}
+                    {t`Delete Account`}
                   </>
                 )}
               </Button>

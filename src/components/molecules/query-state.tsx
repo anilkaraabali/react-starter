@@ -1,6 +1,5 @@
 import { Alert, Button, cn, Spinner } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { ReactElement, ReactNode } from 'react';
 
 type QueryStateErrorProps = {
@@ -18,7 +17,7 @@ function QueryStateError({
   showBack = true,
   title,
 }: QueryStateErrorProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   const handleBack = () => {
     if (onBack) {
@@ -37,12 +36,12 @@ function QueryStateError({
       <div className={cn('flex items-center gap-2', className)}>
         {showBack ? (
           <Button onPress={handleBack} size='sm' variant='tertiary'>
-            {_(msg`Go back`)}
+            {t`Go back`}
           </Button>
         ) : null}
         {onRetry ? (
           <Button onPress={onRetry} size='sm' variant='danger'>
-            {_(msg`Retry`)}
+            {t`Retry`}
           </Button>
         ) : null}
       </div>
@@ -53,9 +52,9 @@ function QueryStateError({
     <Alert status='danger'>
       <Alert.Indicator />
       <Alert.Content>
-        <Alert.Title>{title ?? _(msg`Error`)}</Alert.Title>
+        <Alert.Title>{title ?? t`Error`}</Alert.Title>
         <Alert.Description>
-          {description ?? _(msg`Something went wrong while loading data.`)}
+          {description ?? t`Something went wrong while loading data.`}
         </Alert.Description>
         {renderButtons('mt-3 sm:hidden')}
       </Alert.Content>

@@ -1,22 +1,21 @@
 import { Button, Dropdown, Label } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { ChevronDownIcon } from 'lucide-react';
 import { themeOptions } from '@/config/theme';
 import { usePreferences } from '@/stores/preferences-provider';
 import type { Theme } from '@/types/theme.types';
 
 export function ThemePicker() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { setTheme, theme } = usePreferences();
 
   const activeTheme = themeOptions.find((t) => t.key === theme);
 
   return (
     <Dropdown>
-      <Button aria-label={_(msg`Select theme`)} size='sm' variant='outline'>
+      <Button aria-label={t`Select theme`} size='sm' variant='outline'>
         {activeTheme ? <activeTheme.icon /> : null}
-        {activeTheme ? _(activeTheme.label) : null}
+        {activeTheme ? t(activeTheme.label) : null}
         <ChevronDownIcon />
       </Button>
       <Dropdown.Popover>
@@ -29,10 +28,10 @@ export function ThemePicker() {
             <Dropdown.Item
               id={themeOption.key}
               key={themeOption.key}
-              textValue={_(themeOption.label)}
+              textValue={t(themeOption.label)}
             >
               <themeOption.icon />
-              <Label>{_(themeOption.label)}</Label>
+              <Label>{t(themeOption.label)}</Label>
               <Dropdown.ItemIndicator />
             </Dropdown.Item>
           ))}

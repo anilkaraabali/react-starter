@@ -17,7 +17,7 @@ export function SessionDeviceIcon({ device }: SessionDeviceIconProps) {
   const Icon = deviceIcons[device];
 
   return (
-    <div className='flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background text-muted'>
+    <div className='bg-background text-muted flex size-10 shrink-0 items-center justify-center rounded-lg border'>
       <Icon size={20} />
     </div>
   );

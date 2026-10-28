@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 
 import { SidebarHeader } from './header/sidebar-header';
 import { SidebarToggleButton } from './header/sidebar-toggle-button';
+import { useSidebarCollapsedGroups } from './hooks/use-sidebar-collapsed-groups';
 import { useSidebarExpanded } from './hooks/use-sidebar-expanded';
-import { useSidebarOpenItem } from './hooks/use-sidebar-open-item';
 import { useSidebarToggleShortcut } from './hooks/use-sidebar-toggle-shortcut';
 import { SidebarMenu } from './menu/sidebar-menu';
 
@@ -36,9 +36,7 @@ export function Sidebar({
   variant = 'default',
 }: SidebarProps) {
   const { isExpanded, isNarrowViewport, toggleExpanded } = useSidebarExpanded();
-  const { closeItem, isItemOpen, toggleItem } = useSidebarOpenItem({
-    items,
-  });
+  const { isGroupCollapsed, toggleGroup } = useSidebarCollapsedGroups();
 
   const isCompact = variant === 'compact';
   const isFloating = !isDrawer && variant === 'floating';
@@ -50,7 +48,6 @@ export function Sidebar({
 
   const handleToggleExpanded = () => {
     if (!canToggle) return;
-    closeItem();
     toggleExpanded();
   };
 
@@ -61,10 +58,10 @@ export function Sidebar({
       className={cn(
         'group/sidebar relative flex shrink-0 flex-col transition-[width,margin,border-radius,box-shadow] duration-300 ease-in-out motion-reduce:transition-none',
         {
-          'm-3 h-[calc(100svh-24px)] overflow-visible rounded-2xl border bg-surface shadow-surface':
+          'bg-surface shadow-surface m-3 h-[calc(100svh-24px)] overflow-visible rounded-2xl border':
             isFloating,
           'size-full': isDrawer,
-          'sticky top-0 h-svh border-(--sidebar-edge-outline) border-r':
+          'sticky top-0 h-svh border-r border-(--sidebar-edge-outline)':
             isDocked,
           'w-16 min-w-16': !isDrawer && !isCompact && !showExpanded,
           'w-22 min-w-22': !isDrawer && isCompact,
@@ -95,11 +92,10 @@ export function Sidebar({
         currentPath={currentPath}
         isCompact={isCompact}
         isExpanded={showExpanded}
-        isItemOpen={isItemOpen}
+        isGroupCollapsed={isGroupCollapsed}
         items={items}
-        onCloseItem={closeItem}
         onNavigate={onNavigate}
-        onToggleItem={toggleItem}
+        onToggleGroup={toggleGroup}
       />
 
       {footer ? (

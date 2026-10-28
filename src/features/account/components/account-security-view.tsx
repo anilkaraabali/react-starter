@@ -1,39 +1,39 @@
 import { Button, useOverlayState } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import { Account } from '@/features/account/components/blocks/account';
 import { ChangePasswordModal } from './profile/change-password-modal';
 
 export function AccountSecurityView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const passwordModal = useOverlayState();
 
   return (
     <Account.SettingsChunk>
       <Account.PageHeader
-        description={_(
+        description={t(
           msg`Manage your password and configure additional security settings to keep your account safe.`
         )}
-        title={_(msg`Security`)}
+        title={t`Security`}
       />
 
       <Account.Sections>
         <Account.Section id='password'>
-          <Account.SectionHeader title={_(msg`Authentication`)} />
+          <Account.SectionHeader title={t`Authentication`} />
           <Account.CellList>
             <Account.Row
-              description={_(
+              description={t(
                 msg`Update your password to keep your account secure.`
               )}
-              label={_(msg`Password`)}
+              label={t`Password`}
             >
               <Button
                 onPress={passwordModal.open}
                 size='sm'
                 variant='secondary'
               >
-                {_(msg`Change`)}
+                {t`Change`}
               </Button>
             </Account.Row>
           </Account.CellList>

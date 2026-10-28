@@ -1,6 +1,5 @@
 import { cn, SearchField } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useEffect, useState } from 'react';
 import { useDebounceCallback } from 'usehooks-ts';
 
@@ -21,7 +20,7 @@ export function FilterSearch({
   placeholder,
   value,
 }: FilterSearchProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const urlValue = typeof value === 'string' ? value : '';
   const [localValue, setLocalValue] = useState(urlValue);
   const debouncedOnChange = useDebounceCallback(onChange, SEARCH_DEBOUNCE_MS);
@@ -32,7 +31,7 @@ export function FilterSearch({
 
   return (
     <SearchField
-      aria-label={_(msg`Search`)}
+      aria-label={t`Search`}
       className={cn('min-w-48 flex-1 sm:max-w-md', className)}
       name='search'
       onChange={(next) => {

@@ -31,7 +31,7 @@ export function PageHeader({
     >
       <div className='flex flex-col gap-1'>
         {resolvedTitle && (
-          <h1 className='font-bold text-2xl text-foreground tracking-tight'>
+          <h1 className='text-foreground text-2xl font-bold tracking-tight'>
             {resolvedTitle}
           </h1>
         )}

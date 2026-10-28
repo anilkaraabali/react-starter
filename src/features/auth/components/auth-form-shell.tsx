@@ -19,14 +19,14 @@ export function AuthFormShell({
   return (
     <>
       <div className='mb-6'>
-        <h1 className='font-bold text-xl'>{title}</h1>
-        <p className='mt-1.5 text-muted text-sm'>{description}</p>
+        <h1 className='text-xl font-bold'>{title}</h1>
+        <p className='text-muted mt-1.5 text-sm'>{description}</p>
       </div>
 
       <div className='flex flex-col gap-3 sm:gap-4'>
         {children}
         {footer ? (
-          <p className='-mt-2 text-center text-muted text-sm'>{footer}</p>
+          <p className='text-muted -mt-2 text-center text-sm'>{footer}</p>
         ) : null}
       </div>
     </>

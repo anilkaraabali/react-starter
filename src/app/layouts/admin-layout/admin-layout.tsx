@@ -1,4 +1,5 @@
 import { Drawer, useOverlayState } from '@heroui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { ReactNode } from 'react';
 import { AdminCustomizeDrawer } from './admin-customize-drawer';
 import { AdminHeader } from './admin-header';
@@ -18,6 +19,7 @@ type AdminLayoutProps = {
 export function AdminLayout({ children }: AdminLayoutProps) {
   const { contentPadding, hideHeader } = useRouteLayoutOptions();
   const mobileDrawer = useOverlayState();
+  const { t } = useLingui();
 
   return (
     <div className='flex h-svh w-full overflow-hidden'>
@@ -27,21 +29,22 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       </div>
 
       {/* Mobile Drawer Sidebar */}
-      <Drawer>
-        <Drawer.Backdrop
-          isOpen={mobileDrawer.isOpen}
-          onOpenChange={(open) => {
-            if (!open) mobileDrawer.close();
-          }}
-        >
-          <Drawer.Content className='max-w-70 p-0' placement='left'>
-            <Drawer.Dialog className='flex h-full flex-col p-0'>
-              <Drawer.CloseTrigger />
-              <AdminSidebar isDrawer onNavigate={mobileDrawer.close} />
-            </Drawer.Dialog>
-          </Drawer.Content>
-        </Drawer.Backdrop>
-      </Drawer>
+      <Drawer.Backdrop
+        isOpen={mobileDrawer.isOpen}
+        onOpenChange={(open) => {
+          if (!open) mobileDrawer.close();
+        }}
+      >
+        <Drawer.Content className='max-w-70 p-0' placement='left'>
+          <Drawer.Dialog
+            aria-label={t`Navigation menu`}
+            className='flex h-full flex-col p-0'
+          >
+            <Drawer.CloseTrigger />
+            <AdminSidebar isDrawer onNavigate={mobileDrawer.close} />
+          </Drawer.Dialog>
+        </Drawer.Content>
+      </Drawer.Backdrop>
 
       <div className='flex min-h-0 min-w-0 flex-1 flex-col'>
         <div

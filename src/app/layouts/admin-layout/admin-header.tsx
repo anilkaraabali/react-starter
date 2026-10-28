@@ -1,6 +1,5 @@
 import { Button, Tooltip } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import {
   BellIcon,
   MenuIcon,
@@ -19,7 +18,7 @@ type AdminHeaderProps = {
 };
 
 export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { open, setTheme, theme } = usePreferences();
 
   const resolved = resolveTheme(theme);
@@ -34,7 +33,7 @@ export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
       customizeSlot={
         <Tooltip delay={0}>
           <Button
-            aria-label={_(msg`Customize appearance`)}
+            aria-label={t`Customize appearance`}
             isIconOnly
             onPress={open}
             size='sm'
@@ -44,13 +43,13 @@ export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
           </Button>
           <Tooltip.Content showArrow>
             <Tooltip.Arrow />
-            {_(msg`Customize appearance`)}
+            {t`Customize appearance`}
           </Tooltip.Content>
         </Tooltip>
       }
       menuToggleSlot={
         <Button
-          aria-label={_(msg`Open menu`)}
+          aria-label={t`Open menu`}
           className='lg:hidden'
           isIconOnly
           onPress={onOpenMobileDrawer}
@@ -63,17 +62,17 @@ export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
       notificationsSlot={
         <Tooltip delay={0}>
           <Button
-            aria-label={_(msg`Notifications`)}
+            aria-label={t`Notifications`}
             isIconOnly
             size='sm'
             variant='ghost'
           >
             <BellIcon />
-            <span className='absolute top-1.5 right-1.5 size-1.5 rounded-full bg-danger' />
+            <span className='bg-danger absolute top-1.5 right-1.5 size-1.5 rounded-full' />
           </Button>
           <Tooltip.Content showArrow>
             <Tooltip.Arrow />
-            {_(msg`Notifications`)}
+            {t`Notifications`}
           </Tooltip.Content>
         </Tooltip>
       }
@@ -81,7 +80,7 @@ export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
       themeSlot={
         <Tooltip delay={0}>
           <Button
-            aria-label={_(msg`Toggle theme`)}
+            aria-label={t`Toggle theme`}
             isIconOnly
             onPress={handleToggleTheme}
             size='sm'
@@ -91,7 +90,7 @@ export function AdminHeader({ onOpenMobileDrawer }: AdminHeaderProps) {
           </Button>
           <Tooltip.Content showArrow>
             <Tooltip.Arrow />
-            {resolved === 'dark' ? _(msg`Light mode`) : _(msg`Dark mode`)}
+            {resolved === 'dark' ? t`Light mode` : t`Dark mode`}
           </Tooltip.Content>
         </Tooltip>
       }

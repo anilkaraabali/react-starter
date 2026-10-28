@@ -1,6 +1,5 @@
 import { Card, toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
@@ -31,13 +30,13 @@ export function EditProductView({ productId }: EditProductViewProps) {
 }
 
 function EditProductLayout({ product }: { product: Product }) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const updateProductMutation = useUpdateProduct({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Product updated.`));
+        toast.success(t`Product updated.`);
         void navigate({
           to: '/products',
         });

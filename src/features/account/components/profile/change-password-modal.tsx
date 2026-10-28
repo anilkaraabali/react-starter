@@ -1,6 +1,5 @@
 import { toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 
 import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
@@ -21,11 +20,11 @@ export function ChangePasswordModal({
   isOpen,
   onClose,
 }: ChangePasswordModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const changePasswordMutation = useChangePassword({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Password updated.`));
+        toast.success(t`Password updated.`);
         onClose();
       },
     },
@@ -50,8 +49,8 @@ export function ChangePasswordModal({
       form={form}
       isOpen={isOpen}
       onClose={onClose}
-      submitLabel={_(msg`Save`)}
-      title={_(msg`Change Password`)}
+      submitLabel={t`Save`}
+      title={t`Change Password`}
     >
       <div className='grid gap-4'>
         <form.AppField name='currentPassword'>
@@ -59,25 +58,25 @@ export function ChangePasswordModal({
             <field.FormPasswordInput
               autoComplete='current-password'
               isRequired
-              label={_(msg`Old Password`)}
+              label={t`Old Password`}
               variant='secondary'
             />
           )}
         </form.AppField>
 
         <PasswordFieldsGroup
-          confirmLabel={_(msg`New Password Again`)}
+          confirmLabel={t`New Password Again`}
           fields={{
             confirmPassword: 'confirmPassword',
             password: 'newPassword',
           }}
           form={form}
-          passwordLabel={_(msg`New Password`)}
+          passwordLabel={t`New Password`}
         />
 
         <form.AppField name='revokeOtherSessions'>
           {(field) => (
-            <field.FormSwitch label={_(msg`Sign out of all other devices`)} />
+            <field.FormSwitch label={t`Sign out of all other devices`} />
           )}
         </form.AppField>
       </div>

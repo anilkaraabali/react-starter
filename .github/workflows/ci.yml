@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [ main, master ]
   pull_request:
   workflow_dispatch:
 
@@ -36,7 +36,7 @@ jobs:
   docs:
     name: Documentation check
     runs-on: ubuntu-latest
-    needs: [secrets]
+    needs: [ secrets ]
     timeout-minutes: 5
     steps:
       - name: Checkout
@@ -53,7 +53,7 @@ jobs:
   check:
     name: Code health, lint & typecheck
     runs-on: ubuntu-latest
-    needs: [docs]
+    needs: [ docs ]
     timeout-minutes: 20
     steps:
       - name: Checkout
@@ -77,10 +77,13 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: i18n catalogs (Lingui)
+        run: pnpm intl:check
+
   test:
     name: Test
     runs-on: ubuntu-latest
-    needs: [check]
+    needs: [ check ]
     timeout-minutes: 15
     steps:
       - name: Checkout
@@ -95,7 +98,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    needs: [test]
+    needs: [ test ]
     timeout-minutes: 20
     steps:
       - name: Checkout

@@ -1,7 +1,7 @@
 import { cn, ScrollShadow } from '@heroui/react';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { SidebarNavItem } from '../sidebar.types';
-import { getChildItems } from '../sidebar.utils';
+import { findActiveTo } from '../sidebar.utils';
 import { SidebarMenuItem } from './sidebar-menu-item';
 import { SidebarSectionGroup } from './sidebar-section-group';
 
@@ -9,65 +9,66 @@ type SidebarMenuProps = {
   currentPath: string;
   isCompact?: boolean;
   isExpanded: boolean;
-  isItemOpen: (item: SidebarNavItem) => boolean;
+  isGroupCollapsed: (key: string) => boolean;
   items: readonly SidebarNavItem[];
-  onCloseItem: () => void;
   onNavigate?: (to: string) => void;
-  onToggleItem: (item: SidebarNavItem) => void;
+  onToggleGroup: (key: string) => void;
 };
 
 export function SidebarMenu({
   currentPath,
   isCompact = false,
   isExpanded,
-  isItemOpen,
+  isGroupCollapsed,
   items,
-  onCloseItem,
   onNavigate,
-  onToggleItem,
+  onToggleGroup,
 }: SidebarMenuProps) {
-  const { _ } = useLingui();
-  const standaloneItems = items;
-  const sectionItems = items.filter((item) =>
-    Boolean(item.children?.length || item.sections?.length)
-  );
+  const { t } = useLingui();
+  const activeTo = findActiveTo(items, currentPath);
 
   return (
     <ScrollShadow className={cn('min-h-0 flex-1 px-3 py-4')}>
-      <div className='space-y-3'>
-        <div className='mt-1 space-y-0.5'>
-          {standaloneItems.map((item) => (
-            <SidebarMenuItem
-              currentPath={currentPath}
-              isCompact={isCompact}
-              isExpanded={isExpanded}
-              item={item}
-              key={item.to}
-              onClose={onCloseItem}
-              onNavigate={onNavigate}
-            />
-          ))}
-        </div>
-
-        {sectionItems.length > 0 && (
-          <div className='space-y-3'>
-            {sectionItems.map((item) => (
-              <SidebarSectionGroup
-                childItems={getChildItems(item)}
-                currentPath={currentPath}
+      <nav aria-label={t`Main navigation`} className='flex flex-col gap-0.5'>
+        {items.map((item) => {
+          if (!item.children) {
+            return (
+              <SidebarMenuItem
+                isActive={item.to === activeTo}
                 isCompact={isCompact}
                 isExpanded={isExpanded}
-                isOpen={isItemOpen(item)}
+                item={item}
                 key={item.to}
-                label={_(item.label)}
-                onClose={onCloseItem}
                 onNavigate={onNavigate}
-                onToggle={() => onToggleItem(item)}
               />
-            ))}
-          </div>
-        )}
-      </div>
+            );
+          }
+
+          const childItems = item.children;
+          const groupId = item.label.id;
+
+          return (
+            <div
+              className={cn(
+                'my-1.5',
+                !isExpanded && 'not-first:border-t not-first:pt-2'
+              )}
+              key={groupId}
+            >
+              <SidebarSectionGroup
+                activeTo={activeTo}
+                childItems={childItems}
+                isCompact={isCompact}
+                isExpanded={isExpanded}
+                isOpen={!isGroupCollapsed(groupId)}
+                label={t(item.label)}
+                onNavigate={onNavigate}
+                onToggle={() => onToggleGroup(groupId)}
+              />
+            </div>
+          );
+        })}
+      </nav>
     </ScrollShadow>
   );
 }

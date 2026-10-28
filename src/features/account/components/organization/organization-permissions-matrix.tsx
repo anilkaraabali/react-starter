@@ -1,6 +1,5 @@
 import { cn, Table } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { CheckIcon, MinusIcon } from 'lucide-react';
 import { ORGANIZATION_PERMISSION_LABELS } from '@/features/account/config/organization-permission-labels.constants';
 import { ORGANIZATION_PERMISSION_CATALOG } from '@/features/account/config/organization-permissions.constants';
@@ -18,15 +17,15 @@ type OrganizationPermissionsMatrixProps = {
 export function OrganizationPermissionsMatrix({
   currentRole,
 }: OrganizationPermissionsMatrixProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <Table>
       <Table.ScrollContainer>
-        <Table.Content aria-label={_(msg`Permission matrix`)}>
+        <Table.Content aria-label={t`Permission matrix`}>
           <Table.Header>
             <Table.Column id='permission' isRowHeader>
-              {_(msg`Permission`)}
+              {t`Permission`}
             </Table.Column>
             {ORGANIZATION_ROLES.map((role) => (
               <Table.Column id={role} key={role}>
@@ -42,7 +41,7 @@ export function OrganizationPermissionsMatrix({
             {({ id: permission }) => (
               <Table.Row id={permission}>
                 <Table.Cell>
-                  {_(ORGANIZATION_PERMISSION_LABELS[permission])}
+                  {t(ORGANIZATION_PERMISSION_LABELS[permission])}
                 </Table.Cell>
                 {ORGANIZATION_ROLES.map((role) => {
                   const granted = roleHasPermission(role, permission);
@@ -58,8 +57,8 @@ export function OrganizationPermissionsMatrix({
                       >
                         <span className='sr-only'>
                           {granted
-                            ? _(msg`Granted to ${roleLabel}`)
-                            : _(msg`Not granted to ${roleLabel}`)}
+                            ? t`Granted to ${roleLabel}`
+                            : t`Not granted to ${roleLabel}`}
                         </span>
                         {granted ? (
                           <CheckIcon aria-hidden />

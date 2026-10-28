@@ -1,6 +1,5 @@
 import { buttonVariants } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { Link, useNavigate, useSearch } from '@tanstack/react-router';
 import { PlusIcon } from 'lucide-react';
 import { useMemo, useState } from 'react';
@@ -21,7 +20,7 @@ import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityK
 import { useResponsivePageSize } from '@/hooks/use-responsive-page-size';
 
 export function {{entityPascal}}ListView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
   const searchParams = useSearch({ strict: false }) as Get{{pluralPascal}}Query;
   const responsivePageSize = useResponsivePageSize();
@@ -83,10 +82,10 @@ export function {{entityPascal}}ListView() {
           to='{{routePath}}/new'
         >
           <PlusIcon />
-          {_(msg`Add {{entityKebab}}`)}
+          {t`Add {{entityKebab}}`}
         </Link>
       }
-      description={_(msg`Manage your {{featureDir}} in one place.`)}
+      description={t`Manage your {{featureDir}} in one place.`}
     >
       <RouteFilterProvider
         fields={filterFields}

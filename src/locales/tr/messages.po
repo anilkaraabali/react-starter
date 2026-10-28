@@ -43,7 +43,7 @@ msgstr "Hesap silindi."
 
 #: src/features/products/components/product-list/products-table-columns.tsx
 msgid "Actions"
-msgstr ""
+msgstr "İşlemler"
 
 #. placeholder {0}: member.name
 #: src/features/account/components/members/member-row.tsx
@@ -71,7 +71,7 @@ msgstr "Üye ekle"
 msgid "Add members"
 msgstr "Üye ekleme"
 
-#: src/features/products/components/product-list/product-list-view.tsx
+#: src/features/products/components/product-list/create-product-button.tsx
 msgid "Add product"
 msgstr "Ürün ekle"
 
@@ -103,7 +103,7 @@ msgstr "Diğer tüm oturumlar sonlandırıldı."
 msgid "All roles"
 msgstr "Tüm roller"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Amber"
 msgstr "Kehribar"
 
@@ -114,6 +114,10 @@ msgstr "Analitik"
 #: src/features/account/components/account-profile-view.tsx
 msgid "Appearance"
 msgstr "Görünüm"
+
+#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+msgid "Apply"
+msgstr "Uygula"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Apps"
@@ -202,7 +206,7 @@ msgstr "Faturalandırma Yöneticisi"
 msgid "Billing and subscription access. Can manage payment and invoices."
 msgstr "Faturalandırma ve abonelik erişimi. Ödemeleri ve faturaları yönetebilir."
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Blue"
 msgstr "Mavi"
 
@@ -273,15 +277,15 @@ msgstr "Sütunlar"
 msgid "Commerce"
 msgstr "Ticaret"
 
-#: src/config/layout-options.constants.ts
+#: src/config/layout-options.ts
 msgid "Compact"
 msgstr "Kompakt"
 
-#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+#: src/features/auth/components/reset-password-view.tsx
 msgid "Confirm New Password"
 msgstr "Yeni Şifreyi Onayla"
 
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Confirm password"
 msgstr "Şifreyi onayla"
 
@@ -333,11 +337,11 @@ msgstr "Özelleştir"
 msgid "Customize appearance"
 msgstr "Görünümü özelleştir"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Cyan"
 msgstr "Camgöbeği"
 
-#: src/config/theme.constants.ts
+#: src/config/theme.ts
 msgid "Dark"
 msgstr "Koyu"
 
@@ -362,7 +366,7 @@ msgstr "Veri tablosu"
 msgid "Date created"
 msgstr "Oluşturulma tarihi"
 
-#: src/config/layout-options.constants.ts
+#: src/config/layout-options.ts
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -454,13 +458,13 @@ msgid "Email"
 msgstr "E-posta"
 
 #: src/features/account/components/forms/name-email-fields-group.tsx
-#: src/features/auth/components/forms/forgot-password-form/forgot-password-form.tsx
-#: src/features/auth/components/forms/login-form/login-form.tsx
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/auth/components/forgot-password-view.tsx
+#: src/features/auth/components/login-view.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Email address"
 msgstr "E-posta adresi"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Emerald"
 msgstr "Zümrüt"
 
@@ -496,10 +500,6 @@ msgstr "Dosyalar"
 msgid "Filters"
 msgstr "Filtreler"
 
-#: src/components/organisms/filters/panel/filters-trigger-button.tsx
-msgid "Filters ({activeCount})"
-msgstr "Filtreler ({activeCount})"
-
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Finance"
 msgstr "Finans"
@@ -508,7 +508,7 @@ msgstr "Finans"
 msgid "First Login"
 msgstr "İlk Giriş"
 
-#: src/config/layout-options.constants.ts
+#: src/config/layout-options.ts
 msgid "Floating"
 msgstr "Yüzen"
 
@@ -525,7 +525,7 @@ msgstr "Şifremi unuttum"
 msgid "Forgot password?"
 msgstr "Şifrenizi mi unuttunuz?"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Fuchsia"
 msgstr "Fuşya"
 
@@ -535,7 +535,7 @@ msgstr "Tam erişim. Organizasyon ayarlarını, üyeleri ve tüm yönetimsel iş
 
 #: src/features/account/components/account-profile-view.tsx
 #: src/features/account/components/forms/name-email-fields-group.tsx
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Full name"
 msgstr "Ad soyad"
 
@@ -556,7 +556,7 @@ msgstr "Kontrol paneline geri dön"
 msgid "Granted to {roleLabel}"
 msgstr "{roleLabel} rolüne verildi"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Green"
 msgstr "Yeşil"
 
@@ -576,7 +576,7 @@ msgstr "Zaten bir hesabınız varsa lütfen <0>giriş yapın.</0>"
 msgid "In stock"
 msgstr "Stokta"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Indigo"
 msgstr "Çivit"
 
@@ -628,7 +628,7 @@ msgstr "Son güncelleme"
 msgid "Layout"
 msgstr "Düzen"
 
-#: src/config/theme.constants.ts
+#: src/config/theme.ts
 msgid "Light"
 msgstr "Açık"
 
@@ -636,7 +636,7 @@ msgstr "Açık"
 msgid "Light mode"
 msgstr "Aydınlık mod"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Lime"
 msgstr "Misket Limonu"
 
@@ -662,9 +662,9 @@ msgstr "Lojistik"
 msgid "Mail"
 msgstr "E-posta"
 
-#: src/features/products/components/product-list/product-list-view.tsx
-msgid "Manage your catalog, inventory, pricing, and product statuses."
-msgstr "Katalog, stok, fiyatlandırma ve ürün durumlarını yönetin."
+#: src/components/organisms/sidebar/menu/sidebar-menu.tsx
+msgid "Main navigation"
+msgstr "Ana gezinme"
 
 #: src/features/account/components/account-organization-view.tsx
 msgid "Manage your organization details and team members."
@@ -731,6 +731,10 @@ msgstr "Diğer seçenekler"
 msgid "Name"
 msgstr "Ad"
 
+#: src/app/layouts/admin-layout/admin-layout.tsx
+msgid "Navigation menu"
+msgstr "Gezinme menüsü"
+
 #: src/utils/error.utils.ts
 msgid "Network error. Please check your connection."
 msgstr "Ağ hatası. Lütfen internet bağlantınızı kontrol edin."
@@ -739,12 +743,12 @@ msgstr "Ağ hatası. Lütfen internet bağlantınızı kontrol edin."
 msgid "New here? Use your email to <0>sign up.</0>"
 msgstr "İlk kez mi giriyorsunuz? E-postanızla <0>kayıt olun.</0>"
 
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
-#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
+#: src/features/auth/components/reset-password-view.tsx
 msgid "New Password"
 msgstr "Yeni Şifre"
 
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
 msgid "New Password Again"
 msgstr "Yeni Şifre (Tekrar)"
 
@@ -789,11 +793,11 @@ msgstr "{roleLabel} rolüne verilmedi"
 msgid "Notifications"
 msgstr "Bildirimler"
 
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
 msgid "Old Password"
 msgstr "Eski Şifre"
 
-#: src/app/layouts/error/error-generic-layout.tsx
+#: src/app/layouts/error/global-error.tsx
 msgid "Oops! That didn’t work as expected. We’ve been notified and will fix it soon."
 msgstr "Bir şeyler ters gitti! Durum bize bildirildi, en kısa sürede düzeltilecek."
 
@@ -805,7 +809,7 @@ msgstr "Menüyü aç"
 msgid "Optional barcode"
 msgstr "İsteğe bağlı barkod"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Orange"
 msgstr "Turuncu"
 
@@ -820,7 +824,7 @@ msgid "Organization"
 msgstr "Organizasyon"
 
 #: src/features/account/components/account-organization-view.tsx
-#: src/features/account/components/forms/rename-organization-form/rename-organization-form.tsx
+#: src/features/account/components/organization/rename-organization-modal.tsx
 msgid "Organization name"
 msgstr "Organizasyon adı"
 
@@ -836,10 +840,14 @@ msgstr "Organizasyon rolü"
 msgid "Out of stock"
 msgstr "Stokta yok"
 
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Overview"
+msgstr "Genel bakış"
+
 #: src/features/account/components/account-security-view.tsx
-#: src/features/account/components/forms/delete-account-form/delete-account-form.tsx
-#: src/features/auth/components/forms/login-form/login-form.tsx
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/account/components/profile/delete-account-modal.tsx
+#: src/features/auth/components/login-view.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Password"
 msgstr "Şifre"
 
@@ -892,7 +900,7 @@ msgstr "Kişisel Bilgiler"
 msgid "Personalize your dashboard experience."
 msgstr "Panel deneyiminizi kişiselleştirin."
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Pink"
 msgstr "Pembe"
 
@@ -971,11 +979,11 @@ msgstr "Profil güncellendi."
 msgid "Project"
 msgstr "Proje"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Purple"
 msgstr "Mor"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Red"
 msgstr "Kırmızı"
 
@@ -1046,7 +1054,7 @@ msgid "Revoke"
 msgstr "Oturumu sonlandır"
 
 #: src/app/routes/_admin/account/roles/$role.tsx
-#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+#: src/features/account/components/members/create-member-modal.tsx
 msgid "Role"
 msgstr "Rol"
 
@@ -1069,7 +1077,7 @@ msgstr "Roller"
 msgid "Roles & Permissions"
 msgstr "Roller ve Yetkiler"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Rose"
 msgstr "Gül"
 
@@ -1188,7 +1196,7 @@ msgid "Sign out"
 msgstr "Çıkış yap"
 
 #: src/features/account/components/account-sessions-view.tsx
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
 msgid "Sign out of all other devices"
 msgstr "Diğer tüm cihazlardaki oturumları kapat"
 
@@ -1210,7 +1218,7 @@ msgstr "Çıkış yapıldı."
 msgid "SKU"
 msgstr "SKU"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Sky"
 msgstr "Gökyüzü"
 
@@ -1262,15 +1270,15 @@ msgstr "Süper Yönetici"
 msgid "Support Agent"
 msgstr "Destek Temsilcisi"
 
-#: src/config/theme.constants.ts
+#: src/config/theme.ts
 msgid "System"
 msgstr "Sistem"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Teal"
 msgstr "Turkuaz"
 
-#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+#: src/features/account/components/members/create-member-modal.tsx
 msgid "Temporary password"
 msgstr "Geçici şifre"
 
@@ -1336,7 +1344,7 @@ msgstr "Oturum süreniz dolmuş. Lütfen tekrar giriş yapın."
 msgid "Unban user"
 msgstr "Kullanıcının yasağını kaldır"
 
-#: src/app/layouts/error/error-not-found-layout.tsx
+#: src/app/layouts/error/not-found.tsx
 msgid "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved."
 msgstr "Ne yazık ki bu sadece bir 404 sayfası. Adresi yanlış yazmış olabilirsiniz veya sayfa taşınmış olabilir."
 
@@ -1364,7 +1372,7 @@ msgstr "Görüntüle"
 msgid "View details"
 msgstr "Detayları görüntüle"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Violet"
 msgstr "Menekşe"
 
@@ -1376,7 +1384,7 @@ msgstr "Tekrar hoş geldiniz, {name}."
 msgid "Welcome back."
 msgstr "Tekrar hoş geldiniz."
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Yellow"
 msgstr "Sarı"
 
@@ -1389,7 +1397,7 @@ msgstr "Sen"
 msgid "You do not have permission to perform this action."
 msgstr "Bu işlemi gerçekleştirmek için yetkiniz bulunmuyor."
 
-#: src/app/layouts/error/error-not-found-layout.tsx
+#: src/app/layouts/error/not-found.tsx
 msgid "You have found a secret place."
 msgstr "Gizli bir yer buldunuz."
 

@@ -71,7 +71,7 @@ msgstr "Add member"
 msgid "Add members"
 msgstr "Add members"
 
-#: src/features/products/components/product-list/product-list-view.tsx
+#: src/features/products/components/product-list/create-product-button.tsx
 msgid "Add product"
 msgstr "Add product"
 
@@ -103,7 +103,7 @@ msgstr "All other sessions revoked."
 msgid "All roles"
 msgstr "All roles"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Amber"
 msgstr "Amber"
 
@@ -114,6 +114,10 @@ msgstr "Analytics"
 #: src/features/account/components/account-profile-view.tsx
 msgid "Appearance"
 msgstr "Appearance"
+
+#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+msgid "Apply"
+msgstr "Apply"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Apps"
@@ -202,7 +206,7 @@ msgstr "Billing Admin"
 msgid "Billing and subscription access. Can manage payment and invoices."
 msgstr "Billing and subscription access. Can manage payment and invoices."
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Blue"
 msgstr "Blue"
 
@@ -273,15 +277,15 @@ msgstr "Columns"
 msgid "Commerce"
 msgstr "Commerce"
 
-#: src/config/layout-options.constants.ts
+#: src/config/layout-options.ts
 msgid "Compact"
 msgstr "Compact"
 
-#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+#: src/features/auth/components/reset-password-view.tsx
 msgid "Confirm New Password"
 msgstr "Confirm New Password"
 
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Confirm password"
 msgstr "Confirm password"
 
@@ -333,11 +337,11 @@ msgstr "Customize"
 msgid "Customize appearance"
 msgstr "Customize appearance"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Cyan"
 msgstr "Cyan"
 
-#: src/config/theme.constants.ts
+#: src/config/theme.ts
 msgid "Dark"
 msgstr "Dark"
 
@@ -362,7 +366,7 @@ msgstr "Data table"
 msgid "Date created"
 msgstr "Date created"
 
-#: src/config/layout-options.constants.ts
+#: src/config/layout-options.ts
 msgid "Default"
 msgstr "Default"
 
@@ -454,13 +458,13 @@ msgid "Email"
 msgstr "Email"
 
 #: src/features/account/components/forms/name-email-fields-group.tsx
-#: src/features/auth/components/forms/forgot-password-form/forgot-password-form.tsx
-#: src/features/auth/components/forms/login-form/login-form.tsx
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/auth/components/forgot-password-view.tsx
+#: src/features/auth/components/login-view.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Email address"
 msgstr "Email address"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Emerald"
 msgstr "Emerald"
 
@@ -496,10 +500,6 @@ msgstr "Files"
 msgid "Filters"
 msgstr "Filters"
 
-#: src/components/organisms/filters/panel/filters-trigger-button.tsx
-msgid "Filters ({activeCount})"
-msgstr "Filters ({activeCount})"
-
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Finance"
 msgstr "Finance"
@@ -508,7 +508,7 @@ msgstr "Finance"
 msgid "First Login"
 msgstr "First Login"
 
-#: src/config/layout-options.constants.ts
+#: src/config/layout-options.ts
 msgid "Floating"
 msgstr "Floating"
 
@@ -525,7 +525,7 @@ msgstr "Forgot password"
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Fuchsia"
 msgstr "Fuchsia"
 
@@ -535,7 +535,7 @@ msgstr "Full access. Can manage organization settings, members, and all administ
 
 #: src/features/account/components/account-profile-view.tsx
 #: src/features/account/components/forms/name-email-fields-group.tsx
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Full name"
 msgstr "Full name"
 
@@ -556,7 +556,7 @@ msgstr "Go back to dashboard"
 msgid "Granted to {roleLabel}"
 msgstr "Granted to {roleLabel}"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Green"
 msgstr "Green"
 
@@ -576,7 +576,7 @@ msgstr "If you already have an account, please <0>sign in.</0>"
 msgid "In stock"
 msgstr "In stock"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Indigo"
 msgstr "Indigo"
 
@@ -628,7 +628,7 @@ msgstr "Last updated"
 msgid "Layout"
 msgstr "Layout"
 
-#: src/config/theme.constants.ts
+#: src/config/theme.ts
 msgid "Light"
 msgstr "Light"
 
@@ -636,7 +636,7 @@ msgstr "Light"
 msgid "Light mode"
 msgstr "Light mode"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Lime"
 msgstr "Lime"
 
@@ -662,9 +662,9 @@ msgstr "Logistics"
 msgid "Mail"
 msgstr "Mail"
 
-#: src/features/products/components/product-list/product-list-view.tsx
-msgid "Manage your catalog, inventory, pricing, and product statuses."
-msgstr "Manage your catalog, inventory, pricing, and product statuses."
+#: src/components/organisms/sidebar/menu/sidebar-menu.tsx
+msgid "Main navigation"
+msgstr "Main navigation"
 
 #: src/features/account/components/account-organization-view.tsx
 msgid "Manage your organization details and team members."
@@ -731,6 +731,10 @@ msgstr "More options"
 msgid "Name"
 msgstr "Name"
 
+#: src/app/layouts/admin-layout/admin-layout.tsx
+msgid "Navigation menu"
+msgstr "Navigation menu"
+
 #: src/utils/error.utils.ts
 msgid "Network error. Please check your connection."
 msgstr "Network error. Please check your connection."
@@ -739,12 +743,12 @@ msgstr "Network error. Please check your connection."
 msgid "New here? Use your email to <0>sign up.</0>"
 msgstr "New here? Use your email to <0>sign up.</0>"
 
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
-#: src/features/auth/components/forms/reset-password-form/reset-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
+#: src/features/auth/components/reset-password-view.tsx
 msgid "New Password"
 msgstr "New Password"
 
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
 msgid "New Password Again"
 msgstr "New Password Again"
 
@@ -789,11 +793,11 @@ msgstr "Not granted to {roleLabel}"
 msgid "Notifications"
 msgstr "Notifications"
 
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
 msgid "Old Password"
 msgstr "Old Password"
 
-#: src/app/layouts/error/error-generic-layout.tsx
+#: src/app/layouts/error/global-error.tsx
 msgid "Oops! That didn’t work as expected. We’ve been notified and will fix it soon."
 msgstr "Oops! That didn’t work as expected. We’ve been notified and will fix it soon."
 
@@ -805,7 +809,7 @@ msgstr "Open menu"
 msgid "Optional barcode"
 msgstr "Optional barcode"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Orange"
 msgstr "Orange"
 
@@ -820,7 +824,7 @@ msgid "Organization"
 msgstr "Organization"
 
 #: src/features/account/components/account-organization-view.tsx
-#: src/features/account/components/forms/rename-organization-form/rename-organization-form.tsx
+#: src/features/account/components/organization/rename-organization-modal.tsx
 msgid "Organization name"
 msgstr "Organization name"
 
@@ -836,10 +840,14 @@ msgstr "Organization role"
 msgid "Out of stock"
 msgstr "Out of stock"
 
+#: src/app/layouts/admin-layout/sidebar-items.ts
+msgid "Overview"
+msgstr "Overview"
+
 #: src/features/account/components/account-security-view.tsx
-#: src/features/account/components/forms/delete-account-form/delete-account-form.tsx
-#: src/features/auth/components/forms/login-form/login-form.tsx
-#: src/features/auth/components/forms/register-form/register-form.tsx
+#: src/features/account/components/profile/delete-account-modal.tsx
+#: src/features/auth/components/login-view.tsx
+#: src/features/auth/components/register-view.tsx
 msgid "Password"
 msgstr "Password"
 
@@ -892,7 +900,7 @@ msgstr "Personal Information"
 msgid "Personalize your dashboard experience."
 msgstr "Personalize your dashboard experience."
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Pink"
 msgstr "Pink"
 
@@ -971,11 +979,11 @@ msgstr "Profile updated."
 msgid "Project"
 msgstr "Project"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Purple"
 msgstr "Purple"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Red"
 msgstr "Red"
 
@@ -1046,7 +1054,7 @@ msgid "Revoke"
 msgstr "Revoke"
 
 #: src/app/routes/_admin/account/roles/$role.tsx
-#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+#: src/features/account/components/members/create-member-modal.tsx
 msgid "Role"
 msgstr "Role"
 
@@ -1069,7 +1077,7 @@ msgstr "Roles"
 msgid "Roles & Permissions"
 msgstr "Roles & Permissions"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Rose"
 msgstr "Rose"
 
@@ -1188,7 +1196,7 @@ msgid "Sign out"
 msgstr "Sign out"
 
 #: src/features/account/components/account-sessions-view.tsx
-#: src/features/account/components/forms/change-password-form/change-password-form.tsx
+#: src/features/account/components/profile/change-password-modal.tsx
 msgid "Sign out of all other devices"
 msgstr "Sign out of all other devices"
 
@@ -1210,7 +1218,7 @@ msgstr "Signed out."
 msgid "SKU"
 msgstr "SKU"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Sky"
 msgstr "Sky"
 
@@ -1262,15 +1270,15 @@ msgstr "Super Admin"
 msgid "Support Agent"
 msgstr "Support Agent"
 
-#: src/config/theme.constants.ts
+#: src/config/theme.ts
 msgid "System"
 msgstr "System"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Teal"
 msgstr "Teal"
 
-#: src/features/account/components/forms/create-member-form/create-member-form.tsx
+#: src/features/account/components/members/create-member-modal.tsx
 msgid "Temporary password"
 msgstr "Temporary password"
 
@@ -1336,7 +1344,7 @@ msgstr "Unauthorized. Please login again."
 msgid "Unban user"
 msgstr "Unban user"
 
-#: src/app/layouts/error/error-not-found-layout.tsx
+#: src/app/layouts/error/not-found.tsx
 msgid "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved."
 msgstr "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved."
 
@@ -1364,7 +1372,7 @@ msgstr "View"
 msgid "View details"
 msgstr "View details"
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Violet"
 msgstr "Violet"
 
@@ -1376,7 +1384,7 @@ msgstr "Welcome back, {name}."
 msgid "Welcome back."
 msgstr "Welcome back."
 
-#: src/config/color-palette.constants.ts
+#: src/config/color-palette.ts
 msgid "Yellow"
 msgstr "Yellow"
 
@@ -1389,7 +1397,7 @@ msgstr "You"
 msgid "You do not have permission to perform this action."
 msgstr "You do not have permission to perform this action."
 
-#: src/app/layouts/error/error-not-found-layout.tsx
+#: src/app/layouts/error/not-found.tsx
 msgid "You have found a secret place."
 msgstr "You have found a secret place."
 

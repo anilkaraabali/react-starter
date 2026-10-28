@@ -1,6 +1,5 @@
 import { buttonVariants, Card, toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { useForm } from '@/components/organisms/form/use-form';
@@ -14,12 +13,12 @@ import {
 import { ProductForm } from './product-form';
 
 export function CreateProductView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const navigate = useNavigate();
   const createProductMutation = useCreateProduct({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Product created.`));
+        toast.success(t`Product created.`);
         void navigate({
           to: '/products',
         });
@@ -43,7 +42,7 @@ export function CreateProductView() {
             className={buttonVariants({ variant: 'secondary' })}
             to='/products'
           >
-            {_(msg`Cancel`)}
+            {t`Cancel`}
           </Link>
           <FormActions
             formId='create-product-form'
@@ -51,7 +50,7 @@ export function CreateProductView() {
           />
         </div>
       }
-      description={_(msg`Add a new product to your inventory catalog.`)}
+      description={t`Add a new product to your inventory catalog.`}
     >
       <Card className='p-6'>
         <ProductForm form={form} formId='create-product-form' />

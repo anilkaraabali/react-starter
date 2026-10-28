@@ -1,6 +1,5 @@
 import { Card, Chip, cn, linkVariants } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { Link } from '@tanstack/react-router';
 import { LockIcon, ShieldCheckIcon, UsersIcon } from 'lucide-react';
 import { ROLE_PERMISSIONS } from '@/features/account/config/organization-permissions.constants';
@@ -19,7 +18,7 @@ export function OrganizationRoleCard({
   memberCount,
   role,
 }: OrganizationRoleCardProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const permissionCount = ROLE_PERMISSIONS[role].length;
 
   return (
@@ -30,7 +29,7 @@ export function OrganizationRoleCard({
             <Card.Title>{getOrganizationRoleLabel(role)}</Card.Title>
             <Chip className='gap-1' size='sm' variant='secondary'>
               <LockIcon size={12} />
-              {_(msg`Built-in`)}
+              {t`Built-in`}
             </Chip>
           </div>
           <Card.Description>
@@ -39,14 +38,14 @@ export function OrganizationRoleCard({
         </div>
       </Card.Header>
       <Card.Footer className='mt-auto flex items-center justify-between gap-3'>
-        <div className='flex flex-wrap items-center gap-4 text-muted text-sm'>
+        <div className='text-muted flex flex-wrap items-center gap-4 text-sm'>
           <span className='inline-flex items-center gap-1'>
             <ShieldCheckIcon />
-            <span>{_(msg`${permissionCount} permissions`)}</span>
+            <span>{t`${permissionCount} permissions`}</span>
           </span>
           <span className='inline-flex items-center gap-1'>
             <UsersIcon />
-            <span>{_(msg`${memberCount} members`)}</span>
+            <span>{t`${memberCount} members`}</span>
           </span>
         </div>
         <Link
@@ -54,7 +53,7 @@ export function OrganizationRoleCard({
           params={{ role }}
           to='/account/roles/$role'
         >
-          {_(msg`View`)}
+          {t`View`}
         </Link>
       </Card.Footer>
     </Card>

@@ -1,6 +1,5 @@
 import { Card } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { SimpleDetailField } from '@/components/molecules/simple-detail-field';
 import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 import { formatDateTime } from '@/utils/format.utils';
@@ -12,22 +11,22 @@ type {{entityPascal}}DetailContentProps = {
 export function {{entityPascal}}DetailContent({
   {{entityCamel}},
 }: {{entityPascal}}DetailContentProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <div className='space-y-6'>
       <Card>
         <Card.Header>
-          <Card.Title>{_(msg`{{singularTitle}} Information`)}</Card.Title>
+          <Card.Title>{t`{{singularTitle}} Information`}</Card.Title>
         </Card.Header>
         <Card.Content className='grid grid-cols-1 content-start gap-4 sm:grid-cols-2'>
-          <SimpleDetailField.Column label={_(msg`Status`)} value={ {{entityCamel}}.status } />
+          <SimpleDetailField.Column label={t`Status`} value={ {{entityCamel}}.status } />
           <SimpleDetailField.Column
-            label={_(msg`Date created`)}
+            label={t`Date created`}
             value={formatDateTime({{entityCamel}}.createdAt)}
           />
           <SimpleDetailField.Column
-            label={_(msg`Last updated`)}
+            label={t`Last updated`}
             value={formatDateTime({{entityCamel}}.updatedAt)}
           />
         </Card.Content>
@@ -35,13 +34,13 @@ export function {{entityPascal}}DetailContent({
 
       <Card>
         <Card.Header>
-          <Card.Title>{_(msg`Description`)}</Card.Title>
+          <Card.Title>{t`Description`}</Card.Title>
         </Card.Header>
         <Card.Content>
           <div className='prose prose-sm dark:prose-invert text-foreground/80'>
             { {{entityCamel}}.description || (
               <span className='text-muted italic'>
-                {_(msg`No description provided.`)}
+                {t`No description provided.`}
               </span>
             ) }
           </div>

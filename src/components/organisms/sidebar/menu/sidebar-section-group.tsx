@@ -1,71 +1,61 @@
-import type { SidebarNavItem } from '../sidebar.types';
+import { useId } from 'react';
+import type { SidebarLeafItem } from '../sidebar.types';
 import { SidebarAccordionCollapse } from './sidebar-accordion-collapse';
 import { SidebarMenuItem } from './sidebar-menu-item';
 import { SidebarSectionHeader } from './sidebar-section-header';
 
 type SidebarSectionGroupProps = {
-  childItems: readonly SidebarNavItem[];
-  currentPath: string;
+  activeTo?: string;
+  childItems: readonly SidebarLeafItem[];
   isCompact?: boolean;
   isExpanded: boolean;
   isOpen: boolean;
+  /** The group holds the active route, so it stays open. */
   label: string;
-  onClose: () => void;
   onNavigate?: (to: string) => void;
   onToggle: () => void;
 };
 
 export function SidebarSectionGroup({
+  activeTo,
   childItems,
-  currentPath,
   isCompact = false,
   isExpanded,
   isOpen,
   label,
-  onClose,
   onNavigate,
   onToggle,
 }: SidebarSectionGroupProps) {
-  if (isExpanded) {
-    return (
-      <div>
-        <SidebarSectionHeader
-          isOpen={isOpen}
-          label={label}
-          onToggle={onToggle}
-        />
-        <SidebarAccordionCollapse isOpen={isOpen}>
-          <div className='mt-1 space-y-0.5'>
-            {childItems.map((child) => (
-              <SidebarMenuItem
-                currentPath={currentPath}
-                isCompact={isCompact}
-                isExpanded={isExpanded}
-                item={child}
-                key={child.to}
-                onClose={onClose}
-                onNavigate={onNavigate}
-              />
-            ))}
-          </div>
-        </SidebarAccordionCollapse>
-      </div>
-    );
+  const contentId = useId();
+
+  const renderItems = () =>
+    childItems.map((child) => (
+      <SidebarMenuItem
+        isActive={child.to === activeTo}
+        isCompact={isCompact}
+        isExpanded={isExpanded}
+        item={child}
+        key={child.to}
+        onNavigate={onNavigate}
+      />
+    ));
+
+  // Icon-only rail: no labels and no collapsing, groups are split by a hairline.
+  if (!isExpanded) {
+    return <div className='space-y-0.5'>{renderItems()}</div>;
   }
 
   return (
-    <div className='mt-1 space-y-0.5'>
-      {childItems.map((child) => (
-        <SidebarMenuItem
-          currentPath={currentPath}
-          isCompact={isCompact}
-          isExpanded={isExpanded}
-          item={child}
-          key={child.to}
-          onClose={onClose}
-          onNavigate={onNavigate}
-        />
-      ))}
+    <div>
+      <SidebarSectionHeader
+        contentId={contentId}
+        isOpen={isOpen}
+        label={label}
+        onToggle={onToggle}
+      />
+      <SidebarAccordionCollapse id={contentId} isOpen={isOpen}>
+        <div className='mt-1 space-y-0.5'>{renderItems()}</div>
+      </SidebarAccordionCollapse>
     </div>
   );
 }

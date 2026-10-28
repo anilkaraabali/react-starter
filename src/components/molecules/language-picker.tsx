@@ -1,19 +1,18 @@
 import { Button, Dropdown, Label } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { ChevronDownIcon } from 'lucide-react';
 import { languageOptions } from '@/config/language';
 import { useLanguage } from '@/hooks/use-language';
 
 export function LanguagePicker() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { language, setLanguage } = useLanguage();
 
   const activeLanguage = languageOptions.find((l) => l.key === language);
 
   return (
     <Dropdown>
-      <Button aria-label={_(msg`Select language`)} size='sm' variant='outline'>
+      <Button aria-label={t`Select language`} size='sm' variant='outline'>
         {activeLanguage?.label}
         <ChevronDownIcon />
       </Button>

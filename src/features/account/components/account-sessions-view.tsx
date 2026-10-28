@@ -6,7 +6,7 @@ import {
   useOverlayState,
 } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { MonitorOffIcon } from 'lucide-react';
 import { useState } from 'react';
 
@@ -20,7 +20,7 @@ import { SessionCard } from './sessions/session-card';
 import { SessionsSkeleton } from './sessions/sessions-skeleton';
 
 export function AccountSessionsView() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { data: currentSession } = useSession();
   const {
     data: sessions = [],
@@ -61,9 +61,9 @@ export function AccountSessionsView() {
         },
       });
       if (isCurrent) {
-        toast.success(_(msg`Signed out.`));
+        toast.success(t`Signed out.`);
       } else {
-        toast.success(_(msg`Session revoked.`));
+        toast.success(t`Session revoked.`);
       }
     } finally {
       setRevokingToken(null);
@@ -73,10 +73,10 @@ export function AccountSessionsView() {
   return (
     <Account.SettingsChunk>
       <Account.PageHeader
-        description={_(
+        description={t(
           msg`This is a list of devices logged into your account. Cancel any sessions you do not recognize.`
         )}
-        title={_(msg`Sessions`)}
+        title={t`Sessions`}
       />
 
       <Account.Sections>
@@ -89,11 +89,11 @@ export function AccountSessionsView() {
                   size='sm'
                   variant='secondary'
                 >
-                  {_(msg`Sign out of all other devices`)}
+                  {t`Sign out of all other devices`}
                 </Button>
               ) : null
             }
-            title={_(msg`Connected Devices`)}
+            title={t`Connected Devices`}
           />
           {isPending ? (
             <SessionsSkeleton />
@@ -101,11 +101,9 @@ export function AccountSessionsView() {
             <Alert status='warning'>
               <Alert.Indicator />
               <Alert.Content>
-                <Alert.Title>
-                  {_(msg`Sign in again to view sessions`)}
-                </Alert.Title>
+                <Alert.Title>{t`Sign in again to view sessions`}</Alert.Title>
                 <Alert.Description>
-                  {_(
+                  {t(
                     msg`For your security, the session list is only available shortly after signing in.`
                   )}
                 </Alert.Description>
@@ -115,7 +113,7 @@ export function AccountSessionsView() {
                   size='sm'
                   variant='secondary'
                 >
-                  {_(msg`Sign in again`)}
+                  {t`Sign in again`}
                 </Button>
               </Alert.Content>
             </Alert>
@@ -123,9 +121,9 @@ export function AccountSessionsView() {
             <Alert status='danger'>
               <Alert.Indicator />
               <Alert.Content>
-                <Alert.Title>{_(msg`Unable to load sessions`)}</Alert.Title>
+                <Alert.Title>{t`Unable to load sessions`}</Alert.Title>
                 <Alert.Description>
-                  {_(
+                  {t(
                     msg`Something went wrong while loading sessions. Please try again.`
                   )}
                 </Alert.Description>
@@ -135,14 +133,14 @@ export function AccountSessionsView() {
                   size='sm'
                   variant='danger'
                 >
-                  {_(msg`Retry`)}
+                  {t`Retry`}
                 </Button>
               </Alert.Content>
             </Alert>
           ) : sessions.length === 0 ? (
-            <EmptyState className='flex flex-col items-center justify-center gap-3 rounded-xl border bg-surface px-4 py-10 text-center'>
+            <EmptyState className='bg-surface flex flex-col items-center justify-center gap-3 rounded-xl border px-4 py-10 text-center'>
               <MonitorOffIcon size={24} />
-              <span className='text-sm'>{_(msg`No active sessions.`)}</span>
+              <span className='text-sm'>{t`No active sessions.`}</span>
             </EmptyState>
           ) : (
             <div className='flex flex-col gap-3 self-stretch'>

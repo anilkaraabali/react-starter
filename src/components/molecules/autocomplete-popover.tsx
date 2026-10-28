@@ -8,8 +8,7 @@ import {
   SearchField,
   useFilter,
 } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { ReactNode } from 'react';
 
 type AutocompletePopoverOption = {
@@ -24,7 +23,7 @@ type AutocompletePopoverProps = {
 };
 
 export function AutocompletePopover({ options }: AutocompletePopoverProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { contains } = useFilter({ sensitivity: 'base' });
 
   return (
@@ -33,13 +32,13 @@ export function AutocompletePopover({ options }: AutocompletePopoverProps) {
         <SearchField autoFocus name='search' variant='secondary'>
           <SearchField.Group>
             <SearchField.SearchIcon />
-            <SearchField.Input placeholder={_(msg`Search...`)} />
+            <SearchField.Input placeholder={t`Search...`} />
             <SearchField.ClearButton />
           </SearchField.Group>
         </SearchField>
         <ListBox
           renderEmptyState={() => (
-            <EmptyState>{_(msg`No results found`)}</EmptyState>
+            <EmptyState>{t`No results found`}</EmptyState>
           )}
         >
           {options.map((option) => (

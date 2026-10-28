@@ -65,24 +65,25 @@ Vite serves the app at **http://localhost:4200** (or the next free port).
 
 ## Available Scripts
 
-| Command                         | Description                                                   |
-| ------------------------------- | ------------------------------------------------------------- |
-| `pnpm dev`                      | Vite dev server (port 4200)                                   |
-| `pnpm build`                    | Catalog extraction, type check (`tsc -b`), production bundle  |
-| `pnpm build:source`             | Production build with bundle visualizer analysis              |
-| `pnpm build:sourcemap`          | Production build with source maps                             |
-| `pnpm preview`                  | Serve the production build (port 4200)                        |
-| `pnpm test` / `pnpm test:watch` | Vitest once / in watch mode                                   |
-| `pnpm typecheck`                | `tsc -b` type check                                           |
-| `pnpm lint` / `pnpm lint:ci`    | Biome check & fixes with dependency-cruiser / CI check only   |
-| `pnpm lint:css`                 | Stylelint for CSS files                                       |
-| `pnpm lint:deps`                | Dependency Cruiser architecture validation                    |
-| `pnpm knip`                     | Detect unused files, exports, and dependencies                |
-| `pnpm jscpd`                    | Duplicate code analysis                                       |
-| `pnpm intl:extract`             | Extract messages into Lingui catalogs and sync translations   |
-| `pnpm generate`                 | Scaffold feature modules with the Plop generators             |
-| `pnpm script:check-docs`        | Verify documentation and link integrity                       |
-| `pnpm agents:heroui`            | Update HeroUI documentation reference (`AGENTS.md`)           |
+| Command                         | Description                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| `pnpm dev`                      | Vite dev server (port 4200)                                  |
+| `pnpm build`                    | Catalog extraction, type check (`tsc -b`), production bundle |
+| `pnpm build:source`             | Production build with bundle visualizer analysis             |
+| `pnpm build:sourcemap`          | Production build with source maps                            |
+| `pnpm preview`                  | Serve the production build (port 4200)                       |
+| `pnpm test` / `pnpm test:watch` | Vitest once / in watch mode                                  |
+| `pnpm typecheck`                | `tsc -b` type check                                          |
+| `pnpm lint` / `pnpm lint:ci`    | Biome check & fixes with dependency-cruiser / CI check only  |
+| `pnpm lint:css`                 | Stylelint for CSS files                                      |
+| `pnpm lint:deps`                | Dependency Cruiser architecture validation                   |
+| `pnpm knip`                     | Detect unused files, exports, and dependencies               |
+| `pnpm jscpd`                    | Duplicate code analysis                                      |
+| `pnpm intl:extract`             | Extract messages into the Lingui catalogs                    |
+| `pnpm intl:check`               | Fail if catalogs are stale or a `tr` translation is missing  |
+| `pnpm generate`                 | Scaffold feature modules with the Plop generators            |
+| `pnpm script:check-docs`        | Verify documentation and link integrity                      |
+| `pnpm agents:heroui`            | Update HeroUI documentation reference (`AGENTS.md`)          |
 
 ### Generators
 
@@ -111,16 +112,16 @@ rather than leaving you to discover it at `pnpm typecheck`.
 
 ### Granular generators
 
-| Generator | Produces |
-| --- | --- |
-| `types`   | `types/<entity>.types.ts` — entity plus a `draft`/`active`/`archived` status enum |
+| Generator | Produces                                                                                                                     |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `types`   | `types/<entity>.types.ts` — entity plus a `draft`/`active`/`archived` status enum                                            |
 | `config`  | `config/<entity>.constants.ts` and `config/<plural>-filter.config.ts` — status options and the URL-backed filter/sort config |
-| `api`     | Query-key factory, list and detail queries, create/update/delete mutations |
-| `modal`   | `components/modals/delete-<entity>-modal.tsx` |
-| `detail`  | Query boundary, status chip, detail view and content |
-| `form`    | Shared form, form options, entity-to-form mapper, create and edit views |
-| `list`    | List view, data table and column definitions |
-| `routes`  | The four file-based routes, then regenerates `route-tree.gen.ts` |
+| `api`     | Query-key factory, list and detail queries, create/update/delete mutations                                                   |
+| `modal`   | `components/modals/delete-<entity>-modal.tsx`                                                                                |
+| `detail`  | Query boundary, status chip, detail view and content                                                                         |
+| `form`    | Shared form, form options, entity-to-form mapper, create and edit views                                                      |
+| `list`    | List view, data table and column definitions                                                                                 |
+| `routes`  | The four file-based routes, then regenerates `route-tree.gen.ts`                                                             |
 
 Generators only write production code. Tests are written by hand, so a new
 module ships without the scaffolding of specs that its first real test would
@@ -144,9 +145,10 @@ result parses.
 
 `pnpm build` executes the following sequence:
 
-1. `intl:build` (`intl:extract`): Extracts UI strings with Lingui and synchronizes English message strings.
-2. `tsc -b`: Project type checking with no emit.
-3. `vite build`: Production asset compilation and bundling.
+1. `tsc -b`: Project type checking with no emit.
+2. `vite build`: Production asset compilation and bundling.
+
+Run `pnpm intl:extract` after changing UI strings and `pnpm intl:check` (also run in CI) to verify the catalogs are in sync.
 
 ## Project Structure
 
@@ -181,4 +183,3 @@ The GitHub Actions workflow ([`.github/workflows/ci.yml`](.github/workflows/ci.y
 ## License
 
 [MIT](LICENSE) © 2026 Anil Karaabali
-

@@ -1,6 +1,5 @@
 import { Button, Modal, Spinner } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { ReactNode } from 'react';
 
 type FormModalProps = {
@@ -23,7 +22,7 @@ export function FormModal({
   submitLabel,
   title,
 }: FormModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   const handleClose = () => {
     if (!isPending) {
@@ -49,7 +48,7 @@ export function FormModal({
             <Modal.Body>{children}</Modal.Body>
             <Modal.Footer>
               <Button isDisabled={isPending} slot='close' variant='secondary'>
-                {_(msg`Cancel`)}
+                {t`Cancel`}
               </Button>
               <Button form={formId} isPending={isPending} type='submit'>
                 {({ isPending: pending }) => (

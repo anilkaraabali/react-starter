@@ -1,7 +1,5 @@
 import { toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
 import { useSetMemberBan } from '@/features/account/api/set-member-ban';
 import type { OrganizationMemberDto } from '@/types/organization.types';
@@ -17,11 +15,11 @@ export function MemberBanModal({
   member,
   onClose,
 }: MemberBanModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const setMemberBanMutation = useSetMemberBan({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`Member banned.`));
+        toast.success(t`Member banned.`);
         onClose();
       },
     },
@@ -29,7 +27,7 @@ export function MemberBanModal({
 
   return (
     <ConfirmDialog
-      confirmLabel={_(msg`Ban Member`)}
+      confirmLabel={t`Ban Member`}
       isOpen={isOpen}
       isPending={setMemberBanMutation.isPending}
       onClose={onClose}
@@ -39,7 +37,7 @@ export function MemberBanModal({
           userId: member.userId,
         })
       }
-      title={_(msg`Ban Member`)}
+      title={t`Ban Member`}
     >
       <Trans>
         Are you sure you want to ban <strong>{member.name}</strong>? They will

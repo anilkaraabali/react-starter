@@ -1,6 +1,5 @@
 import { Button, ButtonGroup, Dropdown, Label } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { MoreHorizontalIcon, Trash2Icon } from 'lucide-react';
 import type { FormActionDropdownItem } from './form-actions.types';
 
@@ -17,7 +16,7 @@ export function FormActionMoreMenu({
   isDisabled = false,
   onDelete,
 }: FormActionMoreMenuProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   const resolvedItems: FormActionDropdownItem[] = [
     ...dropdownItems,
@@ -26,7 +25,7 @@ export function FormActionMoreMenu({
           {
             icon: <Trash2Icon aria-hidden className='text-danger' />,
             id: 'delete',
-            label: _(msg`Delete`),
+            label: t`Delete`,
             onSelect: onDelete,
             variant: 'danger' as const,
           },
@@ -40,11 +39,7 @@ export function FormActionMoreMenu({
 
   return (
     <Dropdown>
-      <Button
-        aria-label={_(msg`More options`)}
-        isDisabled={isDisabled}
-        isIconOnly
-      >
+      <Button aria-label={t`More options`} isDisabled={isDisabled} isIconOnly>
         {hasPrimaryAction ? <ButtonGroup.Separator /> : null}
         <MoreHorizontalIcon aria-hidden />
       </Button>

@@ -6,7 +6,8 @@ export type { SidebarVariant };
 
 export type SidebarHeaderMode = 'account' | 'default';
 
-type SidebarNavItemBase<TPolicy extends string> = {
+/** A link. Leaves cannot have children, so deeper nesting is a type error. */
+export type SidebarLeafItem<TPolicy extends string = string> = {
   badge?: number | string;
   icon?: LucideIcon;
   label: MessageDescriptor;
@@ -14,14 +15,16 @@ type SidebarNavItemBase<TPolicy extends string> = {
   to: string;
 };
 
-export type SidebarNavItem<TPolicy extends string = string> =
-  SidebarNavItemBase<TPolicy> &
-    (
-      | { children?: readonly SidebarNavItem<TPolicy>[]; sections?: never }
-      | { children?: never; sections?: readonly SidebarNavSection<TPolicy>[] }
-    );
-
-type SidebarNavSection<TPolicy extends string = string> = {
-  items: readonly SidebarNavItem<TPolicy>[];
-  title: MessageDescriptor;
+/** A collapsible heading. It never navigates, so it has no `to`. */
+type SidebarGroupItem<TPolicy extends string = string> = {
+  children: readonly SidebarLeafItem<TPolicy>[];
+  icon?: LucideIcon;
+  label: MessageDescriptor;
+  policy?: TPolicy;
+  to?: never;
 };
+
+/** Top-level entry: a plain link or a group of links. One level only. */
+export type SidebarNavItem<TPolicy extends string = string> =
+  | (SidebarLeafItem<TPolicy> & { children?: never })
+  | SidebarGroupItem<TPolicy>;

@@ -1,13 +1,12 @@
 import { Button, Dropdown, Label, Separator } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 import { BellIcon, LogOutIcon, SettingsIcon } from 'lucide-react';
 import { UserAvatar } from '@/components/atoms/user-avatar';
 import { signOut, useSession } from '@/lib/auth-client';
 
 export function AdminHeaderUserMenu() {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const { data: session } = useSession();
   const user = session?.user;
   const navigate = useNavigate();
@@ -35,11 +34,11 @@ export function AdminHeaderUserMenu() {
       </Button>
       <Dropdown.Popover className='min-w-56'>
         <div className='border-b px-3 py-2.5'>
-          <p className='font-semibold text-foreground text-sm leading-tight'>
+          <p className='text-foreground text-sm leading-tight font-semibold'>
             {userName}
           </p>
           {email ? (
-            <p className='mt-0.5 truncate text-muted text-xs'>{email}</p>
+            <p className='text-muted mt-0.5 truncate text-xs'>{email}</p>
           ) : null}
         </div>
         <Dropdown.Menu
@@ -52,24 +51,24 @@ export function AdminHeaderUserMenu() {
             }
           }}
         >
-          <Dropdown.Item id='settings' textValue={_(msg`Settings`)}>
+          <Dropdown.Item id='settings' textValue={t`Settings`}>
             <SettingsIcon className='text-muted' />
-            <Label>{_(msg`Settings`)}</Label>
+            <Label>{t`Settings`}</Label>
           </Dropdown.Item>
 
-          <Dropdown.Item id='notifications' textValue={_(msg`Notifications`)}>
+          <Dropdown.Item id='notifications' textValue={t`Notifications`}>
             <BellIcon className='text-muted' />
-            <Label>{_(msg`Notifications`)}</Label>
-            <span className='ms-auto rounded-full bg-accent-soft px-1.5 py-0.5 text-[10px] text-accent-soft-foreground'>
+            <Label>{t`Notifications`}</Label>
+            <span className='bg-accent-soft text-accent-soft-foreground ms-auto rounded-full px-1.5 py-0.5 text-[10px]'>
               4
             </span>
           </Dropdown.Item>
 
           <Separator className='my-1' />
 
-          <Dropdown.Item id='logout' textValue={_(msg`Log out`)}>
+          <Dropdown.Item id='logout' textValue={t`Log out`}>
             <LogOutIcon className='text-danger' />
-            <Label className='text-danger'>{_(msg`Log out`)}</Label>
+            <Label className='text-danger'>{t`Log out`}</Label>
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>

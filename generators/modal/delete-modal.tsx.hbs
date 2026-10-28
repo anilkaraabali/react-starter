@@ -1,6 +1,5 @@
 import { toast } from '@heroui/react';
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import { Trans } from '@lingui/react/macro';
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
 import { useDelete{{entityPascal}} } from '@/features/{{featureDir}}/api/delete-{{entityKebab}}';
@@ -19,11 +18,11 @@ export function Delete{{entityPascal}}Modal({
   onSuccess,
   {{entityCamel}},
 }: Delete{{entityPascal}}ModalProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
   const delete{{entityPascal}}Mutation = useDelete{{entityPascal}}({
     mutationConfig: {
       onSuccess: () => {
-        toast.success(_(msg`{{singularTitle}} deleted.`));
+        toast.success(t`{{singularTitle}} deleted.`);
         onClose();
         onSuccess?.();
       },
@@ -34,12 +33,12 @@ export function Delete{{entityPascal}}Modal({
 
   return (
     <ConfirmDialog
-      confirmLabel={_(msg`Delete`)}
+      confirmLabel={t`Delete`}
       isOpen={isOpen}
       isPending={delete{{entityPascal}}Mutation.isPending}
       onClose={onClose}
       onConfirm={() => delete{{entityPascal}}Mutation.mutateAsync({{entityCamel}}.id)}
-      title={_(msg`Delete {{singularTitle}}`)}
+      title={t`Delete {{singularTitle}}`}
     >
       <Trans>
         Are you sure you want to delete <b>{{entityCamel}}.name</b>? This action

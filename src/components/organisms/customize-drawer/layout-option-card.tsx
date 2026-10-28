@@ -1,5 +1,5 @@
 import { cn } from '@heroui/styles';
-import { useLingui } from '@lingui/react';
+import { useLingui } from '@lingui/react/macro';
 import type { LayoutCardOption } from '@/config/layout-options';
 import type { SidebarVariant } from '@/types/layout.types';
 import { LayoutPreview } from './layout-preview';
@@ -15,14 +15,14 @@ export function LayoutOptionCard({
   onSelect,
   option,
 }: LayoutOptionCardProps) {
-  const { _ } = useLingui();
+  const { t } = useLingui();
 
   return (
     <button
       className={cn(
-        'flex flex-col gap-2 rounded-xl border p-2.5 text-left transition-all hover:border-accent',
+        'hover:border-accent flex flex-col gap-2 rounded-xl border p-2.5 text-left transition-all',
         {
-          'border-accent bg-accent-soft text-accent-soft-foreground ring-2 ring-accent-soft':
+          'border-accent bg-accent-soft text-accent-soft-foreground ring-accent-soft ring-2':
             isSelected,
         }
       )}
@@ -30,7 +30,7 @@ export function LayoutOptionCard({
       type='button'
     >
       <LayoutPreview variant={option.key} />
-      <span className='text-center font-medium text-xs'>{_(option.label)}</span>
+      <span className='text-center text-xs font-medium'>{t(option.label)}</span>
     </button>
   );
 }
