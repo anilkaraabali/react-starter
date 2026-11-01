@@ -1,6 +1,7 @@
 import { Card } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import { SimpleDetailField } from '@/components/molecules/simple-detail-field';
+import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
 import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import { formatDateTime } from '@/utils/format.utils';
 
@@ -20,7 +21,10 @@ export function {{entityPascal}}DetailContent({
           <Card.Title>{t`{{singularTitle}} Information`}</Card.Title>
         </Card.Header>
         <Card.Content className='grid grid-cols-1 content-start gap-4 sm:grid-cols-2'>
-          <SimpleDetailField.Column label={t`Status`} value={ {{entityCamel}}.status } />
+          <SimpleDetailField.Column
+            label={t`Status`}
+            value={<{{entityPascal}}StatusChip status={ {{entityCamel}}.status } />}
+          />
           <SimpleDetailField.Column
             label={t`Date created`}
             value={formatDateTime({{entityCamel}}.createdAt)}

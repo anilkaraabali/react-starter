@@ -2,6 +2,7 @@ import { Card } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import type { ProductDto } from '@/api/models/products/product-dto';
 import { SimpleDetailField } from '@/components/molecules/simple-detail-field';
+import { ProductStatusChip } from '@/features/products/components/product-status-chip';
 import { calculateProfitMargin } from '@/features/products/utils/product.utils';
 import {
   formatCurrency,
@@ -67,6 +68,10 @@ export function ProductDetailContent({ product }: ProductDetailContentProps) {
             <Card.Title>{t`Product Information`}</Card.Title>
           </Card.Header>
           <Card.Content className='grid grid-cols-1 content-start gap-4 sm:grid-cols-2'>
+            <SimpleDetailField.Column
+              label={t`Status`}
+              value={<ProductStatusChip status={product.status} />}
+            />
             <SimpleDetailField.Column
               label={t`Category`}
               value={<span className='capitalize'>{product.category}</span>}

@@ -2,7 +2,6 @@ import { useNavigate } from '@tanstack/react-router';
 import { FormPrimaryActionButton } from '@/components/organisms/form/actions/form-primary-action-button';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
-import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
 import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import { {{entityPascal}}DetailContent } from './{{entityKebab}}-detail-content';
 
@@ -35,12 +34,7 @@ function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{
           }}
         />
       }
-      title={
-        <div className='flex items-center gap-3'>
-          <span>{{entityCamel}}.name</span>
-          <{{entityPascal}}StatusChip status={ {{entityCamel}}.status } />
-        </div>
-      }
+      title={ {{entityCamel}}.name }
     >
       <{{entityPascal}}DetailContent {{entityCamel}}={ {{entityCamel}} } />
     </ContentLayout>

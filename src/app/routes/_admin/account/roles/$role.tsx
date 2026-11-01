@@ -3,13 +3,6 @@ import { createFileRoute, redirect } from '@tanstack/react-router';
 import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
 import { AccountRoleView } from '@/features/account/components/account-role-view';
 import { isOrganizationMemberRole } from '@/lib/authorization/organization-role.utils';
-import type { MetaFunction } from '@/types/meta.types';
-
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`Role`),
-  },
-];
 
 function AccountRoleRouteComponent() {
   const { role } = Route.useParams();
@@ -25,5 +18,5 @@ export const Route = createFileRoute('/_admin/account/roles/$role')({
     }
   },
   component: AccountRoleRouteComponent,
-  loader: () => ({ meta }),
+  staticData: { title: msg`Role` },
 });

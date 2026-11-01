@@ -4,13 +4,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import { BackButton } from '@/components/atoms/back-button';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { CreateProduct } from '@/features/products/components/forms/create-product';
-import type { MetaFunction } from '@/types/meta.types';
-
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`Create Product`),
-  },
-];
 
 function ProductCreatePage() {
   const { t } = useLingui();
@@ -27,5 +20,5 @@ function ProductCreatePage() {
 
 export const Route = createFileRoute('/_admin/products/new')({
   component: ProductCreatePage,
-  loader: () => ({ meta }),
+  staticData: { title: msg`Create product` },
 });

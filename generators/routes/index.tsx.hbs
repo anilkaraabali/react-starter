@@ -10,13 +10,6 @@ import { {{entityPascal}}List } from '@/features/{{featureDir}}/components/{{ent
 import { {{entityPascal}}ListActions } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{entityKebab}}-list-actions';
 import { initial{{pluralPascal}}FiltersState } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter-config';
 import { getResponsivePageSize } from '@/hooks/use-responsive-page-size';
-import type { MetaFunction } from '@/types/meta.types';
-
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`{{pluralTitle}}`),
-  },
-];
 
 function {{entityPascal}}ListRoute() {
   return (
@@ -39,11 +32,11 @@ export const Route = createFileRoute('/_admin/{{featureDir}}/')({
       }),
       staleTime: 'static',
     });
-    return { meta };
   },
   search: {
     middlewares: [stripSearchParams(initial{{pluralPascal}}FiltersState)],
   },
+  staticData: { title: msg`{{pluralTitle}}` },
   validateSearch: zodValidator(get{{pluralPascal}}QuerySchema),
 });
 // biome-ignore-end assist/source/useSortedKeys: see biome-ignore-start above

@@ -1,5 +1,6 @@
 import { useLingui } from '@lingui/react/macro';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import { HeadProvider } from '@/lib/head/head-provider';
 import { GlobalError } from '@/app/layouts/error/global-error';
 import { NotFound } from '@/app/layouts/error/not-found';
 import { Meta } from '@/app/meta';
@@ -12,11 +13,11 @@ function RootComponent() {
   const titleTemplate = getPageTitleTemplate(i18n);
 
   return (
-    <>
+    <HeadProvider>
       <Meta titleTemplate={titleTemplate} />
       <NavigationProgress />
       <Outlet />
-    </>
+    </HeadProvider>
   );
 }
 

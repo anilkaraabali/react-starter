@@ -3,19 +3,18 @@ import { useLingui } from '@lingui/react/macro';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { get{{entityPascal}}QueryOptions } from '@/api/endpoints/{{pluralKebab}}/get-{{entityKebab}}';
+import { useDynamicHead } from '@/lib/head/head-provider';
 import { BackButton } from '@/components/atoms/back-button';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/delete-{{entityKebab}}-modal';
 import { Edit{{entityPascal}} } from '@/features/{{featureDir}}/components/forms/edit-{{entityKebab}}';
 import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
-import type { MetaFunction } from '@/types/meta.types';
 
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`Edit {{singularTitle}}`),
-  },
-];
+function {{entityPascal}}DynamicHead({ name }: { name: string }) {
+  useDynamicHead({ title: name });
+  return null;
+}
 
 function {{entityPascal}}EditPage() {
   const { {{routeParam}} } = Route.useParams();
@@ -27,6 +26,7 @@ function {{entityPascal}}EditPage() {
     <{{entityPascal}}QueryBoundary {{routeParam}}={ {{routeParam}} }>
       {({{entityCamel}}) => (
         <>
+          <{{entityPascal}}DynamicHead name={ {{entityCamel}}.name } />
           <ContentLayout
             actions={
               <>
@@ -37,7 +37,6 @@ function {{entityPascal}}EditPage() {
                 />
               </>
             }
-            description={ {{entityCamel}}.name }
           >
             <Edit{{entityPascal}} {{entityCamel}}={ {{entityCamel}} } {{routeParam}}={ {{routeParam}} } />
           </ContentLayout>
@@ -62,6 +61,6 @@ export const Route = createFileRoute('/_admin/{{featureDir}}/${{routeParam}}/edi
       ...get{{entityPascal}}QueryOptions(params.{{routeParam}}),
       staleTime: 'static',
     });
-    return { meta };
   },
+  staticData: { title: msg`Edit {{singularTitle}}` },
 });
