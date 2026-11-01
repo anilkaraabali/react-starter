@@ -2,7 +2,7 @@ import { Chip, type ChipProps } from '@heroui/react';
 import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
-import type { {{entityPascal}}Status } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import type { {{entityPascal}}StatusDto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-status-dto';
 
 const STATUS_CONFIG = {
   active: {
@@ -18,12 +18,12 @@ const STATUS_CONFIG = {
     label: msg`Draft`,
   },
 } as const satisfies Record<
-  {{entityPascal}}Status,
+  {{entityPascal}}StatusDto,
   { color: NonNullable<ChipProps['color']>; label: MessageDescriptor }
 >;
 
 type {{entityPascal}}StatusChipProps = Omit<ChipProps, 'children'> & {
-  status: {{entityPascal}}Status;
+  status: {{entityPascal}}StatusDto;
 };
 
 export function {{entityPascal}}StatusChip({

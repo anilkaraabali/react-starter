@@ -5,23 +5,21 @@ import { featurePrompts, fileActions, resolveData } from '../_lib/prompts.ts';
 type Answers = { entityName: string; feature: string };
 
 /**
- * `src/features/<feature>/api/`
+ * `src/api/endpoints/<plural>/`
  *
- * Query-key factory plus the five CRUD endpoints, each file owning exactly one
- * concern (schema, fetcher, queryOptions, hook) the way the TanStack docs
- * recommend.
+ * Query-key factory plus list/detail queries and create/update/delete mutations.
  */
 const apiGenerator: PlopGeneratorConfig = {
   actions: (answers) => {
     const data = resolveData(answers as Answers);
-    const base = `src/features/${data.featureDir}/api`;
+    const base = `src/api/endpoints/${data.pluralKebab}`;
     const e = data.entityKebab;
     const p = data.pluralKebab;
 
     return fileActions(
       [
         {
-          path: `${base}/${e}.keys.ts`,
+          path: `${base}/${p}.keys.ts`,
           templateFile: 'generators/api/keys.ts.hbs',
         },
         {

@@ -74,4 +74,8 @@
   .table__empty-state span {
     @apply text-sm text-muted;
   }
+
+  .tooltip {
+    @apply break-normal whitespace-normal;
+  }
 }

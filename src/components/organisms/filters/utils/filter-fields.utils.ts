@@ -1,7 +1,7 @@
 import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
+import { SortOrderDto } from '@/api/models/common/sort-order-dto';
 import type { FilterFieldConfig } from '@/components/organisms/filters/filters.types';
-import { SORT_ORDERS } from '@/types/sort.types';
 
 export function getSortOrderFilterField<
   TFilters extends object,
@@ -11,8 +11,8 @@ export function getSortOrderFilterField<
     label: i18n._(msg`Sort order`),
     props: {
       options: [
-        { label: i18n._(msg`Ascending (A-Z)`), value: SORT_ORDERS[0] },
-        { label: i18n._(msg`Descending (Z-A)`), value: SORT_ORDERS[1] },
+        { label: i18n._(msg`Ascending (A-Z)`), value: SortOrderDto.asc },
+        { label: i18n._(msg`Descending (Z-A)`), value: SortOrderDto.desc },
       ],
     },
     type: 'select',

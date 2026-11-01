@@ -1,0 +1,9 @@
+export const {{entityPascal}}SortByDto = {
+  createdAt: 'createdAt',
+  name: 'name',
+  status: 'status',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type {{entityPascal}}SortByDto =
+  (typeof {{entityPascal}}SortByDto)[keyof typeof {{entityPascal}}SortByDto];

@@ -6,10 +6,10 @@ import { useNavigate } from '@tanstack/react-router';
 import { useForm } from '@/components/organisms/form/use-form';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import {
-  type ForgotPasswordInput,
-  forgotPasswordDefaultValues,
-  forgotPasswordInputSchema,
-} from '@/features/auth/types/forgot-password-input';
+  type ForgotPasswordFormValues,
+  forgotPasswordFormDefaultValues,
+  forgotPasswordFormSchema,
+} from '@/features/auth/schemas/forgot-password-form-schema';
 import { authClient } from '@/lib/auth-client';
 
 export function ForgotPasswordView() {
@@ -17,8 +17,8 @@ export function ForgotPasswordView() {
   const navigate = useNavigate();
 
   const form = useForm({
-    defaultValues: forgotPasswordDefaultValues,
-    onSubmit: async (data: ForgotPasswordInput) => {
+    defaultValues: forgotPasswordFormDefaultValues,
+    onSubmit: async (data: ForgotPasswordFormValues) => {
       await authClient.requestPasswordReset(
         {
           email: data.email,
@@ -35,7 +35,7 @@ export function ForgotPasswordView() {
         }
       );
     },
-    schema: forgotPasswordInputSchema,
+    schema: forgotPasswordFormSchema,
   });
 
   return (

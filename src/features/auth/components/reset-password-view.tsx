@@ -7,10 +7,10 @@ import { useForm } from '@/components/organisms/form/use-form';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import { ResetPasswordInvalidLink } from '@/features/auth/components/reset-password-invalid-link';
 import {
-  type ResetPasswordInput,
-  resetPasswordDefaultValues,
-  resetPasswordInputSchema,
-} from '@/features/auth/types/reset-password-input';
+  type ResetPasswordFormValues,
+  resetPasswordFormDefaultValues,
+  resetPasswordFormSchema,
+} from '@/features/auth/schemas/reset-password-form-schema';
 import { authClient } from '@/lib/auth-client';
 
 export function ResetPasswordView() {
@@ -19,8 +19,8 @@ export function ResetPasswordView() {
   const { error, token } = useSearch({ from: '/_auth/reset-password' });
 
   const form = useForm({
-    defaultValues: resetPasswordDefaultValues,
-    onSubmit: async (data: ResetPasswordInput) => {
+    defaultValues: resetPasswordFormDefaultValues,
+    onSubmit: async (data: ResetPasswordFormValues) => {
       if (!token) {
         return;
       }
@@ -41,7 +41,7 @@ export function ResetPasswordView() {
         }
       );
     },
-    schema: resetPasswordInputSchema,
+    schema: resetPasswordFormSchema,
   });
 
   if (error || !token) {

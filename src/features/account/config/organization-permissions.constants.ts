@@ -1,30 +1,27 @@
-import {
-  type OrganizationMemberRole,
-  OrganizationPermission,
-} from '@/types/organization.types';
-
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 /** Stable display order for the permission matrix. */
 export const ORGANIZATION_PERMISSION_CATALOG = [
-  OrganizationPermission.organizationupdate,
-  OrganizationPermission.organizationmemberslist,
-  OrganizationPermission.organizationmembersinvite,
-  OrganizationPermission.organizationmembersupdate_role,
-  OrganizationPermission.organizationmembersremove,
-] as const satisfies readonly OrganizationPermission[];
+  OrganizationPermissionDto.organizationUpdate,
+  OrganizationPermissionDto.membersList,
+  OrganizationPermissionDto.membersInvite,
+  OrganizationPermissionDto.membersUpdateRole,
+  OrganizationPermissionDto.membersRemove,
+] as const satisfies readonly OrganizationPermissionDto[];
 
 /** Built-in role permissions. */
 export const ROLE_PERMISSIONS: Record<
-  OrganizationMemberRole,
-  readonly OrganizationPermission[]
+  OrganizationMemberRoleDto,
+  readonly OrganizationPermissionDto[]
 > = {
   admin: [
-    OrganizationPermission.organizationmemberslist,
-    OrganizationPermission.organizationmembersinvite,
-    OrganizationPermission.organizationmembersupdate_role,
-    OrganizationPermission.organizationmembersremove,
+    OrganizationPermissionDto.membersList,
+    OrganizationPermissionDto.membersInvite,
+    OrganizationPermissionDto.membersUpdateRole,
+    OrganizationPermissionDto.membersRemove,
   ],
-  billing_admin: [OrganizationPermission.organizationmemberslist],
-  sales_rep: [OrganizationPermission.organizationmemberslist],
+  billing_admin: [OrganizationPermissionDto.membersList],
+  sales_rep: [OrganizationPermissionDto.membersList],
   super_admin: ORGANIZATION_PERMISSION_CATALOG,
-  support_agent: [OrganizationPermission.organizationmemberslist],
+  support_agent: [OrganizationPermissionDto.membersList],
 };

@@ -1,18 +1,18 @@
 import { toast } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
-
+import { useUpdateProfile } from '@/api/endpoints/account/update-profile';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
-import { useUpdateProfile } from '@/features/account/api/update-profile';
 import { NameEmailFieldsGroup } from '@/features/account/components/forms/name-email-fields-group';
 import {
-  type UpdateProfileInput,
-  updateProfileDefaultValues,
-  updateProfileInputSchema,
-} from '@/features/account/types/update-profile-input';
+  mapUpdateProfileFormToInput,
+  type UpdateProfileFormValues,
+  updateProfileFormDefaultValues,
+  updateProfileFormSchema,
+} from '@/features/account/schemas/update-profile-form-schema';
 
 type UpdateProfileModalProps = {
-  defaultValues: UpdateProfileInput;
+  defaultValues: UpdateProfileFormValues;
   isOpen: boolean;
   onClose: () => void;
 };
@@ -34,19 +34,12 @@ export function UpdateProfileModal({
   const { email: defaultEmail, name: defaultName } = defaultValues;
 
   const form = useForm({
-    defaultValues: { ...updateProfileDefaultValues, ...defaultValues },
-    onSubmit: async (data: UpdateProfileInput) => {
-      const payload: {
-        email?: string;
-        name?: string;
-      } = {};
-
-      if (data.name !== defaultName) {
-        payload.name = data.name;
-      }
-      if (data.email !== defaultEmail) {
-        payload.email = data.email;
-      }
+    defaultValues: { ...updateProfileFormDefaultValues, ...defaultValues },
+    onSubmit: async (data: UpdateProfileFormValues) => {
+      const payload = mapUpdateProfileFormToInput(data, {
+        email: defaultEmail,
+        name: defaultName,
+      });
 
       if (!payload.name && !payload.email) {
         onClose();
@@ -55,7 +48,7 @@ export function UpdateProfileModal({
 
       await updateProfileMutation.mutateAsync({ data: payload });
     },
-    schema: updateProfileInputSchema,
+    schema: updateProfileFormSchema,
   });
 
   return (

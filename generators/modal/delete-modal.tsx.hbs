@@ -1,15 +1,15 @@
 import { toast } from '@heroui/react';
-import { useLingui } from '@lingui/react/macro';
-import { Trans } from '@lingui/react/macro';
+import { msg } from '@lingui/core/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
+import { useDelete{{entityPascal}} } from '@/api/endpoints/{{pluralKebab}}/delete-{{entityKebab}}';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
-import { useDelete{{entityPascal}} } from '@/features/{{featureDir}}/api/delete-{{entityKebab}}';
-import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 
 type Delete{{entityPascal}}ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
-  {{entityCamel}}: {{entityPascal}} | null;
+  {{entityCamel}}: {{entityPascal}}Dto | null;
 };
 
 export function Delete{{entityPascal}}Modal({
@@ -41,7 +41,7 @@ export function Delete{{entityPascal}}Modal({
       title={t`Delete {{singularTitle}}`}
     >
       <Trans>
-        Are you sure you want to delete <b>{{entityCamel}}.name</b>? This action
+        Are you sure you want to delete <b>{ {{entityCamel}}.name }</b>? This action
         cannot be undone.
       </Trans>
     </ConfirmDialog>

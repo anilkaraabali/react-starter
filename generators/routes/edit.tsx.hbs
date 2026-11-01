@@ -1,7 +1,14 @@
 import { msg } from '@lingui/core/macro';
-import { createFileRoute } from '@tanstack/react-router';
-import { get{{entityPascal}}QueryOptions } from '@/features/{{featureDir}}/api/get-{{entityKebab}}';
-import { Edit{{entityPascal}}View } from '@/features/{{featureDir}}/components/forms/edit-{{entityKebab}}-view';
+import { useLingui } from '@lingui/react/macro';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+import { get{{entityPascal}}QueryOptions } from '@/api/endpoints/{{pluralKebab}}/get-{{entityKebab}}';
+import { BackButton } from '@/components/atoms/back-button';
+import { FormActions } from '@/components/organisms/form/actions/form-actions';
+import { ContentLayout } from '@/components/templates/content-layout';
+import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/delete-{{entityKebab}}-modal';
+import { Edit{{entityPascal}} } from '@/features/{{featureDir}}/components/forms/edit-{{entityKebab}}';
+import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
 import type { MetaFunction } from '@/types/meta.types';
 
 const meta: MetaFunction = (i18n) => [
@@ -10,8 +17,46 @@ const meta: MetaFunction = (i18n) => [
   },
 ];
 
+function {{entityPascal}}EditPage() {
+  const { {{routeParam}} } = Route.useParams();
+  const { t } = useLingui();
+  const navigate = useNavigate();
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+  return (
+    <{{entityPascal}}QueryBoundary {{routeParam}}={ {{routeParam}} }>
+      {({{entityCamel}}) => (
+        <>
+          <ContentLayout
+            actions={
+              <>
+                <BackButton to='{{routePath}}'>{t`Back to {{pluralTitle}}`}</BackButton>
+                <FormActions
+                  deleteLabel={t`Delete {{entityKebab}}`}
+                  onDelete={() => setIsDeleteOpen(true)}
+                />
+              </>
+            }
+            description={ {{entityCamel}}.name }
+          >
+            <Edit{{entityPascal}} {{entityCamel}}={ {{entityCamel}} } {{routeParam}}={ {{routeParam}} } />
+          </ContentLayout>
+          <Delete{{entityPascal}}Modal
+            isOpen={isDeleteOpen}
+            onClose={() => setIsDeleteOpen(false)}
+            onSuccess={() => {
+              void navigate({ to: '{{routePath}}' });
+            }}
+            {{entityCamel}}={ {{entityCamel}} }
+          />
+        </>
+      )}
+    </{{entityPascal}}QueryBoundary>
+  );
+}
+
 export const Route = createFileRoute('/_admin/{{featureDir}}/${{routeParam}}/edit')({
-  component: Edit{{entityPascal}}RouteComponent,
+  component: {{entityPascal}}EditPage,
   loader: ({ context: { queryClient }, params }) => {
     void queryClient.query({
       ...get{{entityPascal}}QueryOptions(params.{{routeParam}}),
@@ -20,8 +65,3 @@ export const Route = createFileRoute('/_admin/{{featureDir}}/${{routeParam}}/edi
     return { meta };
   },
 });
-
-function Edit{{entityPascal}}RouteComponent() {
-  const { {{routeParam}} } = Route.useParams();
-  return <Edit{{entityPascal}}View {{routeParam}}={ {{routeParam}} } />;
-}

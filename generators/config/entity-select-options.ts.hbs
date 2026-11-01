@@ -1,0 +1,19 @@
+import { i18n } from '@lingui/core';
+import { msg } from '@lingui/core/macro';
+import {
+  {{entityPascal}}StatusDto,
+  type {{entityPascal}}StatusDto as {{entityPascal}}StatusValue,
+} from '@/api/models/{{pluralKebab}}/{{entityKebab}}-status-dto';
+
+export type {{entityPascal}}SelectOption<T extends string> = {
+  label: string;
+  value: T;
+};
+
+export function get{{entityPascal}}StatusSelectOptions(): {{entityPascal}}SelectOption<{{entityPascal}}StatusValue>[] {
+  return [
+    { label: i18n._(msg`Active`), value: {{entityPascal}}StatusDto.active },
+    { label: i18n._(msg`Draft`), value: {{entityPascal}}StatusDto.draft },
+    { label: i18n._(msg`Archived`), value: {{entityPascal}}StatusDto.archived },
+  ];
+}

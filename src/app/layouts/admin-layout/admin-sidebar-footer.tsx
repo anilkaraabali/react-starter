@@ -2,7 +2,7 @@ import { Button, Tooltip } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import { useNavigate } from '@tanstack/react-router';
 import { LogOutIcon } from 'lucide-react';
-import { useOrganizationMe } from '@/api/get-organization-me';
+import { useOrganizationMe } from '@/api/endpoints/organizations/get-organization-me';
 import { SidebarFooter } from '@/components/organisms/sidebar/footer/sidebar-footer';
 import { SidebarUserLink } from '@/components/organisms/sidebar/footer/sidebar-user-link';
 import { signOut, useSession } from '@/lib/auth-client';

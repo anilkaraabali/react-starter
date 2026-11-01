@@ -1,16 +1,14 @@
 import { msg } from '@lingui/core/macro';
-import type { QueryClient } from '@tanstack/react-query';
 import { createFileRoute, stripSearchParams } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
-import { ContentLayout } from '@/components/templates/content-layout';
 import {
-  type GetProductsQuery,
   getProductsQueryOptions,
   getProductsQuerySchema,
-} from '@/features/products/api/get-products';
-import { CreateProductButton } from '@/features/products/components/product-list/create-product-button';
+} from '@/api/endpoints/products/get-products';
+import { ContentLayout } from '@/components/templates/content-layout';
 import { ProductList } from '@/features/products/components/product-list/product-list';
-import { initialProductsFiltersState } from '@/features/products/config/products-filter.config';
+import { ProductListActions } from '@/features/products/components/product-list/product-list-actions';
+import { initialProductsFiltersState } from '@/features/products/config/products-filter-config';
 import { getResponsivePageSize } from '@/hooks/use-responsive-page-size';
 import type { MetaFunction } from '@/types/meta.types';
 
@@ -20,36 +18,32 @@ const meta: MetaFunction = (i18n) => [
   },
 ];
 
+function ProductsRoute() {
+  return (
+    <ContentLayout actions={<ProductListActions />}>
+      <ProductList />
+    </ContentLayout>
+  );
+}
+
+// biome-ignore-start assist/source/useSortedKeys: `loaderDeps` must precede `loader` so TypeScript infers `deps`.
 export const Route = createFileRoute('/_admin/products/')({
   component: ProductsRoute,
-  loader: ({
-    context: { queryClient },
-    deps,
-  }: {
-    context: { queryClient: QueryClient };
-    deps: GetProductsQuery;
-  }) => {
+  loaderDeps: ({ search }) => search,
+  loader: ({ context: { queryClient }, deps }) => {
     void queryClient.query({
       ...getProductsQueryOptions({
         ...initialProductsFiltersState,
-        pageSize: getResponsivePageSize(),
         ...deps,
+        pageSize: deps.pageSize ?? getResponsivePageSize(),
       }),
       staleTime: 'static',
     });
     return { meta };
   },
-  loaderDeps: ({ search }) => search,
   search: {
     middlewares: [stripSearchParams(initialProductsFiltersState)],
   },
   validateSearch: zodValidator(getProductsQuerySchema),
 });
-
-function ProductsRoute() {
-  return (
-    <ContentLayout actions={<CreateProductButton />}>
-      <ProductList />
-    </ContentLayout>
-  );
-}
+// biome-ignore-end assist/source/useSortedKeys: see biome-ignore-start above

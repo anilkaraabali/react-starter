@@ -1,16 +1,16 @@
 import type { LucideIcon } from 'lucide-react';
 import { LaptopIcon, SmartphoneIcon, TabletIcon } from 'lucide-react';
 
-import type { SessionDeviceType } from '@/features/account/types/session.types';
+import type { SessionDeviceTypeDto } from '@/api/models/account/auth-session-dto';
 
-const deviceIcons: Record<SessionDeviceType, LucideIcon> = {
+const deviceIcons: Record<SessionDeviceTypeDto, LucideIcon> = {
   Desktop: LaptopIcon,
   Mobile: SmartphoneIcon,
   Tablet: TabletIcon,
 };
 
 type SessionDeviceIconProps = {
-  device: SessionDeviceType;
+  device: SessionDeviceTypeDto;
 };
 
 export function SessionDeviceIcon({ device }: SessionDeviceIconProps) {

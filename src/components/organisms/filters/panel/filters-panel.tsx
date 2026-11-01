@@ -5,14 +5,13 @@ import type {
   FilterFieldConfig,
   FilterValue,
 } from '@/components/organisms/filters/filters.types';
+import { getAwaitedParentField } from '@/components/organisms/filters/utils/filter-state.utils';
 import { FiltersPanelActions } from './filters-panel-actions';
 
 type FiltersPanelProps = {
   fields: readonly FilterFieldConfig[];
   getFilterValue: (key: string) => FilterValue;
   hasActiveFilters: boolean;
-  onApply: () => void;
-  onCancel: () => void;
   onClear: () => void;
   onFilterChange: (key: string, value: FilterValue) => void;
 };
@@ -21,8 +20,6 @@ export function FiltersPanel({
   fields,
   getFilterValue,
   hasActiveFilters,
-  onApply,
-  onCancel,
   onClear,
   onFilterChange,
 }: FiltersPanelProps) {
@@ -33,6 +30,10 @@ export function FiltersPanel({
           {fields.map((field) => (
             <FilterField
               field={field}
+              isDisabled={
+                getAwaitedParentField(fields, field, getFilterValue) !==
+                undefined
+              }
               key={field.key}
               onChange={(next) => onFilterChange(field.key, next)}
               value={getFilterValue(field.key)}
@@ -42,8 +43,6 @@ export function FiltersPanel({
 
         <FiltersPanelActions
           hasActiveFilters={hasActiveFilters}
-          onApply={onApply}
-          onCancel={onCancel}
           onClear={onClear}
         />
       </Disclosure.Body>

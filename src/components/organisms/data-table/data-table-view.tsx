@@ -8,6 +8,7 @@ import type {
   TableColumnDef,
 } from './data-table.types';
 import { TablePaginationFooter } from './pagination/table-pagination-footer';
+import { useClampPage } from './pagination/use-clamp-page';
 import { TableEmptyState } from './table-empty-state';
 import { TableToolbar, type TableToolbarSlot } from './table-toolbar';
 
@@ -56,6 +57,8 @@ export function DataTableView<
   const { t } = useLingui();
   const hasResults = data.length > 0;
 
+  useClampPage({ isLoading, pagination });
+
   return (
     <div className='flex flex-col gap-4'>
       <TableToolbar
@@ -64,7 +67,7 @@ export function DataTableView<
         toolbar={toolbar}
       />
 
-      <Table aria-busy={isLoading} className='min-h-80.25'>
+      <Table aria-busy={isLoading} className='min-h-50'>
         <Table.ScrollContainer>
           <Table.Content
             aria-label={t`Data table`}

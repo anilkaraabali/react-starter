@@ -13,7 +13,8 @@ type ApiFnReturnType<FnType extends (...args: any[]) => Promise<any>> = Awaited<
   ReturnType<FnType>
 >;
 
-export type QueryConfig<T extends (...args: unknown[]) => unknown> = Omit<
+// biome-ignore lint/suspicious/noExplicitAny: Query option factories use typed params (e.g. list filters, resource ids)
+export type QueryConfig<T extends (...args: any[]) => unknown> = Omit<
   ReturnType<T>,
   'queryKey' | 'queryFn'
 >;

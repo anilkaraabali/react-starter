@@ -1,16 +1,16 @@
 import type {
-  ParsedUserAgent,
-  SessionDeviceType,
-} from '@/features/account/types/session.types';
+  ParsedUserAgentDto,
+  SessionDeviceTypeDto,
+} from '@/api/models/account/auth-session-dto';
 
-export function parseUserAgent(userAgent?: null | string): ParsedUserAgent {
+export function parseUserAgent(userAgent?: null | string): ParsedUserAgentDto {
   if (!userAgent) {
     return { browser: 'Unknown', device: 'Desktop' };
   }
 
   const ua = userAgent.toLowerCase();
 
-  let device: SessionDeviceType = 'Desktop';
+  let device: SessionDeviceTypeDto = 'Desktop';
   if (/ipad|tablet|playbook|silk/i.test(userAgent)) {
     device = 'Tablet';
   } else if (

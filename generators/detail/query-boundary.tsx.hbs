@@ -1,11 +1,11 @@
 import { useNavigate } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
+import { use{{entityPascal}} } from '@/api/endpoints/{{pluralKebab}}/get-{{entityKebab}}';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import { QueryState } from '@/components/molecules/query-state';
-import { use{{entityPascal}} } from '@/features/{{featureDir}}/api/get-{{entityKebab}}';
-import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
 
 type {{entityPascal}}QueryBoundaryProps = {
-  children: ({{entityCamel}}: {{entityPascal}}) => ReactNode;
+  children: ({{entityCamel}}: {{entityPascal}}Dto) => ReactNode;
   {{routeParam}}: string;
 };
 

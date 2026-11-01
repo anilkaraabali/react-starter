@@ -10,10 +10,10 @@ import { useLingui } from '@lingui/react/macro';
 import { MonitorOffIcon } from 'lucide-react';
 import { useState } from 'react';
 
-import { useSessions } from '@/features/account/api/get-sessions';
-import { useRevokeSession } from '@/features/account/api/revoke-session';
+import { useSessions } from '@/api/endpoints/account/get-sessions';
+import { useRevokeSession } from '@/api/endpoints/account/revoke-session';
+import type { AuthSessionDto } from '@/api/models/account/auth-session-dto';
 import { Account } from '@/features/account/components/blocks/account';
-import type { AuthSession } from '@/features/account/types/session.types';
 import { signOut, useSession } from '@/lib/auth-client';
 import { RevokeOtherSessionsModal } from './sessions/revoke-other-sessions-modal';
 import { SessionCard } from './sessions/session-card';
@@ -50,7 +50,7 @@ export function AccountSessionsView() {
     });
   };
 
-  const handleRevoke = async (session: AuthSession) => {
+  const handleRevoke = async (session: AuthSessionDto) => {
     const isCurrent = session.token === currentToken;
     setRevokingToken(session.token);
     try {

@@ -1,5 +1,8 @@
 import { ListBox, Select } from '@heroui/react';
-import { TABLE_PAGE_SIZE_OPTIONS } from '@/config/pagination';
+import { plural } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react/macro';
+
+import { tablePageSizeOptions } from './table-page-size-options';
 
 type TablePageSizeSelectProps = {
   onPageSizeChange: (pageSize: number) => void;
@@ -9,12 +12,21 @@ type TablePageSizeSelectProps = {
 
 export function TablePageSizeSelect({
   onPageSizeChange,
-  options = TABLE_PAGE_SIZE_OPTIONS,
+  options = tablePageSizeOptions,
   pageSize,
 }: TablePageSizeSelectProps) {
+  const { t } = useLingui();
+
+  const formatOption = (size: number) =>
+    t({
+      comment: 'Table page size option, e.g. "10 / page"',
+      message: plural(size, { one: '# / page', other: '# / page' }),
+    });
+
   return (
     <Select
-      className='w-20'
+      aria-label={t`Rows per page`}
+      className='w-32'
       onChange={(key) => {
         if (key == null) return;
         onPageSizeChange(Number(key));
@@ -22,18 +34,18 @@ export function TablePageSizeSelect({
       value={pageSize}
     >
       <Select.Trigger>
-        <Select.Value>
-          {({ isPlaceholder, selectedText }) =>
-            isPlaceholder ? pageSize : selectedText
-          }
-        </Select.Value>
+        <Select.Value>{formatOption(pageSize)}</Select.Value>
         <Select.Indicator />
       </Select.Trigger>
       <Select.Popover>
         <ListBox>
           {options.map((option) => (
-            <ListBox.Item id={option} key={option} textValue={String(option)}>
-              {option}
+            <ListBox.Item
+              id={option}
+              key={option}
+              textValue={formatOption(option)}
+            >
+              {formatOption(option)}
               <ListBox.ItemIndicator />
             </ListBox.Item>
           ))}

@@ -2,7 +2,7 @@ import { Chip, type ChipProps } from '@heroui/react';
 import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
-import type { ProductStatus } from '@/features/products/types/product.types';
+import type { ProductStatusDto } from '@/api/models/products/product-status-dto';
 
 const STATUS_CONFIG = {
   active: {
@@ -18,12 +18,12 @@ const STATUS_CONFIG = {
     label: msg`Draft`,
   },
 } as const satisfies Record<
-  ProductStatus,
+  ProductStatusDto,
   { color: NonNullable<ChipProps['color']>; label: MessageDescriptor }
 >;
 
 type ProductStatusChipProps = Omit<ChipProps, 'children'> & {
-  status: ProductStatus;
+  status: ProductStatusDto;
 };
 
 export function ProductStatusChip({

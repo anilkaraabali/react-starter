@@ -1,5 +1,5 @@
 import { HttpResponse, http } from 'msw';
-import type { OrganizationMemberRole } from '@/types/organization.types';
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
 import {
   MOCK_MEMBERS,
   MOCK_ORGANIZATION_ME,
@@ -169,7 +169,7 @@ export const handlers = [
     const body = (await request.json().catch(() => ({}))) as {
       email: string;
       name: string;
-      role?: OrganizationMemberRole;
+      role?: OrganizationMemberRoleDto;
     };
     const newMember = {
       banned: false,
@@ -190,7 +190,7 @@ export const handlers = [
     '*/api/organizations/members/:id/role',
     async ({ params, request }) => {
       const body = (await request.json().catch(() => ({}))) as {
-        role: OrganizationMemberRole;
+        role: OrganizationMemberRoleDto;
       };
       organizationMembers = organizationMembers.map((m) =>
         m.id === params.id ? { ...m, role: body.role } : m

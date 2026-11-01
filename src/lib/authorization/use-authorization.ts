@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useOrganizationMe } from '@/api/get-organization-me';
+import { useOrganizationMe } from '@/api/endpoints/organizations/get-organization-me';
 import { authClient } from '@/lib/auth-client';
 import {
   type AuthorizationContext,

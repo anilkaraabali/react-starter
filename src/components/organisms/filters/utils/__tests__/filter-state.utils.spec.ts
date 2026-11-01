@@ -2,8 +2,12 @@ import { describe, expect, it } from 'vitest';
 
 import type { FilterFieldConfig } from '@/components/organisms/filters/filters.types';
 import {
+  getAwaitedParentField,
+  getDependentFilterKeys,
   hasActiveFilterFields,
   isFilterValueActive,
+  isFilterValueEmpty,
+  withDependentFiltersCleared,
 } from '@/components/organisms/filters/utils/filter-state.utils';
 
 describe('filter-state.utils', () => {
@@ -100,6 +104,100 @@ describe('filter-state.utils', () => {
           limitedFields
         )
       ).toBe(false);
+    });
+  });
+
+  describe('dependent filters', () => {
+    type VehicleState = {
+      generationId?: string;
+      makeId?: string;
+      modelId?: string;
+      search?: string;
+    };
+
+    const fields: FilterFieldConfig<VehicleState>[] = [
+      { key: 'search', label: 'Search', type: 'search' },
+      { key: 'makeId', label: 'Make', type: 'select' },
+      {
+        dependsOn: ['makeId'],
+        key: 'modelId',
+        label: 'Model',
+        type: 'select',
+      },
+      {
+        dependsOn: ['modelId'],
+        key: 'generationId',
+        label: 'Generation',
+        type: 'select',
+      },
+    ];
+
+    describe('getDependentFilterKeys', () => {
+      it('returns direct and transitive dependents', () => {
+        expect(getDependentFilterKeys(fields, 'makeId')).toEqual([
+          'modelId',
+          'generationId',
+        ]);
+        expect(getDependentFilterKeys(fields, 'modelId')).toEqual([
+          'generationId',
+        ]);
+      });
+    });
+
+    describe('withDependentFiltersCleared', () => {
+      const state: VehicleState = {
+        generationId: 'g1',
+        makeId: 'm1',
+        modelId: 'mo1',
+      };
+      const getFilterValue = <K extends keyof VehicleState>(key: K) =>
+        state[key];
+
+      it('clears all dependents of a changed field in the same patch', () => {
+        expect(
+          withDependentFiltersCleared(fields, { makeId: 'm2' }, getFilterValue)
+        ).toEqual({
+          generationId: undefined,
+          makeId: 'm2',
+          modelId: undefined,
+        });
+      });
+    });
+  });
+
+  describe('isFilterValueEmpty', () => {
+    it('treats undefined, null, empty string and empty arrays as empty', () => {
+      expect(isFilterValueEmpty(undefined)).toBe(true);
+      expect(isFilterValueEmpty('')).toBe(true);
+    });
+  });
+
+  describe('getAwaitedParentField', () => {
+    type VehicleState = {
+      makeId?: string;
+      modelId?: string;
+    };
+
+    const makeField: FilterFieldConfig<VehicleState> = {
+      key: 'makeId',
+      label: 'Make',
+      type: 'select',
+    };
+    const modelField: FilterFieldConfig<VehicleState> = {
+      dependsOn: ['makeId'],
+      key: 'modelId',
+      label: 'Model',
+      type: 'select',
+    };
+    const fields = [makeField, modelField];
+    const valuesOf =
+      (state: VehicleState) => (key: keyof VehicleState & string) =>
+        state[key];
+
+    it('returns the parent while it is empty', () => {
+      expect(getAwaitedParentField(fields, modelField, valuesOf({}))).toBe(
+        makeField
+      );
     });
   });
 });

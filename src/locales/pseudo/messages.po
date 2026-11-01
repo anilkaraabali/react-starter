@@ -15,8 +15,9 @@ msgstr ""
 msgid "{permissionCount} permissions"
 msgstr ""
 
-#: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
-msgid "{start} to {end} of {total} results"
+#. Table page size option, e.g. "10 / page"
+#: src/components/organisms/data-table/pagination/table-page-size-select.tsx
+msgid "{size, plural, one {# / page} other {# / page}}"
 msgstr ""
 
 #: src/utils/error.utils.ts
@@ -31,10 +32,15 @@ msgstr ""
 msgid "Access your account quickly and securely to get started."
 msgstr ""
 
+#: src/features/products/config/product-select-options.ts
+msgid "Accessories"
+msgstr ""
+
 #: src/features/auth/hooks/use-account-deleted-toast.ts
 msgid "Account deleted."
 msgstr ""
 
+#: src/components/organisms/form/actions/form-action-more-menu.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
 msgid "Actions"
 msgstr ""
@@ -45,6 +51,7 @@ msgid "Actions for {0}"
 msgstr ""
 
 #: src/features/products/components/product-status-chip.tsx
+#: src/features/products/config/product-select-options.ts
 msgid "Active"
 msgstr ""
 
@@ -52,7 +59,7 @@ msgstr ""
 msgid "Active Session"
 msgstr ""
 
-#: src/features/products/components/forms/create-product-view.tsx
+#: src/app/routes/_admin/products/new.tsx
 msgid "Add a new product to your inventory catalog."
 msgstr ""
 
@@ -65,7 +72,7 @@ msgstr ""
 msgid "Add members"
 msgstr ""
 
-#: src/features/products/components/product-list/create-product-button.tsx
+#: src/features/products/components/product-list/product-list-actions.tsx
 msgid "Add product"
 msgstr ""
 
@@ -83,6 +90,11 @@ msgstr ""
 
 #: src/features/account/utils/member-role.utils.ts
 msgid "Administrative access. Can manage team members and general settings."
+msgstr ""
+
+#. placeholder {0}: formatDate(lastSavedAt)
+#: src/components/organisms/form/actions/form-action-bar.tsx
+msgid "All changes saved · {0}"
 msgstr ""
 
 #: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
@@ -109,15 +121,12 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-#: src/components/organisms/filters/panel/filters-panel-actions.tsx
-msgid "Apply"
-msgstr ""
-
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "Apps"
 msgstr ""
 
 #: src/features/products/components/product-status-chip.tsx
+#: src/features/products/config/product-select-options.ts
 msgid "Archived"
 msgstr ""
 
@@ -127,7 +136,7 @@ msgid "Are you sure you want to ban <0>{0}</0>? They will no longer be able to a
 msgstr ""
 
 #. placeholder {0}: product.name
-#: src/features/products/components/modals/delete-product-modal.tsx
+#: src/features/products/components/delete-product-modal.tsx
 msgid "Are you sure you want to delete <0>{0}</0>? This action cannot be undone."
 msgstr ""
 
@@ -156,8 +165,15 @@ msgstr ""
 msgid "Avatar"
 msgstr ""
 
+#: src/components/atoms/back-button.tsx
 #: src/components/organisms/sidebar/header/sidebar-back-button.tsx
 msgid "Back"
+msgstr ""
+
+#: src/app/routes/_admin/products/$productId/edit.tsx
+#: src/app/routes/_admin/products/$productId/index.tsx
+#: src/app/routes/_admin/products/new.tsx
+msgid "Back to products"
 msgstr ""
 
 #: src/utils/error.utils.ts
@@ -204,6 +220,10 @@ msgstr ""
 msgid "Blue"
 msgstr ""
 
+#: src/features/products/config/product-select-options.ts
+msgid "Books"
+msgstr ""
+
 #: src/features/account/components/organization/organization-role-card.tsx
 msgid "Built-in"
 msgstr ""
@@ -213,17 +233,16 @@ msgid "Built-in roles and the permissions they grant in this organization."
 msgstr ""
 
 #: src/components/molecules/confirm-dialog.tsx
-#: src/components/organisms/filters/panel/filters-panel-actions.tsx
+#: src/components/organisms/form/actions/form-action-bar.tsx
 #: src/components/organisms/form/modals/form-modal.tsx
 #: src/features/account/components/profile/delete-account-modal.tsx
-#: src/features/products/components/forms/create-product-view.tsx
 msgid "Cancel"
 msgstr ""
 
 #: src/features/products/components/forms/product-form.tsx
 #: src/features/products/components/product-details/product-detail-content.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Category"
 msgstr ""
 
@@ -249,6 +268,10 @@ msgstr ""
 
 #: src/components/organisms/filters/panel/filters-panel-actions.tsx
 msgid "Clear filters"
+msgstr ""
+
+#: src/features/products/config/product-select-options.ts
+msgid "Clothing"
 msgstr ""
 
 #: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
@@ -307,7 +330,7 @@ msgstr ""
 msgid "Create your account in just a few steps and start today."
 msgstr ""
 
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Created date"
 msgstr ""
 
@@ -366,7 +389,7 @@ msgstr ""
 
 #: src/components/organisms/form/actions/form-action-more-menu.tsx
 #: src/features/account/components/account-profile-view.tsx
-#: src/features/products/components/modals/delete-product-modal.tsx
+#: src/features/products/components/delete-product-modal.tsx
 msgid "Delete"
 msgstr ""
 
@@ -378,11 +401,12 @@ msgstr ""
 msgid "Delete my account"
 msgstr ""
 
+#: src/app/routes/_admin/products/$productId/edit.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
 msgid "Delete product"
 msgstr ""
 
-#: src/features/products/components/modals/delete-product-modal.tsx
+#: src/features/products/components/delete-product-modal.tsx
 msgid "Delete Product"
 msgstr ""
 
@@ -395,10 +419,6 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/features/products/components/forms/product-form.tsx
-msgid "Detailed product description..."
-msgstr ""
-
 #: src/components/organisms/form/form-components/form-unsaved-changes-guard.tsx
 msgid "Discard changes"
 msgstr ""
@@ -408,15 +428,8 @@ msgid "Discard unsaved changes?"
 msgstr ""
 
 #: src/features/products/components/product-status-chip.tsx
+#: src/features/products/config/product-select-options.ts
 msgid "Draft"
-msgstr ""
-
-#: src/features/products/components/forms/product-form.tsx
-msgid "e.g. Ergonomic Keyboard"
-msgstr ""
-
-#: src/features/products/components/forms/product-form.tsx
-msgid "e.g. PROD-001"
 msgstr ""
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
@@ -431,12 +444,10 @@ msgstr ""
 msgid "Edit columns"
 msgstr ""
 
+#: src/app/routes/_admin/products/$productId/edit.tsx
+#: src/app/routes/_admin/products/$productId/index.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
 msgid "Edit product"
-msgstr ""
-
-#: src/app/routes/_admin/products/$productId/edit.tsx
-msgid "Edit Product"
 msgstr ""
 
 #: src/features/account/components/account-profile-view.tsx
@@ -445,6 +456,10 @@ msgstr ""
 
 #: src/features/account/components/profile/update-profile-modal.tsx
 msgid "Edit Profile"
+msgstr ""
+
+#: src/features/products/config/product-select-options.ts
+msgid "Electronics"
 msgstr ""
 
 #: src/features/account/components/account-profile-view.tsx
@@ -462,7 +477,7 @@ msgstr ""
 msgid "Emerald"
 msgstr ""
 
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "End date"
 msgstr ""
 
@@ -556,6 +571,10 @@ msgstr ""
 
 #: src/components/organisms/form/fields/form-password-input.tsx
 msgid "Hide password"
+msgstr ""
+
+#: src/features/products/config/product-select-options.ts
+msgid "Home & Living"
 msgstr ""
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
@@ -717,11 +736,8 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: src/components/organisms/form/actions/form-action-more-menu.tsx
-msgid "More options"
-msgstr ""
-
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/components/product-list/products-table-columns.tsx
+#: src/features/products/config/products-filter-config.ts
 msgid "Name"
 msgstr ""
 
@@ -770,6 +786,11 @@ msgstr ""
 msgid "No members found."
 msgstr ""
 
+#. Pagination summary shown when a table or list has no results
+#: src/components/organisms/data-table/pagination/table-pagination-summary.tsx
+msgid "No results"
+msgstr ""
+
 #: src/components/molecules/autocomplete-popover.tsx
 msgid "No results found"
 msgstr ""
@@ -797,10 +818,6 @@ msgstr ""
 
 #: src/app/layouts/admin-layout/admin-header.tsx
 msgid "Open menu"
-msgstr ""
-
-#: src/features/products/components/forms/product-form.tsx
-msgid "Optional barcode"
 msgstr ""
 
 #: src/config/color-palette.ts
@@ -915,12 +932,12 @@ msgid "Please try again or check back later."
 msgstr ""
 
 #: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
-msgid "Prev"
+msgid "Previous"
 msgstr ""
 
 #: src/features/products/components/product-details/product-detail-content.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Price"
 msgstr ""
 
@@ -932,15 +949,11 @@ msgstr ""
 msgid "Pricing & Inventory"
 msgstr ""
 
-#: src/features/products/components/product-list/products-table-columns.tsx
-msgid "Product"
-msgstr ""
-
-#: src/features/products/components/forms/create-product-view.tsx
+#: src/features/products/components/forms/create-product.tsx
 msgid "Product created."
 msgstr ""
 
-#: src/features/products/components/modals/delete-product-modal.tsx
+#: src/features/products/components/delete-product-modal.tsx
 msgid "Product deleted."
 msgstr ""
 
@@ -956,7 +969,7 @@ msgstr ""
 msgid "Product Name"
 msgstr ""
 
-#: src/features/products/components/forms/edit-product-view.tsx
+#: src/features/products/components/forms/edit-product.tsx
 msgid "Product updated."
 msgstr ""
 
@@ -1075,6 +1088,10 @@ msgstr ""
 msgid "Rose"
 msgstr ""
 
+#: src/components/organisms/data-table/pagination/table-page-size-select.tsx
+msgid "Rows per page"
+msgstr ""
+
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "SaaS"
 msgstr ""
@@ -1087,11 +1104,15 @@ msgstr ""
 msgid "Sales Rep"
 msgstr ""
 
-#: src/components/organisms/form/actions/form-primary-action-button.tsx
 #: src/features/account/components/organization/rename-organization-modal.tsx
 #: src/features/account/components/profile/change-password-modal.tsx
 #: src/features/account/components/profile/update-profile-modal.tsx
 msgid "Save"
+msgstr ""
+
+#: src/components/organisms/form/actions/form-primary-action-button.tsx
+#: src/features/products/components/forms/create-product.tsx
+msgid "Save changes"
 msgstr ""
 
 #: src/components/organisms/filters/fields/filter-search.tsx
@@ -1103,7 +1124,7 @@ msgstr ""
 msgid "Search anything..."
 msgstr ""
 
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Search products by name or SKU..."
 msgstr ""
 
@@ -1171,6 +1192,11 @@ msgstr ""
 msgid "Show password"
 msgstr ""
 
+#. Pagination summary, e.g. "Showing 11-20 of 42 results". {from} and {to} are the first and last row numbers on the current page; the count at the end is the total number of results
+#: src/components/organisms/data-table/pagination/table-pagination-summary.tsx
+msgid "Showing {from}-{to} of {total, plural, one {# result} other {# results}}"
+msgstr ""
+
 #: src/app/routes/_auth/login.tsx
 #: src/features/auth/components/login-view.tsx
 msgid "Sign in"
@@ -1209,6 +1235,7 @@ msgstr ""
 
 #: src/features/products/components/forms/product-form.tsx
 #: src/features/products/components/product-details/product-detail-content.tsx
+#: src/features/products/components/product-list/products-table-columns.tsx
 msgid "SKU"
 msgstr ""
 
@@ -1233,7 +1260,7 @@ msgstr ""
 msgid "Something went wrong while loading sessions. Please try again."
 msgstr ""
 
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Sort by"
 msgstr ""
 
@@ -1241,18 +1268,18 @@ msgstr ""
 msgid "Sort order"
 msgstr ""
 
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Start date"
 msgstr ""
 
 #: src/features/products/components/forms/product-form.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Status"
 msgstr ""
 
 #: src/features/products/components/product-list/products-table-columns.tsx
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Stock"
 msgstr ""
 
@@ -1346,11 +1373,15 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
+#: src/components/organisms/form/actions/form-action-bar.tsx
+msgid "Unsaved changes"
+msgstr ""
+
 #: src/features/account/components/account-security-view.tsx
 msgid "Update your password to keep your account secure."
 msgstr ""
 
-#: src/features/products/config/products-filter.config.ts
+#: src/features/products/config/products-filter-config.ts
 msgid "Updated date"
 msgstr ""
 

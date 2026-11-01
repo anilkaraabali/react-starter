@@ -4,6 +4,7 @@ import type {
   FilterState,
 } from '@/components/organisms/filters/filters.types';
 import { useFilterState } from '@/components/organisms/filters/stores/use-filter-state';
+import { withDependentFiltersCleared } from '@/components/organisms/filters/utils/filter-state.utils';
 
 type FilterContextValue<TFilters extends object> = {
   fields: FilterFieldConfig<TFilters>[];
@@ -12,6 +13,70 @@ type FilterContextValue<TFilters extends object> = {
 const FilterContext = createContext<FilterContextValue<FilterState> | null>(
   null
 );
+
+type RouteFilterStateOptions<TFilters extends object> = {
+  initialState: TFilters;
+  navigate: (options: never) => unknown;
+  search: TFilters;
+};
+
+/** Filter state backed by the route's search params. */
+export function useRouteFilterState<TFilters extends object>({
+  initialState,
+  navigate,
+  search,
+}: RouteFilterStateOptions<TFilters>) {
+  return useFilterState({
+    initialState,
+    navigate: (updater) =>
+      navigate({
+        search: updater as never,
+      } as never),
+    search,
+  });
+}
+
+type FilterProviderProps<TFilters extends object> = {
+  children: ReactNode;
+  fields: FilterFieldConfig<TFilters>[];
+  value: ReturnType<typeof useFilterState<TFilters>>;
+};
+
+export function FilterProvider<TFilters extends object>({
+  children,
+  fields,
+  value,
+}: FilterProviderProps<TFilters>) {
+  // Changing a field also clears the fields that depend on it, in one update.
+  const setFilters = (patch: Partial<TFilters>) =>
+    value.setFilters(
+      withDependentFiltersCleared(fields, patch, value.getFilterValue)
+    );
+
+  const setFilterValue = <K extends keyof TFilters>(
+    key: K,
+    next: TFilters[K] | undefined
+  ) => {
+    const patch: Partial<TFilters> = {};
+    patch[key] = next;
+    setFilters(patch);
+  };
+
+  return (
+    <FilterContext.Provider
+      value={
+        {
+          ...value,
+          fields,
+          setFilters,
+          setFilterValue,
+        } as unknown as FilterContextValue<FilterState>
+      }
+    >
+      {children}
+    </FilterContext.Provider>
+  );
+}
 
 type RouteFilterProviderProps<TFilters extends object> = {
   children: ReactNode;
@@ -28,26 +93,16 @@ export function RouteFilterProvider<TFilters extends object>({
   navigate,
   search,
 }: RouteFilterProviderProps<TFilters>) {
-  const filterState = useFilterState({
+  const filterState = useRouteFilterState({
     initialState,
-    navigate: (updater) =>
-      navigate({
-        search: updater as never,
-      } as never),
+    navigate,
     search,
   });
 
   return (
-    <FilterContext.Provider
-      value={
-        {
-          ...filterState,
-          fields,
-        } as unknown as FilterContextValue<FilterState>
-      }
-    >
+    <FilterProvider fields={fields} value={filterState}>
       {children}
-    </FilterContext.Provider>
+    </FilterProvider>
   );
 }
 

@@ -2,7 +2,7 @@ import { Button, useOverlayState } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
 import { PencilLineIcon } from 'lucide-react';
-import { useOrganizationMe } from '@/api/get-organization-me';
+import { useOrganizationMe } from '@/api/endpoints/organizations/get-organization-me';
 import { UserAvatar } from '@/components/atoms/user-avatar';
 import { ColorPalettePicker } from '@/components/molecules/color-palette-picker';
 import { LanguagePicker } from '@/components/molecules/language-picker';

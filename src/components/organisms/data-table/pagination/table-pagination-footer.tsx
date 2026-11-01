@@ -1,6 +1,7 @@
 import { Pagination, Table } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import { useMemo } from 'react';
+import { TablePaginationSummary } from '@/components/organisms/data-table/pagination/table-pagination-summary';
 import { TablePageSizeSelect } from './table-page-size-select';
 import { buildPaginationPages } from './table-pagination.utils';
 
@@ -31,20 +32,24 @@ export function TablePaginationFooter({
     return null;
   }
 
-  const start = (currentPage - 1) * pageSize + 1;
-  const end = Math.min(currentPage * pageSize, total);
-
   return (
     <Table.Footer className='mt-auto'>
-      <Pagination size='sm'>
+      <Pagination
+        className='flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between'
+        size='sm'
+      >
         <Pagination.Summary>
+          <TablePaginationSummary
+            page={currentPage}
+            pageSize={pageSize}
+            total={total}
+          />
+        </Pagination.Summary>
+        <div className='flex flex-wrap items-center justify-between gap-2 sm:justify-end'>
           <TablePageSizeSelect
             onPageSizeChange={onPageSizeChange}
             pageSize={pageSize}
           />
-          {t`${start} to ${end} of ${total} results`}
-        </Pagination.Summary>
-        {totalPages > 1 ? (
           <Pagination.Content>
             <Pagination.Item>
               <Pagination.Previous
@@ -52,7 +57,7 @@ export function TablePaginationFooter({
                 onPress={() => onPageChange(Math.max(1, currentPage - 1))}
               >
                 <Pagination.PreviousIcon />
-                <span>{t`Prev`}</span>
+                <span>{t`Previous`}</span>
               </Pagination.Previous>
             </Pagination.Item>
             {pages.map((p) =>
@@ -83,7 +88,7 @@ export function TablePaginationFooter({
               </Pagination.Next>
             </Pagination.Item>
           </Pagination.Content>
-        ) : null}
+        </div>
       </Pagination>
     </Table.Footer>
   );

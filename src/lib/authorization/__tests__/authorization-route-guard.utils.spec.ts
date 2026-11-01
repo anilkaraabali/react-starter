@@ -1,18 +1,18 @@
 import { QueryClient } from '@tanstack/react-query';
 import { isRedirect } from '@tanstack/react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { OrganizationPermission } from '@/types/organization.types';
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import { requireAuthorization } from '../authorization-route-guard.utils';
 
 const ME_QUERY_KEY = ['/organizations/me'];
-vi.mock('@/api/get-organization-me', () => ({
+vi.mock('@/api/endpoints/organizations/get-organization-me', () => ({
   getOrganizationMeQueryOptions: () => ({
     queryFn: () => Promise.reject(new Error('unexpected fetch')),
     queryKey: ME_QUERY_KEY,
   }),
 }));
 
-const GUEST_PERMISSIONS: OrganizationPermission[] = [];
+const GUEST_PERMISSIONS: OrganizationPermissionDto[] = [];
 
 function guardOptions(queryClient: QueryClient, pathname: string) {
   return { context: { queryClient }, location: { pathname } };
@@ -44,7 +44,7 @@ describe('requireAuthorization', () => {
     queryClient.setQueryData(ME_QUERY_KEY, {
       organizationId: 'org',
       organizationName: 'Org',
-      permissions: [OrganizationPermission.organizationmemberslist],
+      permissions: [OrganizationPermissionDto.membersList],
       role: 'admin',
     });
 

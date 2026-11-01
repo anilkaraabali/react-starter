@@ -1,10 +1,8 @@
 import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
+import type { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import { ROLE_PERMISSIONS } from '@/features/account/config/organization-permissions.constants';
-import type {
-  OrganizationMemberRole,
-  OrganizationPermission,
-} from '@/types/organization.types';
 
 export const ORGANIZATION_INVITE_ROLES = [
   'admin',
@@ -15,14 +13,14 @@ export const ORGANIZATION_INVITE_ROLES = [
 export type OrganizationInviteRole = (typeof ORGANIZATION_INVITE_ROLES)[number];
 
 export function roleHasPermission(
-  role: OrganizationMemberRole,
-  permission: OrganizationPermission
+  role: OrganizationMemberRoleDto,
+  permission: OrganizationPermissionDto
 ) {
   return ROLE_PERMISSIONS[role].includes(permission);
 }
 
 export function getOrganizationRoleDescription(
-  role: OrganizationMemberRole
+  role: OrganizationMemberRoleDto
 ): string {
   switch (role) {
     case 'super_admin':

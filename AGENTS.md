@@ -158,19 +158,42 @@ src/features/awesome-feature/
 - **React Context** (Kent C. Dodds pattern) for local and app-wide UI state (active drawer, theme, preferences)
 - Keep `createContext`, `<Name>Provider`, and `use<Name>()` in one atomic file; fail-fast if rendered outside provider
 
-## API Layer
+## API layer (`src/api`)
 
-- **HTTP Client** - Configured Axios instance (`src/lib/api-client.ts`) with `withCredentials: true`
-- **Queries & Mutations** - TanStack Query hooks organized by feature under `src/features/<feature>/api/`
-- **Query Keys** - Dedicated query keys factory per feature (`<feature>.keys.ts`) for predictable cache invalidation
-- **Global Error Handling** - Handled centrally by query cache; display localized toast notifications
+```
+src/api
+├── endpoints/<resource>/   # <resource>.keys.ts + get-*/create-*/update-*/delete-* hook files
+└── models/<resource>/      # one DTO/input per file: `*-dto.ts` and `*-input.ts` (zod request bodies)
+
+src/lib/zod
+├── schemas/                # field.schemas.ts, search-params.schemas.ts, collection-search.schemas.ts
+├── validation-messages.ts
+├── validation.constants.ts
+└── zod-error-map.ts
+```
+
+- **HTTP client** — `src/lib/api-client.ts` with `withCredentials: true`
+- **Endpoints** — TanStack Query hooks live under `src/api/endpoints/<resource>/`; query key factories are `<resource>.keys.ts` in the same folder
+- **Models** — DTO types and zod input schemas under `src/api/models/<resource>/`; shared list wrappers in `src/api/models/common/` (`entity.ts`, `collection.ts`)
+- **Naming** — Backend-style `Dto` suffix on API types (`ProductDto`, `OrganizationMeDto`); no `*ResponseDto` / `Get*Params`; request bodies use `create-*-input.ts` + `createXInputSchema`. Keep `src/api/models` to contract shapes only (const enum maps + types); do not export UI helpers such as ordered role lists—derive those in `src/lib` or feature config from the Dto const.
+- **Hook shape** — private fetcher, exported `get*QueryOptions`, `use*({ params, queryConfig })` / `use*({ mutationConfig })` with `QueryConfig<typeof getXQueryOptions>` / `MutationConfig<typeof fn>`
+- **Cache invalidation** — stays inside mutation hooks; toasts and navigation belong at call sites via `mutationConfig` / `queryConfig`
+- **Global errors** — `QueryCache` / `MutationCache` + `toast.danger`; opt out with `meta: { handleGlobalError: false }`
+- **Features** — UI under `src/features/<feature>/`; features import `@/api/...`, never the reverse (`src/api` must not import features)
+
+### Form vs API models
+
+- **`src/api/models/**`** — transport contract only: `*-dto.ts` (responses) and `*-input.ts` (request bodies sent to the API). No UI-only fields (`confirmPassword`, etc.) and no form default values.
+- **`src/features/<feature>/schemas/*-form-schema.ts`** — Zod schemas and default values for TanStack Form. Use `*FormValues` for inferred types. Map to API input in submit handlers or small `map*FormToInput` helpers when shapes differ.
+- **`src/features/<feature>/types/`** — compile-time-only types when needed; prefer colocated form schemas over putting Zod in `types/`.
+- **Auth (Better Auth)** — no `src/api` layer; form schemas live under `src/features/auth/schemas/`.
 
 ```ts
-// src/features/<feature>/api/get-<resource>.ts
-export const getProducts = (params?: GetProductsParams, signal?: AbortSignal) =>
-  api.get<never, ProductsResponseDto>('/api/products', { params, signal });
+// src/api/endpoints/products/get-products.ts
+const getProducts = (params?: GetProductsQuery, signal?: AbortSignal) =>
+  api.get<never, Collection<ProductDto>>('/api/products', { params, signal });
 
-export const getProductsQueryOptions = (params?: GetProductsParams) =>
+export const getProductsQueryOptions = (params?: GetProductsQuery) =>
   queryOptions({
     queryKey: productKeys.list(params),
     queryFn: ({ signal }) => getProducts(params, signal),
@@ -278,7 +301,7 @@ export const useProducts = ({ params, queryConfig }: UseProductsOptions = {}) =>
 ### Feature Development
 
 - Start with API types and validation schemas
-- Create API fetcher functions and React Query hooks (`src/features/<feature>/api/`)
+- Create API models and endpoint hooks under `src/api/models/` and `src/api/endpoints/`
 - Build UI components with proper TypeScript integration (`src/features/<feature>/components/`)
 - Add unit/integration tests covering the feature workflow (`__tests__/*.spec.tsx`)
 - Register file-based routes under `src/app/routes/`

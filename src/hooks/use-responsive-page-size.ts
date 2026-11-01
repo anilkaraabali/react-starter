@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import type { TablePageSize } from '@/config/pagination';
+import type { TablePageSize } from '@/components/organisms/data-table/pagination/table-page-size-options';
 
 const DEFAULT_PAGE_SIZE: TablePageSize = 25;
 

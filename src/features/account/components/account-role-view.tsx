@@ -9,17 +9,17 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
 import { Link } from '@tanstack/react-router';
 import { ShieldIcon, UsersIcon } from 'lucide-react';
+import { useOrganizationMembers } from '@/api/endpoints/organizations/get-organization-members';
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
 import { UserAvatar } from '@/components/atoms/user-avatar';
-import { useOrganizationMembers } from '@/features/account/api/get-organization-members';
 import { Account } from '@/features/account/components/blocks/account';
 import { ORGANIZATION_PERMISSION_LABELS } from '@/features/account/config/organization-permission-labels.constants';
 import { ROLE_PERMISSIONS } from '@/features/account/config/organization-permissions.constants';
 import { getOrganizationRoleDescription } from '@/features/account/utils/member-role.utils';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
-import type { OrganizationMemberRole } from '@/types/organization.types';
 
 type AccountRolePageProps = {
-  role: OrganizationMemberRole;
+  role: OrganizationMemberRoleDto;
 };
 
 export function AccountRoleView({ role }: AccountRolePageProps) {

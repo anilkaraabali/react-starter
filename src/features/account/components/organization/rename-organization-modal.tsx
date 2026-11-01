@@ -1,13 +1,13 @@
 import { toast } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
+import { useRenameOrganization } from '@/api/endpoints/organizations/rename-organization';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
-import { useRenameOrganization } from '@/features/account/api/rename-organization';
 import {
-  type RenameOrganizationInput,
-  renameOrganizationDefaultValues,
-  renameOrganizationInputSchema,
-} from '@/features/account/types/rename-organization-input';
+  type RenameOrganizationFormValues,
+  renameOrganizationFormDefaultValues,
+  renameOrganizationFormSchema,
+} from '@/features/account/schemas/rename-organization-form-schema';
 
 type RenameOrganizationModalProps = {
   defaultName: string;
@@ -31,8 +31,11 @@ export function RenameOrganizationModal({
   });
 
   const form = useForm({
-    defaultValues: { ...renameOrganizationDefaultValues, name: defaultName },
-    onSubmit: async (data: RenameOrganizationInput) => {
+    defaultValues: {
+      ...renameOrganizationFormDefaultValues,
+      name: defaultName,
+    },
+    onSubmit: async (data: RenameOrganizationFormValues) => {
       if (data.name === defaultName) {
         onClose();
         return;
@@ -42,7 +45,7 @@ export function RenameOrganizationModal({
         data: { name: data.name },
       });
     },
-    schema: renameOrganizationInputSchema,
+    schema: renameOrganizationFormSchema,
   });
 
   return (

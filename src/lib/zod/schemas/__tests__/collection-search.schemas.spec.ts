@@ -1,12 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-
+import { SortByDto } from '@/api/models/common/sort-by-dto';
+import { SortOrderDto } from '@/api/models/common/sort-order-dto';
 import { createCollectionSearchSchema } from '@/lib/zod/schemas/collection-search.schemas';
-import { searchParamNonNegativeNumberSchema } from '@/lib/zod/schemas/search-params.schemas';
+import {
+  createSearchParamEnumSchema,
+  searchParamNonNegativeNumberSchema,
+} from '@/lib/zod/schemas/search-params.schemas';
 
 describe('collection-search.schemas', () => {
   describe('createCollectionSearchSchema', () => {
-    it('reads the shared pagination and sort fields', () => {
+    it('reads the shared pagination, search, and sort fields', () => {
       const schema = createCollectionSearchSchema();
 
       expect(
@@ -15,10 +19,35 @@ describe('collection-search.schemas', () => {
         page: 2,
         pageSize: 25,
         search: 'keyword',
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
       });
-      expect(schema.parse({ search: '   ' })).toEqual({});
-      expect(schema.parse({ sortOrder: 'asc' })).toEqual({ sortOrder: 'asc' });
-      expect(schema.parse({})).toEqual({});
+      expect(schema.parse({ search: '   ' })).toEqual({
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
+      expect(schema.parse({ sortOrder: 'asc' })).toEqual({
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.asc,
+      });
+      expect(schema.parse({})).toEqual({
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
+    });
+
+    it('adds the feature’s own fields, including defaults', () => {
+      const schema = createCollectionSearchSchema({
+        sort: createSearchParamEnumSchema(['date_desc', 'alpha_asc']).default(
+          'date_desc'
+        ),
+      });
+
+      expect(schema.parse({})).toEqual({
+        sort: 'date_desc',
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
     });
 
     it('adds the feature’s own fields', () => {
@@ -26,23 +55,55 @@ describe('collection-search.schemas', () => {
         enabled: searchParamNonNegativeNumberSchema,
       });
 
-      expect(schema.parse({ enabled: '1' })).toEqual({ enabled: 1 });
+      expect(schema.parse({ enabled: '1' })).toEqual({
+        enabled: 1,
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
     });
 
     it('lets a feature field override a shared one', () => {
       const schema = createCollectionSearchSchema({ search: z.number() });
 
-      expect(schema.parse({ search: 7 })).toEqual({ search: 7 });
-      // No coercion: a string no longer fits, so the catch() empties the object.
-      expect(schema.parse({ search: '7' })).toEqual({});
+      expect(schema.parse({ search: 7 })).toEqual({
+        search: 7,
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
+      expect(schema.safeParse({ search: '7' }).success).toBe(false);
     });
 
-    it('falls back to an empty object rather than rejecting the route', () => {
-      // A bad search param must not take the page down; TanStack validates the
-      // URL and the view falls back to its defaults.
-      expect(createCollectionSearchSchema().parse({ page: 'many' })).toEqual(
-        {}
-      );
+    it('drops invalid pagination without rejecting the route', () => {
+      expect(createCollectionSearchSchema().parse({ page: 'many' })).toEqual({
+        page: undefined,
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
+    });
+  });
+
+  describe('default sort search params', () => {
+    const schema = createCollectionSearchSchema();
+
+    it('defaults to newest first', () => {
+      expect(schema.parse({})).toEqual({
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
+    });
+
+    it('reads sortBy and sortOrder', () => {
+      expect(schema.parse({ sortBy: 'name', sortOrder: 'asc' })).toEqual({
+        sortBy: SortByDto.name,
+        sortOrder: SortOrderDto.asc,
+      });
+    });
+
+    it('drops unknown values back to the defaults', () => {
+      expect(schema.parse({ sortBy: 'price', sortOrder: 'up' })).toEqual({
+        sortBy: SortByDto.createdAt,
+        sortOrder: SortOrderDto.desc,
+      });
     });
   });
 });

@@ -1,81 +1,78 @@
-import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { Link } from '@tanstack/react-router';
 import { EyeIcon, PencilLineIcon, Trash2Icon } from 'lucide-react';
+import type { ProductDto } from '@/api/models/products/product-dto';
 import type { TableColumnDef } from '@/components/organisms/data-table/data-table.types';
 import { TableAction } from '@/components/organisms/data-table/table-action';
 import { ProductStatusChip } from '@/features/products/components/product-status-chip';
-import type { Product } from '@/features/products/types/product.types';
+import type { Translate } from '@/types/i18n.types';
 import { formatCurrency } from '@/utils/format.utils';
 
-type CreateProductsTableColumnsOptions = {
-  onDeleteClick: (product: Product) => void;
-};
+export type ProductTableRow = ProductDto;
 
-/**
- * Creates the columns definition for the products table.
- * The column list acts as the single source of truth for IDs.
- */
-export const createProductsTableColumns = ({
-  onDeleteClick,
-}: CreateProductsTableColumnsOptions) =>
-  [
+export function createProductsTableColumns(
+  t: Translate,
+  onDeleteClick: (product: ProductDto) => void
+): readonly TableColumnDef<ProductTableRow>[] {
+  return [
     {
-      cell: (p: Product) => (
-        <div>
-          <Link
-            className='hover:underline'
-            params={{ productId: p.id }}
-            to='/products/$productId'
-          >
-            {p.name}
-          </Link>
-          <div className='text-muted text-xs'>{p.sku}</div>
-        </div>
+      cell: (p) => (
+        <Link
+          className='hover:underline'
+          params={{ productId: p.id }}
+          to='/products/$productId'
+        >
+          {p.name}
+        </Link>
       ),
-      header: () => i18n._(msg`Product`),
+      header: () => t(msg`Name`),
       id: 'name',
       isRowHeader: true,
     },
     {
-      cell: (p: Product) => <span className='capitalize'>{p.category}</span>,
-      header: () => i18n._(msg`Category`),
+      cell: (p) => p.sku,
+      header: () => t(msg`SKU`),
+      id: 'sku',
+    },
+    {
+      cell: (p) => <span className='capitalize'>{p.category}</span>,
+      header: () => t(msg`Category`),
       id: 'category',
     },
     {
-      cell: (p: Product) => formatCurrency(p.price),
-      header: () => i18n._(msg`Price`),
+      cell: (p) => formatCurrency(p.price),
+      header: () => t(msg`Price`),
       id: 'price',
     },
     {
-      cell: (p: Product) => p.stock,
-      header: () => i18n._(msg`Stock`),
+      cell: (p) => p.stock,
+      header: () => t(msg`Stock`),
       id: 'stock',
     },
     {
-      cell: (p: Product) => <ProductStatusChip status={p.status} />,
-      header: () => i18n._(msg`Status`),
+      cell: (p) => <ProductStatusChip status={p.status} />,
+      header: () => t(msg`Status`),
       id: 'status',
     },
     {
-      cell: (p: Product) => (
+      cell: (p) => (
         <div className='flex items-center justify-end gap-1'>
           <TableAction.Link
-            label={i18n._(msg`View details`)}
+            label={t(msg`View details`)}
             params={{ productId: p.id }}
             to='/products/$productId'
           >
             <EyeIcon />
           </TableAction.Link>
           <TableAction.Link
-            label={i18n._(msg`Edit product`)}
+            label={t(msg`Edit product`)}
             params={{ productId: p.id }}
             to='/products/$productId/edit'
           >
             <PencilLineIcon />
           </TableAction.Link>
           <TableAction.Button
-            label={i18n._(msg`Delete product`)}
+            label={t(msg`Delete product`)}
             onPress={() => onDeleteClick(p)}
             variant='danger-soft'
           >
@@ -86,6 +83,7 @@ export const createProductsTableColumns = ({
       header: () => '',
       hideable: true,
       id: 'actions',
-      label: () => i18n._(msg`Actions`),
+      label: () => t(msg`Actions`),
     },
-  ] as const satisfies readonly TableColumnDef<Product>[];
+  ];
+}

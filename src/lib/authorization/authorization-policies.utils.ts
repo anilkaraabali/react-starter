@@ -1,19 +1,17 @@
-import type {
-  OrganizationMemberDto,
-  OrganizationMemberRole,
-  OrganizationPermission,
-} from '@/types/organization.types';
+import type { OrganizationMemberDto } from '@/api/models/organizations/organization-member-dto';
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
+import type { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import { hasOrganizationPermission } from './organization-role.utils';
 
 export type AuthorizationContext = {
-  permissions: readonly OrganizationPermission[];
-  role?: OrganizationMemberRole;
+  permissions: readonly OrganizationPermissionDto[];
+  role?: OrganizationMemberRoleDto;
   userId?: string;
 };
 
 type Policy = (ctx: AuthorizationContext, resource: never) => boolean;
 
-function permissionPolicy(permission: OrganizationPermission) {
+function permissionPolicy(permission: OrganizationPermissionDto) {
   return (ctx: AuthorizationContext) =>
     hasOrganizationPermission(ctx.permissions, permission);
 }

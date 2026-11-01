@@ -1,0 +1,8 @@
+export const {{entityPascal}}StatusDto = {
+  active: 'active',
+  archived: 'archived',
+  draft: 'draft',
+} as const;
+
+export type {{entityPascal}}StatusDto =
+  (typeof {{entityPascal}}StatusDto)[keyof typeof {{entityPascal}}StatusDto];

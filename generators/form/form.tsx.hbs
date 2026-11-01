@@ -1,23 +1,21 @@
+import { Card } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import type { AppForm } from '@/components/organisms/form/use-form';
-import type { create{{entityPascal}}InputSchema } from '@/features/{{featureDir}}/api/create-{{entityKebab}}';
-import { {{entityConst}}_STATUS_OPTIONS } from '@/features/{{featureDir}}/config/{{entityKebab}}.constants';
+import { get{{entityPascal}}StatusSelectOptions } from '@/features/{{featureDir}}/config/{{entityKebab}}-select-options';
+import type { {{entityCamel}}FormSchema } from './{{entityKebab}}-form-schema';
 
 type {{entityPascal}}FormProps = {
-  form: AppForm<typeof create{{entityPascal}}InputSchema>;
+  form: AppForm<typeof {{entityCamel}}FormSchema>;
   formId: string;
 };
 
-export function {{entityPascal}}Form({
-  form,
-  formId,
-}: {{entityPascal}}FormProps) {
+export function {{entityPascal}}Form({ form, formId }: {{entityPascal}}FormProps) {
   const { t } = useLingui();
+  const statusOptions = get{{entityPascal}}StatusSelectOptions();
 
   return (
-    <form.AppForm>
-      <form.Root id={formId}>
-        <form.UnsavedChangesGuard />
+    <form.Root id={formId}>
+      <Card className='card-form p-6'>
         <div className='grid gap-6'>
           <form.AppField name='name'>
             {(field) => (
@@ -35,10 +33,7 @@ export function {{entityPascal}}Form({
               <field.FormSelect
                 isRequired
                 label={t`Status`}
-                options={ {{entityConst}}_STATUS_OPTIONS.map((s) => ({
-                  label: s.label,
-                  value: s.value,
-                })) }
+                options={statusOptions}
                 variant='secondary'
               />
             )}
@@ -55,7 +50,7 @@ export function {{entityPascal}}Form({
             )}
           </form.AppField>
         </div>
-      </form.Root>
-    </form.AppForm>
+      </Card>
+    </form.Root>
   );
 }

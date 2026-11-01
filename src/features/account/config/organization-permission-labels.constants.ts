@@ -1,11 +1,11 @@
 import { msg } from '@lingui/core/macro';
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import type { MessageDescriptorMap } from '@/types/i18n.types';
-import { OrganizationPermission } from '@/types/organization.types';
 
 export const ORGANIZATION_PERMISSION_LABELS = {
-  [OrganizationPermission.organizationmembersinvite]: msg`Add members`,
-  [OrganizationPermission.organizationmemberslist]: msg`List members`,
-  [OrganizationPermission.organizationmembersremove]: msg`Remove members`,
-  [OrganizationPermission.organizationmembersupdate_role]: msg`Change member roles`,
-  [OrganizationPermission.organizationupdate]: msg`Rename organization`,
-} as const satisfies MessageDescriptorMap<OrganizationPermission>;
+  [OrganizationPermissionDto.membersInvite]: msg`Add members`,
+  [OrganizationPermissionDto.membersList]: msg`List members`,
+  [OrganizationPermissionDto.membersRemove]: msg`Remove members`,
+  [OrganizationPermissionDto.membersUpdateRole]: msg`Change member roles`,
+  [OrganizationPermissionDto.organizationUpdate]: msg`Rename organization`,
+} as const satisfies MessageDescriptorMap<OrganizationPermissionDto>;
