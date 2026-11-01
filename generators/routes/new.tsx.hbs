@@ -4,13 +4,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import { BackButton } from '@/components/atoms/back-button';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { Create{{entityPascal}} } from '@/features/{{featureDir}}/components/forms/create-{{entityKebab}}';
-import type { MetaFunction } from '@/types/meta.types';
-
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`Create {{singularTitle}}`),
-  },
-];
 
 function {{entityPascal}}CreatePage() {
   const { t } = useLingui();
@@ -27,5 +20,5 @@ function {{entityPascal}}CreatePage() {
 
 export const Route = createFileRoute('/_admin/{{featureDir}}/new')({
   component: {{entityPascal}}CreatePage,
-  loader: () => ({ meta }),
+  staticData: { title: msg`Create {{singularTitle}}` },
 });

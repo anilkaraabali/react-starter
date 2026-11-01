@@ -9,13 +9,12 @@ import { ContentLayout } from '@/components/templates/content-layout';
 import { DeleteProductModal } from '@/features/products/components/delete-product-modal';
 import { EditProduct } from '@/features/products/components/forms/edit-product';
 import { ProductQueryBoundary } from '@/features/products/components/product-query-boundary';
-import type { MetaFunction } from '@/types/meta.types';
+import { useDynamicHead } from '@/lib/head/head-provider';
 
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`Edit product`),
-  },
-];
+function ProductDynamicHead({ name }: { name: string }) {
+  useDynamicHead({ title: name });
+  return null;
+}
 
 function ProductEditPage() {
   const { productId } = Route.useParams();
@@ -27,6 +26,7 @@ function ProductEditPage() {
     <ProductQueryBoundary productId={productId}>
       {(product) => (
         <>
+          <ProductDynamicHead name={product.name} />
           <ContentLayout
             actions={
               <>
@@ -37,7 +37,6 @@ function ProductEditPage() {
                 />
               </>
             }
-            description={product.name}
           >
             <EditProduct product={product} productId={productId} />
           </ContentLayout>
@@ -62,6 +61,6 @@ export const Route = createFileRoute('/_admin/products/$productId/edit')({
       ...getProductQueryOptions(params.productId),
       staleTime: 'static',
     });
-    return { meta };
   },
+  staticData: { title: msg`Edit product` },
 });

@@ -24,7 +24,7 @@ msgstr "{permissionCount} yetki"
 #. Table page size option, e.g. "10 / page"
 #: src/components/organisms/data-table/pagination/table-page-size-select.tsx
 msgid "{size, plural, one {# / page} other {# / page}}"
-msgstr ""
+msgstr "{size, plural, one {Sayfa başına #} other {Sayfa başına #}}"
 
 #: src/utils/error.utils.ts
 msgid "A conflict occurred. The resource may already exist."
@@ -40,7 +40,7 @@ msgstr "Başlamak için hesabınıza hızlı ve güvenli şekilde giriş yapın.
 
 #: src/features/products/config/product-select-options.ts
 msgid "Accessories"
-msgstr ""
+msgstr "Aksesuarlar"
 
 #: src/features/auth/hooks/use-account-deleted-toast.ts
 msgid "Account deleted."
@@ -101,7 +101,7 @@ msgstr "Yönetici erişimi. Ekip üyelerini ve genel ayarları yönetebilir."
 #. placeholder {0}: formatDate(lastSavedAt)
 #: src/components/organisms/form/actions/form-action-bar.tsx
 msgid "All changes saved · {0}"
-msgstr ""
+msgstr "Tüm değişiklikler kaydedildi · {0}"
 
 #: src/features/account/components/sessions/revoke-other-sessions-modal.tsx
 msgid "All devices except this one will be signed out. This action cannot be undone."
@@ -180,7 +180,7 @@ msgstr "Geri"
 #: src/app/routes/_admin/products/$productId/index.tsx
 #: src/app/routes/_admin/products/new.tsx
 msgid "Back to products"
-msgstr ""
+msgstr "Ürünlere dön"
 
 #: src/utils/error.utils.ts
 msgid "Bad gateway. The server is temporarily unavailable."
@@ -228,7 +228,7 @@ msgstr "Mavi"
 
 #: src/features/products/config/product-select-options.ts
 msgid "Books"
-msgstr ""
+msgstr "Kitaplar"
 
 #: src/features/account/components/organization/organization-role-card.tsx
 msgid "Built-in"
@@ -278,7 +278,7 @@ msgstr "Filtreleri temizle"
 
 #: src/features/products/config/product-select-options.ts
 msgid "Clothing"
-msgstr ""
+msgstr "Giyim"
 
 #: src/components/organisms/sidebar/header/sidebar-toggle-button.tsx
 msgid "Collapse sidebar"
@@ -329,8 +329,8 @@ msgid "Create"
 msgstr "Oluştur"
 
 #: src/app/routes/_admin/products/new.tsx
-msgid "Create Product"
-msgstr "Ürün Oluştur"
+msgid "Create product"
+msgstr "Ürün oluştur"
 
 #: src/features/auth/components/register-view.tsx
 msgid "Create your account in just a few steps and start today."
@@ -466,7 +466,7 @@ msgstr "Profili Düzenle"
 
 #: src/features/products/config/product-select-options.ts
 msgid "Electronics"
-msgstr ""
+msgstr "Elektronik"
 
 #: src/features/account/components/account-profile-view.tsx
 msgid "Email"
@@ -581,7 +581,7 @@ msgstr "Şifreyi gizle"
 
 #: src/features/products/config/product-select-options.ts
 msgid "Home & Living"
-msgstr ""
+msgstr "Ev ve yaşam"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "HR"
@@ -795,7 +795,7 @@ msgstr "Kayıtlı kullanıcı bulunmuyor."
 #. Pagination summary shown when a table or list has no results
 #: src/components/organisms/data-table/pagination/table-pagination-summary.tsx
 msgid "No results"
-msgstr ""
+msgstr "Sonuç yok"
 
 #: src/components/molecules/autocomplete-popover.tsx
 msgid "No results found"
@@ -939,7 +939,7 @@ msgstr "Lütfen tekrar deneyin veya daha sonra kontrol edin."
 
 #: src/components/organisms/data-table/pagination/table-pagination-footer.tsx
 msgid "Previous"
-msgstr ""
+msgstr "Önceki"
 
 #: src/features/products/components/product-details/product-detail-content.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
@@ -964,8 +964,8 @@ msgid "Product deleted."
 msgstr "Ürün silindi."
 
 #: src/app/routes/_admin/products/$productId/index.tsx
-msgid "Product Details"
-msgstr "Ürün Detayları"
+msgid "Product details"
+msgstr "Ürün detayları"
 
 #: src/features/products/components/product-details/product-detail-content.tsx
 msgid "Product Information"
@@ -1096,7 +1096,7 @@ msgstr "Gül"
 
 #: src/components/organisms/data-table/pagination/table-page-size-select.tsx
 msgid "Rows per page"
-msgstr ""
+msgstr "Sayfa başına satır"
 
 #: src/app/layouts/admin-layout/sidebar-items.ts
 msgid "SaaS"
@@ -1119,7 +1119,7 @@ msgstr "Kaydet"
 #: src/components/organisms/form/actions/form-primary-action-button.tsx
 #: src/features/products/components/forms/create-product.tsx
 msgid "Save changes"
-msgstr ""
+msgstr "Değişiklikleri kaydet"
 
 #: src/components/organisms/filters/fields/filter-search.tsx
 #: src/components/organisms/header/header-search.tsx
@@ -1201,7 +1201,7 @@ msgstr "Şifreyi göster"
 #. Pagination summary, e.g. "Showing 11-20 of 42 results". {from} and {to} are the first and last row numbers on the current page; the count at the end is the total number of results
 #: src/components/organisms/data-table/pagination/table-pagination-summary.tsx
 msgid "Showing {from}-{to} of {total, plural, one {# result} other {# results}}"
-msgstr ""
+msgstr "{total, plural, one {# sonuçtan} other {# sonuçtan}} {from}-{to} gösteriliyor"
 
 #: src/app/routes/_auth/login.tsx
 #: src/features/auth/components/login-view.tsx
@@ -1279,6 +1279,7 @@ msgid "Start date"
 msgstr "Başlangıç tarihi"
 
 #: src/features/products/components/forms/product-form.tsx
+#: src/features/products/components/product-details/product-detail-content.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
 #: src/features/products/config/products-filter-config.ts
 msgid "Status"
@@ -1381,7 +1382,7 @@ msgstr "Bilinmeyen"
 
 #: src/components/organisms/form/actions/form-action-bar.tsx
 msgid "Unsaved changes"
-msgstr ""
+msgstr "Kaydedilmemiş değişiklikler"
 
 #: src/features/account/components/account-security-view.tsx
 msgid "Update your password to keep your account secure."

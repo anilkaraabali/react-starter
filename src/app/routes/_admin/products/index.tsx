@@ -10,13 +10,6 @@ import { ProductList } from '@/features/products/components/product-list/product
 import { ProductListActions } from '@/features/products/components/product-list/product-list-actions';
 import { initialProductsFiltersState } from '@/features/products/config/products-filter-config';
 import { getResponsivePageSize } from '@/hooks/use-responsive-page-size';
-import type { MetaFunction } from '@/types/meta.types';
-
-const meta: MetaFunction = (i18n) => [
-  {
-    title: i18n._(msg`Products`),
-  },
-];
 
 function ProductsRoute() {
   return (
@@ -39,11 +32,11 @@ export const Route = createFileRoute('/_admin/products/')({
       }),
       staleTime: 'static',
     });
-    return { meta };
   },
   search: {
     middlewares: [stripSearchParams(initialProductsFiltersState)],
   },
+  staticData: { title: msg`Products` },
   validateSearch: zodValidator(getProductsQuerySchema),
 });
 // biome-ignore-end assist/source/useSortedKeys: see biome-ignore-start above

@@ -1,11 +1,12 @@
+import type { MessageDescriptor } from '@lingui/core';
 import { createRouter, parseSearchWith } from '@tanstack/react-router';
 import type { RootRouteContext } from '@/app/router.types';
 import type {
   SidebarHeaderMode,
   SidebarNavItem,
 } from '@/components/organisms/sidebar/sidebar.types';
+import type { MetaTag } from '@/lib/head/head.types';
 import { queryClient } from '@/lib/react-query';
-import type { LoaderData } from '@/types/meta.types';
 import { stringifySearch } from '@/utils/router-search.utils';
 import {
   ADMIN_SCROLL_CONTAINER_ID,
@@ -36,7 +37,6 @@ export const router = createRouter({
 
 declare module '@tanstack/react-router' {
   interface Register {
-    routeData: LoaderData;
     router: typeof router;
   }
 
@@ -47,8 +47,10 @@ declare module '@tanstack/react-router' {
   interface StaticDataRouteOption {
     contentPadding?: ContentPadding;
     hideHeader?: boolean;
+    meta?: readonly MetaTag[];
     sidebarHeaderMode?: SidebarHeaderMode;
     /** Nav items for this route subtree; the deepest match wins, default `SIDEBAR_ITEMS`. */
     sidebarItems?: readonly SidebarNavItem[];
+    title?: MessageDescriptor;
   }
 }

@@ -5,6 +5,7 @@ import { NotFound } from '@/app/layouts/error/not-found';
 import { Meta } from '@/app/meta';
 import { NavigationProgress } from '@/app/navigation-progress';
 import type { RootRouteContext } from '@/app/router.types';
+import { HeadProvider } from '@/lib/head/head-provider';
 import { getPageTitleTemplate } from '@/utils/page-title.utils';
 
 function RootComponent() {
@@ -12,11 +13,11 @@ function RootComponent() {
   const titleTemplate = getPageTitleTemplate(i18n);
 
   return (
-    <>
+    <HeadProvider>
       <Meta titleTemplate={titleTemplate} />
       <NavigationProgress />
       <Outlet />
-    </>
+    </HeadProvider>
   );
 }
 

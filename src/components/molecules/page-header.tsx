@@ -1,6 +1,6 @@
 import { cn } from '@heroui/react';
 import type { ReactNode } from 'react';
-import { usePageTitle } from '@/hooks/use-page-title';
+import { usePageTitle } from '@/lib/head/use-page-title';
 
 export type PageHeaderProps = {
   actions?: ReactNode;

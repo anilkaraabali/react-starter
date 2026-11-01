@@ -1,8 +1,13 @@
 import { useLingui } from '@lingui/react/macro';
-import { useRouterState } from '@tanstack/react-router';
-import { Fragment, type ReactNode } from 'react';
-
-import type { LoaderData } from '@/types/meta.types';
+import { useMatches } from '@tanstack/react-router';
+import { useContext } from 'react';
+import {
+  getMetaTagKey,
+  mergeMetaTags,
+  resolveMetaTag,
+} from '@/lib/head/head.utils';
+import { HeadContext } from '@/lib/head/head-provider';
+import { usePageTitle } from '@/lib/head/use-page-title';
 
 type MetaProps = {
   titleTemplate: string;
@@ -10,50 +15,35 @@ type MetaProps = {
 
 export function Meta({ titleTemplate }: MetaProps) {
   const { i18n } = useLingui();
-  const metas = useRouterState({
-    select: (state) => {
-      const metaMap = state.matches.reduce<Map<string, ReactNode>>(
-        (acc, match) => {
-          const loaderData = match.loaderData as LoaderData;
-
-          if (!loaderData?.meta) {
-            return acc;
-          }
-
-          const meta = loaderData.meta(i18n, loaderData);
-
-          for (const tag of meta) {
-            if ('title' in tag) {
-              const pageTitle = titleTemplate.replace(/%s/g, tag.title);
-              acc.set('title', <title>{pageTitle}</title>);
-            }
-
-            if ('name' in tag) {
-              acc.set(tag.name, <meta content={tag.content} name={tag.name} />);
-            }
-
-            if ('property' in tag) {
-              acc.set(
-                tag.property,
-                <meta content={tag.content} property={tag.property} />
-              );
-            }
-          }
-
-          return acc;
-        },
-        new Map()
-      );
-
-      return Array.from(metaMap.entries());
-    },
+  const { head } = useContext(HeadContext);
+  const title = usePageTitle();
+  const staticTags = useMatches({
+    select: (matches) =>
+      mergeMetaTags(matches.flatMap((match) => match.staticData.meta ?? [])),
   });
+  const tags = mergeMetaTags([
+    ...staticTags.map((tag) => resolveMetaTag(tag, i18n)),
+    ...(head.meta ?? []),
+  ]);
 
   return (
     <>
-      {metas.map(([key, tag]) => (
-        <Fragment key={key}>{tag}</Fragment>
-      ))}
+      {title ? <title>{titleTemplate.replace(/%s/g, title)}</title> : null}
+      {tags.map((tag) =>
+        'name' in tag ? (
+          <meta
+            content={tag.content}
+            key={getMetaTagKey(tag)}
+            name={tag.name}
+          />
+        ) : (
+          <meta
+            content={tag.content}
+            key={getMetaTagKey(tag)}
+            property={tag.property}
+          />
+        )
+      )}
     </>
   );
 }
