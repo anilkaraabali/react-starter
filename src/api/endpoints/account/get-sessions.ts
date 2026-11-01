@@ -14,7 +14,7 @@ const getSessions = async (): Promise<AuthSessionDto[]> => {
   return (data ?? []) as AuthSessionDto[];
 };
 
-export const getSessionsQueryOptions = () => {
+const getSessionsQueryOptions = () => {
   return queryOptions<AuthSessionDto[], Error & { code?: string }>({
     queryFn: getSessions,
     queryKey: accountKeys.sessions(),

@@ -10,7 +10,7 @@ const getOrganizationMembers = (signal?: AbortSignal) => {
   });
 };
 
-export const getOrganizationMembersQueryOptions = () =>
+const getOrganizationMembersQueryOptions = () =>
   queryOptions({
     queryFn: ({ signal }) => getOrganizationMembers(signal),
     queryKey: organizationKeys.members(),

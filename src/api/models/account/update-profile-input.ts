@@ -4,7 +4,7 @@ import {
   stringFieldSchema,
 } from '@/lib/zod/schemas/field.schemas';
 
-export const updateProfileInputSchema = z.object({
+const updateProfileInputSchema = z.object({
   email: emailFieldSchema.optional(),
   image: z.string().nullable().optional(),
   name: stringFieldSchema.optional(),

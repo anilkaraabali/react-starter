@@ -4,7 +4,7 @@ import {
   requiredPasswordFieldSchema,
 } from '@/lib/zod/schemas/field.schemas';
 
-export const changePasswordInputSchema = z.object({
+const changePasswordInputSchema = z.object({
   currentPassword: requiredPasswordFieldSchema,
   newPassword: passwordFieldSchema,
   revokeOtherSessions: z.boolean(),

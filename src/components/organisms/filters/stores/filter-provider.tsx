@@ -78,34 +78,6 @@ export function FilterProvider<TFilters extends object>({
   );
 }
 
-type RouteFilterProviderProps<TFilters extends object> = {
-  children: ReactNode;
-  fields: FilterFieldConfig<TFilters>[];
-  initialState: TFilters;
-  navigate: (options: never) => unknown;
-  search: TFilters;
-};
-
-export function RouteFilterProvider<TFilters extends object>({
-  children,
-  fields,
-  initialState,
-  navigate,
-  search,
-}: RouteFilterProviderProps<TFilters>) {
-  const filterState = useRouteFilterState({
-    initialState,
-    navigate,
-    search,
-  });
-
-  return (
-    <FilterProvider fields={fields} value={filterState}>
-      {children}
-    </FilterProvider>
-  );
-}
-
 export function useFilter<
   TFilters extends object,
 >(): FilterContextValue<TFilters> {
