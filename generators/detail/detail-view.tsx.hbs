@@ -1,11 +1,9 @@
 import { useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
-import { FormActions } from '@/components/organisms/form/actions/form-actions';
+import { FormPrimaryActionButton } from '@/components/organisms/form/actions/form-primary-action-button';
 import { ContentLayout } from '@/components/templates/content-layout';
-import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/modals/delete-{{entityKebab}}-modal';
 import { {{entityPascal}}QueryBoundary } from '@/features/{{featureDir}}/components/{{entityKebab}}-query-boundary';
 import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
-import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import { {{entityPascal}}DetailContent } from './{{entityKebab}}-detail-content';
 
 type {{entityPascal}}DetailViewProps = {
@@ -20,15 +18,13 @@ export function {{entityPascal}}DetailView({ {{routeParam}} }: {{entityPascal}}D
   );
 }
 
-function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{entityPascal}} }) {
+function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{entityPascal}}Dto }) {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
     <ContentLayout
       actions={
-        <FormActions
-          onDelete={() => setIsDeleteModalOpen(true)}
+        <FormPrimaryActionButton
           onEdit={() => {
             void navigate({
               params: {
@@ -47,15 +43,6 @@ function {{entityPascal}}DetailLayout({ {{entityCamel}} }: { {{entityCamel}}: {{
       }
     >
       <{{entityPascal}}DetailContent {{entityCamel}}={ {{entityCamel}} } />
-
-      <Delete{{entityPascal}}Modal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        onSuccess={() => {
-          void navigate({ to: '{{routePath}}' });
-        }}
-        {{entityCamel}}={ {{entityCamel}} }
-      />
     </ContentLayout>
   );
 }

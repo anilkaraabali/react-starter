@@ -1,11 +1,11 @@
 import { Card } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import { SimpleDetailField } from '@/components/molecules/simple-detail-field';
-import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import { formatDateTime } from '@/utils/format.utils';
 
 type {{entityPascal}}DetailContentProps = {
-  {{entityCamel}}: {{entityPascal}};
+  {{entityCamel}}: {{entityPascal}}Dto;
 };
 
 export function {{entityPascal}}DetailContent({

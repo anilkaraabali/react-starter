@@ -20,7 +20,7 @@
     "strict": true,
     "target": "ESNext",
     "tsBuildInfoFile": "./node_modules/.cache/tsconfig.app.tsbuildinfo",
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "vite/client"],
     "useDefineForClassFields": true
   },
   "include": ["src", "**/*.d.ts"]

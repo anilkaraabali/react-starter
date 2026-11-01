@@ -1,9 +1,6 @@
-import type {
-  OrganizationMemberDto,
-  OrganizationMembersResponseDto,
-  OrganizationMeResponseDto,
-} from '@/types/organization.types';
-
+import type { OrganizationMeDto } from '@/api/models/organizations/organization-me-dto';
+import type { OrganizationMemberDto } from '@/api/models/organizations/organization-member-dto';
+import type { OrganizationMembersDto } from '@/api/models/organizations/organization-members-dto';
 export const MOCK_USER = {
   createdAt: '2026-01-01T00:00:00.000Z',
   email: 'admin@acme.com',
@@ -26,7 +23,7 @@ export const MOCK_SESSION = {
   userId: MOCK_USER.id,
 };
 
-export const MOCK_ORGANIZATION_ME: OrganizationMeResponseDto = {
+export const MOCK_ORGANIZATION_ME: OrganizationMeDto = {
   organizationId: 'org_mock_1',
   organizationName: 'Acme Admin Corp',
   permissions: [
@@ -92,7 +89,7 @@ export const MOCK_MEMBERS: OrganizationMemberDto[] = [
   },
 ];
 
-export const MOCK_ORGANIZATION_MEMBERS: OrganizationMembersResponseDto = {
+export const MOCK_ORGANIZATION_MEMBERS: OrganizationMembersDto = {
   members: MOCK_MEMBERS,
   organizationId: MOCK_ORGANIZATION_ME.organizationId,
   organizationName: MOCK_ORGANIZATION_ME.organizationName,

@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import { Authorization } from '@/lib/authorization/authorization';
 import type { AuthorizationContext } from '@/lib/authorization/authorization-policies.utils';
 import { renderWithI18n } from '@/testing/render';
-import { OrganizationPermission } from '@/types/organization.types';
 
 const ctx = vi.hoisted(() => ({
   current: { permissions: [] } as AuthorizationContext,
@@ -12,13 +12,13 @@ vi.mock('@/lib/authorization/use-authorization', () => ({
   useAuthorization: () => ({ ctx: ctx.current }),
 }));
 
-const granted = (permissions: OrganizationPermission[]) => {
+const granted = (permissions: OrganizationPermissionDto[]) => {
   ctx.current = { permissions };
 };
 
 describe('Authorization', () => {
   it('renders the children when the policy passes', () => {
-    granted([OrganizationPermission.organizationupdate]);
+    granted([OrganizationPermissionDto.organizationUpdate]);
 
     const { container } = renderWithI18n(
       <Authorization policy='organization:update'>allowed</Authorization>
@@ -50,7 +50,7 @@ describe('Authorization', () => {
   });
 
   it('checks a resource policy against the resource it was given', () => {
-    granted([OrganizationPermission.organizationmembersupdate_role]);
+    granted([OrganizationPermissionDto.membersUpdateRole]);
 
     const member = { role: 'admin', userId: 'u-2' } as const;
 

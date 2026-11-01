@@ -9,28 +9,52 @@ import { FilterSelect } from './filter-select';
 
 type FilterFieldProps = {
   field: FilterFieldConfig;
+  /** Set when every parent in `dependsOn` is still empty. */
+  isDisabled?: boolean;
   onChange: (value: FilterValue) => void;
   value: FilterValue;
 };
 
-export function FilterField({ field, onChange, value }: FilterFieldProps) {
-  const commonProps = {
-    label: field.label,
-    onChange,
-    value,
-  };
-
+export function FilterField({
+  field,
+  isDisabled,
+  onChange,
+  value,
+}: FilterFieldProps) {
   switch (field.type) {
     case 'autocomplete':
       return (
-        <FilterAutocomplete {...commonProps} options={field.props?.options} />
+        <FilterAutocomplete
+          isDisabled={isDisabled}
+          label={field.label}
+          onChange={onChange}
+          options={field.props?.options}
+          value={value}
+        />
       );
     case 'select':
-      return <FilterSelect {...commonProps} options={field.props?.options} />;
+      return (
+        <FilterSelect
+          isDisabled={isDisabled}
+          label={field.label}
+          onChange={onChange}
+          options={field.props?.options}
+          value={value}
+        />
+      );
     case 'number':
-      return <FilterNumber {...commonProps} prefix={field.props?.prefix} />;
+      return (
+        <FilterNumber
+          label={field.label}
+          onChange={onChange}
+          prefix={field.props?.prefix}
+          value={value}
+        />
+      );
     case 'date':
-      return <FilterDate {...commonProps} />;
+      return (
+        <FilterDate label={field.label} onChange={onChange} value={value} />
+      );
     default:
       return null;
   }

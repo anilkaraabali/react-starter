@@ -1,17 +1,15 @@
 import { cn, Table } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import { CheckIcon, MinusIcon } from 'lucide-react';
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
 import { ORGANIZATION_PERMISSION_LABELS } from '@/features/account/config/organization-permission-labels.constants';
 import { ORGANIZATION_PERMISSION_CATALOG } from '@/features/account/config/organization-permissions.constants';
 import { roleHasPermission } from '@/features/account/utils/member-role.utils';
+import { organizationMemberRoleOptions } from '@/lib/authorization/organization-member-role-options';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
-import {
-  ORGANIZATION_ROLES,
-  type OrganizationMemberRole,
-} from '@/types/organization.types';
 
 type OrganizationPermissionsMatrixProps = {
-  currentRole: OrganizationMemberRole;
+  currentRole: OrganizationMemberRoleDto;
 };
 
 export function OrganizationPermissionsMatrix({
@@ -27,7 +25,7 @@ export function OrganizationPermissionsMatrix({
             <Table.Column id='permission' isRowHeader>
               {t`Permission`}
             </Table.Column>
-            {ORGANIZATION_ROLES.map((role) => (
+            {organizationMemberRoleOptions.map((role) => (
               <Table.Column id={role} key={role}>
                 {getOrganizationRoleLabel(role)}
               </Table.Column>
@@ -43,7 +41,7 @@ export function OrganizationPermissionsMatrix({
                 <Table.Cell>
                   {t(ORGANIZATION_PERMISSION_LABELS[permission])}
                 </Table.Cell>
-                {ORGANIZATION_ROLES.map((role) => {
+                {organizationMemberRoleOptions.map((role) => {
                   const granted = roleHasPermission(role, permission);
                   const roleLabel = getOrganizationRoleLabel(role);
 

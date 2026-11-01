@@ -1,11 +1,11 @@
 import { Alert, Button, Chip, Skeleton, Typography } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
-import { useOrganizationMe } from '@/api/get-organization-me';
-import { useOrganizationMembers } from '@/features/account/api/get-organization-members';
+import { useOrganizationMe } from '@/api/endpoints/organizations/get-organization-me';
+import { useOrganizationMembers } from '@/api/endpoints/organizations/get-organization-members';
 import { Account } from '@/features/account/components/blocks/account';
+import { organizationMemberRoleOptions } from '@/lib/authorization/organization-member-role-options';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
-import { ORGANIZATION_ROLES } from '@/types/organization.types';
 import { OrganizationPermissionsMatrix } from './organization/organization-permissions-matrix';
 import { OrganizationRoleCard } from './organization/organization-role-card';
 
@@ -30,7 +30,7 @@ export function AccountRolesView() {
       <Account.SettingsChunk>
         {tabHeader}
         <div className='grid gap-4 sm:grid-cols-3'>
-          {ORGANIZATION_ROLES.map((role) => (
+          {organizationMemberRoleOptions.map((role) => (
             <Skeleton className='h-36 rounded-xl' key={role} />
           ))}
         </div>
@@ -76,7 +76,7 @@ export function AccountRolesView() {
         <Account.Section id='organization-roles'>
           <Account.SectionHeader title={t`Roles`} />
           <div className='grid gap-4 sm:grid-cols-3'>
-            {ORGANIZATION_ROLES.map((role) => (
+            {organizationMemberRoleOptions.map((role) => (
               <OrganizationRoleCard
                 key={role}
                 memberCount={

@@ -1,6 +1,9 @@
 import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react/macro';
 import { createFileRoute } from '@tanstack/react-router';
-import { Create{{entityPascal}}View } from '@/features/{{featureDir}}/components/forms/create-{{entityKebab}}-view';
+import { BackButton } from '@/components/atoms/back-button';
+import { ContentLayout } from '@/components/templates/content-layout';
+import { Create{{entityPascal}} } from '@/features/{{featureDir}}/components/forms/create-{{entityKebab}}';
 import type { MetaFunction } from '@/types/meta.types';
 
 const meta: MetaFunction = (i18n) => [
@@ -9,7 +12,20 @@ const meta: MetaFunction = (i18n) => [
   },
 ];
 
+function {{entityPascal}}CreatePage() {
+  const { t } = useLingui();
+
+  return (
+    <ContentLayout
+      actions={<BackButton to='{{routePath}}'>{t`Back to {{pluralTitle}}`}</BackButton>}
+      description={t`Add a new {{entityKebab}} to your workspace.`}
+    >
+      <Create{{entityPascal}} />
+    </ContentLayout>
+  );
+}
+
 export const Route = createFileRoute('/_admin/{{featureDir}}/new')({
-  component: Create{{entityPascal}}View,
+  component: {{entityPascal}}CreatePage,
   loader: () => ({ meta }),
 });

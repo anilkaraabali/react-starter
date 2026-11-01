@@ -1,26 +1,31 @@
+import { fallback } from '@tanstack/zod-adapter';
 import { z } from 'zod';
-
+import { SortByDto } from '@/api/models/common/sort-by-dto';
+import { DEFAULT_SORT_BY, DEFAULT_SORT_ORDER } from '@/config/sort';
 import {
-  searchParamNonNegativeNumberSchema,
+  createSearchParamObjectEnumSchema,
+  searchParamPositiveIntSchema,
   searchParamSortOrderSchema,
   searchParamStringSchema,
 } from './search-params.schemas';
 
-const collectionSearchFields = {
-  page: searchParamNonNegativeNumberSchema,
-  pageSize: searchParamNonNegativeNumberSchema,
+const baseFields = {
+  page: searchParamPositiveIntSchema,
+  pageSize: searchParamPositiveIntSchema,
   search: searchParamStringSchema,
-  sortBy: searchParamStringSchema,
-  sortOrder: searchParamSortOrderSchema,
+  sortBy: fallback(
+    createSearchParamObjectEnumSchema(SortByDto),
+    DEFAULT_SORT_BY
+  ).default(DEFAULT_SORT_BY),
+  sortOrder: fallback(searchParamSortOrderSchema, DEFAULT_SORT_ORDER).default(
+    DEFAULT_SORT_ORDER
+  ),
 };
 
-export function createCollectionSearchSchema<
-  T extends z.ZodRawShape = Record<never, never>,
->(extra: T = {} as T) {
-  const schema = z.object({
-    ...collectionSearchFields,
-    ...extra,
-  } as Omit<typeof collectionSearchFields, keyof T> & T);
+const baseSchema = z.object(baseFields);
 
-  return schema.catch({} as z.infer<typeof schema>);
+export function createCollectionSearchSchema<
+  TFields extends z.ZodRawShape = Record<never, never>,
+>(fields?: TFields) {
+  return fields ? baseSchema.extend(fields) : baseSchema;
 }

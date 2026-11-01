@@ -1,8 +1,8 @@
 import { toast } from '@heroui/react';
 import { Trans, useLingui } from '@lingui/react/macro';
+import { useSetMemberBan } from '@/api/endpoints/organizations/set-member-ban';
+import type { OrganizationMemberDto } from '@/api/models/organizations/organization-member-dto';
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
-import { useSetMemberBan } from '@/features/account/api/set-member-ban';
-import type { OrganizationMemberDto } from '@/types/organization.types';
 
 type MemberBanModalProps = {
   isOpen: boolean;

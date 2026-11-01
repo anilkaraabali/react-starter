@@ -1,6 +1,30 @@
 import { z } from 'zod';
+import { SortOrderDto } from '@/api/models/common/sort-order-dto';
 import { ISO_DATE_PATTERN } from '@/config/date';
-import { SORT_ORDERS } from '@/types/sort.types';
+
+/**
+ * Lenient enum param for `as const` enum-like objects (e.g. `SortOrderDto`):
+ * unknown values are dropped instead of failing the route.
+ */
+export function createSearchParamObjectEnumSchema<
+  const TEntries extends Record<string, string>,
+>(entries: TEntries) {
+  const values = Object.values(entries) as [
+    TEntries[keyof TEntries],
+    ...TEntries[keyof TEntries][],
+  ];
+
+  return z.preprocess((value) => {
+    if (value == null) return undefined;
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      return values.includes(trimmed as TEntries[keyof TEntries])
+        ? trimmed
+        : undefined;
+    }
+    return undefined;
+  }, z.enum(values).optional());
+}
 
 export function createSearchParamEnumSchema<
   T extends string,
@@ -21,7 +45,7 @@ export function createSearchParamEnumSchema<
 }
 
 export const searchParamSortOrderSchema =
-  createSearchParamEnumSchema(SORT_ORDERS);
+  createSearchParamObjectEnumSchema(SortOrderDto);
 
 export const searchParamBooleanSchema = z
   .union([z.boolean(), z.literal('true'), z.literal('false')])
@@ -56,6 +80,13 @@ export const searchParamNonNegativeNumberSchema = z.preprocess((value) => {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : undefined;
 }, z.number().nonnegative().optional());
+
+/** Page numbers and page sizes: a positive whole number, anything else is dropped. */
+export const searchParamPositiveIntSchema = z.preprocess((value) => {
+  if (value === '' || value == null) return undefined;
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : undefined;
+}, z.number().int().positive().optional());
 
 export const createSearchParamArraySchema = <T extends z.ZodType>(item: T) =>
   z.preprocess((value) => {

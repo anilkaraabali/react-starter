@@ -1,0 +1,61 @@
+import { toast } from '@heroui/react';
+import { useLingui } from '@lingui/react/macro';
+import { useNavigate } from '@tanstack/react-router';
+import { useUpdate{{entityPascal}} } from '@/api/endpoints/{{pluralKebab}}/update-{{entityKebab}}';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
+import { useForm } from '@/components/organisms/form/use-form';
+import {
+  type {{entityPascal}}FormValues,
+  {{entityCamel}}FormSchema,
+} from '@/features/{{featureDir}}/components/forms/{{entityKebab}}-form-schema';
+import { {{entityPascal}}Form } from './{{entityKebab}}-form';
+import { {{entityCamel}}ToFormValues } from './{{entityKebab}}-form-mappers';
+
+const EDIT_{{entityConst}}_FORM_ID = 'edit-{{entityKebab}}-form';
+
+type Edit{{entityPascal}}Props = {
+  {{entityCamel}}: {{entityPascal}}Dto;
+  {{routeParam}}: string;
+};
+
+export function Edit{{entityPascal}}({ {{entityCamel}}, {{routeParam}} }: Edit{{entityPascal}}Props) {
+  const { t } = useLingui();
+  const navigate = useNavigate();
+  const update{{entityPascal}}Mutation = useUpdate{{entityPascal}}({
+    mutationConfig: {
+      onSuccess: () => {
+        toast.success(t`{{singularTitle}} updated.`);
+      },
+    },
+  });
+
+  const form = useForm({
+    defaultValues: {{entityCamel}}ToFormValues({{entityCamel}}),
+    onSubmit: async (values: {{entityPascal}}FormValues) => {
+      await update{{entityPascal}}Mutation.mutateAsync(
+        {
+          data: values,
+          {{routeParam}},
+        },
+        {
+          onSuccess: () => {
+            void navigate({ to: '{{routePath}}' });
+          },
+        }
+      );
+    },
+    schema: {{entityCamel}}FormSchema,
+  });
+
+  return (
+    <form.AppForm>
+      <{{entityPascal}}Form form={form} formId={EDIT_{{entityConst}}_FORM_ID} />
+      <form.ActionBar
+        formId={EDIT_{{entityConst}}_FORM_ID}
+        lastSavedAt={ {{entityCamel}}.updatedAt }
+        onCancel={() => navigate({ to: '{{routePath}}' })}
+      />
+      <form.UnsavedChangesGuard />
+    </form.AppForm>
+  );
+}

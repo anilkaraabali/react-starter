@@ -45,8 +45,10 @@ export type GeneratorName = (typeof GENERATOR_ORDER)[number];
 export const GENERATOR_REQUIRES: Partial<
   Record<GeneratorName, readonly GeneratorName[]>
 > = {
-  detail: ['api'],
-  form: ['api', 'modal', 'detail'],
-  list: ['api', 'modal'],
-  routes: ['api'],
+  api: ['types'],
+  config: ['types'],
+  detail: ['api', 'types'],
+  form: ['api', 'modal', 'detail', 'types'],
+  list: ['api', 'modal', 'config', 'types'],
+  routes: ['api', 'list'],
 };

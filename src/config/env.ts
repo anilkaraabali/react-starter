@@ -4,7 +4,7 @@ const createEnv = () => {
   const envSchema = z.object({
     API_URL: z.string(),
     APP_MOCK_API_PORT: z.string().optional().default('8080'),
-    APP_URL: z.string().optional().default('http://localhost:3000'),
+    APP_URL: z.string().optional().default('http://localhost:4200'),
     ENABLE_API_MOCKING: z
       .string()
       .refine((s) => s === 'true' || s === 'false')

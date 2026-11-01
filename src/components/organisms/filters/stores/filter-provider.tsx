@@ -4,6 +4,7 @@ import type {
   FilterState,
 } from '@/components/organisms/filters/filters.types';
 import { useFilterState } from '@/components/organisms/filters/stores/use-filter-state';
+import { withDependentFiltersCleared } from '@/components/organisms/filters/utils/filter-state.utils';
 
 type FilterContextValue<TFilters extends object> = {
   fields: FilterFieldConfig<TFilters>[];
@@ -13,22 +14,19 @@ const FilterContext = createContext<FilterContextValue<FilterState> | null>(
   null
 );
 
-type RouteFilterProviderProps<TFilters extends object> = {
-  children: ReactNode;
-  fields: FilterFieldConfig<TFilters>[];
+type RouteFilterStateOptions<TFilters extends object> = {
   initialState: TFilters;
   navigate: (options: never) => unknown;
   search: TFilters;
 };
 
-export function RouteFilterProvider<TFilters extends object>({
-  children,
-  fields,
+/** Filter state backed by the route's search params. */
+export function useRouteFilterState<TFilters extends object>({
   initialState,
   navigate,
   search,
-}: RouteFilterProviderProps<TFilters>) {
-  const filterState = useFilterState({
+}: RouteFilterStateOptions<TFilters>) {
+  return useFilterState({
     initialState,
     navigate: (updater) =>
       navigate({
@@ -36,13 +34,42 @@ export function RouteFilterProvider<TFilters extends object>({
       } as never),
     search,
   });
+}
+
+type FilterProviderProps<TFilters extends object> = {
+  children: ReactNode;
+  fields: FilterFieldConfig<TFilters>[];
+  value: ReturnType<typeof useFilterState<TFilters>>;
+};
+
+export function FilterProvider<TFilters extends object>({
+  children,
+  fields,
+  value,
+}: FilterProviderProps<TFilters>) {
+  // Changing a field also clears the fields that depend on it, in one update.
+  const setFilters = (patch: Partial<TFilters>) =>
+    value.setFilters(
+      withDependentFiltersCleared(fields, patch, value.getFilterValue)
+    );
+
+  const setFilterValue = <K extends keyof TFilters>(
+    key: K,
+    next: TFilters[K] | undefined
+  ) => {
+    const patch: Partial<TFilters> = {};
+    patch[key] = next;
+    setFilters(patch);
+  };
 
   return (
     <FilterContext.Provider
       value={
         {
-          ...filterState,
+          ...value,
           fields,
+          setFilters,
+          setFilterValue,
         } as unknown as FilterContextValue<FilterState>
       }
     >

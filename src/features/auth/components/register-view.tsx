@@ -6,18 +6,18 @@ import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password
 import { useForm } from '@/components/organisms/form/use-form';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import {
-  type RegisterInput,
-  registerDefaultValues,
-  registerInputSchema,
-} from '@/features/auth/types/register-input';
+  type RegisterFormValues,
+  registerFormDefaultValues,
+  registerFormSchema,
+} from '@/features/auth/schemas/register-form-schema';
 import { signUp } from '@/lib/auth-client';
 
 export function RegisterView() {
   const { t } = useLingui();
 
   const form = useForm({
-    defaultValues: registerDefaultValues,
-    onSubmit: async (data: RegisterInput) => {
+    defaultValues: registerFormDefaultValues,
+    onSubmit: async (data: RegisterFormValues) => {
       await signUp.email(
         {
           callbackURL: '/dashboard',
@@ -35,7 +35,7 @@ export function RegisterView() {
         }
       );
     },
-    schema: registerInputSchema,
+    schema: registerFormSchema,
   });
 
   return (

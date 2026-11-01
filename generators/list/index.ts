@@ -7,35 +7,34 @@ type Answers = { entityName: string; feature: string };
 /**
  * `src/features/<feature>/components/<entity>-list/`
  *
- * List view, table and column definitions. Filters are driven by the URL rather
- * than local state so that a filtered list stays linkable and the browser's back
- * button works — which is why the view talks to `RouteFilterProvider` and the
- * route supplies `validateSearch`.
+ * List screen, header actions, and table column definitions.
  */
 const listGenerator: PlopGeneratorConfig = {
   actions: (answers) => {
     const data = resolveData(answers as Answers);
     const base = `src/features/${data.featureDir}/components/${data.entityKebab}-list`;
+    const e = data.entityKebab;
+    const p = data.pluralKebab;
 
     return fileActions(
       [
         {
-          path: `${base}/${data.entityKebab}-list-view.tsx`,
-          templateFile: 'generators/list/list-view.tsx.hbs',
+          path: `${base}/${e}-list.tsx`,
+          templateFile: 'generators/list/entity-list.tsx.hbs',
         },
         {
-          path: `${base}/${data.pluralKebab}-table.tsx`,
-          templateFile: 'generators/list/table.tsx.hbs',
+          path: `${base}/${e}-list-actions.tsx`,
+          templateFile: 'generators/list/list-actions.tsx.hbs',
         },
         {
-          path: `${base}/${data.pluralKebab}-table-columns.tsx`,
+          path: `${base}/${p}-table-columns.tsx`,
           templateFile: 'generators/list/table-columns.tsx.hbs',
         },
       ],
       data
     );
   },
-  description: 'List view, data table and column definitions',
+  description: 'List view, header actions, and table columns',
   prompts: featurePrompts(),
 };
 

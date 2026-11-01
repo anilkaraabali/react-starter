@@ -1,15 +1,15 @@
 import { toast } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
-
+import { useChangePassword } from '@/api/endpoints/account/change-password';
 import { PasswordFieldsGroup } from '@/components/organisms/form/fields/password-fields-group';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
-import { useChangePassword } from '@/features/account/api/change-password';
 import {
-  type ChangePasswordInput,
-  changePasswordDefaultValues,
-  changePasswordInputSchema,
-} from '@/features/account/types/change-password-input';
+  type ChangePasswordFormValues,
+  changePasswordFormDefaultValues,
+  changePasswordFormSchema,
+  mapChangePasswordFormToInput,
+} from '@/features/account/schemas/change-password-form-schema';
 
 type ChangePasswordModalProps = {
   isOpen: boolean;
@@ -31,17 +31,13 @@ export function ChangePasswordModal({
   });
 
   const form = useForm({
-    defaultValues: changePasswordDefaultValues,
-    onSubmit: async (data: ChangePasswordInput) => {
+    defaultValues: changePasswordFormDefaultValues,
+    onSubmit: async (data: ChangePasswordFormValues) => {
       await changePasswordMutation.mutateAsync({
-        data: {
-          currentPassword: data.currentPassword,
-          newPassword: data.newPassword,
-          revokeOtherSessions: data.revokeOtherSessions,
-        },
+        data: mapChangePasswordFormToInput(data),
       });
     },
-    schema: changePasswordInputSchema,
+    schema: changePasswordFormSchema,
   });
 
   return (

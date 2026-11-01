@@ -1,0 +1,16 @@
+import { z } from 'zod';
+import { {{entityPascal}}StatusDto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-status-dto';
+import {
+  enumFieldSchema,
+  stringFieldSchema,
+} from '@/lib/zod/schemas/field.schemas';
+
+export const create{{entityPascal}}InputSchema = z.object({
+  description: z.string().trim().optional(),
+  name: stringFieldSchema.min(2),
+  status: enumFieldSchema({{entityPascal}}StatusDto),
+});
+
+export type Create{{entityPascal}}Input = z.infer<
+  typeof create{{entityPascal}}InputSchema
+>;

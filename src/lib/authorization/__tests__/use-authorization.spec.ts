@@ -1,8 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { OrganizationPermission } from '@/types/organization.types';
-
 const me = vi.hoisted(() => ({
   data: undefined as { permissions?: string[]; role?: string } | undefined,
   isPending: false,
@@ -12,7 +10,7 @@ const session = vi.hoisted(() => ({
   data: undefined as { user?: { id: string } } | undefined,
 }));
 
-vi.mock('@/api/get-organization-me', () => ({
+vi.mock('@/api/endpoints/organizations/get-organization-me', () => ({
   useOrganizationMe: () => me,
 }));
 
@@ -20,10 +18,11 @@ vi.mock('@/lib/auth-client', () => ({
   authClient: { useSession: () => session },
 }));
 
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import { useAuthorization } from '@/lib/authorization/use-authorization';
 
 const ADMIN = {
-  permissions: [OrganizationPermission.organizationupdate],
+  permissions: [OrganizationPermissionDto.organizationUpdate],
   role: 'super_admin',
 };
 
@@ -73,7 +72,7 @@ describe('useAuthorization', () => {
 
   it('refuses member:manage against yourself, because ctx carries the user id', () => {
     me.data = {
-      permissions: [OrganizationPermission.organizationmembersupdate_role],
+      permissions: [OrganizationPermissionDto.membersUpdateRole],
       role: 'super_admin',
     };
     session.data = { user: { id: 'u-1' } };

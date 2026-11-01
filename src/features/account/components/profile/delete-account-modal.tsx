@@ -2,13 +2,13 @@ import { AlertDialog, Button, Spinner } from '@heroui/react';
 import { Trans, useLingui } from '@lingui/react/macro';
 import { useSelector } from '@tanstack/react-form';
 import { useEffect, useId } from 'react';
+import { useDeleteAccount } from '@/api/endpoints/account/delete-account';
 import { useForm } from '@/components/organisms/form/use-form';
-import { useDeleteAccount } from '@/features/account/api/delete-account';
 import {
-  type DeleteAccountInput,
-  deleteAccountDefaultValues,
-  deleteAccountInputSchema,
-} from '@/features/account/types/delete-account-input';
+  type DeleteAccountFormValues,
+  deleteAccountFormDefaultValues,
+  deleteAccountFormSchema,
+} from '@/features/account/schemas/delete-account-form-schema';
 import { useSession } from '@/lib/auth-client';
 
 type DeleteAccountModalProps = {
@@ -28,13 +28,13 @@ export function DeleteAccountModal({
   const deleteAccountMutation = useDeleteAccount();
 
   const form = useForm({
-    defaultValues: deleteAccountDefaultValues,
-    onSubmit: async (data: DeleteAccountInput) => {
+    defaultValues: deleteAccountFormDefaultValues,
+    onSubmit: async (data: DeleteAccountFormValues) => {
       await deleteAccountMutation.mutateAsync({
         data: { password: data.password },
       });
     },
-    schema: deleteAccountInputSchema,
+    schema: deleteAccountFormSchema,
   });
 
   const isPending = useSelector(form.store, (s) => s.isSubmitting);

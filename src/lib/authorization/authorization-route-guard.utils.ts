@@ -2,7 +2,7 @@ import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import type { QueryClient } from '@tanstack/react-query';
 import { redirect } from '@tanstack/react-router';
-import { getOrganizationMeQueryOptions } from '@/api/get-organization-me';
+import { getOrganizationMeQueryOptions } from '@/api/endpoints/organizations/get-organization-me';
 import {
   checkPolicy,
   type ResourcelessPolicyName,

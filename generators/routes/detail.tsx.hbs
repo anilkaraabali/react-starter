@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
 import { createFileRoute } from '@tanstack/react-router';
-import { get{{entityPascal}}QueryOptions } from '@/features/{{featureDir}}/api/get-{{entityKebab}}';
+import { get{{entityPascal}}QueryOptions } from '@/api/endpoints/{{pluralKebab}}/get-{{entityKebab}}';
 import { {{entityPascal}}DetailView } from '@/features/{{featureDir}}/components/{{entityKebab}}-details/{{entityKebab}}-detail-view';
 import type { MetaFunction } from '@/types/meta.types';
 
@@ -10,8 +10,13 @@ const meta: MetaFunction = (i18n) => [
   },
 ];
 
+function {{entityPascal}}DetailRoute() {
+  const { {{routeParam}} } = Route.useParams();
+  return <{{entityPascal}}DetailView {{routeParam}}={ {{routeParam}} } />;
+}
+
 export const Route = createFileRoute('/_admin/{{featureDir}}/${{routeParam}}/')({
-  component: {{entityPascal}}DetailRouteComponent,
+  component: {{entityPascal}}DetailRoute,
   loader: ({ context: { queryClient }, params }) => {
     void queryClient.query({
       ...get{{entityPascal}}QueryOptions(params.{{routeParam}}),
@@ -20,8 +25,3 @@ export const Route = createFileRoute('/_admin/{{featureDir}}/${{routeParam}}/')(
     return { meta };
   },
 });
-
-function {{entityPascal}}DetailRouteComponent() {
-  const { {{routeParam}} } = Route.useParams();
-  return <{{entityPascal}}DetailView {{routeParam}}={ {{routeParam}} } />;
-}

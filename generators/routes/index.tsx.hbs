@@ -1,14 +1,15 @@
 import { msg } from '@lingui/core/macro';
-import type { QueryClient } from '@tanstack/react-query';
 import { createFileRoute, stripSearchParams } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import {
-  type Get{{pluralPascal}}Query,
   get{{pluralPascal}}QueryOptions,
   get{{pluralPascal}}QuerySchema,
-} from '@/features/{{featureDir}}/api/get-{{pluralKebab}}';
-import { {{entityPascal}}ListView } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{entityKebab}}-list-view';
-import { initial{{pluralPascal}}FiltersState } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter.config';
+} from '@/api/endpoints/{{pluralKebab}}/get-{{pluralKebab}}';
+import { ContentLayout } from '@/components/templates/content-layout';
+import { {{entityPascal}}List } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{entityKebab}}-list';
+import { {{entityPascal}}ListActions } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{entityKebab}}-list-actions';
+import { initial{{pluralPascal}}FiltersState } from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter-config';
+import { getResponsivePageSize } from '@/hooks/use-responsive-page-size';
 import type { MetaFunction } from '@/types/meta.types';
 
 const meta: MetaFunction = (i18n) => [
@@ -17,24 +18,32 @@ const meta: MetaFunction = (i18n) => [
   },
 ];
 
+function {{entityPascal}}ListRoute() {
+  return (
+    <ContentLayout actions={<{{entityPascal}}ListActions />}>
+      <{{entityPascal}}List />
+    </ContentLayout>
+  );
+}
+
+// biome-ignore-start assist/source/useSortedKeys: `loaderDeps` must precede `loader` so TypeScript infers `deps`.
 export const Route = createFileRoute('/_admin/{{featureDir}}/')({
-  component: {{entityPascal}}ListView,
-  loader: ({
-    context: { queryClient },
-    deps,
-  }: {
-    context: { queryClient: QueryClient };
-    deps: Get{{pluralPascal}}Query;
-  }) => {
+  component: {{entityPascal}}ListRoute,
+  loaderDeps: ({ search }) => search,
+  loader: ({ context: { queryClient }, deps }) => {
     void queryClient.query({
-      ...get{{pluralPascal}}QueryOptions(deps),
+      ...get{{pluralPascal}}QueryOptions({
+        ...initial{{pluralPascal}}FiltersState,
+        ...deps,
+        pageSize: deps.pageSize ?? getResponsivePageSize(),
+      }),
       staleTime: 'static',
     });
     return { meta };
   },
-  loaderDeps: ({ search }) => search,
   search: {
     middlewares: [stripSearchParams(initial{{pluralPascal}}FiltersState)],
   },
   validateSearch: zodValidator(get{{pluralPascal}}QuerySchema),
 });
+// biome-ignore-end assist/source/useSortedKeys: see biome-ignore-start above

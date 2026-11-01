@@ -1,11 +1,11 @@
 import { useNavigate } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
+import { useProduct } from '@/api/endpoints/products/get-product';
+import type { ProductDto } from '@/api/models/products/product-dto';
 import { QueryState } from '@/components/molecules/query-state';
-import { useProduct } from '@/features/products/api/get-product';
-import type { Product } from '@/features/products/types/product.types';
 
 type ProductQueryBoundaryProps = {
-  children: (product: Product) => ReactNode;
+  children: (product: ProductDto) => ReactNode;
   productId: string;
 };
 

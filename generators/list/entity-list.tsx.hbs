@@ -1,0 +1,89 @@
+import { useLingui } from '@lingui/react/macro';
+import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useMemo, useState } from 'react';
+import {
+  type Get{{pluralPascal}}Query,
+  use{{pluralPascal}},
+} from '@/api/endpoints/{{pluralKebab}}/get-{{pluralKebab}}';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
+import { DataTable } from '@/components/organisms/data-table/data-table';
+import { Filters } from '@/components/organisms/filters/filters';
+import {
+  FilterProvider,
+  useRouteFilterState,
+} from '@/components/organisms/filters/stores/filter-provider';
+import { Delete{{entityPascal}}Modal } from '@/features/{{featureDir}}/components/delete-{{entityKebab}}-modal';
+import { create{{pluralPascal}}TableColumns } from '@/features/{{featureDir}}/components/{{entityKebab}}-list/{{pluralKebab}}-table-columns';
+import {
+  get{{pluralPascal}}FilterFields,
+  initial{{pluralPascal}}FiltersState,
+} from '@/features/{{featureDir}}/config/{{pluralKebab}}-filter-config';
+import { useResponsivePageSize } from '@/hooks/use-responsive-page-size';
+
+export function {{entityPascal}}List() {
+  const { t } = useLingui();
+  const navigate = useNavigate();
+  const search = useSearch({ from: '/_admin/{{featureDir}}/' });
+  const responsivePageSize = useResponsivePageSize();
+  const [{{entityCamel}}ToDelete, set{{entityPascal}}ToDelete] =
+    useState<{{entityPascal}}Dto | null>(null);
+
+  const filterFields = useMemo(() => get{{pluralPascal}}FilterFields(), []);
+
+  const params: Get{{pluralPascal}}Query = {
+    ...initial{{pluralPascal}}FiltersState,
+    ...search,
+    pageSize: search.pageSize ?? responsivePageSize,
+  };
+
+  const {{pluralCamel}}Query = use{{pluralPascal}}({
+    params,
+    queryConfig: { placeholderData: (previousData) => previousData },
+  });
+
+  const filters = useRouteFilterState({
+    initialState: initial{{pluralPascal}}FiltersState,
+    navigate,
+    search,
+  });
+  const { getFilterValue, setFilterValue, setPage } = filters;
+
+  const columns = useMemo(
+    () => create{{pluralPascal}}TableColumns(t, set{{entityPascal}}ToDelete),
+    [t]
+  );
+
+  const pagination = {
+    onPageChange: setPage,
+    onPageSizeChange: (pageSize: number) => setFilterValue('pageSize', pageSize),
+    page: getFilterValue('page') ?? 1,
+    pageSize: params.pageSize ?? responsivePageSize,
+    total: {{pluralCamel}}Query.data?.meta.total ?? 0,
+    totalPages: {{pluralCamel}}Query.data?.meta.totalPages ?? 1,
+  };
+
+  return (
+    <FilterProvider fields={filterFields} value={filters}>
+      <DataTable
+        columns={columns}
+        data={ {{pluralCamel}}Query.data?.data ?? [] }
+        enableColumnVisibility
+        isLoading={ {{pluralCamel}}Query.isPending }
+        onRowAction={(id) => {
+          void navigate({
+            params: { {{routeParam}}: id },
+            to: '{{routePath}}/${{routeParam}}',
+          });
+        }}
+        pagination={pagination}
+        toolbar={(endActions) => <Filters endActions={endActions} />}
+      />
+
+      <Delete{{entityPascal}}Modal
+        isOpen={Boolean({{entityCamel}}ToDelete)}
+        onClose={() => set{{entityPascal}}ToDelete(null)}
+        {{entityCamel}}={ {{entityCamel}}ToDelete }
+      />
+    </FilterProvider>
+  );
+}

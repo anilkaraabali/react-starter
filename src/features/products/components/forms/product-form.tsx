@@ -1,23 +1,25 @@
+import { Card } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import type { AppForm } from '@/components/organisms/form/use-form';
-import type { createProductInputSchema } from '@/features/products/api/create-product';
+import type { productFormSchema } from '@/features/products/components/forms/product-form-schema';
 import {
-  PRODUCT_CATEGORY_OPTIONS,
-  PRODUCT_STATUS_OPTIONS,
-} from '@/features/products/config/product.constants';
+  getProductCategorySelectOptions,
+  getProductStatusSelectOptions,
+} from '@/features/products/config/product-select-options';
 
 type ProductFormProps = {
-  form: AppForm<typeof createProductInputSchema>;
+  form: AppForm<typeof productFormSchema>;
   formId: string;
 };
 
 export function ProductForm({ form, formId }: ProductFormProps) {
   const { t } = useLingui();
+  const categoryOptions = getProductCategorySelectOptions();
+  const statusOptions = getProductStatusSelectOptions();
 
   return (
-    <form.AppForm>
-      <form.Root id={formId}>
-        <form.UnsavedChangesGuard />
+    <form.Root id={formId}>
+      <Card className='card-form p-6'>
         <div className='grid gap-6'>
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <form.AppField name='name'>
@@ -25,7 +27,6 @@ export function ProductForm({ form, formId }: ProductFormProps) {
                 <field.FormInput
                   isRequired
                   label={t`Product Name`}
-                  placeholder={t`e.g. Ergonomic Keyboard`}
                   variant='secondary'
                 />
               )}
@@ -36,7 +37,6 @@ export function ProductForm({ form, formId }: ProductFormProps) {
                 <field.FormInput
                   isRequired
                   label={t`SKU`}
-                  placeholder={t`e.g. PROD-001`}
                   variant='secondary'
                 />
               )}
@@ -49,10 +49,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
                 <field.FormSelect
                   isRequired
                   label={t`Category`}
-                  options={PRODUCT_CATEGORY_OPTIONS.map((c) => ({
-                    label: c.label,
-                    value: c.value,
-                  }))}
+                  options={categoryOptions}
                   variant='secondary'
                 />
               )}
@@ -63,10 +60,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
                 <field.FormSelect
                   isRequired
                   label={t`Status`}
-                  options={PRODUCT_STATUS_OPTIONS.map((s) => ({
-                    label: s.label,
-                    value: s.value,
-                  }))}
+                  options={statusOptions}
                   variant='secondary'
                 />
               )}
@@ -74,11 +68,7 @@ export function ProductForm({ form, formId }: ProductFormProps) {
 
             <form.AppField name='barcode'>
               {(field) => (
-                <field.FormInput
-                  label={t`Barcode / EAN`}
-                  placeholder={t`Optional barcode`}
-                  variant='secondary'
-                />
+                <field.FormInput label={t`Barcode / EAN`} variant='secondary' />
               )}
             </form.AppField>
           </div>
@@ -121,14 +111,13 @@ export function ProductForm({ form, formId }: ProductFormProps) {
             {(field) => (
               <field.FormTextArea
                 label={t`Description`}
-                placeholder={t`Detailed product description...`}
                 rows={4}
                 variant='secondary'
               />
             )}
           </form.AppField>
         </div>
-      </form.Root>
-    </form.AppForm>
+      </Card>
+    </form.Root>
   );
 }

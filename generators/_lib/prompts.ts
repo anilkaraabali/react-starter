@@ -116,18 +116,25 @@ export function resolveData(answers: {
  * it out loud instead.
  */
 export function nextSteps(data: GeneratorData): string {
-  const { entityPascal, feature, pluralTitle, routeParam, routePath } = data;
+  const {
+    entityConst,
+    entityPascal,
+    feature,
+    pluralTitle,
+    routeParam,
+    routePath,
+  } = data;
 
   return [
     '',
     `Next steps for ${feature}:`,
     '  1. pnpm intl:extract      - extract new messages, then translate the empty tr msgstr entries',
     `  2. Register ${routePath} in src/app/layouts/admin-layout/sidebar-items.ts (needs an icon import)`,
-    '  3. Add a column-storage key in src/config/local-storage-keys.ts, then pass it to the table',
+    `  3. Add LOCAL_STORAGE_KEYS.COLUMNS.${entityConst} in src/config/local-storage-keys.ts`,
     `  4. Register the MSW handlers for ${routePath} in src/testing/mocks/handlers.ts`,
     '',
     `Generated names: ${entityPascal} / ${pluralTitle}, route param \`${routeParam}\``,
-    'The generators build on each other: types + config + api come first, then',
+    'The generators build on each other: types (api models) + config + api come first, then',
     'modal and detail, then form, list and routes. `form` and `list` both import',
     'the modal, and `form` also imports the query boundary, so running them out of',
     'order leaves the module temporarily broken.',

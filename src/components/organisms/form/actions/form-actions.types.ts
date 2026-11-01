@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 export type FormActionDropdownItem = {
   icon?: ReactNode;
   id: string;
+  isDisabled?: boolean;
   label: string;
   onSelect: () => void;
   variant?: 'danger';
@@ -10,9 +11,8 @@ export type FormActionDropdownItem = {
 
 export type FormActionsProps = {
   dropdownItems?: FormActionDropdownItem[];
-  /** Id of the `<form>` the Save button submits; the header renders outside it. */
-  formId?: string;
-  isSavePending?: boolean;
+  /** Overrides the default "Delete" label in the actions menu. */
+  deleteLabel?: string;
+  isDisabled?: boolean;
   onDelete?: () => void;
-  onEdit?: () => void;
 };

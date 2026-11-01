@@ -59,6 +59,8 @@ Vite serves the app at **http://localhost:4200** (or the next free port).
 | Variable                      | Default                 | Description                    |
 | ----------------------------- | ----------------------- | ------------------------------ |
 | `VITE_APP_API_URL`            | `http://localhost:3000` | API origin (no trailing slash) |
+| `VITE_APP_APP_URL`            | `http://localhost:4200` | Public URL of this admin app   |
+| `VITE_APP_MOCK_API_PORT`      | `8080`                  | MSW mock port (optional)       |
 | `VITE_APP_ENABLE_API_MOCKING` | `true`                  | Enable MSW mock service worker |
 
 `VITE_*` values are bundled into the client build, so never put sensitive secrets in them.

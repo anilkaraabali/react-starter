@@ -1,0 +1,16 @@
+import { Button } from '@heroui/react';
+import { useLingui } from '@lingui/react/macro';
+import { useNavigate } from '@tanstack/react-router';
+import { PlusIcon } from 'lucide-react';
+
+export function {{entityPascal}}ListActions() {
+  const { t } = useLingui();
+  const navigate = useNavigate();
+
+  return (
+    <Button onPress={() => navigate({ to: '{{routePath}}/new' })}>
+      <PlusIcon />
+      {t`Add {{entityKebab}}`}
+    </Button>
+  );
+}

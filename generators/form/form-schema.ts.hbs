@@ -1,0 +1,13 @@
+import type { z } from 'zod';
+import { create{{entityPascal}}InputSchema } from '@/api/models/{{pluralKebab}}/create-{{entityKebab}}-input';
+import { {{entityPascal}}StatusDto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-status-dto';
+
+export const {{entityCamel}}FormSchema = create{{entityPascal}}InputSchema;
+
+export type {{entityPascal}}FormValues = z.infer<typeof {{entityCamel}}FormSchema>;
+
+export const {{entityCamel}}FormDefaultValues: {{entityPascal}}FormValues = {
+  description: '',
+  name: '',
+  status: {{entityPascal}}StatusDto.draft,
+};

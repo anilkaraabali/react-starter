@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import type { AuthorizationContext } from '@/lib/authorization/authorization-policies.utils';
 import {
   checkPolicy,
   POLICIES,
 } from '@/lib/authorization/authorization-policies.utils';
-import { OrganizationPermission } from '@/types/organization.types';
 
 const ctx = (permissions: string[]): AuthorizationContext => ({
   permissions: permissions as unknown as AuthorizationContext['permissions'],
@@ -15,23 +15,21 @@ const noAccess = ctx([]);
 describe('authorization-policies.utils', () => {
   describe('permission policies', () => {
     it('passes only when the grant is present', () => {
-      const ctxOk = ctx([OrganizationPermission.organizationupdate]);
+      const ctxOk = ctx([OrganizationPermissionDto.organizationUpdate]);
 
       expect(checkPolicy(ctxOk, 'organization:update')).toBe(true);
       expect(checkPolicy(noAccess, 'organization:update')).toBe(false);
     });
 
     it('does not let one grant stand in for another', () => {
-      const ctxList = ctx([OrganizationPermission.organizationmemberslist]);
+      const ctxList = ctx([OrganizationPermissionDto.membersList]);
 
       expect(checkPolicy(ctxList, 'organization:update')).toBe(false);
     });
   });
 
   describe('member:manage', () => {
-    const withUpdateRole = ctx([
-      OrganizationPermission.organizationmembersupdate_role,
-    ]);
+    const withUpdateRole = ctx([OrganizationPermissionDto.membersUpdateRole]);
     const member = { role: 'admin', userId: 'u-2' } as const;
 
     it('allows managing another member', () => {
@@ -46,7 +44,7 @@ describe('authorization-policies.utils', () => {
 
     it('never allows managing yourself', () => {
       const self: AuthorizationContext = {
-        permissions: [OrganizationPermission.organizationmembersupdate_role],
+        permissions: [OrganizationPermissionDto.membersUpdateRole],
         userId: 'u-2',
       };
 
@@ -79,13 +77,11 @@ describe('authorization-policies.utils', () => {
 
     it('covers the permissions the app can receive', () => {
       expect(
-        POLICIES['members:list'](
-          ctx([OrganizationPermission.organizationmemberslist])
-        )
+        POLICIES['members:list'](ctx([OrganizationPermissionDto.membersList]))
       ).toBe(true);
       expect(
         POLICIES['organization:update'](
-          ctx([OrganizationPermission.organizationupdate])
+          ctx([OrganizationPermissionDto.organizationUpdate])
         )
       ).toBe(true);
     });

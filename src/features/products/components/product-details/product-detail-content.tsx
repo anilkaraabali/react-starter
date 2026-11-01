@@ -1,7 +1,7 @@
 import { Card } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
+import type { ProductDto } from '@/api/models/products/product-dto';
 import { SimpleDetailField } from '@/components/molecules/simple-detail-field';
-import type { Product } from '@/features/products/types/product.types';
 import { calculateProfitMargin } from '@/features/products/utils/product.utils';
 import {
   formatCurrency,
@@ -10,7 +10,7 @@ import {
 } from '@/utils/format.utils';
 
 type ProductDetailContentProps = {
-  product: Product;
+  product: ProductDto;
 };
 
 export function ProductDetailContent({ product }: ProductDetailContentProps) {

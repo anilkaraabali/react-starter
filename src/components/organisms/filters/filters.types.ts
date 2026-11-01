@@ -17,6 +17,8 @@ type FilterFieldProps = {
 };
 
 type FilterFieldConfigBase<TKey extends string> = {
+  /** Parent fields this one depends on: changing any of them clears this field. */
+  dependsOn?: TKey[];
   key: TKey;
   label: string;
   props?: FilterFieldProps;

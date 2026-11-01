@@ -6,11 +6,6 @@ type Answers = { entityName: string; feature: string };
 
 /**
  * `src/features/<feature>/components/forms/`
- *
- * The whole create/edit slice at once — shared field component, its form
- * options, the entity-to-form mapper and the two views that drive it. Splitting
- * these across generators would let someone scaffold a form with no view that
- * compiles.
  */
 const formGenerator: PlopGeneratorConfig = {
   actions: (answers) => {
@@ -21,6 +16,10 @@ const formGenerator: PlopGeneratorConfig = {
     return fileActions(
       [
         {
+          path: `${base}/${e}-form-schema.ts`,
+          templateFile: 'generators/form/form-schema.ts.hbs',
+        },
+        {
           path: `${base}/${e}-form.tsx`,
           templateFile: 'generators/form/form.tsx.hbs',
         },
@@ -29,18 +28,18 @@ const formGenerator: PlopGeneratorConfig = {
           templateFile: 'generators/form/form-mappers.ts.hbs',
         },
         {
-          path: `${base}/create-${e}-view.tsx`,
-          templateFile: 'generators/form/create-view.tsx.hbs',
+          path: `${base}/create-${e}.tsx`,
+          templateFile: 'generators/form/create-entity.tsx.hbs',
         },
         {
-          path: `${base}/edit-${e}-view.tsx`,
-          templateFile: 'generators/form/edit-view.tsx.hbs',
+          path: `${base}/edit-${e}.tsx`,
+          templateFile: 'generators/form/edit-entity.tsx.hbs',
         },
       ],
       data
     );
   },
-  description: 'Shared form + options + mapper, create and edit views',
+  description: 'Form schema, fields, mapper, create and edit screens',
   prompts: featurePrompts(),
 };
 

@@ -7,6 +7,7 @@ import type {
 } from '@/components/organisms/filters/filters.types';
 
 type FilterSelectProps = {
+  isDisabled?: boolean;
   label: string;
   options?: FilterOption[];
   onChange: (value: FilterValue) => void;
@@ -14,6 +15,7 @@ type FilterSelectProps = {
 };
 
 export function FilterSelect({
+  isDisabled = false,
   label,
   onChange,
   options = [],
@@ -24,6 +26,7 @@ export function FilterSelect({
   return (
     <Select
       fullWidth
+      isDisabled={isDisabled || options.length === 0}
       onChange={onChange}
       placeholder={t`Select one`}
       value={value as Key}

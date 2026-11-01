@@ -3,15 +3,19 @@ import { useLingui } from '@lingui/react/macro';
 import { PencilLineIcon, SaveIcon } from 'lucide-react';
 
 type FormPrimaryActionButtonProps = {
+  editLabel?: string;
   formId?: string;
   isSavePending?: boolean;
   onEdit?: () => void;
+  submitLabel?: string;
 };
 
 export function FormPrimaryActionButton({
+  editLabel,
   formId,
   isSavePending = false,
   onEdit,
+  submitLabel,
 }: FormPrimaryActionButtonProps) {
   const { t } = useLingui();
 
@@ -25,7 +29,7 @@ export function FormPrimaryActionButton({
             ) : (
               <SaveIcon aria-hidden />
             )}
-            {t`Save`}
+            {submitLabel ?? t`Save changes`}
           </>
         )}
       </Button>
@@ -36,7 +40,7 @@ export function FormPrimaryActionButton({
     return (
       <Button onPress={onEdit} type='button'>
         <PencilLineIcon aria-hidden />
-        {t`Edit`}
+        {editLabel ?? t`Edit`}
       </Button>
     );
   }

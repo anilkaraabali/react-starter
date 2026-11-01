@@ -1,14 +1,14 @@
 import { toast } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
+import { useCreateMember } from '@/api/endpoints/organizations/create-member';
 import { FormModalShell } from '@/components/organisms/form/modals/form-modal-shell';
 import { useForm } from '@/components/organisms/form/use-form';
-import { useCreateMember } from '@/features/account/api/create-member';
 import { NameEmailFieldsGroup } from '@/features/account/components/forms/name-email-fields-group';
 import {
-  type CreateMemberInput,
-  createMemberDefaultValues,
-  createMemberInputSchema,
-} from '@/features/account/types/create-member-input';
+  type CreateMemberFormValues,
+  createMemberFormDefaultValues,
+  createMemberFormSchema,
+} from '@/features/account/schemas/create-member-form-schema';
 import { ORGANIZATION_INVITE_ROLES } from '@/features/account/utils/member-role.utils';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
 
@@ -29,11 +29,11 @@ export function CreateMemberModal({ isOpen, onClose }: CreateMemberModalProps) {
   });
 
   const form = useForm({
-    defaultValues: createMemberDefaultValues,
-    onSubmit: async (data: CreateMemberInput) => {
+    defaultValues: createMemberFormDefaultValues,
+    onSubmit: async (data: CreateMemberFormValues) => {
       await createMemberMutation.mutateAsync({ data });
     },
-    schema: createMemberInputSchema,
+    schema: createMemberFormSchema,
   });
 
   return (

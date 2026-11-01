@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import type { ProductDto } from '@/api/models/products/product-dto';
 import { productToFormValues } from '@/features/products/components/forms/product-form-mappers';
-import type { Product } from '@/features/products/types/product.types';
 
 describe('toProductFormValues', () => {
   it('maps product fields to form values correctly', () => {
-    const product: Product = {
+    const product: ProductDto = {
       barcode: '1234567890123',
       category: 'electronics',
       costPrice: 50,
@@ -34,7 +34,7 @@ describe('toProductFormValues', () => {
   });
 
   it('falls back to empty strings and zero for undefined optional values', () => {
-    const product: Product = {
+    const product: ProductDto = {
       barcode: undefined,
       category: 'books',
       costPrice: undefined,

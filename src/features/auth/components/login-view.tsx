@@ -6,10 +6,10 @@ import { useForm } from '@/components/organisms/form/use-form';
 import { AuthFormShell } from '@/features/auth/components/auth-form-shell';
 import { useAccountDeletedToast } from '@/features/auth/hooks/use-account-deleted-toast';
 import {
-  type LoginInput,
-  loginDefaultValues,
-  loginInputSchema,
-} from '@/features/auth/types/login-input';
+  type LoginFormValues,
+  loginFormDefaultValues,
+  loginFormSchema,
+} from '@/features/auth/schemas/login-form-schema';
 import { signIn } from '@/lib/auth-client';
 
 export function LoginView() {
@@ -17,8 +17,8 @@ export function LoginView() {
   useAccountDeletedToast();
 
   const form = useForm({
-    defaultValues: loginDefaultValues,
-    onSubmit: async (data: LoginInput) => {
+    defaultValues: loginFormDefaultValues,
+    onSubmit: async (data: LoginFormValues) => {
       await signIn.email(
         {
           ...data,
@@ -34,7 +34,7 @@ export function LoginView() {
         }
       );
     },
-    schema: loginInputSchema,
+    schema: loginFormSchema,
   });
 
   return (

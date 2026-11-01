@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { {{keysFactory}} } from '@/features/{{featureDir}}/api/{{entityKebab}}.keys';
+import { {{keysFactory}} } from '@/api/endpoints/{{pluralKebab}}/{{pluralKebab}}.keys';
 import { api } from '@/lib/api-client';
 import type { MutationConfig } from '@/lib/react-query';
 
-export const delete{{entityPascal}} = (id: string) => {
+const delete{{entityPascal}} = (id: string) => {
   return api.delete<never, void>(`{{apiPath}}/${id}`);
 };
 
@@ -19,6 +19,7 @@ export const useDelete{{entityPascal}} = ({
   const { onSuccess, ...restConfig } = mutationConfig || {};
 
   return useMutation({
+    mutationFn: delete{{entityPascal}},
     onSuccess: (...args) => {
       void queryClient.invalidateQueries({
         queryKey: {{keysFactory}}.lists(),
@@ -26,6 +27,5 @@ export const useDelete{{entityPascal}} = ({
       onSuccess?.(...args);
     },
     ...restConfig,
-    mutationFn: delete{{entityPascal}},
   });
 };

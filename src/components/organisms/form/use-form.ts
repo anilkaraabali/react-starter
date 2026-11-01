@@ -1,5 +1,6 @@
 import { createFormHook, type StandardSchemaV1 } from '@tanstack/react-form';
 import type { input as ZodInput, output as ZodOutput, ZodType } from 'zod';
+import { FormActionBar } from './actions/form-action-bar';
 import { FormAutocomplete } from './fields/form-autocomplete';
 import { FormCheckbox } from './fields/form-checkbox';
 import { FormDateField } from './fields/form-date-field';
@@ -32,6 +33,7 @@ const { useAppForm, withFieldGroup } = createFormHook({
   },
   fieldContext,
   formComponents: {
+    ActionBar: FormActionBar,
     Root: FormRoot,
     SubmitButton: FormSubmitButton,
     UnsavedChangesGuard: FormUnsavedChangesGuard,

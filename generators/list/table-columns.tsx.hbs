@@ -1,57 +1,48 @@
-import { i18n } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { Link } from '@tanstack/react-router';
 import { EyeIcon, PencilLineIcon, Trash2Icon } from 'lucide-react';
+import type { {{entityPascal}}Dto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-dto';
 import type { TableColumnDef } from '@/components/organisms/data-table/data-table.types';
 import { TableAction } from '@/components/organisms/data-table/table-action';
 import { {{entityPascal}}StatusChip } from '@/features/{{featureDir}}/components/{{entityKebab}}-status-chip';
-import type { {{entityPascal}} } from '@/features/{{featureDir}}/types/{{entityKebab}}.types';
+import type { Translate } from '@/types/i18n.types';
 
-type Create{{pluralPascal}}TableColumnsOptions = {
-  onDeleteClick: ({{entityCamel}}: {{entityPascal}}) => void;
-};
-
-/**
- * The column list is the single source of truth for column ids, so the
- * visibility toggle and the row actions cannot drift apart.
- */
-export const create{{pluralPascal}}TableColumns = ({
-  onDeleteClick,
-}: Create{{pluralPascal}}TableColumnsOptions) =>
-  [
+export function create{{pluralPascal}}TableColumns(
+  t: Translate,
+  onDeleteClick: ({{entityCamel}}: {{entityPascal}}Dto) => void
+): readonly TableColumnDef<{{entityPascal}}Dto>[] {
+  return [
     {
-      cell: ({{entityCamel}}: {{entityPascal}}) => (
+      cell: (row) => (
         <Link
           className='hover:underline'
           params={
             {
-              {{routeParam}}: {{entityCamel}}.id,
+              {{routeParam}}: row.id,
             }
           }
           to='{{routePath}}/${{routeParam}}'
         >
-          { {{entityCamel}}.name }
+          {row.name}
         </Link>
       ),
-      header: () => i18n._(msg`{{singularTitle}}`),
+      header: () => t(msg`Name`),
       id: 'name',
       isRowHeader: true,
     },
     {
-      cell: ({{entityCamel}}: {{entityPascal}}) => (
-        <{{entityPascal}}StatusChip status={ {{entityCamel}}.status } />
-      ),
-      header: () => i18n._(msg`Status`),
+      cell: (row) => <{{entityPascal}}StatusChip status={row.status} />,
+      header: () => t(msg`Status`),
       id: 'status',
     },
     {
-      cell: ({{entityCamel}}: {{entityPascal}}) => (
+      cell: (row) => (
         <div className='flex items-center justify-end gap-1'>
           <TableAction.Link
-            label={i18n._(msg`View details`)}
+            label={t(msg`View details`)}
             params={
               {
-                {{routeParam}}: {{entityCamel}}.id,
+                {{routeParam}}: row.id,
               }
             }
             to='{{routePath}}/${{routeParam}}'
@@ -59,10 +50,10 @@ export const create{{pluralPascal}}TableColumns = ({
             <EyeIcon />
           </TableAction.Link>
           <TableAction.Link
-            label={i18n._(msg`Edit {{entityKebab}}`)}
+            label={t(msg`Edit {{entityKebab}}`)}
             params={
               {
-                {{routeParam}}: {{entityCamel}}.id,
+                {{routeParam}}: row.id,
               }
             }
             to='{{routePath}}/${{routeParam}}/edit'
@@ -70,8 +61,8 @@ export const create{{pluralPascal}}TableColumns = ({
             <PencilLineIcon />
           </TableAction.Link>
           <TableAction.Button
-            label={i18n._(msg`Delete {{entityKebab}}`)}
-            onPress={() => onDeleteClick({{entityCamel}})}
+            label={t(msg`Delete {{entityKebab}}`)}
+            onPress={() => onDeleteClick(row)}
             variant='danger-soft'
           >
             <Trash2Icon className='text-danger' />
@@ -81,6 +72,7 @@ export const create{{pluralPascal}}TableColumns = ({
       header: () => '',
       hideable: true,
       id: 'actions',
-      label: () => i18n._(msg`Actions`),
+      label: () => t(msg`Actions`),
     },
-  ] as const satisfies readonly TableColumnDef<{{entityPascal}}>[];
+  ];
+}

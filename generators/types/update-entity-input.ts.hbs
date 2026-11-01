@@ -1,0 +1,9 @@
+import type { z } from 'zod';
+import { create{{entityPascal}}InputSchema } from '@/api/models/{{pluralKebab}}/create-{{entityKebab}}-input';
+
+export const update{{entityPascal}}InputSchema =
+  create{{entityPascal}}InputSchema.partial();
+
+export type Update{{entityPascal}}Input = z.infer<
+  typeof update{{entityPascal}}InputSchema
+>;

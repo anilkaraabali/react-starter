@@ -7,6 +7,7 @@ import type {
 } from '@/components/organisms/filters/filters.types';
 
 type FilterAutocompleteProps = {
+  isDisabled?: boolean;
   label: string;
   options?: FilterOption[];
   onChange: (value: FilterValue) => void;
@@ -14,6 +15,7 @@ type FilterAutocompleteProps = {
 };
 
 export function FilterAutocomplete({
+  isDisabled = false,
   label,
   onChange,
   options = [],
@@ -25,6 +27,7 @@ export function FilterAutocomplete({
     <Autocomplete
       allowsEmptyCollection
       fullWidth
+      isDisabled={isDisabled}
       onChange={onChange}
       placeholder={t`Select one`}
       selectionMode='single'

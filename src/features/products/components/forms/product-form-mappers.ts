@@ -1,7 +1,7 @@
-import type { CreateProductInput } from '@/features/products/api/create-product';
-import type { Product } from '@/features/products/types/product.types';
+import type { ProductDto } from '@/api/models/products/product-dto';
+import type { ProductFormValues } from '@/features/products/components/forms/product-form-schema';
 
-export function productToFormValues(product: Product): CreateProductInput {
+export function productToFormValues(product: ProductDto): ProductFormValues {
   return {
     barcode: product.barcode ?? '',
     category: product.category,

@@ -2,16 +2,16 @@ import { Card, Chip, cn, linkVariants } from '@heroui/react';
 import { useLingui } from '@lingui/react/macro';
 import { Link } from '@tanstack/react-router';
 import { LockIcon, ShieldCheckIcon, UsersIcon } from 'lucide-react';
+import type { OrganizationMemberRoleDto } from '@/api/models/organizations/organization-member-role-dto';
 import { ROLE_PERMISSIONS } from '@/features/account/config/organization-permissions.constants';
 import { getOrganizationRoleDescription } from '@/features/account/utils/member-role.utils';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
-import type { OrganizationMemberRole } from '@/types/organization.types';
 
 const link = linkVariants();
 
 type OrganizationRoleCardProps = {
   memberCount: number;
-  role: OrganizationMemberRole;
+  role: OrganizationMemberRoleDto;
 };
 
 export function OrganizationRoleCard({

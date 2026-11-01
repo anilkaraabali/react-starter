@@ -1,9 +1,8 @@
 import { toast } from '@heroui/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
-
+import { useRevokeOtherSessions } from '@/api/endpoints/account/revoke-other-sessions';
 import { ConfirmDialog } from '@/components/molecules/confirm-dialog';
-import { useRevokeOtherSessions } from '@/features/account/api/revoke-other-sessions';
 
 type RevokeOtherSessionsModalProps = {
   isOpen: boolean;

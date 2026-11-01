@@ -1,0 +1,8 @@
+import type { Entity } from '@/api/models/common/entity';
+import type { {{entityPascal}}StatusDto } from '@/api/models/{{pluralKebab}}/{{entityKebab}}-status-dto';
+
+export type {{entityPascal}}Dto = Entity<{
+  description?: string;
+  name: string;
+  status: {{entityPascal}}StatusDto;
+}>;

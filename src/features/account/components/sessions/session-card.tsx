@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import type { AuthSession } from '@/features/account/types/session.types';
+import type { AuthSessionDto } from '@/api/models/account/auth-session-dto';
 import { parseUserAgent } from '@/features/account/utils/parse-user-agent.utils';
 import { SessionDeviceIcon } from './session-device-icon';
 
@@ -17,7 +17,7 @@ type SessionCardProps = {
   isCurrent: boolean;
   isRevoking: boolean;
   onRevoke: () => void;
-  session: AuthSession;
+  session: AuthSessionDto;
 };
 
 export function SessionCard({

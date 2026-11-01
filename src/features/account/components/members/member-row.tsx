@@ -17,18 +17,16 @@ import {
   Trash2Icon,
 } from 'lucide-react';
 import type { Key } from 'react';
+import { useSetMemberBan } from '@/api/endpoints/organizations/set-member-ban';
+import { useUpdateMemberRole } from '@/api/endpoints/organizations/update-member-role';
+import type { OrganizationMemberDto } from '@/api/models/organizations/organization-member-dto';
 import { UserAvatar } from '@/components/atoms/user-avatar';
-import { useSetMemberBan } from '@/features/account/api/set-member-ban';
-import { useUpdateMemberRole } from '@/features/account/api/update-member-role';
 import { Account } from '@/features/account/components/blocks/account';
 import type { OrganizationInviteRole } from '@/features/account/utils/member-role.utils';
 import { ORGANIZATION_INVITE_ROLES } from '@/features/account/utils/member-role.utils';
+import { organizationMemberRoleOptions } from '@/lib/authorization/organization-member-role-options';
 import { getOrganizationRoleLabel } from '@/lib/authorization/organization-role.utils';
 import { useAuthorization } from '@/lib/authorization/use-authorization';
-import {
-  ORGANIZATION_ROLES,
-  type OrganizationMemberDto,
-} from '@/types/organization.types';
 import { MemberBanModal } from './member-ban-modal';
 import { MemberDeleteModal } from './member-delete-modal';
 
@@ -131,7 +129,7 @@ export function MemberRow({ isCurrent, member }: MemberRowProps) {
                 </Select.Trigger>
                 <Select.Popover>
                   <ListBox>
-                    {ORGANIZATION_ROLES.map((role) => (
+                    {organizationMemberRoleOptions.map((role) => (
                       <ListBox.Item
                         id={role}
                         key={role}

@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import { OrganizationPermissionDto } from '@/api/models/organizations/organization-permission-dto';
 import {
   getOrganizationRoleLabel,
   hasOrganizationPermission,
   isOrganizationMemberRole,
 } from '@/lib/authorization/organization-role.utils';
-import { OrganizationPermission } from '@/types/organization.types';
 
 describe('organization-role.utils', () => {
   describe('isOrganizationMemberRole', () => {
@@ -16,7 +16,7 @@ describe('organization-role.utils', () => {
       expect(isOrganizationMemberRole('sales_rep')).toBe(true);
     });
 
-    it('rejects anything else, so an invalid role cannot slip through', () => {
+    it('rejects unknown roles', () => {
       expect(isOrganizationMemberRole('owner')).toBe(false);
       expect(isOrganizationMemberRole('guest')).toBe(false);
       expect(isOrganizationMemberRole('member')).toBe(false);
@@ -28,36 +28,39 @@ describe('organization-role.utils', () => {
   });
 
   describe('hasOrganizationPermission', () => {
-    it('is true only for a listed grant', () => {
+    it('returns true when permission is present', () => {
       expect(
         hasOrganizationPermission(
-          [OrganizationPermission.organizationupdate],
-          OrganizationPermission.organizationupdate
+          ['organization.update'],
+          OrganizationPermissionDto.organizationUpdate
         )
       ).toBe(true);
       expect(
         hasOrganizationPermission(
-          [OrganizationPermission.organizationupdate],
-          OrganizationPermission.organizationmemberslist
+          ['organization.members.list'],
+          OrganizationPermissionDto.membersList
         )
-      ).toBe(false);
+      ).toBe(true);
     });
 
-    it('treats a missing grant list as no access', () => {
+    it('returns false when permission is missing', () => {
       expect(
         hasOrganizationPermission(
-          undefined,
-          OrganizationPermission.organizationupdate
+          ['organization.update'],
+          OrganizationPermissionDto.membersRemove
         )
       ).toBe(false);
       expect(
-        hasOrganizationPermission([], OrganizationPermission.organizationupdate)
+        hasOrganizationPermission(
+          [],
+          OrganizationPermissionDto.organizationUpdate
+        )
       ).toBe(false);
     });
   });
 
   describe('getOrganizationRoleLabel', () => {
-    it('returns the translated label for a known role', () => {
+    it('returns a label for each known role', () => {
       expect(getOrganizationRoleLabel('super_admin')).toBe('Super Admin');
       expect(getOrganizationRoleLabel('admin')).toBe('Admin');
       expect(getOrganizationRoleLabel('support_agent')).toBe('Support Agent');
@@ -65,7 +68,7 @@ describe('organization-role.utils', () => {
       expect(getOrganizationRoleLabel('sales_rep')).toBe('Sales Rep');
     });
 
-    it('falls back to the raw role for a value it does not know', () => {
+    it('falls back to the raw role for unknown values', () => {
       expect(
         getOrganizationRoleLabel(
           'custom_role' as Parameters<typeof getOrganizationRoleLabel>[0]

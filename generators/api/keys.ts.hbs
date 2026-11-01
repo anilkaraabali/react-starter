@@ -1,7 +1,7 @@
-import type { Get{{pluralPascal}}Query } from '@/features/{{featureDir}}/api/get-{{pluralKebab}}';
+import type { Get{{pluralPascal}}Query } from '@/api/endpoints/{{pluralKebab}}/get-{{pluralKebab}}';
 
 export const {{keysFactory}} = {
-  all: ['{{featureDir}}'] as const,
+  all: ['{{pluralKebab}}'] as const,
   detail: (id: string) => [...{{keysFactory}}.details(), id] as const,
   details: () => [...{{keysFactory}}.all, 'detail'] as const,
   list: (params?: Get{{pluralPascal}}Query) =>
