@@ -2,12 +2,12 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { getProductQueryOptions } from '@/api/endpoints/products/get-product';
-import { useDynamicHead } from '@/lib/head/head-provider';
 import { BackButton } from '@/components/atoms/back-button';
 import { FormPrimaryActionButton } from '@/components/organisms/form/actions/form-primary-action-button';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { ProductDetailContent } from '@/features/products/components/product-details/product-detail-content';
 import { ProductQueryBoundary } from '@/features/products/components/product-query-boundary';
+import { useDynamicHead } from '@/lib/head/head-provider';
 
 function ProductDynamicHead({ name }: { name: string }) {
   useDynamicHead({ title: name });

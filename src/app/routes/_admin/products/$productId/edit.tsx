@@ -3,13 +3,13 @@ import { useLingui } from '@lingui/react/macro';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { getProductQueryOptions } from '@/api/endpoints/products/get-product';
-import { useDynamicHead } from '@/lib/head/head-provider';
 import { BackButton } from '@/components/atoms/back-button';
 import { FormActions } from '@/components/organisms/form/actions/form-actions';
 import { ContentLayout } from '@/components/templates/content-layout';
 import { DeleteProductModal } from '@/features/products/components/delete-product-modal';
 import { EditProduct } from '@/features/products/components/forms/edit-product';
 import { ProductQueryBoundary } from '@/features/products/components/product-query-boundary';
+import { useDynamicHead } from '@/lib/head/head-provider';
 
 function ProductDynamicHead({ name }: { name: string }) {
   useDynamicHead({ title: name });

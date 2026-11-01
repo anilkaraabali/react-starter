@@ -1,11 +1,11 @@
 import { useLingui } from '@lingui/react/macro';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
-import { HeadProvider } from '@/lib/head/head-provider';
 import { GlobalError } from '@/app/layouts/error/global-error';
 import { NotFound } from '@/app/layouts/error/not-found';
 import { Meta } from '@/app/meta';
 import { NavigationProgress } from '@/app/navigation-progress';
 import type { RootRouteContext } from '@/app/router.types';
+import { HeadProvider } from '@/lib/head/head-provider';
 import { getPageTitleTemplate } from '@/utils/page-title.utils';
 
 function RootComponent() {

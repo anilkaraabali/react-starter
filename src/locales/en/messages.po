@@ -329,8 +329,8 @@ msgid "Create"
 msgstr "Create"
 
 #: src/app/routes/_admin/products/new.tsx
-msgid "Create Product"
-msgstr "Create Product"
+msgid "Create product"
+msgstr "Create product"
 
 #: src/features/auth/components/register-view.tsx
 msgid "Create your account in just a few steps and start today."
@@ -964,8 +964,8 @@ msgid "Product deleted."
 msgstr "Product deleted."
 
 #: src/app/routes/_admin/products/$productId/index.tsx
-msgid "Product Details"
-msgstr "Product Details"
+msgid "Product details"
+msgstr "Product details"
 
 #: src/features/products/components/product-details/product-detail-content.tsx
 msgid "Product Information"
@@ -1279,6 +1279,7 @@ msgid "Start date"
 msgstr "Start date"
 
 #: src/features/products/components/forms/product-form.tsx
+#: src/features/products/components/product-details/product-detail-content.tsx
 #: src/features/products/components/product-list/products-table-columns.tsx
 #: src/features/products/config/products-filter-config.ts
 msgid "Status"
